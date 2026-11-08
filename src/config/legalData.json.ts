@@ -4,7 +4,7 @@ import { type LegalData } from "./types/configDataTypes";
  * 机场cloud 法律声明与隐私权政策
  * 严格遵循国际合规准则、GDPR及免责声明规范，杜绝任何模板占位符
  */
-const legalData = {
+const legalData: LegalData = {
   terms: {
     title: "服务条款与免责声明 (Terms of Service)",
     description: "机场cloud 平台使用协议、测评数据引用规范、中立性声明及用户免责条款。",
@@ -27,7 +27,7 @@ const legalData = {
       {
         heading: "3. 推广链接与赞助透明化 (Affiliate Disclosure)",
         body: [
-          "为了维持本站全球 3 节点 BGP 监控探针、自动化压测服务器集群及专栏撰写的高昂运营成本，本站部分指向第三方服务商的链接可能包含官方推广代码（均严格标记 rel=\"nofollow sponsored noopener\" 属性）。经由本站链接注册可能为我们带来微薄佣金，但这绝不会增加您的实际支付成本，亦绝不影响本站在晚高峰故障与跑路风险审计中的客观公正性。",
+          '为了维持本站全球 3 节点 BGP 监控探针、自动化压测服务器集群及专栏撰写的高昂运营成本，本站部分指向第三方服务商的链接可能包含官方推广代码（均严格标记 rel="nofollow sponsored noopener" 属性）。经由本站链接注册可能为我们带来微薄佣金，但这绝不会增加您的实际支付成本，亦绝不影响本站在晚高峰故障与跑路风险审计中的客观公正性。',
         ],
       },
       {

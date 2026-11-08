@@ -1,6 +1,7 @@
 ---
 import { Badge } from "@components/ui/badge";
 import { PixelPanel } from "@components/ui/pixel-panel";
+
 import { airportsData } from "@/data/airportsData";
 
 // Airports with speedtest charts
@@ -8,50 +9,60 @@ const speedtestAirports = airportsData.filter((a) => a.hasSpeedtest).slice(0, 6)
 ---
 
 <section id="speedtest-section" aria-labelledby="speedtest-title" class="flex flex-col gap-6">
-  <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 border-b-4 border-border pb-3">
+  <div
+    class="border-border flex flex-col gap-2 border-b-4 pb-3 sm:flex-row sm:items-end sm:justify-between"
+  >
     <div>
       <div class="flex items-center gap-2">
-        <span class="inline-block size-2.5 bg-success animate-ping"></span>
-        <span class="font-display text-xs text-success uppercase">OBSERVATORY LAB</span>
+        <span class="bg-success inline-block size-2.5 animate-ping"></span>
+        <span class="font-display text-success text-xs uppercase">OBSERVATORY LAB</span>
         <Badge pixel variant="info">晚高峰实测</Badge>
       </div>
-      <h2 id="speedtest-title" class="font-display text-2xl md:text-3xl text-foreground uppercase tracking-tight mt-1">
+      <h2
+        id="speedtest-title"
+        class="font-display text-foreground mt-1 text-2xl tracking-tight uppercase md:text-3xl"
+      >
         晚高峰测速实验室 & 解锁矩阵实录
       </h2>
     </div>
-    <a href="/speedtest/" class="text-xs font-mono text-info hover:underline">
+    <a href="/speedtest/" class="text-info font-mono text-xs hover:underline">
       进入测速实验室专栏 (17+ 实测图) →
     </a>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    {speedtestAirports.map((item) => (
-      <PixelPanel class="p-4 flex flex-col gap-3 bg-card border-2 border-border">
-        <div class="flex items-center justify-between">
-          <span class="font-display text-sm text-foreground uppercase">
-            {item.name}
-          </span>
-          <span class="text-[10px] font-mono text-success bg-success/10 px-2 py-0.5 border border-success/30">
-            实测已归档
-          </span>
-        </div>
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+    {
+      speedtestAirports.map((item) => (
+        <PixelPanel class="bg-card border-border flex flex-col gap-3 border-2 p-4">
+          <div class="flex items-center justify-between">
+            <span class="font-display text-foreground text-sm uppercase">{item.name}</span>
+            <span class="text-success bg-success/10 border-success/30 border px-2 py-0.5 font-mono text-[10px]">
+              实测已归档
+            </span>
+          </div>
 
-        <a href={item.speedtestImg} target="_blank" rel="noopener noreferrer" class="block overflow-hidden border border-border group">
-          <img
-            src={item.speedtestImg}
-            alt={`${item.name} 测速图实录`}
-            class="w-full h-44 object-cover object-top group-hover:scale-105 transition-transform duration-200"
-            loading="lazy"
-          />
-        </a>
-
-        <div class="flex items-center justify-between text-xs pt-1">
-          <span class="text-muted-foreground font-mono">{item.lineType}</span>
-          <a href={`/airports/${item.slug}/`} class="text-info hover:underline text-xs font-mono">
-            查看测速报告 →
+          <a
+            href={item.speedtestImg}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="border-border group block overflow-hidden border"
+          >
+            <img
+              src={item.speedtestImg}
+              alt={`${item.name} 测速图实录`}
+              class="h-44 w-full object-cover object-top transition-transform duration-200 group-hover:scale-105"
+              loading="lazy"
+            />
           </a>
-        </div>
-      </PixelPanel>
-    ))}
+
+          <div class="flex items-center justify-between pt-1 text-xs">
+            <span class="text-muted-foreground font-mono">{item.lineType}</span>
+            <a href={`/airports/${item.slug}/`} class="text-info font-mono text-xs hover:underline">
+              查看测速报告 →
+            </a>
+          </div>
+        </PixelPanel>
+      ))
+    }
   </div>
 </section>

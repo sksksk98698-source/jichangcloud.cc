@@ -26,7 +26,12 @@ const portfolioData = {
 
   stats: {
     home: ["机场库: 42家", "实测图: 17+份", "晚高峰延迟: <25ms"],
-    profile: ["监控节点: 42+", "专线类型: IEPL/IPLC", "协议覆盖: VLESS/Trojan", "解锁测试: 100%全覆盖"],
+    profile: [
+      "监控节点: 42+",
+      "专线类型: IEPL/IPLC",
+      "协议覆盖: VLESS/Trojan",
+      "解锁测试: 100%全覆盖",
+    ],
   },
 
   home: {

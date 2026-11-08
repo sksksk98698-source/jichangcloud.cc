@@ -1,13 +1,21 @@
 ---
 import HeroPanel from "@components/Sections/Global/HeroPanel.astro";
-import { Badge } from "@components/ui/badge";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from "@components/ui/breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@components/ui/breadcrumb";
 import { PixelPanel } from "@components/ui/pixel-panel";
-import { faqArticles, faqCategories } from "@/data/faqData";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
-const pageTitle = "2026 科学上网与机场使用 100 问权威百科：排障自愈/节点超时/ChatGPT与DNS泄漏全解 — 机场cloud";
-const pageDescription = "全网最详尽的翻墙故障自检与百科知识库。专为解决节点全部超时 (-1ms)、连得上但打不开网页、ChatGPT 1020 报错、Netflix 软封锁，到国内微信分流错配与 DNS 泄漏防御全解析。";
+import { faqArticles, faqCategories } from "@/data/faqData";
+
+const pageTitle =
+  "2026 科学上网与机场使用 100 问权威百科：排障自愈/节点超时/ChatGPT与DNS泄漏全解 — 机场cloud";
+const pageDescription =
+  "全网最详尽的翻墙故障自检与百科知识库。专为解决节点全部超时 (-1ms)、连得上但打不开网页、ChatGPT 1020 报错、Netflix 软封锁，到国内微信分流错配与 DNS 泄漏防御全解析。";
 
 // 专著级结构化数据：WebPage + TechArticle + FAQPage
 const schemaData = {
@@ -15,112 +23,112 @@ const schemaData = {
   "@graph": [
     {
       "@type": "TechArticle",
-      "headline": "2026 科学上网与机场使用疑难排障与知识百科全书",
-      "description": pageDescription,
-      "author": {
+      headline: "2026 科学上网与机场使用疑难排障与知识百科全书",
+      description: pageDescription,
+      author: {
         "@type": "Organization",
-        "name": "机场cloud网络技术支持中心"
+        name: "机场cloud网络技术支持中心",
       },
-      "datePublished": "2026-01-18T08:00:00+08:00",
-      "dateModified": "2026-03-30T10:00:00+08:00",
-      "inLanguage": "zh-CN",
-      "mainEntityOfPage": "https://jichangcloud.cc/faq/"
+      datePublished: "2026-01-18T08:00:00+08:00",
+      dateModified: "2026-03-30T10:00:00+08:00",
+      inLanguage: "zh-CN",
+      mainEntityOfPage: "https://jichangcloud.cc/faq/",
     },
     {
       "@type": "FAQPage",
-      "mainEntity": [
+      mainEntity: [
         {
           "@type": "Question",
-          "name": "节点全部测速超时（显示 -1ms 或 Timeout），为什么网页彻底打不开？",
-          "acceptedAnswer": {
+          name: "节点全部测速超时（显示 -1ms 或 Timeout），为什么网页彻底打不开？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "超过 80% 的全红超时案例是因为本地系统时钟与标准互联网授时中心误差超过 60 秒。由于现代代理协议（如 VMess、VLESS、Trojan）使用 TLS 1.3 双向加密认证，时间戳漂移会导致握手校验直接被服务端主动拒绝。进入操作系统日期与时间设置，点击立即同步网络时钟即可秒级恢复。若时间正常，则需检查订阅是否欠费过期或机场国内中继入口遭受攻击。"
-          }
+            text: "超过 80% 的全红超时案例是因为本地系统时钟与标准互联网授时中心误差超过 60 秒。由于现代代理协议（如 VMess、VLESS、Trojan）使用 TLS 1.3 双向加密认证，时间戳漂移会导致握手校验直接被服务端主动拒绝。进入操作系统日期与时间设置，点击立即同步网络时钟即可秒级恢复。若时间正常，则需检查订阅是否欠费过期或机场国内中继入口遭受攻击。",
+          },
         },
         {
           "@type": "Question",
-          "name": "客户端显示连接成功且有流量产生，但浏览器就是打不开任何海外网站是怎么回事？",
-          "acceptedAnswer": {
+          name: "客户端显示连接成功且有流量产生，但浏览器就是打不开任何海外网站是怎么回事？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "这是典型的“连得上但打不开网页”故障。诱因主要有三点：第一，操作系统系统代理开关未正确挂载，或被 Chrome/Edge 扩展（如 SwitchyOmega）覆写劫持；第二，DNS 解析黑洞，本地客户端未开启 DNS 劫持防护，导致国外域名被本地运营商 DNS 污染返回错误 IP；第三，若开启了 TUN 虚拟网卡模式，可能是本地存在多个虚拟网卡驱动（如 VirtualBox/VMware）导致路由表跳数（Metric）竞争死循环。"
-          }
+            text: "这是典型的“连得上但打不开网页”故障。诱因主要有三点：第一，操作系统系统代理开关未正确挂载，或被 Chrome/Edge 扩展（如 SwitchyOmega）覆写劫持；第二，DNS 解析黑洞，本地客户端未开启 DNS 劫持防护，导致国外域名被本地运营商 DNS 污染返回错误 IP；第三，若开启了 TUN 虚拟网卡模式，可能是本地存在多个虚拟网卡驱动（如 VirtualBox/VMware）导致路由表跳数（Metric）竞争死循环。",
+          },
         },
         {
           "@type": "Question",
-          "name": "访问 ChatGPT 频繁提示 Access Denied 或 1020 报错，该如何彻底解决？",
-          "acceptedAnswer": {
+          name: "访问 ChatGPT 频繁提示 Access Denied 或 1020 报错，该如何彻底解决？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "OpenAI 采用了极高等级的 Cloudflare Turnstile 与 IP 风险欺诈库风控。造成报错的核心原因：一是使用了 OpenAI 未开放服务的香港节点；二是当前节点 IP 被 Cloudflare 识别为数据中心机房 IDC 广播 IP，欺诈评分过高；三是浏览器缓存了此前的封禁 Cookie。解决方法：切换至新加坡、日本或美国的原生住宅 ISP 节点，打开浏览器无痕隐身窗口，并清空本地 DNS 缓存。"
-          }
+            text: "OpenAI 采用了极高等级的 Cloudflare Turnstile 与 IP 风险欺诈库风控。造成报错的核心原因：一是使用了 OpenAI 未开放服务的香港节点；二是当前节点 IP 被 Cloudflare 识别为数据中心机房 IDC 广播 IP，欺诈评分过高；三是浏览器缓存了此前的封禁 Cookie。解决方法：切换至新加坡、日本或美国的原生住宅 ISP 节点，打开浏览器无痕隐身窗口，并清空本地 DNS 缓存。",
+          },
         },
         {
           "@type": "Question",
-          "name": "为什么开启代理后，国内微信、淘宝、网易云音乐打不开或提示异地登录风控？",
-          "acceptedAnswer": {
+          name: "为什么开启代理后，国内微信、淘宝、网易云音乐打不开或提示异地登录风控？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "这是因为误开启了“全局模式（Global）”。在全局模式下，包括微信、网易云在内的国内所有流量都被强制转发至海外代理节点，导致国内应用检测到海外异地登录触发安全风控，甚至因海外节点版权封锁导致国内音乐变灰。应在客户端将代理模式切换为“规则模式（Rule）”，依托 GeoIP 与 GeoSite 数据库实现国内流量本地直连，海外流量走代理。"
-          }
+            text: "这是因为误开启了“全局模式（Global）”。在全局模式下，包括微信、网易云在内的国内所有流量都被强制转发至海外代理节点，导致国内应用检测到海外异地登录触发安全风控，甚至因海外节点版权封锁导致国内音乐变灰。应在客户端将代理模式切换为“规则模式（Rule）”，依托 GeoIP 与 GeoSite 数据库实现国内流量本地直连，海外流量走代理。",
+          },
         },
         {
           "@type": "Question",
-          "name": "什么是 DNS 泄漏？为什么开了翻墙后在 ipleak.net 依然能看到国内运营商 IP？",
-          "acceptedAnswer": {
+          name: "什么是 DNS 泄漏？为什么开了翻墙后在 ipleak.net 依然能看到国内运营商 IP？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "DNS 泄漏是指客户端在通过加密代理访问海外网站时，操作系统依然向本地 ISP 运营商默认的 53 端口 DNS 发送明文解析请求。这会导致国内运营商完整记录你访问的海外域名列表。解决方案是在 Clash 或 Sing-box 中配置 Fake-IP 模式，将本地 DNS 解析接管到虚拟保留网段（198.18.0.0/16），杜绝系统向公网直发任何未加密的明文 DNS 查询。"
-          }
+            text: "DNS 泄漏是指客户端在通过加密代理访问海外网站时，操作系统依然向本地 ISP 运营商默认的 53 端口 DNS 发送明文解析请求。这会导致国内运营商完整记录你访问的海外域名列表。解决方案是在 Clash 或 Sing-box 中配置 Fake-IP 模式，将本地 DNS 解析接管到虚拟保留网段（198.18.0.0/16），杜绝系统向公网直发任何未加密的明文 DNS 查询。",
+          },
         },
         {
           "@type": "Question",
-          "name": "什么是节点倍率？为什么下载了一个 5GB 文件，机场后台却扣除了 15GB 流量？",
-          "acceptedAnswer": {
+          name: "什么是节点倍率？为什么下载了一个 5GB 文件，机场后台却扣除了 15GB 流量？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "节点倍率是机场服务商平衡专线成本的计费杠杆。例如 1.0x 倍率节点消耗 1GB 扣除 1GB 流量；而 3.0x 高倍率节点（通常为企业级物理 IEPL 专线或极速流媒体解锁节点）传输 1GB 实际扣除 3GB 流量；0.2x 低倍率节点传输 5GB 仅扣除 1GB 流量。用户在大流量下载文件或更新游戏前，应在节点列表优先选择 1.0x 或低倍率普通节点，追剧与办公再使用高倍率专线。"
-          }
+            text: "节点倍率是机场服务商平衡专线成本的计费杠杆。例如 1.0x 倍率节点消耗 1GB 扣除 1GB 流量；而 3.0x 高倍率节点（通常为企业级物理 IEPL 专线或极速流媒体解锁节点）传输 1GB 实际扣除 3GB 流量；0.2x 低倍率节点传输 5GB 仅扣除 1GB 流量。用户在大流量下载文件或更新游戏前，应在节点列表优先选择 1.0x 或低倍率普通节点，追剧与办公再使用高倍率专线。",
+          },
         },
         {
           "@type": "Question",
-          "name": "Windows 系统重启或关机后无法正常上网，网页全部提示“代理服务器连接被拒”怎么办？",
-          "acceptedAnswer": {
+          name: "Windows 系统重启或关机后无法正常上网，网页全部提示“代理服务器连接被拒”怎么办？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "这是因为电脑在未正常关闭代理客户端的情况下异常关机，导致 Windows 注册表中的“系统代理开关”依然处于开启状态，但本地代理监听端口（如 7890）随着客户端关闭已不复存在。解决方法：打开 Windows“网络和 Internet”设置，进入“代理”选项，将“使用代理服务器”手动关闭，或重新打开代理软件后在菜单栏正常点击“退出”即可。"
-          }
+            text: "这是因为电脑在未正常关闭代理客户端的情况下异常关机，导致 Windows 注册表中的“系统代理开关”依然处于开启状态，但本地代理监听端口（如 7890）随着客户端关闭已不复存在。解决方法：打开 Windows“网络和 Internet”设置，进入“代理”选项，将“使用代理服务器”手动关闭，或重新打开代理软件后在菜单栏正常点击“退出”即可。",
+          },
         },
         {
           "@type": "Question",
-          "name": "Netflix 提示只能观看自制剧（软封锁），怎样才能解锁完整版权库？",
-          "acceptedAnswer": {
+          name: "Netflix 提示只能观看自制剧（软封锁），怎样才能解锁完整版权库？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "Netflix 实行区域版权库机制。当系统检测到用户的 IP 属于机房托管机（Hosting/Data Center）而非本地家庭宽带（ISP/Residential）时，会触发软封锁，仅允许观看 Netflix 拥有全球版权的自制剧（如怪奇物语），隐藏所有第三方版权电影。需要使用具备“原生住宅双 ISP 解锁”的专业节点，并在客户端确保流媒体域名走独立的分流策略组。"
-          }
+            text: "Netflix 实行区域版权库机制。当系统检测到用户的 IP 属于机房托管机（Hosting/Data Center）而非本地家庭宽带（ISP/Residential）时，会触发软封锁，仅允许观看 Netflix 拥有全球版权的自制剧（如怪奇物语），隐藏所有第三方版权电影。需要使用具备“原生住宅双 ISP 解锁”的专业节点，并在客户端确保流媒体域名走独立的分流策略组。",
+          },
         },
         {
           "@type": "Question",
-          "name": "Clash 订阅导入时报错“Format Error”或“无法解析 YAML 配置文件”该如何修复？",
-          "acceptedAnswer": {
+          name: "Clash 订阅导入时报错“Format Error”或“无法解析 YAML 配置文件”该如何修复？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "诱因主要有两点：一是机场后端节点下发服务故障，订阅链接返回了 HTML 报错页面（如 502 Bad Gateway）而非标准的 YAML 文本；二是用户使用了不支持的旧版客户端，无法解析新语法（如 rule-providers 或 sniffing）。排查步骤：首先用浏览器打开订阅链接看是否返回一长串节点字符，若返回网页代码则联系机场客服；若正常，建议通过在线订阅转换工具转换为标准 Clash 配置。"
-          }
+            text: "诱因主要有两点：一是机场后端节点下发服务故障，订阅链接返回了 HTML 报错页面（如 502 Bad Gateway）而非标准的 YAML 文本；二是用户使用了不支持的旧版客户端，无法解析新语法（如 rule-providers 或 sniffing）。排查步骤：首先用浏览器打开订阅链接看是否返回一长串节点字符，若返回网页代码则联系机场客服；若正常，建议通过在线订阅转换工具转换为标准 Clash 配置。",
+          },
         },
         {
           "@type": "Question",
-          "name": "为什么很多机场声称是“千兆专线”，但晚高峰实际测速只有十几兆且频繁卡顿？",
-          "acceptedAnswer": {
+          name: "为什么很多机场声称是“千兆专线”，但晚高峰实际测速只有十几兆且频繁卡顿？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "许多不良或小作坊机场虽然购买了千兆公网服务器，但为了超额盈利，将 1Gbps 的带宽超量超卖给数千名用户。在晚高峰时段，带宽利用率达到 100% 极限过载，导致严重排队拥塞；或者其本质是“假专线”，走的是普通公网国际出口，遭受了电信 163 骨干网的晚高峰 QoS 强制丢包。选择深耕多年的正规 IEPL 专线机场（如光速云）才能保证全天候物理独享带宽与低延迟。"
-          }
-        }
-      ]
-    }
-  ]
+            text: "许多不良或小作坊机场虽然购买了千兆公网服务器，但为了超额盈利，将 1Gbps 的带宽超量超卖给数千名用户。在晚高峰时段，带宽利用率达到 100% 极限过载，导致严重排队拥塞；或者其本质是“假专线”，走的是普通公网国际出口，遭受了电信 163 骨干网的晚高峰 QoS 强制丢包。选择深耕多年的正规 IEPL 专线机场（如光速云）才能保证全天候物理独享带宽与低延迟。",
+          },
+        },
+      ],
+    },
+  ],
 };
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
 
-  <div class="site-container flex flex-col gap-10 py-8 md:gap-12 md:py-12 text-foreground">
+  <div class="site-container text-foreground flex flex-col gap-10 py-8 md:gap-12 md:py-12">
     {/* 面包屑导航 */}
-    <Breadcrumb class="text-xs font-mono">
+    <Breadcrumb class="font-mono text-xs">
       <BreadcrumbItem><BreadcrumbLink href="/">首页</BreadcrumbLink></BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem><BreadcrumbPage>机场使用百科 FAQ</BreadcrumbPage></BreadcrumbItem>
@@ -135,157 +143,220 @@ const schemaData = {
     />
 
     {/* ⚡ Answer Block 极速首答 */}
-    <PixelPanel class="p-6 md:p-8 bg-card border-4 border-primary/80 flex flex-col gap-5 shadow-pixel">
-      <div class="flex items-center gap-2 border-b border-border pb-3">
+    <PixelPanel
+      class="bg-card border-primary/80 shadow-pixel flex flex-col gap-5 border-4 p-6 md:p-8"
+    >
+      <div class="border-border flex items-center gap-2 border-b pb-3">
         <span class="text-primary text-xl">⚡</span>
-        <h2 class="font-display text-lg text-foreground uppercase tracking-tight">
+        <h2 class="font-display text-foreground text-lg tracking-tight uppercase">
           Answer Block：三大最高频翻墙故障黄金秒级自愈法
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs font-mono leading-relaxed">
-        <div class="bg-background border-2 border-border p-4 flex flex-col gap-3">
-          <span class="text-primary font-bold flex items-center gap-1.5 text-sm">
+      <div class="grid grid-cols-1 gap-5 font-mono text-xs leading-relaxed md:grid-cols-3">
+        <div class="bg-background border-border flex flex-col gap-3 border-2 p-4">
+          <span class="text-primary flex items-center gap-1.5 text-sm font-bold">
             <span>🔴</span> 节点全部超时 (-1ms / Timeout)
           </span>
           <p class="text-muted-foreground">
-            80% 是因为<strong>本地电脑时钟误差超过 60 秒</strong>导致 TLS 加密握手被拒！进入系统“日期和时间”设置，关闭再开启“自动设置时间”同步授时即可秒级修复。若时钟正常，检查订阅流量是否耗尽或机场主中继入口遭到网络封锁。
+            80% 是因为<strong>本地电脑时钟误差超过 60 秒</strong>导致 TLS
+            加密握手被拒！进入系统“日期和时间”设置，关闭再开启“自动设置时间”同步授时即可秒级修复。若时钟正常，检查订阅流量是否耗尽或机场主中继入口遭到网络封锁。
           </p>
         </div>
 
-        <div class="bg-background border-2 border-border p-4 flex flex-col gap-3">
-          <span class="text-info font-bold flex items-center gap-1.5 text-sm">
+        <div class="bg-background border-border flex flex-col gap-3 border-2 p-4">
+          <span class="text-info flex items-center gap-1.5 text-sm font-bold">
             <span>🤖</span> ChatGPT 提示 Access Denied / 1020
           </span>
           <p class="text-muted-foreground">
-            当前节点 IP 被 OpenAI 标记为机房 IDC 或使用了未开放服务的香港节点。立即在客户端<strong>切换为新加坡/日本/美国原生住宅 ISP 节点</strong>，在浏览器开启无痕隐私窗口重新进入，即可彻底跳过 Cloudflare 拦截墙。
+            当前节点 IP 被 OpenAI 标记为机房 IDC 或使用了未开放服务的香港节点。立即在客户端<strong
+              >切换为新加坡/日本/美国原生住宅 ISP 节点</strong
+            >，在浏览器开启无痕隐私窗口重新进入，即可彻底跳过 Cloudflare 拦截墙。
           </p>
         </div>
 
-        <div class="bg-background border-2 border-border p-4 flex flex-col gap-3">
-          <span class="text-success font-bold flex items-center gap-1.5 text-sm">
+        <div class="bg-background border-border flex flex-col gap-3 border-2 p-4">
+          <span class="text-success flex items-center gap-1.5 text-sm font-bold">
             <span>🟢</span> 国内微信/淘宝/网易云打不开
           </span>
           <p class="text-muted-foreground">
-            误开启了“全局模式 (Global)”！立即将代理客户端切换回<strong>“规则模式 (Rule)”</strong>，让国内流量自动直连走本地宽带，海外走高速专线；并在设置中核实 GeoIP 规则库已更新至最新版本。
+            误开启了“全局模式 (Global)”！立即将代理客户端切换回<strong>“规则模式 (Rule)”</strong
+            >，让国内流量自动直连走本地宽带，海外走高速专线；并在设置中核实 GeoIP
+            规则库已更新至最新版本。
           </p>
         </div>
       </div>
 
-      <div class="bg-accent/20 border border-border/80 p-4 rounded text-xs font-mono flex flex-col md:flex-row items-center justify-between gap-3">
+      <div
+        class="bg-accent/20 border-border/80 flex flex-col items-center justify-between gap-3 rounded border p-4 font-mono text-xs md:flex-row"
+      >
         <span class="text-muted-foreground">
-          <strong class="text-foreground">知识库排查手册更新：</strong> 2026 年 3 月版 | <strong>技术审核：</strong> 机场cloud NOC 运维团队 | <strong>实测覆盖环境：</strong> Windows / macOS / iOS / Android / Linux
+          <strong class="text-foreground">知识库排查手册更新：</strong> 2026 年 3 月版 | <strong
+            >技术审核：</strong
+          > 机场cloud NOC 运维团队 | <strong>实测覆盖环境：</strong> Windows / macOS / iOS / Android /
+          Linux
         </span>
-        <a href="#matrix-table" class="text-primary font-bold hover:underline shrink-0">
+        <a href="#matrix-table" class="text-primary shrink-0 font-bold hover:underline">
           直接跳转下文详细排障决策对照表 ↓
         </a>
       </div>
     </PixelPanel>
 
     {/* 4 大核心分类指标展示栏 */}
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs font-mono">
-      {faqCategories.filter(c => c.id !== 'all').map((cat) => (
-        <a href={`#cat-${cat.id}`} class="bg-background border-2 border-border p-3.5 flex flex-col gap-1 hover:border-primary transition-colors">
-          <span class="text-foreground font-bold flex items-center justify-between">
-            {cat.name}
-            <span class="text-primary">→</span>
-          </span>
-          <span class="text-muted-foreground text-[11px]">收录 {cat.count} 篇深度排查指南</span>
-        </a>
-      ))}
+    <div class="grid grid-cols-2 gap-3 font-mono text-xs md:grid-cols-4">
+      {
+        faqCategories
+          .filter((c) => c.id !== "all")
+          .map((cat) => (
+            <a
+              href={`#cat-${cat.id}`}
+              class="bg-background border-border hover:border-primary flex flex-col gap-1 border-2 p-3.5 transition-colors"
+            >
+              <span class="text-foreground flex items-center justify-between font-bold">
+                {cat.name}
+                <span class="text-primary">→</span>
+              </span>
+              <span class="text-muted-foreground text-[11px]">收录 {cat.count} 篇深度排查指南</span>
+            </a>
+          ))
+      }
     </div>
 
     {/* 目录快速导航导航栏 TOC */}
-    <PixelPanel class="p-5 bg-card border-2 border-border text-xs font-mono">
-      <div class="font-bold text-foreground mb-3 uppercase tracking-wider flex items-center gap-2">
+    <PixelPanel class="bg-card border-border border-2 p-5 font-mono text-xs">
+      <div class="text-foreground mb-3 flex items-center gap-2 font-bold tracking-wider uppercase">
         <span class="text-primary">📑</span> 故障自愈与知识百科目录索引（点击快速跳转）
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-muted-foreground">
-        <a href="#matrix-table" class="hover:text-primary transition-colors">1. 核心排障决策矩阵与黄金处理对照表</a>
-        <a href="#module-network-timeout" class="hover:text-primary transition-colors">2. 网络连接与节点超时（-1ms/全红深度排障）</a>
-        <a href="#module-ai-streaming" class="hover:text-primary transition-colors">3. ChatGPT / OpenAI 与 Netflix 流媒体受限</a>
-        <a href="#module-dns-leak" class="hover:text-primary transition-colors">4. DNS 污染、DNS 泄漏与 Fake-IP 核心原理</a>
-        <a href="#module-routing-rules" class="hover:text-primary transition-colors">5. 代理规则分流错配与国内应用打不开</a>
-        <a href="#module-client-system" class="hover:text-primary transition-colors">6. 客户端内核崩溃、TUN 网卡与系统兼容性</a>
-        <a href="#module-subscription-billing" class="hover:text-primary transition-colors">7. 机场订阅导入报错、账单计费与倍率陷阱</a>
-        <a href="#module-sop-flowchart" class="hover:text-primary transition-colors">8. 标准 5 步黄金排障 SOP 决策树</a>
-        <a href="#module-faq-deep" class="hover:text-primary transition-colors">9. 机场使用 10 大核心疑难权威 FAQ</a>
-        <a href="#module-recommendation" class="hover:text-primary transition-colors">10. 生产力破局：零故障物理专线机场推荐</a>
+      <div class="text-muted-foreground grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
+        <a href="#matrix-table" class="hover:text-primary transition-colors"
+          >1. 核心排障决策矩阵与黄金处理对照表</a
+        >
+        <a href="#module-network-timeout" class="hover:text-primary transition-colors"
+          >2. 网络连接与节点超时（-1ms/全红深度排障）</a
+        >
+        <a href="#module-ai-streaming" class="hover:text-primary transition-colors"
+          >3. ChatGPT / OpenAI 与 Netflix 流媒体受限</a
+        >
+        <a href="#module-dns-leak" class="hover:text-primary transition-colors"
+          >4. DNS 污染、DNS 泄漏与 Fake-IP 核心原理</a
+        >
+        <a href="#module-routing-rules" class="hover:text-primary transition-colors"
+          >5. 代理规则分流错配与国内应用打不开</a
+        >
+        <a href="#module-client-system" class="hover:text-primary transition-colors"
+          >6. 客户端内核崩溃、TUN 网卡与系统兼容性</a
+        >
+        <a href="#module-subscription-billing" class="hover:text-primary transition-colors"
+          >7. 机场订阅导入报错、账单计费与倍率陷阱</a
+        >
+        <a href="#module-sop-flowchart" class="hover:text-primary transition-colors"
+          >8. 标准 5 步黄金排障 SOP 决策树</a
+        >
+        <a href="#module-faq-deep" class="hover:text-primary transition-colors"
+          >9. 机场使用 10 大核心疑难权威 FAQ</a
+        >
+        <a href="#module-recommendation" class="hover:text-primary transition-colors"
+          >10. 生产力破局：零故障物理专线机场推荐</a
+        >
       </div>
     </PixelPanel>
 
     {/* 模块一：核心排障决策矩阵对照表 */}
     <div id="matrix-table" class="flex flex-col gap-4">
-      <div class="border-l-4 border-primary pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-primary border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           一、2026 常见网络代理故障自检与排障决策矩阵对照表
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
           将全网高发报错场景抽象为可量化指标，帮助用户在 30 秒内精准定位故障层级与修复动作。
         </p>
       </div>
 
-      <PixelPanel class="p-6 bg-card border-2 border-border flex flex-col gap-5">
+      <PixelPanel class="bg-card border-border flex flex-col gap-5 border-2 p-6">
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs font-mono border-collapse min-w-[780px]">
+          <table class="w-full min-w-[780px] border-collapse text-left font-mono text-xs">
             <thead>
-              <tr class="border-b-2 border-border text-muted-foreground bg-accent/30">
-                <th class="py-3 px-3">故障症状表象</th>
-                <th class="py-3 px-3">底层故障根因</th>
-                <th class="py-3 px-3">影响协议层级</th>
-                <th class="py-3 px-3">判断特征与速查方法</th>
-                <th class="py-3 px-3">修复预估耗时</th>
-                <th class="py-3 px-3">标准修复动作 / 操作命令</th>
+              <tr class="border-border text-muted-foreground bg-accent/30 border-b-2">
+                <th class="px-3 py-3">故障症状表象</th>
+                <th class="px-3 py-3">底层故障根因</th>
+                <th class="px-3 py-3">影响协议层级</th>
+                <th class="px-3 py-3">判断特征与速查方法</th>
+                <th class="px-3 py-3">修复预估耗时</th>
+                <th class="px-3 py-3">标准修复动作 / 操作命令</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-border/60">
+            <tbody class="divide-border/60 divide-y">
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-destructive">节点测速全部超时 (-1ms)</td>
-                <td class="py-3 px-3 text-foreground">系统时钟偏离超过 60s 或中继入口阻断</td>
-                <td class="py-3 px-3 text-info font-bold">Layer 4 TLS / TCP</td>
-                <td class="py-3 px-3 text-muted-foreground">客户端日志提示 Certificate Date Invalid</td>
-                <td class="py-3 px-3 text-success font-bold">15 秒</td>
-                <td class="py-3 px-3 text-foreground font-bold">系统设置同步 Internet 授时，重置 NTP</td>
+                <td class="text-destructive px-3 py-3 font-bold">节点测速全部超时 (-1ms)</td>
+                <td class="text-foreground px-3 py-3">系统时钟偏离超过 60s 或中继入口阻断</td>
+                <td class="text-info px-3 py-3 font-bold">Layer 4 TLS / TCP</td>
+                <td class="text-muted-foreground px-3 py-3"
+                  >客户端日志提示 Certificate Date Invalid</td
+                >
+                <td class="text-success px-3 py-3 font-bold">15 秒</td>
+                <td class="text-foreground px-3 py-3 font-bold"
+                  >系统设置同步 Internet 授时，重置 NTP</td
+                >
               </tr>
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-warning">连得上但网页打不开</td>
-                <td class="py-3 px-3 text-foreground">系统代理端口未监听或 DNS 53 端口黑洞</td>
-                <td class="py-3 px-3 text-info font-bold">Layer 7 HTTP / DNS</td>
-                <td class="py-3 px-3 text-muted-foreground">Telegram 能发消息，Chrome 提示 DNS_PROBE</td>
-                <td class="py-3 px-3 text-success font-bold">30 秒</td>
-                <td class="py-3 px-3 text-foreground font-bold">重置系统代理，切换为 Fake-IP 模式并清理缓存</td>
+                <td class="text-warning px-3 py-3 font-bold">连得上但网页打不开</td>
+                <td class="text-foreground px-3 py-3">系统代理端口未监听或 DNS 53 端口黑洞</td>
+                <td class="text-info px-3 py-3 font-bold">Layer 7 HTTP / DNS</td>
+                <td class="text-muted-foreground px-3 py-3"
+                  >Telegram 能发消息，Chrome 提示 DNS_PROBE</td
+                >
+                <td class="text-success px-3 py-3 font-bold">30 秒</td>
+                <td class="text-foreground px-3 py-3 font-bold"
+                  >重置系统代理，切换为 Fake-IP 模式并清理缓存</td
+                >
               </tr>
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-info">ChatGPT Access Denied</td>
-                <td class="py-3 px-3 text-foreground">IP 属于机房 IDC 或命中 Cloudflare 高风险</td>
-                <td class="py-3 px-3 text-info font-bold">Layer 7 欺诈分控</td>
-                <td class="py-3 px-3 text-muted-foreground">页面报错 1020 / Ray ID 拦截 / 香港 IP</td>
-                <td class="py-3 px-3 text-success font-bold">20 秒</td>
-                <td class="py-3 px-3 text-foreground font-bold">切换至美/日原生住宅双 ISP 节点，开无痕窗口</td>
+                <td class="text-info px-3 py-3 font-bold">ChatGPT Access Denied</td>
+                <td class="text-foreground px-3 py-3">IP 属于机房 IDC 或命中 Cloudflare 高风险</td>
+                <td class="text-info px-3 py-3 font-bold">Layer 7 欺诈分控</td>
+                <td class="text-muted-foreground px-3 py-3"
+                  >页面报错 1020 / Ray ID 拦截 / 香港 IP</td
+                >
+                <td class="text-success px-3 py-3 font-bold">20 秒</td>
+                <td class="text-foreground px-3 py-3 font-bold"
+                  >切换至美/日原生住宅双 ISP 节点，开无痕窗口</td
+                >
               </tr>
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-warning">微信/淘宝/网易云打不开</td>
-                <td class="py-3 px-3 text-foreground">误开启全局模式导致国内流量绕行海外</td>
-                <td class="py-3 px-3 text-info font-bold">Layer 3 路由策略</td>
-                <td class="py-3 px-3 text-muted-foreground">国内 APP 提示网络异常，网易云音乐变灰</td>
-                <td class="py-3 px-3 text-success font-bold">10 秒</td>
-                <td class="py-3 px-3 text-foreground font-bold">客户端模式从 Global 切换为 Rule 规则分流</td>
+                <td class="text-warning px-3 py-3 font-bold">微信/淘宝/网易云打不开</td>
+                <td class="text-foreground px-3 py-3">误开启全局模式导致国内流量绕行海外</td>
+                <td class="text-info px-3 py-3 font-bold">Layer 3 路由策略</td>
+                <td class="text-muted-foreground px-3 py-3"
+                  >国内 APP 提示网络异常，网易云音乐变灰</td
+                >
+                <td class="text-success px-3 py-3 font-bold">10 秒</td>
+                <td class="text-foreground px-3 py-3 font-bold"
+                  >客户端模式从 Global 切换为 Rule 规则分流</td
+                >
               </tr>
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-destructive">订阅报错 Format Error</td>
-                <td class="py-3 px-3 text-foreground">机场后端维护下发 502 HTML 代码或旧版语法</td>
-                <td class="py-3 px-3 text-info font-bold">应用层配置反序列化</td>
-                <td class="py-3 px-3 text-muted-foreground">Yaml 无法反序列化，浏览器打开返回 502</td>
-                <td class="py-3 px-3 text-warning font-bold">1 分钟</td>
-                <td class="py-3 px-3 text-foreground font-bold">通过在线 Subconverter 订阅转换工具转码为标准配置</td>
+                <td class="text-destructive px-3 py-3 font-bold">订阅报错 Format Error</td>
+                <td class="text-foreground px-3 py-3">机场后端维护下发 502 HTML 代码或旧版语法</td>
+                <td class="text-info px-3 py-3 font-bold">应用层配置反序列化</td>
+                <td class="text-muted-foreground px-3 py-3"
+                  >Yaml 无法反序列化，浏览器打开返回 502</td
+                >
+                <td class="text-warning px-3 py-3 font-bold">1 分钟</td>
+                <td class="text-foreground px-3 py-3 font-bold"
+                  >通过在线 Subconverter 订阅转换工具转码为标准配置</td
+                >
               </tr>
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-destructive">关机重启后电脑无法上网</td>
-                <td class="py-3 px-3 text-foreground">异常关机导致 Windows 注册表残留代理开关</td>
-                <td class="py-3 px-3 text-info font-bold">系统网络注册表</td>
-                <td class="py-3 px-3 text-muted-foreground">浏览器提示代理服务器拒绝连接 (127.0.0.1:7890)</td>
-                <td class="py-3 px-3 text-success font-bold">20 秒</td>
-                <td class="py-3 px-3 text-foreground font-bold">Windows 网络设置 -> 代理 -> 手动关闭系统代理</td>
+                <td class="text-destructive px-3 py-3 font-bold">关机重启后电脑无法上网</td>
+                <td class="text-foreground px-3 py-3">异常关机导致 Windows 注册表残留代理开关</td>
+                <td class="text-info px-3 py-3 font-bold">系统网络注册表</td>
+                <td class="text-muted-foreground px-3 py-3"
+                  >浏览器提示代理服务器拒绝连接 (127.0.0.1:7890)</td
+                >
+                <td class="text-success px-3 py-3 font-bold">20 秒</td>
+                <td class="text-foreground px-3 py-3 font-bold"
+                  >Windows 网络设置 → 代理 → 手动关闭系统代理</td
+                >
               </tr>
             </tbody>
           </table>
@@ -295,83 +366,114 @@ const schemaData = {
 
     {/* 模块二：网络连接与节点超时深度排障 */}
     <div id="module-network-timeout" class="flex flex-col gap-4">
-      <div class="border-l-4 border-destructive pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-destructive border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           二、网络连接与节点超时：-1ms 与全红报错底层原理与修复
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
-          直面最让初学者崩溃的“全红断网”现象，深入拆解时间戳漂移、TLS 握手校验与国内运营商公网阻断机理。
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
+          直面最让初学者崩溃的“全红断网”现象，深入拆解时间戳漂移、TLS
+          握手校验与国内运营商公网阻断机理。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
         <div class="flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+          <h3 class="font-display text-foreground text-base uppercase">
             1. 本地时钟偏差与 TLS 1.3 / VMess 认证校验失败机制
           </h3>
           <p class="text-muted-foreground">
-            很多用户突然发现：昨天还好好的梯子，今天一开电脑所有节点全部测速失败，显示 <code>-1ms</code>、<code>Timeout</code> 或 <code>Connection Refused</code>。此时有 80% 的概率是你的操作系统时钟与互联网标准时间存在误差！
+            很多用户突然发现：昨天还好好的梯子，今天一开电脑所有节点全部测速失败，显示 <code
+              >-1ms</code
+            >、<code>Timeout</code> 或 <code>Connection Refused</code>。此时有 80%
+            的概率是你的操作系统时钟与互联网标准时间存在误差！
           </p>
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
             <strong class="text-primary font-bold">底层机制剖析：</strong>
             <p class="text-muted-foreground">
-              现代主流安全代理协议（包括 <strong>VMess、VLESS Reality、Trojan 以及 Hysteria 2</strong>）为了彻底防范网络黑客的<strong>重放攻击（Replay Attack）</strong>，在协议握手阶段加入了高度严格的时间戳校验逻辑。
+              现代主流安全代理协议（包括 <strong
+                >VMess、VLESS Reality、Trojan 以及 Hysteria 2</strong
+              >）为了彻底防范网络黑客的<strong>重放攻击（Replay Attack）</strong
+              >，在协议握手阶段加入了高度严格的时间戳校验逻辑。
             </p>
             <p class="text-muted-foreground">
-              例如在 VMess 协议规范中，客户端生成请求认证头时，会基于当前的 Unix 时间戳进行哈希运算。协议强制要求：客户端时间与服务端时间相差<strong>不得超过 60 秒（1 分钟）</strong>！一旦你电脑的主板电池老化、或者双系统切换导致系统时间比标准时间快了 2 分钟，服务端在解密数据包时就会认为这是一个非法的重放攻击包，直接将连接无声丢弃！
+              例如在 VMess 协议规范中，客户端生成请求认证头时，会基于当前的 Unix
+              时间戳进行哈希运算。协议强制要求：客户端时间与服务端时间相差<strong
+                >不得超过 60 秒（1 分钟）</strong
+              >！一旦你电脑的主板电池老化、或者双系统切换导致系统时间比标准时间快了 2
+              分钟，服务端在解密数据包时就会认为这是一个非法的重放攻击包，直接将连接无声丢弃！
             </p>
             <p class="text-foreground font-bold">
-              🛠 修复操作：
-              Windows 用户右键任务栏时间 ->“调整日期/时间”-> 点击“立即同步”按钮；
-              macOS 用户在“系统设置 -> 通用 -> 日期与时间”勾选“自动设置时间”；
-              Linux 用户执行命令：<code class="text-primary">sudo ntpdate time.windows.com</code>。
+              🛠 修复操作： Windows 用户右键任务栏时间 →“调整日期/时间”→ 点击“立即同步”按钮； macOS
+              用户在“系统设置 → 通用 → 日期与时间”勾选“自动设置时间”； Linux 用户执行命令：<code
+                class="text-primary">sudo ntpdate time.windows.com</code
+              >。
             </p>
           </div>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             2. “连得上但打不开网页”三大经典死穴全景诊断
           </h3>
           <p class="text-muted-foreground">
-            许多用户遇到这种怪异情况：Telegram 能正常收发聊天文字，但 Chrome 和 Edge 浏览器却提示“无法访问此网站（ERR_CONNECTION_CLOSED）”；或者国内网站秒开，国外网站一直在转圈。
+            许多用户遇到这种怪异情况：Telegram 能正常收发聊天文字，但 Chrome 和 Edge
+            浏览器却提示“无法访问此网站（ERR_CONNECTION_CLOSED）”；或者国内网站秒开，国外网站一直在转圈。
           </p>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-2">
-            <div class="bg-background border border-border p-4 flex flex-col gap-2">
+          <div class="my-2 grid grid-cols-1 gap-4 md:grid-cols-3">
+            <div class="bg-background border-border flex flex-col gap-2 border p-4">
               <span class="text-primary font-bold">死穴一：浏览器扩展劫持系统代理</span>
               <p class="text-muted-foreground">
-                若你此前安装了 Chrome 插件（如 SwitchyOmega、广告拦截插件或第三方 VPN 扩展），这些插件在后台将浏览器的代理模式接管为 <code>Direct（直连）</code>，即便 Clash 开启了系统代理，浏览器的流量也根本不会走 Clash 监听端口！
+                若你此前安装了 Chrome 插件（如 SwitchyOmega、广告拦截插件或第三方 VPN
+                扩展），这些插件在后台将浏览器的代理模式接管为 <code>Direct（直连）</code>，即便
+                Clash 开启了系统代理，浏览器的流量也根本不会走 Clash 监听端口！
               </p>
-              <p class="text-foreground font-bold">修复：在浏览器扩展管理中彻底禁用或卸载冲突的代理插件。</p>
+              <p class="text-foreground font-bold">
+                修复：在浏览器扩展管理中彻底禁用或卸载冲突的代理插件。
+              </p>
             </div>
 
-            <div class="bg-background border border-border p-4 flex flex-col gap-2">
+            <div class="bg-background border-border flex flex-col gap-2 border p-4">
               <span class="text-info font-bold">死穴二：系统代理开关未真正挂载</span>
               <p class="text-muted-foreground">
-                在 Clash Verge 或 v2rayN 界面中点击了“开启系统代理”，但由于杀毒软件（如 360 安全卫士、火绒）拦截了对 Windows 注册表的写入操作，实际上 Windows 设置中的代理服务器地址根本没有填入 <code>127.0.0.1:7890</code>！
+                在 Clash Verge 或 v2rayN 界面中点击了“开启系统代理”，但由于杀毒软件（如 360
+                安全卫士、火绒）拦截了对 Windows 注册表的写入操作，实际上 Windows
+                设置中的代理服务器地址根本没有填入 <code>127.0.0.1:7890</code>！
               </p>
-              <p class="text-foreground font-bold">修复：以管理员权限运行客户端，或在杀毒软件中添加完全信任白名单。</p>
+              <p class="text-foreground font-bold">
+                修复：以管理员权限运行客户端，或在杀毒软件中添加完全信任白名单。
+              </p>
             </div>
 
-            <div class="bg-background border border-border p-4 flex flex-col gap-2">
+            <div class="bg-background border-border flex flex-col gap-2 border p-4">
               <span class="text-success font-bold">死穴三：TUN 虚拟网卡与 VMware/VPN 冲突</span>
               <p class="text-muted-foreground">
-                若你的电脑上同时安装了 VMware、VirtualBox、校园网 VPN 客户端，这些软件创建的虚拟网络适配器会竞争系统的默认网关路由表（Default Route）。TUN 虚拟网卡的跳数（Metric）一旦被挤占，所有流量都会迷失在死循环路由中。
+                若你的电脑上同时安装了 VMware、VirtualBox、校园网 VPN
+                客户端，这些软件创建的虚拟网络适配器会竞争系统的默认网关路由表（Default Route）。TUN
+                虚拟网卡的跳数（Metric）一旦被挤占，所有流量都会迷失在死循环路由中。
               </p>
-              <p class="text-foreground font-bold">修复：禁用多余虚拟网卡，并在客户端将 TUN 模式驱动切换为 <code>Mixed</code> 或标准 <code>gVisor</code> 栈。</p>
+              <p class="text-foreground font-bold">
+                修复：禁用多余虚拟网卡，并在客户端将 TUN 模式驱动切换为 <code>Mixed</code> 或标准 <code
+                  >gVisor</code
+                > 栈。
+              </p>
             </div>
           </div>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             3. 中国移动等宽带的 UDP 严格封锁与 Hysteria 2 协议降级
           </h3>
           <p class="text-muted-foreground">
-            部分省份的中国移动宽带和广电宽带，在本地网络接入网关（BRAS）对 UDP 协议的 50000 以上非标准高位端口实行了极度激进的限速甚至 100% 丢包。
+            部分省份的中国移动宽带和广电宽带，在本地网络接入网关（BRAS）对 UDP 协议的 50000
+            以上非标准高位端口实行了极度激进的限速甚至 100% 丢包。
           </p>
           <p class="text-muted-foreground">
-            这就解释了为什么基于 QUIC/UDP 协议的 <strong>Hysteria 2 或 TUIC 协议</strong> 在联通、电信网络下速度极快，但在某些移动宽带下却出现严重卡顿断流。此时应在客户端手动切换回基于 TCP 协议的 <strong>Trojan、Shadowsocks 或 VLESS-Reality 节点</strong>，即可立刻恢复满速。
+            这就解释了为什么基于 QUIC/UDP 协议的 <strong>Hysteria 2 或 TUIC 协议</strong> 在联通、电信网络下速度极快，但在某些移动宽带下却出现严重卡顿断流。此时应在客户端手动切换回基于
+            TCP 协议的 <strong>Trojan、Shadowsocks 或 VLESS-Reality 节点</strong
+            >，即可立刻恢复满速。
           </p>
         </div>
       </PixelPanel>
@@ -379,74 +481,116 @@ const schemaData = {
 
     {/* 模块三：AI 工具与流媒体受限排障 */}
     <div id="module-ai-streaming" class="flex flex-col gap-4">
-      <div class="border-l-4 border-info pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-info border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           三、AI 工具与流媒体受限排障：ChatGPT 1020 与 Netflix 软封锁破解
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
-          OpenAI 与主流流媒体平台拥有全球最严苛的 IP 风险反爬体系，深入剖析其判别机制与原生解锁方案。
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
+          OpenAI 与主流流媒体平台拥有全球最严苛的 IP
+          风险反爬体系，深入剖析其判别机制与原生解锁方案。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
         <div class="flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+          <h3 class="font-display text-foreground text-base uppercase">
             1. OpenAI / ChatGPT 的三层风控拦截模型底层解密
           </h3>
           <p class="text-muted-foreground">
-            访问 ChatGPT 时频繁遭遇的错误提示（如 <code>Access Denied (Error 1020)</code>、<code>Unable to load site</code>、<code>You have been blocked</code>）通常是由 OpenAI 部署的三层风控模型触发的：
+            访问 ChatGPT 时频繁遭遇的错误提示（如 <code>Access Denied (Error 1020)</code>、<code
+              >Unable to load site</code
+            >、<code>You have been blocked</code>）通常是由 OpenAI 部署的三层风控模型触发的：
           </p>
-          <div class="space-y-3 my-2">
-            <div class="bg-background border border-border p-4 flex flex-col gap-1.5">
+          <div class="my-2 space-y-3">
+            <div class="bg-background border-border flex flex-col gap-1.5 border p-4">
               <span class="text-primary font-bold">第一层：地理位置黑名单（Geo-Blocking）</span>
               <p class="text-muted-foreground">
-                OpenAI 至今未向中国大陆及中国香港特别行政区开放直接服务。很多初学者使用机场的<strong>香港（HK）节点</strong>访问 ChatGPT，页面会秒弹 <code>Not Available in your country</code>。这是 100% 必然发生的合规拦截！<strong>永远不要使用香港节点登录 OpenAI！</strong>
+                OpenAI 至今未向中国大陆及中国香港特别行政区开放直接服务。很多初学者使用机场的<strong
+                  >香港（HK）节点</strong
+                >访问 ChatGPT，页面会秒弹 <code>Not Available in your country</code>。这是 100%
+                必然发生的合规拦截！<strong>永远不要使用香港节点登录 OpenAI！</strong>
               </p>
             </div>
 
-            <div class="bg-background border border-border p-4 flex flex-col gap-1.5">
-              <span class="text-info font-bold">第二层：IP 属性与欺诈评分（Fraud Score & ASN 判定）</span>
+            <div class="bg-background border-border flex flex-col gap-1.5 border p-4">
+              <span class="text-info font-bold"
+                >第二层：IP 属性与欺诈评分（Fraud Score & ASN 判定）</span
+              >
               <p class="text-muted-foreground">
-                OpenAI 接入了全球 IP 风险智能库（如 IPinfo、MaxMind、Scamalytics）。其系统会将出站 IP 分为三类：
-                <strong>Hosting（数据中心机房 IP）：</strong> 廉价 VPS（如搬瓦工、Hetzner、OVH），此类 IP 欺诈分高达 80+，极易被标记为机器人爬虫直接拦截；
-                <strong>ISP / Residential（家庭住宅宽带 IP）：</strong> 真实海外家庭宽带分配的原生 IP，欺诈分在 10 以下，能轻松无感通过验证；
+                OpenAI 接入了全球 IP 风险智能库（如 IPinfo、MaxMind、Scamalytics）。其系统会将出站
+                IP 分为三类：
+                <strong>Hosting（数据中心机房 IP）：</strong> 廉价 VPS（如搬瓦工、Hetzner、OVH），此类
+                IP 欺诈分高达 80+，极易被标记为机器人爬虫直接拦截；
+                <strong>ISP / Residential（家庭住宅宽带 IP）：</strong> 真实海外家庭宽带分配的原生 IP，欺诈分在
+                10 以下，能轻松无感通过验证；
                 <strong>双 ISP 静态住宅 IP：</strong> 商业级最优选择，同时具备数据中心的速度和家庭住宅的纯净度。
               </p>
             </div>
 
-            <div class="bg-background border border-border p-4 flex flex-col gap-1.5">
-              <span class="text-success font-bold">第三层：Cloudflare Turnstile 行为与指纹分析</span>
+            <div class="bg-background border-border flex flex-col gap-1.5 border p-4">
+              <span class="text-success font-bold">第三层：Cloudflare Turnstile 行为与指纹分析</span
+              >
               <p class="text-muted-foreground">
-                如果你的节点 IP 被数十人共用，并发请求过多，Cloudflare 盾会弹出不断旋转的验证码（Turnstile 循环）。此外，若你的浏览器中残留了此前被封锁时写入的 Cookie 或 LocalStorage 标识，即便更换了新节点，依然会被指纹追溯拦截。
+                如果你的节点 IP 被数十人共用，并发请求过多，Cloudflare
+                盾会弹出不断旋转的验证码（Turnstile
+                循环）。此外，若你的浏览器中残留了此前被封锁时写入的 Cookie 或 LocalStorage
+                标识，即便更换了新节点，依然会被指纹追溯拦截。
               </p>
             </div>
           </div>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             2. ChatGPT 访问异常 4 步终极急救方案
           </h3>
-          <ol class="list-decimal list-inside space-y-2 text-muted-foreground pl-1">
-            <li><strong>挑选正确节点：</strong> 在客户端节点列表中，寻找带有 <code>SG (新加坡)</code>、<code>JP (日本)</code>、<code>US (美国)</code> 或专门标注 <code>OpenAI / ChatGPT 解锁</code> 的节点。绝对不用 HK 香港节点。</li>
-            <li><strong>清除受污染的浏览器缓存：</strong> 按下快捷键 <code>Ctrl + Shift + Delete</code>（Mac 用户 <code>Cmd + Shift + Delete</code>），选择清除最近 7 天的“Cookie 及其他网站数据”和“缓存的图片和文件”；或者直接打开浏览器<strong>无痕/隐身窗口</strong>访问。</li>
-            <li><strong>检查 DNS 是否泄漏：</strong> 打开 <code>ipleak.net</code>，检查下方检测到的 DNS 节点地址。如果出现中国（China）的 DNS，说明发生 DNS 污染泄漏，需在客户端开启 Fake-IP 模式。</li>
-            <li><strong>终极方案：</strong> 若节点反复被拦截，升级至标配原生住宅双 ISP IP 的专业机场（如 <a href="/airports/guangshuyun/" class="text-primary font-bold hover:underline">光速云</a>），彻底告别封号与拦截风险。</li>
+          <ol class="text-muted-foreground list-inside list-decimal space-y-2 pl-1">
+            <li>
+              <strong>挑选正确节点：</strong> 在客户端节点列表中，寻找带有 <code>SG (新加坡)</code
+              >、<code>JP (日本)</code>、<code>US (美国)</code> 或专门标注 <code
+                >OpenAI / ChatGPT 解锁</code
+              > 的节点。绝对不用 HK 香港节点。
+            </li>
+            <li>
+              <strong>清除受污染的浏览器缓存：</strong> 按下快捷键 <code>Ctrl + Shift + Delete</code
+              >（Mac 用户 <code>Cmd + Shift + Delete</code>），选择清除最近 7 天的“Cookie
+              及其他网站数据”和“缓存的图片和文件”；或者直接打开浏览器<strong>无痕/隐身窗口</strong
+              >访问。
+            </li>
+            <li>
+              <strong>检查 DNS 是否泄漏：</strong> 打开 <code>ipleak.net</code>，检查下方检测到的
+              DNS 节点地址。如果出现中国（China）的 DNS，说明发生 DNS 污染泄漏，需在客户端开启
+              Fake-IP 模式。
+            </li>
+            <li>
+              <strong>终极方案：</strong> 若节点反复被拦截，升级至标配原生住宅双 ISP IP 的专业机场（如
+              <a href="/airports/guangshuyun/" class="text-primary font-bold hover:underline"
+                >光速云</a
+              >），彻底告别封号与拦截风险。
+            </li>
           </ol>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             3. Netflix“只能看自制剧（软封锁）”与 Disney+ 报错 83 排查
           </h3>
           <p class="text-muted-foreground">
-            许多用户登录 Netflix 后发现能看《怪奇物语》《黑暗荣耀》，但搜索《绝命毒师》《甄嬛传》却搜不到。这就是典型的 <strong>Netflix 软封锁（Soft Ban）</strong>。
+            许多用户登录 Netflix
+            后发现能看《怪奇物语》《黑暗荣耀》，但搜索《绝命毒师》《甄嬛传》却搜不到。这就是典型的 <strong
+              >Netflix 软封锁（Soft Ban）</strong
+            >。
           </p>
           <p class="text-muted-foreground">
-            <strong>原理：</strong> Netflix 允许普通机房 IP 观看其自购全球版权的自制原创内容，但对于受版权保护的第三方影视库，Netflix 强制要求出站 IP 必须是该国家或地区的本地真实宽带 IP。
+            <strong>原理：</strong> Netflix 允许普通机房 IP 观看其自购全球版权的自制原创内容，但对于受版权保护的第三方影视库，Netflix
+            强制要求出站 IP 必须是该国家或地区的本地真实宽带 IP。
           </p>
           <p class="text-foreground font-bold">
-            🛠 解决方案：在客户端策略组中，将流媒体规则（如 Netflix、Disney+）单独分流至标注有 <code>原生解锁 / 4K 解锁</code> 的专属优化节点，不要使用普通用于网页查资料的通用节点。
+            🛠 解决方案：在客户端策略组中，将流媒体规则（如 Netflix、Disney+）单独分流至标注有 <code
+              >原生解锁 / 4K 解锁</code
+            > 的专属优化节点，不要使用普通用于网页查资料的通用节点。
           </p>
         </div>
       </PixelPanel>
@@ -454,78 +598,111 @@ const schemaData = {
 
     {/* 模块四：DNS 污染、劫持与隐私泄漏防御 */}
     <div id="module-dns-leak" class="flex flex-col gap-4">
-      <div class="border-l-4 border-success pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-success border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           四、DNS 污染、劫持与隐私泄漏防御：Fake-IP 与 DoH 核心实战
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
           掌握 DNS 流量在操作系统、代理客户端与境外解析器之间的路由转发，彻底杜绝隐私足迹暴露。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
         <div class="flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+          <h3 class="font-display text-foreground text-base uppercase">
             1. 什么是 DNS 泄漏？为什么你开着梯子浏览记录依然被运营商看光？
           </h3>
           <p class="text-muted-foreground">
-            很多人以为只要代理软件亮了绿灯，自己的上网行为就 100% 加密匿名了。实际上，这存在一个极大的认知误区——<strong>DNS 泄漏（DNS Leak）</strong>。
+            很多人以为只要代理软件亮了绿灯，自己的上网行为就 100%
+            加密匿名了。实际上，这存在一个极大的认知误区——<strong>DNS 泄漏（DNS Leak）</strong>。
           </p>
           <p class="text-muted-foreground">
-            当你在浏览器输入 <code>www.google.com</code> 时，浏览器首先需要知道这个域名对应的目标 IP 是多少。如果你的代理客户端配置不当，操作系统会默认向你家庭宽带路由器或本地中国电信/联通/移动的 53 端口 DNS 服务器发起<strong>明文查询请求</strong>！
+            当你在浏览器输入 <code>www.google.com</code> 时，浏览器首先需要知道这个域名对应的目标 IP 是多少。如果你的代理客户端配置不当，操作系统会默认向你家庭宽带路由器或本地中国电信/联通/移动的
+            53 端口 DNS 服务器发起<strong>明文查询请求</strong>！
           </p>
           <p class="text-muted-foreground">
-            本地运营商的 DNS 服务器接收到这个请求后，不仅会立刻记录下你在什么时间访问了 Google，而且因为该域名命中了防火墙污染黑名单，运营商 DNS 会直接返回一个虚假的、不可达的伪造 IP（例如 <code>198.99.118.1</code>），导致你的浏览器甚至还没开始走代理连接，在第一步域名解析阶段就已经彻底暴毙！
+            本地运营商的 DNS 服务器接收到这个请求后，不仅会立刻记录下你在什么时间访问了
+            Google，而且因为该域名命中了防火墙污染黑名单，运营商 DNS
+            会直接返回一个虚假的、不可达的伪造 IP（例如 <code>198.99.118.1</code
+            >），导致你的浏览器甚至还没开始走代理连接，在第一步域名解析阶段就已经彻底暴毙！
           </p>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             2. Clash 核心机制：Fake-IP 与 Redir-Host 选型深度横评
           </h3>
           <p class="text-muted-foreground">
             在 Clash Verge Rev、Mihomo 等现代客户端中，DNS 模块提供了两种核心运行模式：
           </p>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-2">
-            <div class="bg-background border-2 border-primary/50 p-4 flex flex-col gap-2">
-              <span class="text-primary font-bold text-sm">Fake-IP 模式（强烈推荐，现代默认）</span>
+          <div class="my-2 grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div class="bg-background border-primary/50 flex flex-col gap-2 border-2 p-4">
+              <span class="text-primary text-sm font-bold">Fake-IP 模式（强烈推荐，现代默认）</span>
               <p class="text-muted-foreground">
-                <strong>运行原理：</strong> 当应用程序向系统请求解析域名时，Clash 内核不进行真正的远程 DNS 查询，而是立即在本地的保留 IP 池（通常为 <code>198.18.0.0/16</code>）中虚拟出一个伪造 IP（如 <code>198.18.0.25</code>）并秒级返回给浏览器！
+                <strong>运行原理：</strong> 当应用程序向系统请求解析域名时，Clash 内核不进行真正的远程
+                DNS 查询，而是立即在本地的保留 IP 池（通常为 <code>198.18.0.0/16</code
+                >）中虚拟出一个伪造 IP（如 <code>198.18.0.25</code>）并秒级返回给浏览器！
               </p>
               <p class="text-muted-foreground">
-                浏览器拿到这个虚假 IP 后立刻发起 TCP 连接，Clash 截获该连接后，在内部哈希表中还原出对应的原始域名，然后将原始域名完整封装进加密隧道，发送给海外远程节点服务器进行真正的远程解析与请求！
+                浏览器拿到这个虚假 IP 后立刻发起 TCP 连接，Clash
+                截获该连接后，在内部哈希表中还原出对应的原始域名，然后将原始域名完整封装进加密隧道，发送给海外远程节点服务器进行真正的远程解析与请求！
               </p>
-              <p class="text-foreground font-bold">✔ 核心优势：解析延迟为 0ms，彻底杜绝本地 DNS 污染与泄漏，完全不走国内 DNS 53 端口！</p>
+              <p class="text-foreground font-bold">
+                ✔ 核心优势：解析延迟为 0ms，彻底杜绝本地 DNS 污染与泄漏，完全不走国内 DNS 53 端口！
+              </p>
             </div>
 
-            <div class="bg-background border border-border p-4 flex flex-col gap-2">
-              <span class="text-muted-foreground font-bold text-sm">Redir-Host 模式（传统兼容模式，已逐步淘汰）</span>
+            <div class="bg-background border-border flex flex-col gap-2 border p-4">
+              <span class="text-muted-foreground text-sm font-bold"
+                >Redir-Host 模式（传统兼容模式，已逐步淘汰）</span
+              >
               <p class="text-muted-foreground">
-                <strong>运行原理：</strong> 客户端必须先等待真正的 DNS 解析结果返回，然后根据返回的真实 IP 判断是否属于国内 IP，再决定走直连还是代理。
+                <strong>运行原理：</strong> 客户端必须先等待真正的 DNS 解析结果返回，然后根据返回的真实
+                IP 判断是否属于国内 IP，再决定走直连还是代理。
               </p>
               <p class="text-muted-foreground">
-                <strong>致命缺陷：</strong> 在解析海外域名时，若本地 DNS 未配置 DoH 加密，极易遭遇运营商 DNS 投毒；即便配置了 DoH，每次打开新网站都必须经历漫长的远程 DNS 往返延迟（RTT），网页首屏加载极慢。
+                <strong>致命缺陷：</strong> 在解析海外域名时，若本地 DNS 未配置 DoH 加密，极易遭遇运营商
+                DNS 投毒；即便配置了 DoH，每次打开新网站都必须经历漫长的远程 DNS 往返延迟（RTT），网页首屏加载极慢。
               </p>
-              <p class="text-destructive font-bold">✖ 结论：除少数需要精确 IP 反查的特殊内网服务器环境外，日常使用坚决选用 Fake-IP！</p>
+              <p class="text-destructive font-bold">
+                ✖ 结论：除少数需要精确 IP 反查的特殊内网服务器环境外，日常使用坚决选用 Fake-IP！
+              </p>
             </div>
           </div>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             3. DoH (DNS-over-HTTPS) 黄金配置方案与防污染公共 DNS
           </h3>
           <p class="text-muted-foreground">
-            为了确保国内域名的秒级解析与国外域名的绝对纯净，推荐在客户端 DNS 配置文件中使用分流加密架构：
+            为了确保国内域名的秒级解析与国外域名的绝对纯净，推荐在客户端 DNS
+            配置文件中使用分流加密架构：
           </p>
-          <div class="bg-accent/20 border border-border p-4 rounded text-muted-foreground">
+          <div class="bg-accent/20 border-border text-muted-foreground rounded border p-4">
             <div class="space-y-1.5">
-              <div>🇨🇳 <strong>国内直连 DNS（负责国内网站秒开）：</strong> <code>https://223.5.5.5/dns-query</code> (阿里 DoH)、<code>https://doh.pub/dns-query</code> (腾讯 DNSPod)</div>
-              <div>🌐 <strong>海外代理 DNS（由远程节点安全解析）：</strong> <code>https://1.1.1.1/dns-query</code> (Cloudflare DoH)、<code>https://8.8.8.8/dns-query</code> (Google DoH)</div>
+              <div>
+                🇨🇳 <strong>国内直连 DNS（负责国内网站秒开）：</strong>
+                <code>https://223.5.5.5/dns-query</code> (阿里 DoH)、<code
+                  >https://doh.pub/dns-query</code
+                > (腾讯 DNSPod)
+              </div>
+              <div>
+                🌐 <strong>海外代理 DNS（由远程节点安全解析）：</strong>
+                <code>https://1.1.1.1/dns-query</code> (Cloudflare DoH)、<code
+                  >https://8.8.8.8/dns-query</code
+                > (Google DoH)
+              </div>
             </div>
           </div>
           <p class="text-foreground font-bold">
-            验证方法：连接代理后，访问权威检测平台 <code>ipleak.net</code> 或 <code>browserleaks.com/dns</code>。检测报告中的 DNS 服务器地址如果全部位于美国、新加坡或日本（与你的代理落地节点国家一致），且没有任何中国电信/联通/移动的 IP，则表明你的网络已达到 100% 完美的防泄漏安全标准！
+            验证方法：连接代理后，访问权威检测平台 <code>ipleak.net</code> 或 <code
+              >browserleaks.com/dns</code
+            >。检测报告中的 DNS
+            服务器地址如果全部位于美国、新加坡或日本（与你的代理落地节点国家一致），且没有任何中国电信/联通/移动的
+            IP，则表明你的网络已达到 100% 完美的防泄漏安全标准！
           </p>
         </div>
       </PixelPanel>
@@ -533,69 +710,97 @@ const schemaData = {
 
     {/* 模块五：代理规则分流错配与国内应用打不开 */}
     <div id="module-routing-rules" class="flex flex-col gap-4">
-      <div class="border-l-4 border-warning pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-warning border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           五、代理规则分流错配：国内微信打不开与局域网共享实战
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
           深入理解规则分流（Split Tunneling）的判定优先级，让国内微信本地直连，海外流量高速出海。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
         <div class="flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+          <h3 class="font-display text-foreground text-base uppercase">
             1. 为什么很多人开启代理后，国内 APP 经常提示“网络异常”或频繁掉线？
           </h3>
           <p class="text-muted-foreground">
-            很多网络新手为了“省事”，在客户端直接勾选了 <strong>全局模式（Global）</strong>。在全局模式下，你电脑或手机上产生的所有数据包（包括国内微信心跳包、网易云音乐、淘宝、拼多多、手机银行客户端）都会被强制打包发送至千里之外的海外代理服务器，然后再由海外服务器访问国内数据中心。
+            很多网络新手为了“省事”，在客户端直接勾选了 <strong>全局模式（Global）</strong
+            >。在全局模式下，你电脑或手机上产生的所有数据包（包括国内微信心跳包、网易云音乐、淘宝、拼多多、手机银行客户端）都会被强制打包发送至千里之外的海外代理服务器，然后再由海外服务器访问国内数据中心。
           </p>
-          <p class="text-muted-foreground">
-            这会导致一系列极其严重的负面后果：
-          </p>
-          <ul class="list-disc list-inside space-y-1 text-muted-foreground pl-2">
-            <li><strong>国内延迟暴增：</strong> 本来只需 10ms 即可直达本地腾讯机房的微信消息，绕行美国/日本后往返延迟高达 200ms~400ms，频繁弹出“连接中”；</li>
-            <li><strong>银行与账号异地风控封禁：</strong> 手机银行和微信支付检测到你的登录 IP 在数分钟内从上海跳到了德国或美国，立即触发防洗钱与盗号安全拦截，强制冻结支付功能或要求人脸识别；</li>
-            <li><strong>国内音乐与影视版权被封：</strong> 网易云音乐、腾讯视频检测到海外出站 IP，直接提示“由于版权保护，该资源仅限中国大陆地区播放”，歌单大面积变灰；</li>
-            <li><strong>白白消耗昂贵的机场专线流量：</strong> 看国内 B 站 4K 视频或下载 Steam 国内游戏更新，把宝贵的机场流量额度瞬间耗尽。</li>
+          <p class="text-muted-foreground">这会导致一系列极其严重的负面后果：</p>
+          <ul class="text-muted-foreground list-inside list-disc space-y-1 pl-2">
+            <li>
+              <strong>国内延迟暴增：</strong> 本来只需 10ms 即可直达本地腾讯机房的微信消息，绕行美国/日本后往返延迟高达
+              200ms~400ms，频繁弹出“连接中”；
+            </li>
+            <li>
+              <strong>银行与账号异地风控封禁：</strong> 手机银行和微信支付检测到你的登录 IP 在数分钟内从上海跳到了德国或美国，立即触发防洗钱与盗号安全拦截，强制冻结支付功能或要求人脸识别；
+            </li>
+            <li>
+              <strong>国内音乐与影视版权被封：</strong> 网易云音乐、腾讯视频检测到海外出站 IP，直接提示“由于版权保护，该资源仅限中国大陆地区播放”，歌单大面积变灰；
+            </li>
+            <li>
+              <strong>白白消耗昂贵的机场专线流量：</strong> 看国内 B 站 4K 视频或下载 Steam 国内游戏更新，把宝贵的机场流量额度瞬间耗尽。
+            </li>
           </ul>
           <p class="text-foreground font-bold">
             ✔ 黄金准则：日常使用请 100% 保持在“规则模式（Rule）”！绝不在主力设备上长期开启全局模式。
           </p>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             2. Clash / Sing-box 分流规则执行顺序与规则集（Rule-Provider）机制
           </h3>
           <p class="text-muted-foreground">
             代理客户端的分流引擎是按照<strong>自上而下、先命中先执行</strong>的线性顺序进行匹配的：
           </p>
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <pre class="bg-accent/30 p-2.5 rounded border border-border/80 overflow-x-auto text-[11px] text-foreground font-mono">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <pre
+              class="bg-accent/30 border-border/80 text-foreground overflow-x-auto rounded border p-2.5 font-mono text-[11px]">
 # 标准规则匹配优先级顺序
 1. DOMAIN / DOMAIN-SUFFIX (精确域名匹配，优先处理特殊业务)
 2. RULE-SET / GEOSITE (大型域名规则集，如 geosite:cn 走 DIRECT，geosite:google 走 PROXY)
 3. IP-CIDR / GEOIP (目标 IP 网段匹配，如 127.0.0.1、192.168.0.0/16 本地网段直连)
 4. MATCH (漏斗兜底规则，未命中的未知流量统一处理)</pre>
             <p class="text-muted-foreground">
-              如果你的规则模式偶尔失效，通常是因为本地的 <code>Country.mmdb</code>（GeoIP 离线 IP 库）或 <code>geosite.dat</code> 数据库过于老旧，未能识别新上线的国内服务器 IP。只需在客户端设置中点击“更新 GeoIP 数据库”即可。
+              如果你的规则模式偶尔失效，通常是因为本地的 <code>Country.mmdb</code>（GeoIP 离线 IP
+              库）或 <code>geosite.dat</code> 数据库过于老旧，未能识别新上线的国内服务器 IP。只需在客户端设置中点击“更新
+              GeoIP 数据库”即可。
             </p>
           </div>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             3. 局域网共享（Allow LAN）实战：让电视盒子与游戏主机免装客户端
           </h3>
           <p class="text-muted-foreground">
-            许多用户想在客厅的智能电视（如索尼电视、Apple TV）或 Nintendo Switch / PS5 游戏机上看 YouTube、下载外服游戏，但这些设备不便安装或无法运行 Clash 客户端。此时可以利用电脑端的<strong>局域网共享功能（Allow LAN）</strong>：
+            许多用户想在客厅的智能电视（如索尼电视、Apple TV）或 Nintendo Switch / PS5 游戏机上看
+            YouTube、下载外服游戏，但这些设备不便安装或无法运行 Clash 客户端。此时可以利用电脑端的<strong
+              >局域网共享功能（Allow LAN）</strong
+            >：
           </p>
-          <ol class="list-decimal list-inside space-y-1.5 text-muted-foreground pl-1">
+          <ol class="text-muted-foreground list-inside list-decimal space-y-1.5 pl-1">
             <li>在电脑端 Clash 界面开启 <strong>Allow LAN（允许局域网连接）</strong> 开关；</li>
-            <li>打开 Windows 命令提示符执行 <code>ipconfig</code>，记下电脑的局域网内网 IPv4 地址（例如 <code>192.168.1.100</code>）；并在客户端记下混合代理端口（默认通常为 <code>7890</code>）；</li>
-            <li>进入电视盒子或游戏机的“Wi-Fi 设置”，进入当前连接的网络详情，将代理设置由“无”改为“手动”；</li>
-            <li>在代理服务器主机名填入电脑内网 IP <code>192.168.1.100</code>，端口填入 <code>7890</code>，保存连接；</li>
+            <li>
+              打开 Windows 命令提示符执行 <code>ipconfig</code>，记下电脑的局域网内网 IPv4
+              地址（例如 <code>192.168.1.100</code>）；并在客户端记下混合代理端口（默认通常为 <code
+                >7890</code
+              >）；
+            </li>
+            <li>
+              进入电视盒子或游戏机的“Wi-Fi
+              设置”，进入当前连接的网络详情，将代理设置由“无”改为“手动”；
+            </li>
+            <li>
+              在代理服务器主机名填入电脑内网 IP <code>192.168.1.100</code>，端口填入 <code
+                >7890</code
+              >，保存连接；
+            </li>
             <li>电视盒子即可完美共享电脑的高速专线，流畅播放 YouTube 4K 与 Netflix！</li>
           </ol>
         </div>
@@ -604,93 +809,119 @@ const schemaData = {
 
     {/* 模块六：客户端内核与系统兼容性疑难 */}
     <div id="module-client-system" class="flex flex-col gap-4">
-      <div class="border-l-4 border-primary pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-primary border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           六、客户端内核崩溃、TUN 网卡报错与全系统兼容性疑难
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
           覆盖 Windows 注册表残留、macOS 权限守护进程、iOS 后台保活与 Android 进程保护的全平台实操。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div class="bg-background border border-border p-5 flex flex-col gap-3">
-            <span class="text-primary font-bold text-sm flex items-center gap-2">
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+          <div class="bg-background border-border flex flex-col gap-3 border p-5">
+            <span class="text-primary flex items-center gap-2 text-sm font-bold">
               <span>🪟</span> Windows 异常关机后“断网无网”死锁修复
             </span>
             <p class="text-muted-foreground">
               <strong>故障症状：</strong> 电脑昨晚直接拔电源或死机重启后，第二天开机发现微信和网页全部无法连接，甚至打开代理软件也依然无法上网，提示“代理服务器无响应”。
             </p>
             <p class="text-muted-foreground">
-              <strong>病根解密：</strong> Windows 在开启系统代理时，会在注册表 <code>Internet Settings</code> 键值中写入代理 IP 与端口。当电脑异常关机时，代理客户端来不及在退出时执行“清理注册表”的注销流程，导致系统代理开关被永久锁死在开启状态！
+              <strong>病根解密：</strong> Windows 在开启系统代理时，会在注册表 <code
+                >Internet Settings</code
+              > 键值中写入代理 IP 与端口。当电脑异常关机时，代理客户端来不及在退出时执行“清理注册表”的注销流程，导致系统代理开关被永久锁死在开启状态！
             </p>
             <p class="text-foreground font-bold">
-              🛠 极速修复法：
-              按 <code>Win + i</code> 打开设置 -> 点击“网络和 Internet”-> 进入“代理”页面 -> 在“手动设置代理”栏目下，将<strong>“使用代理服务器”开关手动切换为“关”</strong>，点击保存，网页立刻秒级恢复正常！
+              🛠 极速修复法： 按 <code>Win + i</code> 打开设置 → 点击“网络和 Internet”→ 进入“代理”页面
+              → 在“手动设置代理”栏目下，将<strong>“使用代理服务器”开关手动切换为“关”</strong
+              >，点击保存，网页立刻秒级恢复正常！
             </p>
           </div>
 
-          <div class="bg-background border border-border p-5 flex flex-col gap-3">
-            <span class="text-info font-bold text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-3 border p-5">
+            <span class="text-info flex items-center gap-2 text-sm font-bold">
               <span>🍎</span> macOS Helper Tool 授权失败与系统代理失效
             </span>
             <p class="text-muted-foreground">
-              <strong>故障症状：</strong> 在 Mac 端开启 Clash Verge 时，频繁弹出要求输入开机密码以“安装特权辅助工具（Helper Tool）”，且输入密码后依旧报错，无法正常接管系统网络。
+              <strong>故障症状：</strong> 在 Mac 端开启 Clash Verge 时，频繁弹出要求输入开机密码以“安装特权辅助工具（Helper
+              Tool）”，且输入密码后依旧报错，无法正常接管系统网络。
             </p>
             <p class="text-muted-foreground">
-              <strong>病根解密：</strong> macOS Sonoma 及后续系统引入了严格的后台项管理权限，系统的 <code>/Library/PrivilegedHelperTools/</code> 目录权限可能因权限迁移被锁定为只读。
+              <strong>病根解密：</strong> macOS Sonoma 及后续系统引入了严格的后台项管理权限，系统的 <code
+                >/Library/PrivilegedHelperTools/</code
+              > 目录权限可能因权限迁移被锁定为只读。
             </p>
             <p class="text-foreground font-bold">
-              🛠 修复方案：打开“系统设置 -> 通用 -> 登录项与扩展”，在“允许在后台”列表中找到对应客户端（如 Clash Verge Rev），确保其右侧开关处于<strong>开启状态</strong>；或在终端中以 sudo 权限重新安装 TUN 内核。
+              🛠 修复方案：打开“系统设置 → 通用 →
+              登录项与扩展”，在“允许在后台”列表中找到对应客户端（如 Clash Verge
+              Rev），确保其右侧开关处于<strong>开启状态</strong>；或在终端中以 sudo 权限重新安装 TUN
+              内核。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-5 flex flex-col gap-3">
-            <span class="text-warning font-bold text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-3 border p-5">
+            <span class="text-warning flex items-center gap-2 text-sm font-bold">
               <span>📱</span> iOS 小火箭（Shadowrocket）耗电发热异常排查
             </span>
             <p class="text-muted-foreground">
-              <strong>故障症状：</strong> iPhone 在后台挂载小火箭几个小时后，机身发烫严重，电池设置中显示小火箭后台耗电占比高达 40% 以上。
+              <strong>故障症状：</strong> iPhone 在后台挂载小火箭几个小时后，机身发烫严重，电池设置中显示小火箭后台耗电占比高达
+              40% 以上。
             </p>
             <p class="text-muted-foreground">
-              <strong>病根解密：</strong> 这通常是因为你选择了一个已经失效断流的节点，且客户端开启了高频重试机制；或者某些国内应用的后台保活网络请求不断被发送至失效节点，导致 iOS Network Extension 虚拟接口持续发生数据包重发风暴。
+              <strong>病根解密：</strong> 这通常是因为你选择了一个已经失效断流的节点，且客户端开启了高频重试机制；或者某些国内应用的后台保活网络请求不断被发送至失效节点，导致
+              iOS Network Extension 虚拟接口持续发生数据包重发风暴。
             </p>
             <p class="text-foreground font-bold">
-              🛠 优化设置：在小火箭设置中，将“按需求连接（On Demand）”关闭，仅在需要时手动连接；同时在节点列表中开启“自动隐藏不可用节点”，挑选稳定低延迟的专线节点。
+              🛠 优化设置：在小火箭设置中，将“按需求连接（On
+              Demand）”关闭，仅在需要时手动连接；同时在节点列表中开启“自动隐藏不可用节点”，挑选稳定低延迟的专线节点。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-5 flex flex-col gap-3">
-            <span class="text-success font-bold text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-3 border p-5">
+            <span class="text-success flex items-center gap-2 text-sm font-bold">
               <span>🤖</span> Android / 鸿蒙系统锁屏断连与杀后台解决
             </span>
             <p class="text-muted-foreground">
-              <strong>故障症状：</strong> 手机点亮屏幕时翻墙正常，但只要息屏锁屏超过 5 分钟，后台 Telegram 就收不到消息推送，重新解锁手机才发现 VPN 图标早已消失。
+              <strong>故障症状：</strong> 手机点亮屏幕时翻墙正常，但只要息屏锁屏超过 5 分钟，后台 Telegram
+              就收不到消息推送，重新解锁手机才发现 VPN 图标早已消失。
             </p>
             <p class="text-muted-foreground">
-              <strong>病根解密：</strong> 华为鸿蒙系统、小米澎湃 OS、OPPO ColorOS 等深度定制系统拥有极其严苛的省电墓碑机制，会在锁屏后强制将高频收发数据的后台 VPN 进程杀死以节省电量。
+              <strong>病根解密：</strong> 华为鸿蒙系统、小米澎湃 OS、OPPO ColorOS 等深度定制系统拥有极其严苛的省电墓碑机制，会在锁屏后强制将高频收发数据的后台
+              VPN 进程杀死以节省电量。
             </p>
             <p class="text-foreground font-bold">
-              🛠 必配白名单：进入手机系统“设置 -> 应用管理”，找到代理客户端，将“电池优化”改为<strong>“无限制 / 不优化”</strong>；在自启动管理中开启“允许自启动”和“允许关联启动”；并在多任务卡片界面将客户端下拉<strong>加锁（Lock）</strong>。
+              🛠 必配白名单：进入手机系统“设置 → 应用管理”，找到代理客户端，将“电池优化”改为<strong
+                >“无限制 / 不优化”</strong
+              >；在自启动管理中开启“允许自启动”和“允许关联启动”；并在多任务卡片界面将客户端下拉<strong
+                >加锁（Lock）</strong
+              >。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-5 flex flex-col gap-3 md:col-span-2">
-            <span class="text-primary font-bold text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-3 border p-5 md:col-span-2">
+            <span class="text-primary flex items-center gap-2 text-sm font-bold">
               <span>🖧</span> OpenWrt / 软路由旁路由透明代理“回环死循环”与网关互指避坑
             </span>
             <p class="text-muted-foreground">
-              <strong>高频痛点：</strong> 很多家庭部署了软路由作为旁网关（Bypass Gateway），主路由负责 DHCP 分配，旁路由运行 OpenClash 或 PassWall。经常出现全屋智能家居断网、手机无法获取 IP 或网络延迟瞬间飙升至数千毫秒。
+              <strong>高频痛点：</strong> 很多家庭部署了软路由作为旁网关（Bypass Gateway），主路由负责
+              DHCP 分配，旁路由运行 OpenClash 或 PassWall。经常出现全屋智能家居断网、手机无法获取 IP 或网络延迟瞬间飙升至数千毫秒。
             </p>
             <p class="text-muted-foreground">
-              <strong>底层死穴剖析：</strong> 这是典型的<strong>网关与 DNS 互指引发的路由回环（Routing Loop）</strong>！主路由的网关指向了旁路由，而旁路由的网关又错误地填成了主路由；同时开启了主路由的 Rebind Protection（反 DNS 劫持保护），直接丢弃了 OpenClash 返回的 Fake-IP 响应。
+              <strong>底层死穴剖析：</strong> 这是典型的<strong
+                >网关与 DNS 互指引发的路由回环（Routing Loop）</strong
+              >！主路由的网关指向了旁路由，而旁路由的网关又错误地填成了主路由；同时开启了主路由的
+              Rebind Protection（反 DNS 劫持保护），直接丢弃了 OpenClash 返回的 Fake-IP 响应。
             </p>
             <p class="text-foreground font-bold">
-              🛠 黄金配置规范：
-              1. 旁路由的 LAN 口网关必须且只能填主路由 IP，DNS 推荐填主路由 IP 或纯公共 DNS（如 223.5.5.5）；
-              2. 在 OpenWrt 防火墙自定义规则中，必须添加著名的转发伪装命令：<code class="text-primary">iptables -t nat -I POSTROUTING -o br-lan -j MASQUERADE</code>；
-              3. 主路由必须关闭“DNS 重绑定保护（Discard RFC1918 responses）”，以允许 198.18.0.0/16 虚假 IP 正常通行。
+              🛠 黄金配置规范： 1. 旁路由的 LAN 口网关必须且只能填主路由 IP，DNS 推荐填主路由 IP
+              或纯公共 DNS（如 223.5.5.5）； 2. 在 OpenWrt
+              防火墙自定义规则中，必须添加著名的转发伪装命令：<code class="text-primary"
+                >iptables -t nat -I POSTROUTING -o br-lan -j MASQUERADE</code
+              >； 3. 主路由必须关闭“DNS 重绑定保护（Discard RFC1918 responses）”，以允许
+              198.18.0.0/16 虚假 IP 正常通行。
             </p>
           </div>
         </div>
@@ -699,88 +930,111 @@ const schemaData = {
 
     {/* 模块七：机场订阅与账单计费疑难 */}
     <div id="module-subscription-billing" class="flex flex-col gap-4">
-      <div class="border-l-4 border-info pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-info border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           七、机场订阅与账单计费疑难：导入报错修复与倍率避坑防套路
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
           搞懂订阅链接的底层数据交互格式，识破不良机场“偷跑流量”与“暗调倍率”的账单陷阱。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
         <div class="flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+          <h3 class="font-display text-foreground text-base uppercase">
             1. 订阅链接导入报错“Invalid Yaml / 无法解析返回内容”的核心排查
           </h3>
           <p class="text-muted-foreground">
-            将机场后台复制的订阅链接粘贴进客户端，点击导入时弹出 <code>Invalid Config</code>、<code>Format Error</code> 或 <code>Network Error</code>。按照以下标准诊断顺序排查：
+            将机场后台复制的订阅链接粘贴进客户端，点击导入时弹出 <code>Invalid Config</code>、<code
+              >Format Error</code
+            > 或 <code>Network Error</code>。按照以下标准诊断顺序排查：
           </p>
-          <div class="space-y-2.5 my-2">
-            <div class="bg-background border border-border p-3.5 flex flex-col gap-1">
+          <div class="my-2 space-y-2.5">
+            <div class="bg-background border-border flex flex-col gap-1 border p-3.5">
               <span class="text-primary font-bold">检查一：直接在浏览器地址栏打开订阅链接</span>
               <p class="text-muted-foreground">
-                把你的订阅链接直接复制粘贴到浏览器地址栏回车打开。若网页返回 <code>502 Bad Gateway</code>、<code>Database Connection Error</code>，说明此时机场的网站服务器正在维护或被同行黑客发起 DDoS 攻击，下发服务彻底瘫痪，此时本地做任何调试都是徒劳的，只需等待站长修复机房。
+                把你的订阅链接直接复制粘贴到浏览器地址栏回车打开。若网页返回 <code
+                  >502 Bad Gateway</code
+                >、<code>Database Connection Error</code
+                >，说明此时机场的网站服务器正在维护或被同行黑客发起 DDoS
+                攻击，下发服务彻底瘫痪，此时本地做任何调试都是徒劳的，只需等待站长修复机房。
               </p>
             </div>
 
-            <div class="bg-background border border-border p-3.5 flex flex-col gap-1">
+            <div class="bg-background border-border flex flex-col gap-1 border p-3.5">
               <span class="text-info font-bold">检查二：订阅链接域名在本地遭受 DNS 污染</span>
               <p class="text-muted-foreground">
                 许多小机场的官网域名或订阅域名已经被墙。当你的电脑还处于未翻墙状态时，本地宽带根本无法解析该订阅域名，导致客户端提示网络连接超时。此时需先临时开启一个能用的应急节点，在“开启代理的环境下”再去更新该订阅链接！
               </p>
             </div>
 
-            <div class="bg-background border border-border p-3.5 flex flex-col gap-1">
+            <div class="bg-background border-border flex flex-col gap-1 border p-3.5">
               <span class="text-success font-bold">检查三：协议与客户端版本不匹配</span>
               <p class="text-muted-foreground">
-                如果机场下发的节点全是 <strong>Hysteria 2 或 VLESS Reality</strong> 协议，但你电脑上依然运行着 3 年前停止维护的老旧 Clash Premium 核心，旧核心根本不认识新协议语法，反序列化时自然会报错崩溃。请升级至最新的 <strong>Clash Verge Rev 或 Flclash</strong>。
+                如果机场下发的节点全是 <strong>Hysteria 2 或 VLESS Reality</strong> 协议，但你电脑上依然运行着
+                3 年前停止维护的老旧 Clash Premium 核心，旧核心根本不认识新协议语法，反序列化时自然会报错崩溃。请升级至最新的
+                <strong>Clash Verge Rev 或 Flclash</strong>。
               </p>
             </div>
           </div>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             2. 警惕节点“倍率陷阱”：为什么 100GB 流量三天就用光了？
           </h3>
           <p class="text-muted-foreground">
-            很多用户购买了 100GB/月的套餐，平常只是看看网页和少量视频，几天后后台却提醒流量耗尽。这绝大多数是因为不小心连接了<strong>高倍率节点</strong>！
+            很多用户购买了
+            100GB/月的套餐，平常只是看看网页和少量视频，几天后后台却提醒流量耗尽。这绝大多数是因为不小心连接了<strong
+              >高倍率节点</strong
+            >！
           </p>
-          <div class="overflow-x-auto my-2">
-            <table class="w-full text-left text-xs font-mono border-collapse min-w-[650px]">
+          <div class="my-2 overflow-x-auto">
+            <table class="w-full min-w-[650px] border-collapse text-left font-mono text-xs">
               <thead>
-                <tr class="border-b-2 border-border text-muted-foreground bg-accent/30">
-                  <th class="py-2.5 px-3">节点标称倍率</th>
-                  <th class="py-2.5 px-3">下载 10GB 实际扣除流量</th>
-                  <th class="py-2.5 px-3">通常线路类型</th>
-                  <th class="py-2.5 px-3">合理适用场景与避坑提醒</th>
+                <tr class="border-border text-muted-foreground bg-accent/30 border-b-2">
+                  <th class="px-3 py-2.5">节点标称倍率</th>
+                  <th class="px-3 py-2.5">下载 10GB 实际扣除流量</th>
+                  <th class="px-3 py-2.5">通常线路类型</th>
+                  <th class="px-3 py-2.5">合理适用场景与避坑提醒</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-border/60">
+              <tbody class="divide-border/60 divide-y">
                 <tr class="hover:bg-accent/20">
-                  <td class="py-2.5 px-3 text-success font-bold">0.1x ~ 0.5x 低倍率</td>
-                  <td class="py-2.5 px-3 text-success font-bold">仅扣除 1GB ~ 5GB</td>
-                  <td class="py-2.5 px-3 text-muted-foreground">公网普通中继 / 闲时冷门线路</td>
-                  <td class="py-2.5 px-3 text-foreground">适合大文件下载、系统镜像更新、Steam 游戏预载</td>
+                  <td class="text-success px-3 py-2.5 font-bold">0.1x ~ 0.5x 低倍率</td>
+                  <td class="text-success px-3 py-2.5 font-bold">仅扣除 1GB ~ 5GB</td>
+                  <td class="text-muted-foreground px-3 py-2.5">公网普通中继 / 闲时冷门线路</td>
+                  <td class="text-foreground px-3 py-2.5"
+                    >适合大文件下载、系统镜像更新、Steam 游戏预载</td
+                  >
                 </tr>
                 <tr class="hover:bg-accent/20">
-                  <td class="py-2.5 px-3 text-info font-bold">1.0x 标准倍率</td>
-                  <td class="py-2.5 px-3 text-info font-bold">实际扣除 10GB (1:1)</td>
-                  <td class="py-2.5 px-3 text-muted-foreground">标准物理内网专线</td>
-                  <td class="py-2.5 px-3 text-foreground">全天候日常网页查阅、办公邮件、代码提交的最佳平衡点</td>
+                  <td class="text-info px-3 py-2.5 font-bold">1.0x 标准倍率</td>
+                  <td class="text-info px-3 py-2.5 font-bold">实际扣除 10GB (1:1)</td>
+                  <td class="text-muted-foreground px-3 py-2.5">标准物理内网专线</td>
+                  <td class="text-foreground px-3 py-2.5"
+                    >全天候日常网页查阅、办公邮件、代码提交的最佳平衡点</td
+                  >
                 </tr>
                 <tr class="hover:bg-accent/20">
-                  <td class="py-2.5 px-3 text-primary font-bold">3.0x ~ 5.0x 高倍率</td>
-                  <td class="py-2.5 px-3 text-destructive font-bold">暴涨扣除 30GB ~ 50GB！</td>
-                  <td class="py-2.5 px-3 text-muted-foreground">原生住宅双 ISP / 极低延迟游戏专线</td>
-                  <td class="py-2.5 px-3 text-foreground font-bold">仅用于 ChatGPT 严格风控登录或 4K 追剧，严禁用于下载！</td>
+                  <td class="text-primary px-3 py-2.5 font-bold">3.0x ~ 5.0x 高倍率</td>
+                  <td class="text-destructive px-3 py-2.5 font-bold">暴涨扣除 30GB ~ 50GB！</td>
+                  <td class="text-muted-foreground px-3 py-2.5"
+                    >原生住宅双 ISP / 极低延迟游戏专线</td
+                  >
+                  <td class="text-foreground px-3 py-2.5 font-bold"
+                    >仅用于 ChatGPT 严格风控登录或 4K 追剧，严禁用于下载！</td
+                  >
                 </tr>
               </tbody>
             </table>
           </div>
           <p class="text-foreground font-bold">
-            💡 实用技巧：在 Clash 客户端的代理策略组中，将默认的负载均衡或自动测速组中的高倍率节点手动排除，防止自动测速把下载流量自动导向 5.0x 节点导致流量瞬间清空。
+            💡 实用技巧：在 Clash
+            客户端的代理策略组中，将默认的负载均衡或自动测速组中的高倍率节点手动排除，防止自动测速把下载流量自动导向
+            5.0x 节点导致流量瞬间清空。
           </p>
         </div>
       </PixelPanel>
@@ -788,66 +1042,85 @@ const schemaData = {
 
     {/* 模块八：标准 5 步黄金排障 SOP 决策树 */}
     <div id="module-sop-flowchart" class="flex flex-col gap-4">
-      <div class="border-l-4 border-success pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-success border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           八、标准 5 步黄金排障 SOP 决策树（极客排障标准工作流）
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
           当网络出现未知异常时，严格遵循从物理层到应用层的标准自检顺序，秒级锁定根因。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
         <div class="space-y-4">
-          <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
-            <div class="flex items-center justify-between border-b border-border pb-2">
-              <span class="text-primary font-bold text-sm">第一步：基准网络连通性自检（排除物理网络断网）</span>
+          <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
+            <div class="border-border flex items-center justify-between border-b pb-2">
+              <span class="text-primary text-sm font-bold"
+                >第一步：基准网络连通性自检（排除物理网络断网）</span
+              >
               <span class="text-muted-foreground text-[11px]">耗时：5 秒</span>
             </div>
             <p class="text-muted-foreground">
               首先彻底关闭代理客户端（或关闭系统代理开关）。打开命令行终端（CMD / Terminal）执行：
-              <code class="text-primary bg-accent/30 px-1.5 py-0.5 rounded">ping 223.5.5.5</code>。
-              若国内基础 IP 无法连通，说明是家庭光猫掉线、欠费或网线松动，先排查本地物理宽带，切勿盲目调试代理软件。
+              <code class="text-primary bg-accent/30 rounded px-1.5 py-0.5">ping 223.5.5.5</code>。
+              若国内基础 IP
+              无法连通，说明是家庭光猫掉线、欠费或网线松动，先排查本地物理宽带，切勿盲目调试代理软件。
             </p>
           </div>
 
-          <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
-            <div class="flex items-center justify-between border-b border-border pb-2">
-              <span class="text-info font-bold text-sm">第二步：核对本地系统时钟（排除 TLS 握手拒绝）</span>
+          <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
+            <div class="border-border flex items-center justify-between border-b pb-2">
+              <span class="text-info text-sm font-bold"
+                >第二步：核对本地系统时钟（排除 TLS 握手拒绝）</span
+              >
               <span class="text-muted-foreground text-[11px]">耗时：5 秒</span>
             </div>
             <p class="text-muted-foreground">
-              打开手机时钟对比电脑桌面右下角时间，若误差超过 30 秒，立即点击系统设置同步 Internet 授时。这一步能直接解决 80% 的“节点全部测速 -1ms”故障！
+              打开手机时钟对比电脑桌面右下角时间，若误差超过 30 秒，立即点击系统设置同步 Internet
+              授时。这一步能直接解决 80% 的“节点全部测速 -1ms”故障！
             </p>
           </div>
 
-          <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
-            <div class="flex items-center justify-between border-b border-border pb-2">
-              <span class="text-warning font-bold text-sm">第三步：检查系统代理开关与本地监听端口</span>
+          <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
+            <div class="border-border flex items-center justify-between border-b pb-2">
+              <span class="text-warning text-sm font-bold"
+                >第三步：检查系统代理开关与本地监听端口</span
+              >
               <span class="text-muted-foreground text-[11px]">耗时：10 秒</span>
             </div>
             <p class="text-muted-foreground">
-              在客户端确认开启了“System Proxy / 系统代理”；检查设置中的 Mixed Port（混合端口，通常为 7890）；打开 Windows 设置查看代理服务器是否正确填入了 <code>127.0.0.1:7890</code>，且没有被杀毒软件拦截阻止。
+              在客户端确认开启了“System Proxy / 系统代理”；检查设置中的 Mixed Port（混合端口，通常为
+              7890）；打开 Windows 设置查看代理服务器是否正确填入了 <code>127.0.0.1:7890</code
+              >，且没有被杀毒软件拦截阻止。
             </p>
           </div>
 
-          <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
-            <div class="flex items-center justify-between border-b border-border pb-2">
-              <span class="text-success font-bold text-sm">第四步：切换代理模式为“Rule”并刷新 DNS 缓存</span>
+          <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
+            <div class="border-border flex items-center justify-between border-b pb-2">
+              <span class="text-success text-sm font-bold"
+                >第四步：切换代理模式为“Rule”并刷新 DNS 缓存</span
+              >
               <span class="text-muted-foreground text-[11px]">耗时：10 秒</span>
             </div>
             <p class="text-muted-foreground">
-              确保模式处于“Rule（规则分流）”而非“Global（全局）”；在终端中执行 Windows 命令：<code class="text-primary bg-accent/30 px-1.5 py-0.5 rounded">ipconfig /flushdns</code> 清空本地陈旧的 DNS 缓存记录。
+              确保模式处于“Rule（规则分流）”而非“Global（全局）”；在终端中执行 Windows 命令：<code
+                class="text-primary bg-accent/30 rounded px-1.5 py-0.5">ipconfig /flushdns</code
+              > 清空本地陈旧的 DNS 缓存记录。
             </p>
           </div>
 
-          <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
-            <div class="flex items-center justify-between border-b border-border pb-2">
-              <span class="text-primary font-bold text-sm">第五步：节点切换与无痕模式验证</span>
+          <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
+            <div class="border-border flex items-center justify-between border-b pb-2">
+              <span class="text-primary text-sm font-bold">第五步：节点切换与无痕模式验证</span>
               <span class="text-muted-foreground text-[11px]">耗时：15 秒</span>
             </div>
             <p class="text-muted-foreground">
-              在节点列表手动选择一个香港或新加坡延迟较低的专线节点（不要用自动 URL-Test 策略组）；打开 Chrome 浏览器的<strong>无痕隐私窗口（Incognito）</strong>，输入 <code>https://www.google.com</code> 进行访问测试，排除浏览器插件与 Cookie 缓存干扰。
+              在节点列表手动选择一个香港或新加坡延迟较低的专线节点（不要用自动 URL-Test
+              策略组）；打开 Chrome 浏览器的<strong>无痕隐私窗口（Incognito）</strong>，输入 <code
+                >https://www.google.com</code
+              > 进行访问测试，排除浏览器插件与 Cookie 缓存干扰。
             </p>
           </div>
         </div>
@@ -856,104 +1129,143 @@ const schemaData = {
 
     {/* 模块九：机场使用 10 大核心疑难权威 FAQ */}
     <div id="module-faq-deep" class="flex flex-col gap-4">
-      <div class="border-l-4 border-primary pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-primary border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           九、科学上网与机场使用 10 大核心疑难权威 FAQ
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
           由网络工程师权威背书的详尽解答，直击影响用户决策与使用体验的底层边界问题。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-5 text-xs font-mono leading-relaxed">
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-5 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
         <div class="space-y-4">
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
               <span class="text-primary">Q1:</span> 节点全部测速超时（显示 -1ms 或 Timeout），为什么网页彻底打不开？
             </h3>
             <p class="text-muted-foreground">
-              超过 80% 的全红超时案例是因为本地系统时钟与标准互联网授时中心误差超过 60 秒。由于现代代理协议（如 VMess、VLESS、Trojan）使用 TLS 1.3 双向加密认证，时间戳漂移会导致握手校验直接被服务端主动拒绝。进入操作系统日期与时间设置，点击立即同步网络时钟即可秒级恢复。若时间正常，则需检查订阅是否欠费过期或机场国内中继入口遭受攻击。
+              超过 80% 的全红超时案例是因为本地系统时钟与标准互联网授时中心误差超过 60
+              秒。由于现代代理协议（如 VMess、VLESS、Trojan）使用 TLS 1.3
+              双向加密认证，时间戳漂移会导致握手校验直接被服务端主动拒绝。进入操作系统日期与时间设置，点击立即同步网络时钟即可秒级恢复。若时间正常，则需检查订阅是否欠费过期或机场国内中继入口遭受攻击。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
               <span class="text-primary">Q2:</span> 客户端显示连接成功且有流量产生，但浏览器就是打不开任何海外网站是怎么回事？
             </h3>
             <p class="text-muted-foreground">
-              这是典型的“连得上但打不开网页”故障。诱因主要有三点：第一，操作系统系统代理开关未正确挂载，或被 Chrome/Edge 扩展（如 SwitchyOmega）覆写劫持；第二，DNS 解析黑洞，本地客户端未开启 DNS 劫持防护，导致国外域名被本地运营商 DNS 污染返回错误 IP；第三，若开启了 TUN 虚拟网卡模式，可能是本地存在多个虚拟网卡驱动（如 VirtualBox/VMware）导致路由表跳数（Metric）竞争死循环。
+              这是典型的“连得上但打不开网页”故障。诱因主要有三点：第一，操作系统系统代理开关未正确挂载，或被
+              Chrome/Edge 扩展（如 SwitchyOmega）覆写劫持；第二，DNS 解析黑洞，本地客户端未开启 DNS
+              劫持防护，导致国外域名被本地运营商 DNS 污染返回错误 IP；第三，若开启了 TUN
+              虚拟网卡模式，可能是本地存在多个虚拟网卡驱动（如
+              VirtualBox/VMware）导致路由表跳数（Metric）竞争死循环。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
               <span class="text-primary">Q3:</span> 访问 ChatGPT 频繁提示 Access Denied 或 1020 报错，该如何彻底解决？
             </h3>
             <p class="text-muted-foreground">
-              OpenAI 采用了极高等级的 Cloudflare Turnstile 与 IP 风险欺诈库风控。造成报错的核心原因：一是使用了 OpenAI 未开放服务的香港节点；二是当前节点 IP 被 Cloudflare 识别为数据中心机房 IDC 广播 IP，欺诈评分过高；三是浏览器缓存了此前的封禁 Cookie。解决方法：切换至新加坡、日本或美国的原生住宅 ISP 节点，打开浏览器无痕隐身窗口，并清空本地 DNS 缓存。
+              OpenAI 采用了极高等级的 Cloudflare Turnstile 与 IP
+              风险欺诈库风控。造成报错的核心原因：一是使用了 OpenAI
+              未开放服务的香港节点；二是当前节点 IP 被 Cloudflare 识别为数据中心机房 IDC 广播
+              IP，欺诈评分过高；三是浏览器缓存了此前的封禁
+              Cookie。解决方法：切换至新加坡、日本或美国的原生住宅 ISP
+              节点，打开浏览器无痕隐身窗口，并清空本地 DNS 缓存。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
               <span class="text-primary">Q4:</span> 为什么开启代理后，国内微信、淘宝、网易云音乐打不开或提示异地登录风控？
             </h3>
             <p class="text-muted-foreground">
-              这是因为误开启了“全局模式（Global）”。在全局模式下，包括微信、网易云在内的国内所有流量都被强制转发至海外代理节点，导致国内应用检测到海外异地登录触发安全风控，甚至因海外节点版权封锁导致国内音乐变灰。应在客户端将代理模式切换为“规则模式（Rule）”，依托 GeoIP 与 GeoSite 数据库实现国内流量本地直连，海外流量走代理。
+              这是因为误开启了“全局模式（Global）”。在全局模式下，包括微信、网易云在内的国内所有流量都被强制转发至海外代理节点，导致国内应用检测到海外异地登录触发安全风控，甚至因海外节点版权封锁导致国内音乐变灰。应在客户端将代理模式切换为“规则模式（Rule）”，依托
+              GeoIP 与 GeoSite 数据库实现国内流量本地直连，海外流量走代理。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
-              <span class="text-primary">Q5:</span> 什么是 DNS 泄漏？为什么开了翻墙后在 ipleak.net 依然能看到国内运营商 IP？
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
+              <span class="text-primary">Q5:</span> 什么是 DNS 泄漏？为什么开了翻墙后在 ipleak.net 依然能看到国内运营商
+              IP？
             </h3>
             <p class="text-muted-foreground">
-              DNS 泄漏是指客户端在通过加密代理访问海外网站时，操作系统依然向本地 ISP 运营商默认的 53 端口 DNS 发送明文解析请求。这会导致国内运营商完整记录你访问的海外域名列表。解决方案是在 Clash 或 Sing-box 中配置 Fake-IP 模式，将本地 DNS 解析接管到虚拟保留网段（198.18.0.0/16），杜绝系统向公网直发任何未加密的明文 DNS 查询。
+              DNS 泄漏是指客户端在通过加密代理访问海外网站时，操作系统依然向本地 ISP 运营商默认的 53
+              端口 DNS
+              发送明文解析请求。这会导致国内运营商完整记录你访问的海外域名列表。解决方案是在 Clash
+              或 Sing-box 中配置 Fake-IP 模式，将本地 DNS
+              解析接管到虚拟保留网段（198.18.0.0/16），杜绝系统向公网直发任何未加密的明文 DNS 查询。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
-              <span class="text-primary">Q6:</span> 什么是节点倍率？为什么下载了一个 5GB 文件，机场后台却扣除了 15GB 流量？
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
+              <span class="text-primary">Q6:</span> 什么是节点倍率？为什么下载了一个 5GB 文件，机场后台却扣除了
+              15GB 流量？
             </h3>
             <p class="text-muted-foreground">
-              节点倍率是机场服务商平衡专线成本的计费杠杆。例如 1.0x 倍率节点消耗 1GB 扣除 1GB 流量；而 3.0x 高倍率节点（通常为企业级物理 IEPL 专线或极速流媒体解锁节点）传输 1GB 实际扣除 3GB 流量；0.2x 低倍率节点传输 5GB 仅扣除 1GB 流量。用户在大流量下载文件或更新游戏前，应在节点列表优先选择 1.0x 或低倍率普通节点，追剧与办公再使用高倍率专线。
+              节点倍率是机场服务商平衡专线成本的计费杠杆。例如 1.0x 倍率节点消耗 1GB 扣除 1GB
+              流量；而 3.0x 高倍率节点（通常为企业级物理 IEPL 专线或极速流媒体解锁节点）传输 1GB
+              实际扣除 3GB 流量；0.2x 低倍率节点传输 5GB 仅扣除 1GB
+              流量。用户在大流量下载文件或更新游戏前，应在节点列表优先选择 1.0x
+              或低倍率普通节点，追剧与办公再使用高倍率专线。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
               <span class="text-primary">Q7:</span> Windows 系统重启或关机后无法正常上网，网页全部提示“代理服务器连接被拒”怎么办？
             </h3>
             <p class="text-muted-foreground">
-              这是因为电脑在未正常关闭代理客户端的情况下异常关机，导致 Windows 注册表中的“系统代理开关”依然处于开启状态，但本地代理监听端口（如 7890）随着客户端关闭已不复存在。解决方法：打开 Windows“网络和 Internet”设置，进入“代理”选项，将“使用代理服务器”手动关闭，或重新打开代理软件后在菜单栏正常点击“退出”即可。
+              这是因为电脑在未正常关闭代理客户端的情况下异常关机，导致 Windows
+              注册表中的“系统代理开关”依然处于开启状态，但本地代理监听端口（如
+              7890）随着客户端关闭已不复存在。解决方法：打开 Windows“网络和
+              Internet”设置，进入“代理”选项，将“使用代理服务器”手动关闭，或重新打开代理软件后在菜单栏正常点击“退出”即可。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
               <span class="text-primary">Q8:</span> Netflix 提示只能观看自制剧（软封锁），怎样才能解锁完整版权库？
             </h3>
             <p class="text-muted-foreground">
-              Netflix 实行区域版权库机制。当系统检测到用户的 IP 属于机房托管机（Hosting/Data Center）而非本地家庭宽带（ISP/Residential）时，会触发软封锁，仅允许观看 Netflix 拥有全球版权的自制剧（如怪奇物语），隐藏所有第三方版权电影。需要使用具备“原生住宅双 ISP 解锁”的专业节点，并在客户端确保流媒体域名走独立的分流策略组。
+              Netflix 实行区域版权库机制。当系统检测到用户的 IP 属于机房托管机（Hosting/Data
+              Center）而非本地家庭宽带（ISP/Residential）时，会触发软封锁，仅允许观看 Netflix
+              拥有全球版权的自制剧（如怪奇物语），隐藏所有第三方版权电影。需要使用具备“原生住宅双
+              ISP 解锁”的专业节点，并在客户端确保流媒体域名走独立的分流策略组。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
-              <span class="text-primary">Q9:</span> Clash 订阅导入时报错“Format Error”或“无法解析 YAML 配置文件”该如何修复？
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
+              <span class="text-primary">Q9:</span> Clash 订阅导入时报错“Format Error”或“无法解析 YAML
+              配置文件”该如何修复？
             </h3>
             <p class="text-muted-foreground">
-              诱因主要有两点：一是机场后端节点下发服务故障，订阅链接返回了 HTML 报错页面（如 502 Bad Gateway）而非标准的 YAML 文本；二是用户使用了不支持的旧版客户端，无法解析新语法（如 rule-providers 或 sniffing）。排查步骤：首先用浏览器打开订阅链接看是否返回一长串节点字符，若返回网页代码则联系机场客服；若正常，建议通过在线订阅转换工具转换为标准 Clash 配置。
+              诱因主要有两点：一是机场后端节点下发服务故障，订阅链接返回了 HTML 报错页面（如 502 Bad
+              Gateway）而非标准的 YAML 文本；二是用户使用了不支持的旧版客户端，无法解析新语法（如
+              rule-providers 或
+              sniffing）。排查步骤：首先用浏览器打开订阅链接看是否返回一长串节点字符，若返回网页代码则联系机场客服；若正常，建议通过在线订阅转换工具转换为标准
+              Clash 配置。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
               <span class="text-primary">Q10:</span> 为什么很多机场声称是“千兆专线”，但晚高峰实际测速只有十几兆且频繁卡顿？
             </h3>
             <p class="text-muted-foreground">
-              许多不良或小作坊机场虽然购买了千兆公网服务器，但为了超额盈利，将 1Gbps 的带宽超量超卖给数千名用户。在晚高峰时段，带宽利用率达到 100% 极限过载，导致严重排队拥塞；或者其本质是“假专线”，走的是普通公网国际出口，遭受了电信 163 骨干网的晚高峰 QoS 强制丢包。选择深耕多年的正规 IEPL 专线机场（如光速云）才能保证全天候物理独享带宽与低延迟。
+              许多不良或小作坊机场虽然购买了千兆公网服务器，但为了超额盈利，将 1Gbps
+              的带宽超量超卖给数千名用户。在晚高峰时段，带宽利用率达到 100%
+              极限过载，导致严重排队拥塞；或者其本质是“假专线”，走的是普通公网国际出口，遭受了电信
+              163 骨干网的晚高峰 QoS 强制丢包。选择深耕多年的正规 IEPL
+              专线机场（如光速云）才能保证全天候物理独享带宽与低延迟。
             </p>
           </div>
         </div>
@@ -962,65 +1274,76 @@ const schemaData = {
 
     {/* 长尾文章列表 */}
     <div class="flex flex-col gap-6">
-      <div class="flex items-center justify-between border-b-2 border-border pb-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-border flex items-center justify-between border-b-2 pb-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           ❓ 常见疑难长尾答疑库 ({faqArticles.length} 篇深度排查)
         </h2>
-        <span class="text-xs font-mono text-muted-foreground">KNOWLEDGE BASE</span>
+        <span class="text-muted-foreground font-mono text-xs">KNOWLEDGE BASE</span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {faqArticles.map((art) => (
-          <PixelPanel class="p-6 bg-card border-2 border-border hover:border-primary transition-all flex flex-col justify-between gap-4">
-            <div class="flex flex-col gap-2.5">
-              <div class="flex items-center justify-between text-xs font-mono">
-                <span class="text-primary font-bold">{art.badge}</span>
-                <span class="text-muted-foreground">{art.date} · 预计阅读 {art.readTime}</span>
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+        {
+          faqArticles.map((art) => (
+            <PixelPanel class="bg-card border-border hover:border-primary flex flex-col justify-between gap-4 border-2 p-6 transition-all">
+              <div class="flex flex-col gap-2.5">
+                <div class="flex items-center justify-between font-mono text-xs">
+                  <span class="text-primary font-bold">{art.badge}</span>
+                  <span class="text-muted-foreground">
+                    {art.date} · 预计阅读 {art.readTime}
+                  </span>
+                </div>
+                <h3 class="font-display text-foreground text-base leading-snug">
+                  <a href={`/faq/${art.slug}/`} class="hover:text-primary transition-colors">
+                    {art.title}
+                  </a>
+                </h3>
+                <p class="text-muted-foreground font-mono text-xs leading-relaxed">{art.excerpt}</p>
               </div>
-              <h3 class="font-display text-base text-foreground leading-snug">
-                <a href={`/faq/${art.slug}/`} class="hover:text-primary transition-colors">
-                  {art.title}
-                </a>
-              </h3>
-              <p class="text-xs text-muted-foreground font-mono leading-relaxed">
-                {art.excerpt}
-              </p>
-            </div>
 
-            <div class="pt-3 border-t border-border flex items-center justify-between">
-              <span class="text-[11px] font-mono text-success">
-                分类：{art.categoryName}
-              </span>
-              <a href={`/faq/${art.slug}/`} class="pixel-btn text-xs px-3 py-1.5">
-                查看解决方案 →
-              </a>
-            </div>
-          </PixelPanel>
-        ))}
+              <div class="border-border flex items-center justify-between border-t pt-3">
+                <span class="text-success font-mono text-[11px]">分类：{art.categoryName}</span>
+                <a href={`/faq/${art.slug}/`} class="pixel-btn px-3 py-1.5 text-xs">
+                  查看解决方案 →
+                </a>
+              </div>
+            </PixelPanel>
+          ))
+        }
       </div>
     </div>
 
     {/* 模块十：底部生产力转化与终极破局 */}
     <div id="module-recommendation">
-      <PixelPanel class="p-6 md:p-8 bg-accent/30 border-4 border-primary flex flex-col gap-5 text-center items-center shadow-pixel">
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/20 border border-primary text-primary text-xs font-mono font-bold uppercase">
+      <PixelPanel
+        class="bg-accent/30 border-primary shadow-pixel flex flex-col items-center gap-5 border-4 p-6 text-center md:p-8"
+      >
+        <div
+          class="bg-primary/20 border-primary text-primary inline-flex items-center gap-2 border px-3 py-1 font-mono text-xs font-bold uppercase"
+        >
           ★ 告别劣质梯子的频繁故障与折腾 · 拥抱 99.99% 高可用
         </div>
-        <h3 class="font-display text-2xl text-foreground uppercase tracking-tight">
+        <h3 class="font-display text-foreground text-2xl tracking-tight uppercase">
           90% 的翻墙报错，本质上都是因为你在使用廉价超卖的公网中继！
         </h3>
-        <p class="text-xs md:text-sm text-muted-foreground max-w-2xl font-mono leading-relaxed">
-          普通公网代理天天被墙阻断、时钟稍有漂移就全红断流、机房 IP 频繁被 ChatGPT 与 Netflix 拦截。升级为拥有企业级 <strong>IEPL 物理专线</strong> 的 <a href="/airports/guangshuyun/" class="text-primary font-bold hover:underline">光速云</a>，全节点标配多入口自动负载均衡冗余、原生住宅双 ISP IP 纯净解锁，晚高峰 0 丢包。专属优惠码 <code class="text-primary font-bold bg-background px-1.5 py-0.5 border border-primary/50">AMM</code> 享 8 折特惠，月付仅需 ¥12 起。
+        <p class="text-muted-foreground max-w-2xl font-mono text-xs leading-relaxed md:text-sm">
+          普通公网代理天天被墙阻断、时钟稍有漂移就全红断流、机房 IP 频繁被 ChatGPT 与 Netflix
+          拦截。升级为拥有企业级 <strong>IEPL 物理专线</strong> 的 <a
+            href="/airports/guangshuyun/"
+            class="text-primary font-bold hover:underline">光速云</a
+          >，全节点标配多入口自动负载均衡冗余、原生住宅双 ISP IP 纯净解锁，晚高峰 0 丢包。专属优惠码 <code
+            class="text-primary bg-background border-primary/50 border px-1.5 py-0.5 font-bold"
+            >AMM</code
+          > 享 8 折特惠，月付仅需 ¥12 起。
         </p>
         <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
-          <a href="/airports/" class="pixel-btn text-xs px-5 py-3">
+          <a href="/airports/" class="pixel-btn px-5 py-3 text-xs">
             查看 42 家机场评测榜单与测速数据 →
           </a>
           <a
             href="https://sahude.gsyvipaff.com/#/?code=keqgvT5Y"
             target="_blank"
             rel="nofollow sponsored noopener"
-            class="pixel-btn pixel-btn--blue text-sm px-6 py-3 font-bold shadow-pixel"
+            class="pixel-btn pixel-btn--blue shadow-pixel px-6 py-3 text-sm font-bold"
           >
             直达光速云官网即刻体验 ↗
           </a>

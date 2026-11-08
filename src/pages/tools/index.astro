@@ -1,19 +1,27 @@
 ---
 import HeroPanel from "@components/Sections/Global/HeroPanel.astro";
-import { Badge } from "@components/ui/badge";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from "@components/ui/breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@components/ui/breadcrumb";
 import { PixelPanel } from "@components/ui/pixel-panel";
-import { toolsArticles } from "@/data/toolsData";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
-const pageTitle = "2026 科学上网客户端与网络诊断工具完全手册：全平台选型、配置实操与避坑指南 — 机场cloud";
-const pageDescription = "全网权威专著级科学上网客户端与专业网络诊断工具手册。深度对比 Clash Verge Rev、Sing-box、Shadowrocket、Surge、v2rayN、PassWall 等全平台软件架构、内核演进、TUN 虚拟网卡配置与防钓鱼安全准则。";
+import { toolsArticles } from "@/data/toolsData";
+
+const pageTitle =
+  "2026 科学上网客户端与网络诊断工具完全手册：全平台选型、配置实操与避坑指南 — 机场cloud";
+const pageDescription =
+  "全网权威专著级科学上网客户端与专业网络诊断工具手册。深度对比 Clash Verge Rev、Sing-box、Shadowrocket、Surge、v2rayN、PassWall 等全平台软件架构、内核演进、TUN 虚拟网卡配置与防钓鱼安全准则。";
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
   <div class="site-container flex flex-col gap-10 py-8 md:gap-12 md:py-12">
     {/* 面包屑导航 */}
-    <Breadcrumb class="text-xs font-mono">
+    <Breadcrumb class="font-mono text-xs">
       <BreadcrumbItem><BreadcrumbLink href="/">首页</BreadcrumbLink></BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem><BreadcrumbPage>梯子工具完全手册</BreadcrumbPage></BreadcrumbItem>
@@ -28,22 +36,33 @@ const pageDescription = "全网权威专著级科学上网客户端与专业网�
     />
 
     {/* 快速页内锚点导航目录 (TOC) */}
-    <PixelPanel class="p-5 bg-card border-2 border-border text-xs font-mono flex flex-col gap-3">
-      <span class="font-bold text-foreground flex items-center gap-2">
+    <PixelPanel class="bg-card border-border flex flex-col gap-3 border-2 p-5 font-mono text-xs">
+      <span class="text-foreground flex items-center gap-2 font-bold">
         <span>📑</span> 目录导航 (Table of Contents)
       </span>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 text-muted-foreground">
+      <div class="text-muted-foreground grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
         <a href="#quick-answer" class="hover:text-primary transition-colors">1. 极速选型决策</a>
         <a href="#matrix-table" class="hover:text-primary transition-colors">2. 全平台核心对比表</a>
-        <a href="#kernel-evolution" class="hover:text-primary transition-colors">3. 代理内核演进史</a>
-        <a href="#desktop-deep-dive" class="hover:text-primary transition-colors">4. 桌面端深度拆解</a>
-        <a href="#mobile-deep-dive" class="hover:text-primary transition-colors">5. 移动端终极配置</a>
-        <a href="#router-gateway" class="hover:text-primary transition-colors">6. 软路由全屋透明代理</a>
-        <a href="#diagnostics-toolkit" class="hover:text-primary transition-colors">7. 实验室排障工具箱</a>
+        <a href="#kernel-evolution" class="hover:text-primary transition-colors"
+          >3. 代理内核演进史</a
+        >
+        <a href="#desktop-deep-dive" class="hover:text-primary transition-colors"
+          >4. 桌面端深度拆解</a
+        >
+        <a href="#mobile-deep-dive" class="hover:text-primary transition-colors"
+          >5. 移动端终极配置</a
+        >
+        <a href="#router-gateway" class="hover:text-primary transition-colors"
+          >6. 软路由全屋透明代理</a
+        >
+        <a href="#diagnostics-toolkit" class="hover:text-primary transition-colors"
+          >7. 实验室排障工具箱</a
+        >
         <a href="#security-audit" class="hover:text-primary transition-colors">8. 防钓鱼安全红线</a>
         <a href="#decision-tree" class="hover:text-primary transition-colors">9. 多场景决策树</a>
         <a href="#faq-section" class="hover:text-primary transition-colors">10. 疑难问题 FAQ</a>
-        <a href="#cluster-articles" class="hover:text-primary transition-colors">11. 长尾精选实操</a>
+        <a href="#cluster-articles" class="hover:text-primary transition-colors">11. 长尾精选实操</a
+        >
       </div>
     </PixelPanel>
 
@@ -51,69 +70,99 @@ const pageDescription = "全网权威专著级科学上网客户端与专业网�
     {/* 1. ⚡ Answer Block：跨平台工具选型极速决策指南 */}
     {/* ========================================================= */}
     <section id="quick-answer" class="flex flex-col gap-4">
-      <PixelPanel class="p-6 md:p-8 bg-card border-4 border-info/80 flex flex-col gap-5 shadow-pixel">
-        <div class="flex items-center gap-2 border-b border-border pb-3">
+      <PixelPanel
+        class="bg-card border-info/80 shadow-pixel flex flex-col gap-5 border-4 p-6 md:p-8"
+      >
+        <div class="border-border flex items-center gap-2 border-b pb-3">
           <span class="text-info text-xl">⚡</span>
-          <h2 class="font-display text-lg text-foreground uppercase">
+          <h2 class="font-display text-foreground text-lg uppercase">
             Answer Block：2026 跨平台翻墙工具黄金推荐组合与速查
           </h2>
         </div>
 
-        <p class="text-xs font-mono text-muted-foreground leading-relaxed">
+        <p class="text-muted-foreground font-mono text-xs leading-relaxed">
           针对绝大多数希望“零折腾、高稳定、全流量代理且低功耗”的用户，我们在实测了全网三十余款客户端并跟踪其代码仓库活跃度后，给出以下开门见山的权威选型结论：
         </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-3.5 text-xs font-mono leading-relaxed">
-          <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
+        <div class="grid grid-cols-1 gap-3.5 font-mono text-xs leading-relaxed md:grid-cols-4">
+          <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
             <div class="flex items-center justify-between">
-              <span class="text-success font-bold text-sm">💻 Windows 首选</span>
-              <span class="text-[10px] bg-success/10 text-success border border-success/30 px-1.5 py-0.5 font-bold">开源标杆</span>
+              <span class="text-success text-sm font-bold">💻 Windows 首选</span>
+              <span
+                class="bg-success/10 text-success border-success/30 border px-1.5 py-0.5 text-[10px] font-bold"
+                >开源标杆</span
+              >
             </div>
-            <span class="text-foreground font-bold text-base">Clash Verge Rev</span>
+            <span class="text-foreground text-base font-bold">Clash Verge Rev</span>
             <p class="text-muted-foreground text-[11px]">
-              内置 <strong>Mihomo (Clash Meta)</strong> 商业级高性能内核。底层采用现代 Rust/Tauri 框架，彻底摒弃旧版 Electron 的臃肿内存占用。支持一键部署 Windows 过滤平台服务（Service Mode）与 <strong>TUN 虚拟网卡</strong>，实现终端命令行、Docker 容器、Steam 外服游戏与全部桌面浏览器的零死角接管。
+              内置 <strong>Mihomo (Clash Meta)</strong> 商业级高性能内核。底层采用现代 Rust/Tauri 框架，彻底摒弃旧版
+              Electron 的臃肿内存占用。支持一键部署 Windows 过滤平台服务（Service Mode）与 <strong
+                >TUN 虚拟网卡</strong
+              >，实现终端命令行、Docker 容器、Steam 外服游戏与全部桌面浏览器的零死角接管。
             </p>
           </div>
 
-          <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
             <div class="flex items-center justify-between">
-              <span class="text-info font-bold text-sm">🍏 macOS 首选</span>
-              <span class="text-[10px] bg-info/10 text-info border border-info/30 px-1.5 py-0.5 font-bold">原生适配</span>
+              <span class="text-info text-sm font-bold">🍏 macOS 首选</span>
+              <span
+                class="bg-info/10 text-info border-info/30 border px-1.5 py-0.5 text-[10px] font-bold"
+                >原生适配</span
+              >
             </div>
-            <span class="text-foreground font-bold text-base">Clash Verge / Surge</span>
+            <span class="text-foreground text-base font-bold">Clash Verge / Surge</span>
             <p class="text-muted-foreground text-[11px]">
-              日常推荐 Clash Verge Rev（原生深度适配 Apple Silicon M 系列芯片架构，休眠唤醒不掉线，系统内存常驻仅 45MB 左右）；对于具备高级网络调试需求、愿意承担高昂买断费用的开发者，可直接选择业界天花板级调试神器 <strong>Surge Mac</strong>。
+              日常推荐 Clash Verge Rev（原生深度适配 Apple Silicon M
+              系列芯片架构，休眠唤醒不掉线，系统内存常驻仅 45MB
+              左右）；对于具备高级网络调试需求、愿意承担高昂买断费用的开发者，可直接选择业界天花板级调试神器
+              <strong>Surge Mac</strong>。
             </p>
           </div>
 
-          <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
             <div class="flex items-center justify-between">
-              <span class="text-primary font-bold text-sm">📱 iOS 首选</span>
-              <span class="text-[10px] bg-primary/10 text-primary border border-primary/30 px-1.5 py-0.5 font-bold">装机必备</span>
+              <span class="text-primary text-sm font-bold">📱 iOS 首选</span>
+              <span
+                class="bg-primary/10 text-primary border-primary/30 border px-1.5 py-0.5 text-[10px] font-bold"
+                >装机必备</span
+              >
             </div>
-            <span class="text-foreground font-bold text-base">Shadowrocket (小火箭)</span>
+            <span class="text-foreground text-base font-bold">Shadowrocket (小火箭)</span>
             <p class="text-muted-foreground text-[11px]">
-              外区 App Store 一次性买断仅需 <strong>$2.99</strong>。原生基于 iOS Network Extension 框架编写，支持从古老 Shadowsocks 到现代化 VLESS-Reality、Hysteria 2 全套协议。ACL 分流规则成熟可靠，锁屏待机功耗极低，是当之无愧的 iOS 综合性价比王者。
+              外区 App Store 一次性买断仅需 <strong>$2.99</strong>。原生基于 iOS Network Extension
+              框架编写，支持从古老 Shadowsocks 到现代化 VLESS-Reality、Hysteria 2 全套协议。ACL
+              分流规则成熟可靠，锁屏待机功耗极低，是当之无愧的 iOS 综合性价比王者。
             </p>
           </div>
 
-          <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
             <div class="flex items-center justify-between">
-              <span class="text-accent-foreground font-bold text-sm">🤖 Android 首选</span>
-              <span class="text-[10px] bg-accent/20 text-accent-foreground border border-border px-1.5 py-0.5 font-bold">纯净无广</span>
+              <span class="text-accent-foreground text-sm font-bold">🤖 Android 首选</span>
+              <span
+                class="bg-accent/20 text-accent-foreground border-border border px-1.5 py-0.5 text-[10px] font-bold"
+                >纯净无广</span
+              >
             </div>
-            <span class="text-foreground font-bold text-base">Clash Meta (Flclash)</span>
+            <span class="text-foreground text-base font-bold">Clash Meta (Flclash)</span>
             <p class="text-muted-foreground text-[11px]">
-              开源现代 Flutter UI 客户端。分应用代理机制完善，国内应用（微信、支付宝、网银 App）全自动白名单直连，彻底杜绝电量偷跑与国内服务定位异常。
+              开源现代 Flutter UI 客户端。分应用代理机制完善，国内应用（微信、支付宝、网银
+              App）全自动白名单直连，彻底杜绝电量偷跑与国内服务定位异常。
             </p>
           </div>
         </div>
 
-        <div class="bg-accent/40 border border-border p-4 text-xs font-mono flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div
+          class="bg-accent/40 border-border flex flex-col items-center justify-between gap-3 border p-4 font-mono text-xs sm:flex-row"
+        >
           <span class="text-muted-foreground">
-            💡 <strong>基础设施底层逻辑</strong>：客户端只是一辆跑车，底层节点是高速公路。无论客户端调优多么完美，若节点走普通公网出口依然会在晚高峰遭遇 30% 以上的恶性丢包。
+            💡 <strong>基础设施底层逻辑</strong
+            >：客户端只是一辆跑车，底层节点是高速公路。无论客户端调优多么完美，若节点走普通公网出口依然会在晚高峰遭遇
+            30% 以上的恶性丢包。
           </span>
-          <a href="/airports/guangshuyun/" class="pixel-btn pixel-btn--blue text-xs px-4 py-2 font-bold whitespace-nowrap">
+          <a
+            href="/airports/guangshuyun/"
+            class="pixel-btn pixel-btn--blue px-4 py-2 text-xs font-bold whitespace-nowrap"
+          >
             查看光速云评测 (专属 8 折码 AMM) →
           </a>
         </div>
@@ -124,98 +173,104 @@ const pageDescription = "全网权威专著级科学上网客户端与专业网�
     {/* 2. 📊 全平台主流代理客户端核心特性全景对比表 */}
     {/* ========================================================= */}
     <section id="matrix-table" class="flex flex-col gap-4">
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-5">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-border pb-3">
+      <PixelPanel class="bg-card border-border flex flex-col gap-5 border-2 p-6 md:p-8">
+        <div
+          class="border-border flex flex-col gap-2 border-b pb-3 sm:flex-row sm:items-center sm:justify-between"
+        >
           <div>
-            <h2 class="font-display text-lg text-foreground uppercase">
+            <h2 class="font-display text-foreground text-lg uppercase">
               主流翻墙代理客户端全景硬核指标横评
             </h2>
-            <span class="text-xs font-mono text-muted-foreground">MULTI-PLATFORM BENCHMARK SPECIFICATIONS</span>
+            <span class="text-muted-foreground font-mono text-xs"
+              >MULTI-PLATFORM BENCHMARK SPECIFICATIONS</span
+            >
           </div>
-          <span class="text-xs font-mono text-success">数据已于 2026 Q4 核实校验</span>
+          <span class="text-success font-mono text-xs">数据已于 2026 Q4 核实校验</span>
         </div>
 
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs font-mono border-collapse min-w-[750px]">
+          <table class="w-full min-w-[750px] border-collapse text-left font-mono text-xs">
             <thead>
-              <tr class="border-b-2 border-border text-muted-foreground bg-accent/30">
-                <th class="py-3 px-3">客户端名称</th>
-                <th class="py-3 px-3">支持操作系统</th>
-                <th class="py-3 px-3">底层开发框架/内核</th>
-                <th class="py-3 px-3">支持协议全集</th>
-                <th class="py-3 px-3">TUN 虚拟网卡</th>
-                <th class="py-3 px-3">典型内存占用</th>
-                <th class="py-3 px-3">上手门槛</th>
-                <th class="py-3 px-3">商业模式</th>
+              <tr class="border-border text-muted-foreground bg-accent/30 border-b-2">
+                <th class="px-3 py-3">客户端名称</th>
+                <th class="px-3 py-3">支持操作系统</th>
+                <th class="px-3 py-3">底层开发框架/内核</th>
+                <th class="px-3 py-3">支持协议全集</th>
+                <th class="px-3 py-3">TUN 虚拟网卡</th>
+                <th class="px-3 py-3">典型内存占用</th>
+                <th class="px-3 py-3">上手门槛</th>
+                <th class="px-3 py-3">商业模式</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-border/60">
+            <tbody class="divide-border/60 divide-y">
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-foreground">Clash Verge Rev</td>
-                <td class="py-3 px-3 text-info">Windows / macOS / Linux</td>
-                <td class="py-3 px-3 text-muted-foreground">Tauri (Rust) + Mihomo 内核</td>
-                <td class="py-3 px-3 text-muted-foreground">SS, Trojan, VLESS, Hysteria 2, TUIC</td>
-                <td class="py-3 px-3 text-success font-bold">原生内置 (WFP驱动)</td>
-                <td class="py-3 px-3 text-foreground font-bold">45MB ~ 85MB</td>
-                <td class="py-3 px-3 text-success">★☆☆ (入门友好)</td>
-                <td class="py-3 px-3 text-success font-bold">开源免费</td>
+                <td class="text-foreground px-3 py-3 font-bold">Clash Verge Rev</td>
+                <td class="text-info px-3 py-3">Windows / macOS / Linux</td>
+                <td class="text-muted-foreground px-3 py-3">Tauri (Rust) + Mihomo 内核</td>
+                <td class="text-muted-foreground px-3 py-3">SS, Trojan, VLESS, Hysteria 2, TUIC</td>
+                <td class="text-success px-3 py-3 font-bold">原生内置 (WFP驱动)</td>
+                <td class="text-foreground px-3 py-3 font-bold">45MB ~ 85MB</td>
+                <td class="text-success px-3 py-3">★☆☆ (入门友好)</td>
+                <td class="text-success px-3 py-3 font-bold">开源免费</td>
               </tr>
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-foreground">Shadowrocket (小火箭)</td>
-                <td class="py-3 px-3 text-info">iOS / iPadOS / macOS</td>
-                <td class="py-3 px-3 text-muted-foreground">Swift + 原生 Network Extension</td>
-                <td class="py-3 px-3 text-muted-foreground">全协议通用支持 (含 VLESS Reality)</td>
-                <td class="py-3 px-3 text-success font-bold">系统原生 VPN 虚拟网卡</td>
-                <td class="py-3 px-3 text-foreground font-bold">18MB ~ 35MB (极度轻巧)</td>
-                <td class="py-3 px-3 text-success">★☆☆ (一键订阅)</td>
-                <td class="py-3 px-3 text-info">$2.99 买断</td>
+                <td class="text-foreground px-3 py-3 font-bold">Shadowrocket (小火箭)</td>
+                <td class="text-info px-3 py-3">iOS / iPadOS / macOS</td>
+                <td class="text-muted-foreground px-3 py-3">Swift + 原生 Network Extension</td>
+                <td class="text-muted-foreground px-3 py-3">全协议通用支持 (含 VLESS Reality)</td>
+                <td class="text-success px-3 py-3 font-bold">系统原生 VPN 虚拟网卡</td>
+                <td class="text-foreground px-3 py-3 font-bold">18MB ~ 35MB (极度轻巧)</td>
+                <td class="text-success px-3 py-3">★☆☆ (一键订阅)</td>
+                <td class="text-info px-3 py-3">$2.99 买断</td>
               </tr>
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-foreground">Sing-box</td>
-                <td class="py-3 px-3 text-info">全平台跨平台支持</td>
-                <td class="py-3 px-3 text-muted-foreground">Go 语言独立高性能重构核心</td>
-                <td class="py-3 px-3 text-muted-foreground">全套下一代前沿协议</td>
-                <td class="py-3 px-3 text-success font-bold">内核级多平台 TUN 支持</td>
-                <td class="py-3 px-3 text-foreground font-bold">35MB ~ 65MB</td>
-                <td class="py-3 px-3 text-primary">★★★ (适合进阶玩家)</td>
-                <td class="py-3 px-3 text-success font-bold">开源免费</td>
+                <td class="text-foreground px-3 py-3 font-bold">Sing-box</td>
+                <td class="text-info px-3 py-3">全平台跨平台支持</td>
+                <td class="text-muted-foreground px-3 py-3">Go 语言独立高性能重构核心</td>
+                <td class="text-muted-foreground px-3 py-3">全套下一代前沿协议</td>
+                <td class="text-success px-3 py-3 font-bold">内核级多平台 TUN 支持</td>
+                <td class="text-foreground px-3 py-3 font-bold">35MB ~ 65MB</td>
+                <td class="text-primary px-3 py-3">★★★ (适合进阶玩家)</td>
+                <td class="text-success px-3 py-3 font-bold">开源免费</td>
               </tr>
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-foreground">Surge (iOS / Mac)</td>
-                <td class="py-3 px-3 text-info">iOS / macOS 专属生态</td>
-                <td class="py-3 px-3 text-muted-foreground">Objective-C/Swift 深度闭源引擎</td>
-                <td class="py-3 px-3 text-muted-foreground">SS, Trojan, Snell, HTTP/SOCKS5</td>
-                <td class="py-3 px-3 text-success font-bold">增强模式 (顶级性能)</td>
-                <td class="py-3 px-3 text-foreground font-bold">30MB ~ 60MB</td>
-                <td class="py-3 px-3 text-primary">★★☆ (网络工程师标配)</td>
-                <td class="py-3 px-3 text-primary">$49.99 起 (高昂年付)</td>
+                <td class="text-foreground px-3 py-3 font-bold">Surge (iOS / Mac)</td>
+                <td class="text-info px-3 py-3">iOS / macOS 专属生态</td>
+                <td class="text-muted-foreground px-3 py-3">Objective-C/Swift 深度闭源引擎</td>
+                <td class="text-muted-foreground px-3 py-3">SS, Trojan, Snell, HTTP/SOCKS5</td>
+                <td class="text-success px-3 py-3 font-bold">增强模式 (顶级性能)</td>
+                <td class="text-foreground px-3 py-3 font-bold">30MB ~ 60MB</td>
+                <td class="text-primary px-3 py-3">★★☆ (网络工程师标配)</td>
+                <td class="text-primary px-3 py-3">$49.99 起 (高昂年付)</td>
               </tr>
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-foreground">v2rayN</td>
-                <td class="py-3 px-3 text-info">Windows 专属</td>
-                <td class="py-3 px-3 text-muted-foreground">C# (.NET 8) + 多核心外挂</td>
-                <td class="py-3 px-3 text-muted-foreground">Xray, Sing-box, V2Ray 核心外挂</td>
-                <td class="py-3 px-3 text-info">支持 (依靠 sing-box tun)</td>
-                <td class="py-3 px-3 text-foreground font-bold">90MB ~ 160MB</td>
-                <td class="py-3 px-3 text-info">★★☆ (界面传统偏极客)</td>
-                <td class="py-3 px-3 text-success font-bold">开源免费</td>
+                <td class="text-foreground px-3 py-3 font-bold">v2rayN</td>
+                <td class="text-info px-3 py-3">Windows 专属</td>
+                <td class="text-muted-foreground px-3 py-3">C# (.NET 8) + 多核心外挂</td>
+                <td class="text-muted-foreground px-3 py-3">Xray, Sing-box, V2Ray 核心外挂</td>
+                <td class="text-info px-3 py-3">支持 (依靠 sing-box tun)</td>
+                <td class="text-foreground px-3 py-3 font-bold">90MB ~ 160MB</td>
+                <td class="text-info px-3 py-3">★★☆ (界面传统偏极客)</td>
+                <td class="text-success px-3 py-3 font-bold">开源免费</td>
               </tr>
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-foreground">OpenWrt PassWall</td>
-                <td class="py-3 px-3 text-info">软路由 / Linux 网关</td>
-                <td class="py-3 px-3 text-muted-foreground">C + Shell + LuCI 网页控制台</td>
-                <td class="py-3 px-3 text-muted-foreground">全协议支持 + ChinaDNS-NG</td>
-                <td class="py-3 px-3 text-success font-bold">透明代理 (iptables/nftables)</td>
-                <td class="py-3 px-3 text-foreground font-bold">依赖路由器物理运存 (小巧)</td>
-                <td class="py-3 px-3 text-primary">★★★ (需要固件刷机)</td>
-                <td class="py-3 px-3 text-success font-bold">开源免费</td>
+                <td class="text-foreground px-3 py-3 font-bold">OpenWrt PassWall</td>
+                <td class="text-info px-3 py-3">软路由 / Linux 网关</td>
+                <td class="text-muted-foreground px-3 py-3">C + Shell + LuCI 网页控制台</td>
+                <td class="text-muted-foreground px-3 py-3">全协议支持 + ChinaDNS-NG</td>
+                <td class="text-success px-3 py-3 font-bold">透明代理 (iptables/nftables)</td>
+                <td class="text-foreground px-3 py-3 font-bold">依赖路由器物理运存 (小巧)</td>
+                <td class="text-primary px-3 py-3">★★★ (需要固件刷机)</td>
+                <td class="text-success px-3 py-3 font-bold">开源免费</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <p class="text-xs text-muted-foreground font-mono">
-          * 数据说明：内存占用指标基于同等环境下挂载 50 个节点、持续维持 200 个并发长连接 30 分钟后的稳定工作集内存（Working Set Memory）取样实测，各客户端均已升级至 2026 年最新稳定版本。
+        <p class="text-muted-foreground font-mono text-xs">
+          * 数据说明：内存占用指标基于同等环境下挂载 50 个节点、持续维持 200 个并发长连接 30
+          分钟后的稳定工作集内存（Working Set Memory）取样实测，各客户端均已升级至 2026
+          年最新稳定版本。
         </p>
       </PixelPanel>
     </section>
@@ -224,54 +279,98 @@ const pageDescription = "全网权威专著级科学上网客户端与专业网�
     {/* 3. 🧠 代理内核技术演进史：从 Clash 原版到 Mihomo 与 Sing-box */}
     {/* ========================================================= */}
     <section id="kernel-evolution" class="flex flex-col gap-4">
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-5">
-        <h2 class="font-display text-lg text-foreground uppercase flex items-center gap-2">
+      <PixelPanel class="bg-card border-border flex flex-col gap-5 border-2 p-6 md:p-8">
+        <h2 class="font-display text-foreground flex items-center gap-2 text-lg uppercase">
           <span>🧠</span> 代理内核演进史：从 Clash 停更风波到 Mihomo (Meta) 的全面崛起
         </h2>
 
-        <div class="text-xs font-mono text-muted-foreground leading-relaxed flex flex-col gap-4">
+        <div class="text-muted-foreground flex flex-col gap-4 font-mono text-xs leading-relaxed">
           <p>
-            在深入掌握具体客户端配置之前，用户必须首先建立清晰的<strong>“内核（Core）”</strong>与<strong>“图形外壳（GUI）”</strong>分离的系统观。在现代科学上网软件体系中，图形界面软件（如 Clash Verge Rev、v2rayN）本质上只是负责绘制操作按钮、展示节点延迟波形和读写 YAML 配置文件的“交互外壳”；而真正驻留在操作系统后台、负责捕获网络原始数据包、执行复杂的加密握手、匹配千万级分流规则并调度多路复用隧道的，是位于底层的二进制可执行内核。
+            在深入掌握具体客户端配置之前，用户必须首先建立清晰的<strong>“内核（Core）”</strong
+            >与<strong>“图形外壳（GUI）”</strong
+            >分离的系统观。在现代科学上网软件体系中，图形界面软件（如 Clash Verge
+            Rev、v2rayN）本质上只是负责绘制操作按钮、展示节点延迟波形和读写 YAML
+            配置文件的“交互外壳”；而真正驻留在操作系统后台、负责捕获网络原始数据包、执行复杂的加密握手、匹配千万级分流规则并调度多路复用隧道的，是位于底层的二进制可执行内核。
           </p>
 
-          <div class="bg-background border-2 border-border p-4.5 flex flex-col gap-2.5">
-            <span class="font-bold text-foreground text-sm">阶段一：Clash Premium 原版核心与其时代局限性 (2018 - 2023)</span>
+          <div class="bg-background border-border flex flex-col gap-2.5 border-2 p-4.5">
+            <span class="text-foreground text-sm font-bold"
+              >阶段一：Clash Premium 原版核心与其时代局限性 (2018 - 2023)</span
+            >
             <p>
-              在 2018 年之前，科学上网技术长期停留在 Shadowsocks 与 ShadowsocksR 的原始时期，用户只能在“全局代理”与“基于简单域名的 PAC 文本文件”之间二选一，无法应对复杂的企业级内网分流需求。Dreamacro 开发的 Clash 凭借革命性的<strong>“策略组（Proxy Groups）”</strong>与<strong>“规则分流引擎（Rule-based Routing）”</strong>设计，使代理软件首次具备了根据目标 IP 地理位置（GEOIP）、域名后缀（DOMAIN-SUFFIX）以及进程名自动切换不同出口节点的工业级能力。
+              在 2018 年之前，科学上网技术长期停留在 Shadowsocks 与 ShadowsocksR
+              的原始时期，用户只能在“全局代理”与“基于简单域名的 PAC
+              文本文件”之间二选一，无法应对复杂的企业级内网分流需求。Dreamacro 开发的 Clash
+              凭借革命性的<strong>“策略组（Proxy Groups）”</strong>与<strong
+                >“规则分流引擎（Rule-based Routing）”</strong
+              >设计，使代理软件首次具备了根据目标 IP
+              地理位置（GEOIP）、域名后缀（DOMAIN-SUFFIX）以及进程名自动切换不同出口节点的工业级能力。
             </p>
             <p>
-              然而，随着作者在 2023 年底因不可抗力注销 GitHub 账号并清空仓库，原版 Clash 留下了巨大的技术债务：其封闭源码的 Premium 内核原生无法兼容 Xray 团队推出的 VLESS-Reality 协议，原生不支持基于 UDP 的 Hysteria 2 与 TUIC 协议，其早期编写的 TUN 虚拟网卡驱动在 Windows 11 的多次大版本更新后频繁出现休眠后断网和系统蓝屏等严重缺陷。
+              然而，随着作者在 2023 年底因不可抗力注销 GitHub 账号并清空仓库，原版 Clash
+              留下了巨大的技术债务：其封闭源码的 Premium 内核原生无法兼容 Xray 团队推出的
+              VLESS-Reality 协议，原生不支持基于 UDP 的 Hysteria 2 与 TUIC 协议，其早期编写的 TUN
+              虚拟网卡驱动在 Windows 11 的多次大版本更新后频繁出现休眠后断网和系统蓝屏等严重缺陷。
             </p>
           </div>
 
-          <div class="bg-background border-2 border-border p-4.5 flex flex-col gap-2.5">
-            <span class="font-bold text-success text-sm">阶段二：社区分叉救世主 —— Mihomo (原 Clash Meta) 的一统江湖 (2023 - 2026)</span>
+          <div class="bg-background border-border flex flex-col gap-2.5 border-2 p-4.5">
+            <span class="text-success text-sm font-bold"
+              >阶段二：社区分叉救世主 —— Mihomo (原 Clash Meta) 的一统江湖 (2023 - 2026)</span
+            >
             <p>
-              在原版停更的危急关头，全球开源社区开发者迅速组建 MetaCubeX 组织，在原版开源代码基础上展开了浩大的重构重写工程，诞生了 <strong>Mihomo（最初命名为 Clash.Meta）</strong>。Mihomo 展现了惊人的工程迭代速度与高度包容的开源胸襟：
+              在原版停更的危急关头，全球开源社区开发者迅速组建 MetaCubeX
+              组织，在原版开源代码基础上展开了浩大的重构重写工程，诞生了 <strong
+                >Mihomo（最初命名为 Clash.Meta）</strong
+              >。Mihomo 展现了惊人的工程迭代速度与高度包容的开源胸襟：
             </p>
-            <ul class="list-disc list-inside flex flex-col gap-1.5 pl-2 text-foreground">
-              <li><strong>协议大一统</strong>：全面合并吸收了 Xray 的 VLESS (Vision/Reality) 规范，并深度集成了新一代高速 UDP 协议 Hysteria 2、TUIC v5 以及 WireGuard 原生隧道；</li>
-              <li><strong>内核级性能重构</strong>：彻底重写了内存池调度与垃圾回收逻辑，引入基于 mmap 内存映射的 GEO 规则解析引擎，使得数万条复杂规则的加载与匹配耗时从原版的 800ms 锐减至 30ms 以内，内存占用缩减 40% 以上；</li>
-              <li><strong>现代化 TUN 虚拟网卡驱动</strong>：集成了与 Cloudflare 同源的最新一代 Wintun 驱动与系统级透明代理引擎，彻底解决了在 Windows 11 下休眠复苏断流的历史沉疴。</li>
+            <ul class="text-foreground flex list-inside list-disc flex-col gap-1.5 pl-2">
+              <li>
+                <strong>协议大一统</strong>：全面合并吸收了 Xray 的 VLESS (Vision/Reality)
+                规范，并深度集成了新一代高速 UDP 协议 Hysteria 2、TUIC v5 以及 WireGuard 原生隧道；
+              </li>
+              <li>
+                <strong>内核级性能重构</strong>：彻底重写了内存池调度与垃圾回收逻辑，引入基于 mmap
+                内存映射的 GEO 规则解析引擎，使得数万条复杂规则的加载与匹配耗时从原版的 800ms 锐减至
+                30ms 以内，内存占用缩减 40% 以上；
+              </li>
+              <li>
+                <strong>现代化 TUN 虚拟网卡驱动</strong>：集成了与 Cloudflare 同源的最新一代 Wintun
+                驱动与系统级透明代理引擎，彻底解决了在 Windows 11 下休眠复苏断流的历史沉疴。
+              </li>
             </ul>
             <p>
-              截至 2026 年，Mihomo 已经成为整个中文代理软件生态中绝对的事实标准核心。无论是桌面端的 Clash Verge Rev、跨平台的 Flclash，还是路由器端的 ShellCrash，底层均统一基于 Mihomo 构建。
+              截至 2026 年，Mihomo 已经成为整个中文代理软件生态中绝对的事实标准核心。无论是桌面端的
+              Clash Verge Rev、跨平台的 Flclash，还是路由器端的 ShellCrash，底层均统一基于 Mihomo
+              构建。
             </p>
           </div>
 
-          <div class="bg-background border-2 border-border p-4.5 flex flex-col gap-2.5">
-            <span class="font-bold text-info text-sm">阶段三：新一代独立通用架构颠覆者 —— Sing-box (2024 - 2026)</span>
+          <div class="bg-background border-border flex flex-col gap-2.5 border-2 p-4.5">
+            <span class="text-info text-sm font-bold"
+              >阶段三：新一代独立通用架构颠覆者 —— Sing-box (2024 - 2026)</span
+            >
             <p>
-              与 Mihomo 选择在 Clash 架构上修修补补不同，由 SagerNet 核心团队打造的 <strong>Sing-box</strong> 走了一条彻底革新的技术路线。它完全抛弃了 Clash 的 YAML 语法与陈旧网络栈，采用现代 Go 语言进行全栈重写。
+              与 Mihomo 选择在 Clash 架构上修修补补不同，由 SagerNet 核心团队打造的 <strong
+                >Sing-box</strong
+              > 走了一条彻底革新的技术路线。它完全抛弃了 Clash 的 YAML 语法与陈旧网络栈，采用现代 Go 语言进行全栈重写。
             </p>
             <p>
-              Sing-box 最大的工程突破在于<strong>统一了客户端与服务端的逻辑抽象</strong>。它没有“客户端特有功能”与“服务端特有功能”的界限，入站（Inbounds）与出站（Outbounds）采用了极其纯粹的管道转发模型。这种架构使得 Sing-box 在软路由与嵌入式系统上展现了无与伦比的极致性能：内存消耗通常只有同级别 Clash 的一半，吞吐并发能力极其惊人。尽管其极其严苛复杂的 JSON 规则语法给普通小白用户设立了较高的门槛，但在追求极致性能与极客定制的资深玩家心目中，Sing-box 代表着代理软件架构的未来演进方向。
+              Sing-box 最大的工程突破在于<strong>统一了客户端与服务端的逻辑抽象</strong
+              >。它没有“客户端特有功能”与“服务端特有功能”的界限，入站（Inbounds）与出站（Outbounds）采用了极其纯粹的管道转发模型。这种架构使得
+              Sing-box 在软路由与嵌入式系统上展现了无与伦比的极致性能：内存消耗通常只有同级别 Clash
+              的一半，吞吐并发能力极其惊人。尽管其极其严苛复杂的 JSON
+              规则语法给普通小白用户设立了较高的门槛，但在追求极致性能与极客定制的资深玩家心目中，Sing-box
+              代表着代理软件架构的未来演进方向。
             </p>
           </div>
 
-          <div class="text-xs font-mono text-muted-foreground pt-1">
+          <div class="text-muted-foreground pt-1 font-mono text-xs">
             🔍 关于代理协议本身的握手机制与底层密码学对抗分析，请参阅站内深度横评专栏：
-            <a href="/blog/deploying-with-retro-tools/" class="text-primary hover:underline font-bold">
+            <a
+              href="/blog/deploying-with-retro-tools/"
+              class="text-primary font-bold hover:underline"
+            >
               《VLESS、Trojan 与 Shadowsocks 协议横评：谁才是当下的最优解？》
             </a>。
           </div>
@@ -283,47 +382,91 @@ const pageDescription = "全网权威专著级科学上网客户端与专业网�
     {/* 4. 💻 桌面端深度拆解：Windows 与 macOS 首选工具实操 */}
     {/* ========================================================= */}
     <section id="desktop-deep-dive" class="flex flex-col gap-4">
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-5">
-        <h2 class="font-display text-lg text-foreground uppercase flex items-center gap-2">
+      <PixelPanel class="bg-card border-border flex flex-col gap-5 border-2 p-6 md:p-8">
+        <h2 class="font-display text-foreground flex items-center gap-2 text-lg uppercase">
           <span>💻</span> 桌面端深度实战：Clash Verge Rev 为什么能完胜传统客户端？
         </h2>
 
-        <div class="text-xs font-mono text-muted-foreground leading-relaxed flex flex-col gap-4">
+        <div class="text-muted-foreground flex flex-col gap-4 font-mono text-xs leading-relaxed">
           <p>
-            在过去很长一段时间内，很多中文用户习惯使用基于 Electron 框架的老旧客户端 Clash for Windows (CFW) 或基于 C# 开发的 v2rayN。随着现代操作系统安全机制的收紧以及硬件性能标准的提升，这类传统工具的弊端日益暴露：CFW 内部封装了完整的 Chromium 浏览器内核，仅仅展示几个配置按钮就需要常驻消耗 300MB~500MB 运行内存，并且其内置的核心早已停留在废弃的旧版本。
+            在过去很长一段时间内，很多中文用户习惯使用基于 Electron 框架的老旧客户端 Clash for
+            Windows (CFW) 或基于 C# 开发的
+            v2rayN。随着现代操作系统安全机制的收紧以及硬件性能标准的提升，这类传统工具的弊端日益暴露：CFW
+            内部封装了完整的 Chromium 浏览器内核，仅仅展示几个配置按钮就需要常驻消耗 300MB~500MB
+            运行内存，并且其内置的核心早已停留在废弃的旧版本。
           </p>
           <p>
-            <strong>Clash Verge Rev</strong> 的横空出世彻底重塑了桌面端科学上网的体验标杆。它采用 Rust 语言开发的现代 <strong>Tauri</strong> 框架重构，彻底移除了沉重的 Chromium 渲染引擎，转而调用操作系统原生的 Webview 接口。安装包体积由过去的 120MB 骤降至仅 15MB 左右，软件启动时间缩短 80%，待机状态下对 CPU 的占用几乎恒定为 0.00%。
+            <strong>Clash Verge Rev</strong> 的横空出世彻底重塑了桌面端科学上网的体验标杆。它采用 Rust
+            语言开发的现代 <strong>Tauri</strong> 框架重构，彻底移除了沉重的 Chromium 渲染引擎，转而调用操作系统原生的
+            Webview 接口。安装包体积由过去的 120MB 骤降至仅 15MB 左右，软件启动时间缩短 80%，待机状态下对
+            CPU 的占用几乎恒定为 0.00%。
           </p>
 
-          <h3 class="font-bold text-foreground text-sm mt-1 border-b border-border pb-1.5">
+          <h3 class="text-foreground border-border mt-1 border-b pb-1.5 text-sm font-bold">
             🚀 核心实操：TUN 虚拟网卡模式的底层机制与三大标准配置步骤
           </h3>
 
           <p>
-            许多新手常问：“我已经在客户端里把‘系统代理’开关打开了，为什么在 Windows 命令行里执行 <code>git clone</code> 或 <code>npm install</code> 依然提示超时失败？为什么打外服 Apex 英雄依然连不上服务器？”
+            许多新手常问：“我已经在客户端里把‘系统代理’开关打开了，为什么在 Windows 命令行里执行 <code
+              >git clone</code
+            > 或 <code>npm install</code> 依然提示超时失败？为什么打外服 Apex 英雄依然连不上服务器？”
           </p>
           <p>
-            这是因为<strong>系统代理（System Proxy）本质上只是向操作系统网络注册表写入了一个名为 127.0.0.1:7890 的本地 HTTP/SOCKS5 端口指示器</strong>。绝大多数命令行终端、Node.js/Python 脚本、Docker 守护进程以及使用原生 UDP 协议通信的网络游戏，在底层发包时根本不会去主动读取 Windows 注册表中的代理设置，而是直接绕过代理网卡向本地网关直连，最终被 GFW 拦截。
+            这是因为<strong
+              >系统代理（System Proxy）本质上只是向操作系统网络注册表写入了一个名为 127.0.0.1:7890
+              的本地 HTTP/SOCKS5 端口指示器</strong
+            >。绝大多数命令行终端、Node.js/Python 脚本、Docker 守护进程以及使用原生 UDP
+            协议通信的网络游戏，在底层发包时根本不会去主动读取 Windows
+            注册表中的代理设置，而是直接绕过代理网卡向本地网关直连，最终被 GFW 拦截。
           </p>
 
           <p>
-            <strong>TUN 虚拟网卡模式（Tun Mode）则是终极解决方案</strong>。它通过向操作系统内核注册一块虚拟网络适配器（Virtual TUN Adapter），直接在网络 OSI 参考模型的<strong>第三层（网络层 / IP 层）</strong>对系统所有的进出流量进行全局劫持。无论是任何软件、命令行还是游戏，其发出的所有原始 IP 数据包都必须无条件流入 TUN 虚拟网卡，由底层的 Mihomo 内核进行透明解包分流，真正做到全系统 100% 流量接管。
+            <strong>TUN 虚拟网卡模式（Tun Mode）则是终极解决方案</strong
+            >。它通过向操作系统内核注册一块虚拟网络适配器（Virtual TUN Adapter），直接在网络 OSI
+            参考模型的<strong>第三层（网络层 / IP 层）</strong
+            >对系统所有的进出流量进行全局劫持。无论是任何软件、命令行还是游戏，其发出的所有原始 IP
+            数据包都必须无条件流入 TUN 虚拟网卡，由底层的 Mihomo
+            内核进行透明解包分流，真正做到全系统 100% 流量接管。
           </p>
 
-          <div class="bg-black/90 border-2 border-border p-4 font-mono text-xs overflow-x-auto text-info leading-relaxed">
-            <p class="font-bold text-foreground mb-1">📋 Clash Verge Rev 标准开启三步操作规范：</p>
-            <p>1. [安装服务模式] 打开左侧「设置 (Settings)」──&gt; 找到「服务模式 (Service Mode)」──&gt; 点击右侧「安装 (Install)」按钮。</p>
-            <p class="pl-4 text-muted-foreground">↳ 在系统弹出的 UAC 授权窗口点击“是”。服务安装成功后，左侧服务图标必须变为高亮绿色打勾状态，这代表操作系统底层的 WFP 过滤驱动已正式就绪。</p>
-            <p class="mt-2">2. [内核规范切换] 在「设置」界面 ──&gt; 找到「Clash 内核」选项 ──&gt; 确保当前选中的是「Mihomo / Meta 内核」。</p>
-            <p class="pl-4 text-muted-foreground">↳ 严禁选择过时的 Alpha 或原版内核，只有 Mihomo 核心具备针对 Windows 11 的高兼容性 TUN 协议栈支持。</p>
-            <p class="mt-2">3. [激活 TUN 虚拟网卡] 在「设置」中将「TUN 模式 (TUN Mode)」开关拨至开启状态 ──&gt; 展开高级设置勾选「严格路由 (Strict Route)」。</p>
-            <p class="pl-4 text-muted-foreground">↳ 校验验证：按下 Win+R 打开 CMD 命令行窗口，输入 ping 8.8.8.8。若回显延迟与你的专线香港/日本节点延迟一致（如 20ms~50ms），即代表 TUN 模式已成功接管全盘网络！</p>
+          <div
+            class="border-border text-info overflow-x-auto border-2 bg-black/90 p-4 font-mono text-xs leading-relaxed"
+          >
+            <p class="text-foreground mb-1 font-bold">📋 Clash Verge Rev 标准开启三步操作规范：</p>
+            <p>
+              1. [安装服务模式] 打开左侧「设置 (Settings)」──&gt; 找到「服务模式 (Service
+              Mode)」──&gt; 点击右侧「安装 (Install)」按钮。
+            </p>
+            <p class="text-muted-foreground pl-4">
+              ↳ 在系统弹出的 UAC
+              授权窗口点击“是”。服务安装成功后，左侧服务图标必须变为高亮绿色打勾状态，这代表操作系统底层的
+              WFP 过滤驱动已正式就绪。
+            </p>
+            <p class="mt-2">
+              2. [内核规范切换] 在「设置」界面 ──&gt; 找到「Clash 内核」选项 ──&gt;
+              确保当前选中的是「Mihomo / Meta 内核」。
+            </p>
+            <p class="text-muted-foreground pl-4">
+              ↳ 严禁选择过时的 Alpha 或原版内核，只有 Mihomo 核心具备针对 Windows 11 的高兼容性 TUN
+              协议栈支持。
+            </p>
+            <p class="mt-2">
+              3. [激活 TUN 虚拟网卡] 在「设置」中将「TUN 模式 (TUN Mode)」开关拨至开启状态 ──&gt;
+              展开高级设置勾选「严格路由 (Strict Route)」。
+            </p>
+            <p class="text-muted-foreground pl-4">
+              ↳ 校验验证：按下 Win+R 打开 CMD 命令行窗口，输入 ping
+              8.8.8.8。若回显延迟与你的专线香港/日本节点延迟一致（如 20ms~50ms），即代表 TUN
+              模式已成功接管全盘网络！
+            </p>
           </div>
 
-          <div class="text-xs font-mono text-muted-foreground pt-1">
+          <div class="text-muted-foreground pt-1 font-mono text-xs">
             📖 想要深入了解 TUN 虚拟网卡与系统代理的完整抓包对比？请阅读站内专项指南：
-            <a href="/tools/clash-verge-rev-tun-mode-deep-dive/" class="text-primary hover:underline font-bold">
+            <a
+              href="/tools/clash-verge-rev-tun-mode-deep-dive/"
+              class="text-primary font-bold hover:underline"
+            >
               《Clash Verge Rev TUN 模式完全实战指南：虚拟网卡与系统代理底层差异》
             </a>。
           </div>
@@ -335,55 +478,83 @@ const pageDescription = "全网权威专著级科学上网客户端与专业网�
     {/* 5. 📱 移动端深度拆解：iOS 与 Android 终极选型与省电配置 */}
     {/* ========================================================= */}
     <section id="mobile-deep-dive" class="flex flex-col gap-4">
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-5">
-        <h2 class="font-display text-lg text-foreground uppercase flex items-center gap-2">
+      <PixelPanel class="bg-card border-border flex flex-col gap-5 border-2 p-6 md:p-8">
+        <h2 class="font-display text-foreground flex items-center gap-2 text-lg uppercase">
           <span>📱</span> 移动端深度拆解：iOS 小火箭与 Android Flclash 的零耗电优化
         </h2>
 
-        <div class="text-xs font-mono text-muted-foreground leading-relaxed flex flex-col gap-4">
+        <div class="text-muted-foreground flex flex-col gap-4 font-mono text-xs leading-relaxed">
           <div>
-            <h3 class="font-bold text-foreground text-sm mb-1.5">
+            <h3 class="text-foreground mb-1.5 text-sm font-bold">
               1. iOS 标杆：Shadowrocket（小火箭）的运行机制与“防发热”配置
             </h3>
             <p>
-              作为 iOS 平台上最常青的代理工具，Shadowrocket 凭借 $2.99 一次性买断的价格和极其丰富的协议覆盖度，成为了几乎每一位 iPhone 出海用户的必备工具。很多新手用户在日常使用中常抱怨：“为什么手机只要挂着小火箭，后台耗电就特别快，甚至机身还会微微发热？”
+              作为 iOS 平台上最常青的代理工具，Shadowrocket 凭借 $2.99
+              一次性买断的价格和极其丰富的协议覆盖度，成为了几乎每一位 iPhone
+              出海用户的必备工具。很多新手用户在日常使用中常抱怨：“为什么手机只要挂着小火箭，后台耗电就特别快，甚至机身还会微微发热？”
             </p>
             <p>
-              在排除手机电池本身老化损耗的前提下，<strong>移动端 90% 以上的异常耗电与发热，都是由于分流模式选择错误，或者节点本身网络质量过差频繁断流导致的</strong>：
+              在排除手机电池本身老化损耗的前提下，<strong
+                >移动端 90%
+                以上的异常耗电与发热，都是由于分流模式选择错误，或者节点本身网络质量过差频繁断流导致的</strong
+              >：
             </p>
 
-            <div class="bg-background border-2 border-border p-4 my-2 flex flex-col gap-2">
-              <span class="font-bold text-foreground text-sm">三大核心省电保活准则：</span>
-              <ul class="list-disc list-inside text-[11px] flex flex-col gap-1.5">
+            <div class="bg-background border-border my-2 flex flex-col gap-2 border-2 p-4">
+              <span class="text-foreground text-sm font-bold">三大核心省电保活准则：</span>
+              <ul class="flex list-inside list-disc flex-col gap-1.5 text-[11px]">
                 <li>
-                  <strong>全局路由严禁选择“代理 (Proxy)”</strong>：务必锁定为<strong>「配置 (Config)」</strong>。在“代理”模式下，哪怕 iPhone 息屏锁屏，国内微信、淘宝、各种推送服务的数据包都会强行通过海外服务器绕行一圈，迫使手机的 5G 基带芯片全天候保持在最高功耗的 DCH 工作模式，电池电量自然断崖式下滑；
+                  <strong>全局路由严禁选择“代理 (Proxy)”</strong>：务必锁定为<strong
+                    >「配置 (Config)」</strong
+                  >。在“代理”模式下，哪怕 iPhone
+                  息屏锁屏，国内微信、淘宝、各种推送服务的数据包都会强行通过海外服务器绕行一圈，迫使手机的
+                  5G 基带芯片全天候保持在最高功耗的 DCH 工作模式，电池电量自然断崖式下滑；
                 </li>
                 <li>
-                  <strong>保持 HTTPS 抓包与解密证书处于关闭状态</strong>：除非你正在进行深度的 App 接口调试，否则切勿长年开启 MitM HTTPS 解密。每个数据包的加解密都需要调用 A 系列芯片的加密引擎进行实时运算，这会产生不必要的 CPU 算力开销；
+                  <strong>保持 HTTPS 抓包与解密证书处于关闭状态</strong>：除非你正在进行深度的 App
+                  接口调试，否则切勿长年开启 MitM HTTPS 解密。每个数据包的加解密都需要调用 A
+                  系列芯片的加密引擎进行实时运算，这会产生不必要的 CPU 算力开销；
                 </li>
                 <li>
-                  <strong>远离劣质公网节点，选用高品质物理专线</strong>：劣质节点在后台频繁丢包超时，会导致 iOS 内核的 TCP 栈不断发起 SYN 重传与连接重建，这也是导致手机发热的重要元凶。选用像 <a href="/airports/guangshuyun/" class="text-primary font-bold hover:underline">光速云</a> 这类 0 丢包的纯内网 IEPL 专线，能够让手机基带以极高的效率完成数据收发后立刻进入微安级的低功耗休眠。
+                  <strong>远离劣质公网节点，选用高品质物理专线</strong
+                  >：劣质节点在后台频繁丢包超时，会导致 iOS 内核的 TCP 栈不断发起 SYN
+                  重传与连接重建，这也是导致手机发热的重要元凶。选用像 <a
+                    href="/airports/guangshuyun/"
+                    class="text-primary font-bold hover:underline">光速云</a
+                  > 这类 0 丢包的纯内网 IEPL 专线，能够让手机基带以极高的效率完成数据收发后立刻进入微安级的低功耗休眠。
                 </li>
               </ul>
             </div>
 
-            <div class="text-xs font-mono text-muted-foreground">
+            <div class="text-muted-foreground font-mono text-xs">
               👉 获取正规美区 Apple ID 与避坑充值指引，请阅读：
-              <a href="/tools/shadowrocket-ios-installation-config-guide/" class="text-primary hover:underline font-bold">
+              <a
+                href="/tools/shadowrocket-ios-installation-config-guide/"
+                class="text-primary font-bold hover:underline"
+              >
                 《Shadowrocket（小火箭）iOS 最强上手手册：从美区账号购买到规则重写》
               </a>。
             </div>
           </div>
 
-          <div class="border-t border-border pt-3">
-            <h3 class="font-bold text-foreground text-sm mb-1.5">
+          <div class="border-border border-t pt-3">
+            <h3 class="text-foreground mb-1.5 text-sm font-bold">
               2. Android 平台首选：Flclash / Clash Meta for Android 的分应用代理隔离
             </h3>
             <p>
-              Android 系统的最大优势在于其开放的底层进程管理机制。使用 Clash Meta for Android 或现代的 Flclash 时，最具实操价值的功能是<strong>「分应用代理 (Access Control / Per-App Proxy)」</strong>。
+              Android 系统的最大优势在于其开放的底层进程管理机制。使用 Clash Meta for Android
+              或现代的 Flclash 时，最具实操价值的功能是<strong
+                >「分应用代理 (Access Control / Per-App Proxy)」</strong
+              >。
             </p>
             <p class="mt-1">
-              很多国产银行 App、政务软件或打车软件内置了极其严格的反欺诈风控代码，一旦检测到当前手机网络启用了 VPN 虚拟网卡，就会弹窗闪退甚至冻结账户。通过开启分应用代理，你可以在客户端内明确指定：仅将 Chrome、Twitter、YouTube、Telegram、ChatGPT 等海外应用纳入代理通道；而把银行、微信、支付宝等所有国内敏感应用完全排除在 VPN 之外，从根本上兼顾了隐私安全与日常使用的绝对便利。
+              很多国产银行
+              App、政务软件或打车软件内置了极其严格的反欺诈风控代码，一旦检测到当前手机网络启用了
+              VPN
+              虚拟网卡，就会弹窗闪退甚至冻结账户。通过开启分应用代理，你可以在客户端内明确指定：仅将
+              Chrome、Twitter、YouTube、Telegram、ChatGPT
+              等海外应用纳入代理通道；而把银行、微信、支付宝等所有国内敏感应用完全排除在 VPN
+              之外，从根本上兼顾了隐私安全与日常使用的绝对便利。
             </p>
           </div>
         </div>
@@ -394,33 +565,47 @@ const pageDescription = "全网权威专著级科学上网客户端与专业网�
     {/* 6. 🌐 软路由与网关篇：全屋设备无感透明代理架构 */}
     {/* ========================================================= */}
     <section id="router-gateway" class="flex flex-col gap-4">
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-5">
-        <h2 class="font-display text-lg text-foreground uppercase flex items-center gap-2">
+      <PixelPanel class="bg-card border-border flex flex-col gap-5 border-2 p-6 md:p-8">
+        <h2 class="font-display text-foreground flex items-center gap-2 text-lg uppercase">
           <span>🌐</span> 软路由与网关篇：全屋电视、游戏主机与智能家居的透明代理架构
         </h2>
 
-        <div class="text-xs font-mono text-muted-foreground leading-relaxed flex flex-col gap-4">
+        <div class="text-muted-foreground flex flex-col gap-4 font-mono text-xs leading-relaxed">
           <p>
-            随着家庭数码设备的爆发式增长，很多设备（如 Apple TV 4K 电视盒子、索尼电视、PlayStation 5、Nintendo Switch 主机以及各种扫地机器人与智能家居设备）其官方操作系统完全封闭，无法原生安装任何第三方代理客户端。如果在局域网的网关（Gateway）层级统一部署代理环境，局域网内的所有设备只要接入 Wi-Fi，即可全自动实现透明出海与国内外流量智能分流。
+            随着家庭数码设备的爆发式增长，很多设备（如 Apple TV 4K 电视盒子、索尼电视、PlayStation
+            5、Nintendo Switch
+            主机以及各种扫地机器人与智能家居设备）其官方操作系统完全封闭，无法原生安装任何第三方代理客户端。如果在局域网的网关（Gateway）层级统一部署代理环境，局域网内的所有设备只要接入
+            Wi-Fi，即可全自动实现透明出海与国内外流量智能分流。
           </p>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-1">
-            <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
-              <span class="font-bold text-success text-sm">插件方案 A：PassWall 架构 (极致轻巧稳定)</span>
+          <div class="my-1 grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
+              <span class="text-success text-sm font-bold"
+                >插件方案 A：PassWall 架构 (极致轻巧稳定)</span
+              >
               <p class="text-[11px]">
-                PassWall 深度利用了 Linux 底层的 <code>iptables / nftables</code> 转发规则与 <code>TPROXY</code> 透明代理技术。配合前置的 <strong>ChinaDNS-NG</strong> 防污染解析模块，它能够在系统内核层对直连域名与外网域名进行瞬时拆分。由于其纯 C 语言工具链与 Shell 脚本编排开销极低，在仅有 512MB 运存的低功耗 ARM 软路由（如友善 R2S/R4S、玩客云刷机、外贸 S905 电视盒子）上也能稳定跑满千兆带宽。
+                PassWall 深度利用了 Linux 底层的 <code>iptables / nftables</code> 转发规则与 <code
+                  >TPROXY</code
+                > 透明代理技术。配合前置的 <strong>ChinaDNS-NG</strong> 防污染解析模块，它能够在系统内核层对直连域名与外网域名进行瞬时拆分。由于其纯
+                C 语言工具链与 Shell 脚本编排开销极低，在仅有 512MB 运存的低功耗 ARM 软路由（如友善 R2S/R4S、玩客云刷机、外贸
+                S905 电视盒子）上也能稳定跑满千兆带宽。
               </p>
             </div>
 
-            <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
-              <span class="font-bold text-info text-sm">插件方案 B：OpenClash 架构 (可视化与高阶策略)</span>
+            <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
+              <span class="text-info text-sm font-bold"
+                >插件方案 B：OpenClash 架构 (可视化与高阶策略)</span
+              >
               <p class="text-[11px]">
-                OpenClash 直接在 OpenWrt 内部完整运行了一个编译好的 Mihomo (Clash Meta) 二进制内核。它拥有极其精致的 Web 控制界面，支持复杂的策略组嵌套调度、Fake-IP 虚拟解析与实时流媒体解锁测试看板。它极其适合使用高性能 x86 工控机（如 Intel N100、J4125 双网口主机）的用户。
+                OpenClash 直接在 OpenWrt 内部完整运行了一个编译好的 Mihomo (Clash Meta)
+                二进制内核。它拥有极其精致的 Web 控制界面，支持复杂的策略组嵌套调度、Fake-IP
+                虚拟解析与实时流媒体解锁测试看板。它极其适合使用高性能 x86 工控机（如 Intel
+                N100、J4125 双网口主机）的用户。
               </p>
             </div>
           </div>
 
-          <h3 class="font-bold text-foreground text-sm mt-1 border-b border-border pb-1">
+          <h3 class="text-foreground border-border mt-1 border-b pb-1 text-sm font-bold">
             🏠 家庭网络拓扑黄金准则：为什么必须首选“旁路由模式”？
           </h3>
 
@@ -430,18 +615,34 @@ const pageDescription = "全网权威专著级科学上网客户端与专业网�
           <p>
             <strong>资深网络工程师一致推荐的方案是「旁路由模式 (Secondary Gateway)」</strong>：
           </p>
-          <ul class="list-disc list-inside flex flex-col gap-1 pl-2 text-foreground">
-            <li><strong>物理拓扑分工</strong>：运营商光猫纯桥接，购买一台具备优秀 Wi-Fi 信号的硬路由器（如华硕、小米、TP-Link 路由器）承担全屋主拨号与 DHCP 局域网地址分配；</li>
-            <li><strong>旁路接入</strong>：软路由仅需单网口连接到主路由的 LAN 口，为其分配一个固定的同网段静态 IP（如主路由为 192.168.1.1，软路由设为 192.168.1.2）；</li>
-            <li><strong>按需定向分流</strong>：在家庭中，老人和小孩的手机完全走主路由默认网关，不受任何影响；唯独将 Apple TV、游戏主机以及个人的办公 PC，在设备自身的静态网络设置中将“网关 (Gateway)”与“首选 DNS”手动修改为软路由的 IP（192.168.1.2）。</li>
+          <ul class="text-foreground flex list-inside list-disc flex-col gap-1 pl-2">
+            <li>
+              <strong>物理拓扑分工</strong>：运营商光猫纯桥接，购买一台具备优秀 Wi-Fi
+              信号的硬路由器（如华硕、小米、TP-Link 路由器）承担全屋主拨号与 DHCP 局域网地址分配；
+            </li>
+            <li>
+              <strong>旁路接入</strong>：软路由仅需单网口连接到主路由的 LAN
+              口，为其分配一个固定的同网段静态 IP（如主路由为 192.168.1.1，软路由设为
+              192.168.1.2）；
+            </li>
+            <li>
+              <strong>按需定向分流</strong
+              >：在家庭中，老人和小孩的手机完全走主路由默认网关，不受任何影响；唯独将 Apple
+              TV、游戏主机以及个人的办公 PC，在设备自身的静态网络设置中将“网关 (Gateway)”与“首选
+              DNS”手动修改为软路由的 IP（192.168.1.2）。
+            </li>
           </ul>
           <p>
-            这种架构实现了完美的<strong>“故障物理隔离”</strong>：即使软路由宕机重启，主网络始终保持 100% 可用，彻底告别全屋断网的风险。
+            这种架构实现了完美的<strong>“故障物理隔离”</strong>：即使软路由宕机重启，主网络始终保持
+            100% 可用，彻底告别全屋断网的风险。
           </p>
 
-          <div class="text-xs font-mono text-muted-foreground pt-1">
+          <div class="text-muted-foreground pt-1 font-mono text-xs">
             📖 完整软路由固件配置与 UDP 游戏 NAT 优化实操，请参阅：
-            <a href="/tools/openwrt-passwall-home-gateway-setup/" class="text-primary hover:underline font-bold">
+            <a
+              href="/tools/openwrt-passwall-home-gateway-setup/"
+              class="text-primary font-bold hover:underline"
+            >
               《OpenWrt 软路由 PassWall 科学上网全屋覆盖配置：实现电视与主机全家桶翻墙》
             </a>。
           </div>
@@ -453,42 +654,55 @@ const pageDescription = "全网权威专著级科学上网客户端与专业网�
     {/* 7. 🔬 网络实验室排障工具箱：NextTrace 与抓包分析 */}
     {/* ========================================================= */}
     <section id="diagnostics-toolkit" class="flex flex-col gap-4">
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-5">
-        <h2 class="font-display text-lg text-foreground uppercase flex items-center gap-2">
+      <PixelPanel class="bg-card border-border flex flex-col gap-5 border-2 p-6 md:p-8">
+        <h2 class="font-display text-foreground flex items-center gap-2 text-lg uppercase">
           <span>🔬</span> 网络实验室排障工具箱：专业工程师如何量化自检节点质量？
         </h2>
 
-        <div class="text-xs font-mono text-muted-foreground leading-relaxed flex flex-col gap-4">
+        <div class="text-muted-foreground flex flex-col gap-4 font-mono text-xs leading-relaxed">
           <p>
-            当遇到网页打开缓慢或视频缓冲时，很多小白用户除了反复测速并抱怨机场“变慢了”之外束手无策。而具备网络工程思维的专业玩家，会在 30 秒内通过一套现代网络实验室工具箱，精准定位出到底是本地 Wi-Fi 丢包、国内省份骨干网拥堵、运营商晚高峰 QoS 尾部丢包，还是海外落地机房服务器过载。
+            当遇到网页打开缓慢或视频缓冲时，很多小白用户除了反复测速并抱怨机场“变慢了”之外束手无策。而具备网络工程思维的专业玩家，会在
+            30 秒内通过一套现代网络实验室工具箱，精准定位出到底是本地 Wi-Fi
+            丢包、国内省份骨干网拥堵、运营商晚高峰 QoS 尾部丢包，还是海外落地机房服务器过载。
           </p>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 my-1">
-            <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
-              <span class="text-info font-bold text-sm">NextTrace (现代化可视化路由跟踪)</span>
+          <div class="my-1 grid grid-cols-1 gap-3.5 md:grid-cols-3">
+            <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
+              <span class="text-info text-sm font-bold">NextTrace (现代化可视化路由跟踪)</span>
               <p class="text-[11px]">
-                开源的跨平台可视化 MTR 路由跟踪利器。运行一行指令 <code>nexttrace [目标IP]</code>，即可精准绘制出数据包跨越的每一个地理节点、骨干网自治系统号（AS4134 传统163网 / AS4809 CN2 / AS9929 联通A网 / AS9808 移动骨干网）以及具体的海缆登陆站。秒级判断你的数据包是否在北上广国际出口被运营商施加了丢包惩罚。
+                开源的跨平台可视化 MTR 路由跟踪利器。运行一行指令 <code>nexttrace [目标IP]</code
+                >，即可精准绘制出数据包跨越的每一个地理节点、骨干网自治系统号（AS4134 传统163网 /
+                AS4809 CN2 / AS9929 联通A网 / AS9808
+                移动骨干网）以及具体的海缆登陆站。秒级判断你的数据包是否在北上广国际出口被运营商施加了丢包惩罚。
               </p>
             </div>
 
-            <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
-              <span class="text-success font-bold text-sm">Ping0.cc (IP 情报与欺诈分检测)</span>
+            <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
+              <span class="text-success text-sm font-bold">Ping0.cc (IP 情报与欺诈分检测)</span>
               <p class="text-[11px]">
-                权威的出口 IP 属性综合探测平台。用于深度剖析当前节点是否属于 Hosting IDC（数据中心广播机房），还是纯正的 Residential ISP（住宅家庭宽带）；同时检测当前 IP 在各大风控库中的 IPQS 欺诈分（Fraud Score），一键判断其能否完美解锁 ChatGPT-4o 与 Netflix 4K 原生片库。
+                权威的出口 IP 属性综合探测平台。用于深度剖析当前节点是否属于 Hosting
+                IDC（数据中心广播机房），还是纯正的 Residential ISP（住宅家庭宽带）；同时检测当前 IP
+                在各大风控库中的 IPQS 欺诈分（Fraud Score），一键判断其能否完美解锁 ChatGPT-4o 与
+                Netflix 4K 原生片库。
               </p>
             </div>
 
-            <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
-              <span class="text-primary font-bold text-sm">Wireshark (协议帧抓包剖析)</span>
+            <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
+              <span class="text-primary text-sm font-bold">Wireshark (协议帧抓包剖析)</span>
               <p class="text-[11px]">
-                网络封包分析天花板。通过监听虚拟网卡上的真实数据流，分析 TLS Client Hello 握手耗时、TLS 证书指纹特征分布、TCP 拥塞窗口（CWND）变化以及是否存在 GFW 伪造的 TCP RST 重置包，为协议深度抗封锁与底层性能调优提供绝对无可辩驳的物理证据。
+                网络封包分析天花板。通过监听虚拟网卡上的真实数据流，分析 TLS Client Hello
+                握手耗时、TLS 证书指纹特征分布、TCP 拥塞窗口（CWND）变化以及是否存在 GFW 伪造的 TCP
+                RST 重置包，为协议深度抗封锁与底层性能调优提供绝对无可辩驳的物理证据。
               </p>
             </div>
           </div>
 
-          <div class="text-xs font-mono text-muted-foreground pt-1">
+          <div class="text-muted-foreground pt-1 font-mono text-xs">
             👉 深入学习 NextTrace 命令行实操与丢包排查，请阅读：
-            <a href="/tools/nexttrace-routing-diagnosis-qos-test/" class="text-primary hover:underline font-bold">
+            <a
+              href="/tools/nexttrace-routing-diagnosis-qos-test/"
+              class="text-primary font-bold hover:underline"
+            >
               《NextTrace 命令行路由跟踪实战：一秒查清节点是否被运营商公网 QoS 限速》
             </a>。
           </div>
@@ -500,31 +714,57 @@ const pageDescription = "全网权威专著级科学上网客户端与专业网�
     {/* 8. 🚨 工具下载安全避坑红线：防范钓鱼投毒与伪造开源仓库 */}
     {/* ========================================================= */}
     <section id="security-audit" class="flex flex-col gap-4">
-      <PixelPanel class="p-6 md:p-8 bg-card border-4 border-destructive flex flex-col gap-4 shadow-pixel">
-        <h2 class="font-display text-lg text-foreground uppercase flex items-center gap-2">
+      <PixelPanel
+        class="bg-card border-destructive shadow-pixel flex flex-col gap-4 border-4 p-6 md:p-8"
+      >
+        <h2 class="font-display text-foreground flex items-center gap-2 text-lg uppercase">
           <span>🚨</span> 工具下载安全红线：警惕搜索引擎置顶的竞价钓鱼带毒客户端
         </h2>
 
-        <div class="text-xs font-mono text-muted-foreground leading-relaxed flex flex-col gap-3">
-          <p class="text-destructive font-bold text-sm">
-            ⚠️ 严重安全警示：翻墙客户端拥有向操作系统安装网络过滤驱动（WFP）和注册虚拟网卡的系统级最高权限，已成为黑客黑产团伙最垂涎的高价值攻击跳板！
+        <div class="text-muted-foreground flex flex-col gap-3 font-mono text-xs leading-relaxed">
+          <p class="text-destructive text-sm font-bold">
+            ⚠️
+            严重安全警示：翻墙客户端拥有向操作系统安装网络过滤驱动（WFP）和注册虚拟网卡的系统级最高权限，已成为黑客黑产团伙最垂涎的高价值攻击跳板！
           </p>
           <p>
-            在百度或必应等搜索引擎中输入“Clash 客户端下载”、“v2rayN 汉化版破解版”等关键词，排在前几位的搜索结果往往是被黑产团伙花费巨资购买了竞价排名的仿冒官网。这些伪造网站具有与官方开源仓库完全一致的界面与帮助文档，但其提供的安装包底层暗中植入了<strong>商业级特洛伊木马与键盘记录器（如 RedLine Stealer、Lumma Stealer）</strong>：
+            在百度或必应等搜索引擎中输入“Clash 客户端下载”、“v2rayN
+            汉化版破解版”等关键词，排在前几位的搜索结果往往是被黑产团伙花费巨资购买了竞价排名的仿冒官网。这些伪造网站具有与官方开源仓库完全一致的界面与帮助文档，但其提供的安装包底层暗中植入了<strong
+              >商业级特洛伊木马与键盘记录器（如 RedLine Stealer、Lumma Stealer）</strong
+            >：
           </p>
-          <ul class="list-disc list-inside flex flex-col gap-1.5 pl-2 text-foreground">
-            <li><strong>静默搜刮浏览器凭据</strong>：木马程序在后台遍历 Chrome、Edge、Brave 等主流浏览器的数据存储目录，窃取已保存的所有网站账号密码与 AutoFill 自动填充信用卡信息；</li>
-            <li><strong>盗取 Session Cookie 劫持账户</strong>：直接提取你的 Telegram 桌面版、Twitter、GitHub、Gmail 激活会话 Cookie，黑客无需输入你的账号密码或 2FA 二次验证码，即可在海外服务器直接克隆登录你的核心账户；</li>
-            <li><strong>剪贴板钱包地址动态劫持</strong>：静默监听系统剪贴板。当你复制一串 USDT (TRC-20) 或比特币收款地址准备转账时，木马会在你按下粘贴的毫秒级瞬间，将地址偷梁换柱成黑客的私有钱包地址，造成无法挽回的巨额资金损失。</li>
+          <ul class="text-foreground flex list-inside list-disc flex-col gap-1.5 pl-2">
+            <li>
+              <strong>静默搜刮浏览器凭据</strong>：木马程序在后台遍历 Chrome、Edge、Brave
+              等主流浏览器的数据存储目录，窃取已保存的所有网站账号密码与 AutoFill
+              自动填充信用卡信息；
+            </li>
+            <li>
+              <strong>盗取 Session Cookie 劫持账户</strong>：直接提取你的 Telegram
+              桌面版、Twitter、GitHub、Gmail 激活会话 Cookie，黑客无需输入你的账号密码或 2FA
+              二次验证码，即可在海外服务器直接克隆登录你的核心账户；
+            </li>
+            <li>
+              <strong>剪贴板钱包地址动态劫持</strong>：静默监听系统剪贴板。当你复制一串 USDT
+              (TRC-20)
+              或比特币收款地址准备转账时，木马会在你按下粘贴的毫秒级瞬间，将地址偷梁换柱成黑客的私有钱包地址，造成无法挽回的巨额资金损失。
+            </li>
           </ul>
 
-          <div class="bg-background border-2 border-border p-4 my-1">
-            <span class="font-bold text-foreground text-sm">🛡 官方正版获取与安全校验三大铁律：</span>
-            <p class="mt-1 leading-relaxed text-[11px]">
-              1. <strong>只认官方 Releases</strong>：客户端只从项目官方经过代码签名的 GitHub Releases 页面获取，坚决不点击任何百度竞价广告，不从第三方软件站、非官方网盘或 Telegram 转发的压缩包中下载可执行文件；<br />
-              2. <strong>比对 SHA256 校验和</strong>：下载完成后，在 Windows PowerShell 运行 <code>Get-FileHash [文件名]</code>，确保其哈希值与开发者发布的签名文件完全一致；<br />
-              3. <strong>直接使用本站官方聚合源</strong>：可直接访问本站长期维护并经哈希交叉比对校验的
-              <a href="/clients/" class="text-primary font-bold hover:underline">【全平台代理客户端官方中心】</a>，确保获取绝对纯净正版。
+          <div class="bg-background border-border my-1 border-2 p-4">
+            <span class="text-foreground text-sm font-bold">🛡 官方正版获取与安全校验三大铁律：</span
+            >
+            <p class="mt-1 text-[11px] leading-relaxed">
+              1. <strong>只认官方 Releases</strong>：客户端只从项目官方经过代码签名的 GitHub
+              Releases 页面获取，坚决不点击任何百度竞价广告，不从第三方软件站、非官方网盘或 Telegram
+              转发的压缩包中下载可执行文件；<br />
+              2. <strong>比对 SHA256 校验和</strong>：下载完成后，在 Windows PowerShell 运行 <code
+                >Get-FileHash [文件名]</code
+              >，确保其哈希值与开发者发布的签名文件完全一致；<br />
+              3. <strong>直接使用本站官方聚合源</strong
+              >：可直接访问本站长期维护并经哈希交叉比对校验的
+              <a href="/clients/" class="text-primary font-bold hover:underline"
+                >【全平台代理客户端官方中心】</a
+              >，确保获取绝对纯净正版。
             </p>
           </div>
         </div>
@@ -535,45 +775,71 @@ const pageDescription = "全网权威专著级科学上网客户端与专业网�
     {/* 9. 🎯 多场景决策树：不同人群、预算与用途的最优工具链 */}
     {/* ========================================================= */}
     <section id="decision-tree" class="flex flex-col gap-4">
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-5">
-        <h2 class="font-display text-lg text-foreground uppercase flex items-center gap-2">
+      <PixelPanel class="bg-card border-border flex flex-col gap-5 border-2 p-6 md:p-8">
+        <h2 class="font-display text-foreground flex items-center gap-2 text-lg uppercase">
           <span>🎯</span> 多场景实战决策树：哪套工具链最契合你的真实需求？
         </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
-          <div class="bg-background border-2 border-border p-4.5 flex flex-col gap-2.5">
-            <span class="font-bold text-success text-sm flex items-center gap-1.5">
+        <div class="grid grid-cols-1 gap-4 font-mono text-xs md:grid-cols-3">
+          <div class="bg-background border-border flex flex-col gap-2.5 border-2 p-4.5">
+            <span class="text-success flex items-center gap-1.5 text-sm font-bold">
               <span>🎬</span> 场景 A：新手追剧与轻量日常办公
             </span>
             <ul class="text-muted-foreground flex flex-col gap-1.5 text-[11px] leading-relaxed">
               <li>• <strong>设备配置</strong>：Windows 办公笔记本 + iPhone 手机</li>
               <li>• <strong>推荐工具组合</strong>：Clash Verge Rev (Win) + Shadowrocket (iOS)</li>
-              <li>• <strong>关键配置重点</strong>：全局路由严格保持为“规则模式 (Rule)”，订阅开启每日定时自动同步更新</li>
-              <li>• <strong>专线节点建议</strong>：优先勾选香港与日本低延迟专线（晚高峰秒开 4K，毫秒级响应）</li>
+              <li>
+                • <strong>关键配置重点</strong>：全局路由严格保持为“规则模式
+                (Rule)”，订阅开启每日定时自动同步更新
+              </li>
+              <li>
+                • <strong>专线节点建议</strong>：优先勾选香港与日本低延迟专线（晚高峰秒开
+                4K，毫秒级响应）
+              </li>
             </ul>
           </div>
 
-          <div class="bg-background border-2 border-border p-4.5 flex flex-col gap-2.5">
-            <span class="font-bold text-info text-sm flex items-center gap-1.5">
+          <div class="bg-background border-border flex flex-col gap-2.5 border-2 p-4.5">
+            <span class="text-info flex items-center gap-1.5 text-sm font-bold">
               <span>💻</span> 场景 B：程序员、学术科研与重度 AI 开发者
             </span>
             <ul class="text-muted-foreground flex flex-col gap-1.5 text-[11px] leading-relaxed">
               <li>• <strong>设备配置</strong>：MacBook Pro + Linux 开发机 + Android 手机</li>
-              <li>• <strong>推荐工具组合</strong>：Clash Verge Rev (Mac 开启 TUN 虚拟网卡) + Flclash (分应用代理)</li>
-              <li>• <strong>关键配置重点</strong>：启用 fake-ip 加密 DNS，在 .zshrc 中注入 http_proxy 环境变量，确保 Docker 与 Git 顺畅</li>
-              <li>• <strong>专线节点建议</strong>：配置独立策略组，将 OpenAI 与 Claude 流量绑定至美区/新加坡纯净住宅 IP 节点</li>
+              <li>
+                • <strong>推荐工具组合</strong>：Clash Verge Rev (Mac 开启 TUN 虚拟网卡) + Flclash
+                (分应用代理)
+              </li>
+              <li>
+                • <strong>关键配置重点</strong>：启用 fake-ip 加密 DNS，在 .zshrc 中注入 http_proxy
+                环境变量，确保 Docker 与 Git 顺畅
+              </li>
+              <li>
+                • <strong>专线节点建议</strong>：配置独立策略组，将 OpenAI 与 Claude
+                流量绑定至美区/新加坡纯净住宅 IP 节点
+              </li>
             </ul>
           </div>
 
-          <div class="bg-background border-2 border-border p-4.5 flex flex-col gap-2.5">
-            <span class="font-bold text-primary text-sm flex items-center gap-1.5">
+          <div class="bg-background border-border flex flex-col gap-2.5 border-2 p-4.5">
+            <span class="text-primary flex items-center gap-1.5 text-sm font-bold">
               <span>🏠</span> 场景 C：家庭全屋影音与外服主机玩家
             </span>
             <ul class="text-muted-foreground flex flex-col gap-1.5 text-[11px] leading-relaxed">
-              <li>• <strong>设备配置</strong>：Apple TV 4K + PS5/Switch 游戏主机 + 全家十余台数码设备</li>
-              <li>• <strong>推荐工具组合</strong>：x86 软路由部署 OpenWrt PassWall / OpenClash 旁路由模式</li>
-              <li>• <strong>关键配置重点</strong>：开启 UDP Fullcone NAT 提升联机质量，配置 ChinaDNS-NG 防本地 DNS 污染</li>
-              <li>• <strong>专线节点建议</strong>：搭配具备企业级物理专线的服务商，保障大流量推流零丢包与外服联机低抖动</li>
+              <li>
+                • <strong>设备配置</strong>：Apple TV 4K + PS5/Switch 游戏主机 + 全家十余台数码设备
+              </li>
+              <li>
+                • <strong>推荐工具组合</strong>：x86 软路由部署 OpenWrt PassWall / OpenClash
+                旁路由模式
+              </li>
+              <li>
+                • <strong>关键配置重点</strong>：开启 UDP Fullcone NAT 提升联机质量，配置
+                ChinaDNS-NG 防本地 DNS 污染
+              </li>
+              <li>
+                • <strong>专线节点建议</strong
+                >：搭配具备企业级物理专线的服务商，保障大流量推流零丢包与外服联机低抖动
+              </li>
             </ul>
           </div>
         </div>
@@ -584,82 +850,127 @@ const pageDescription = "全网权威专著级科学上网客户端与专业网�
     {/* 10. ❓ 客户端与工具高频常见问题 FAQ (10 项深度解答) */}
     {/* ========================================================= */}
     <section id="faq-section" class="flex flex-col gap-4">
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-5">
-        <div class="flex items-center justify-between border-b border-border pb-3">
-          <h2 class="font-display text-lg text-foreground uppercase flex items-center gap-2">
+      <PixelPanel class="bg-card border-border flex flex-col gap-5 border-2 p-6 md:p-8">
+        <div class="border-border flex items-center justify-between border-b pb-3">
+          <h2 class="font-display text-foreground flex items-center gap-2 text-lg uppercase">
             <span>❓</span> 客户端与工具高频疑难 FAQ (10 项深度解答)
           </h2>
-          <span class="text-xs font-mono text-muted-foreground">EXPERT TROUBLESHOOTING</span>
+          <span class="text-muted-foreground font-mono text-xs">EXPERT TROUBLESHOOTING</span>
         </div>
 
         <div class="flex flex-col gap-4 font-mono text-xs">
-          <div class="border border-border p-4 bg-background">
-            <p class="font-bold text-foreground text-sm mb-1.5">Q1：为什么开机启动 Clash Verge 后总是弹窗提示“Service Mode Not Installed”？</p>
+          <div class="border-border bg-background border p-4">
+            <p class="text-foreground mb-1.5 text-sm font-bold">
+              Q1：为什么开机启动 Clash Verge 后总是弹窗提示“Service Mode Not Installed”？
+            </p>
             <p class="text-muted-foreground leading-relaxed">
-              答：因为你未在设置中安装服务模式守护进程。点击客户端左侧「设置 -&gt; 服务模式 -&gt; 安装」，在弹出的系统管理员 UAC 窗口点击“是”。安装成功后图标将变为绿色，以后开机即可静默启动 TUN 模式，不再弹窗。
+              答：因为你未在设置中安装服务模式守护进程。点击客户端左侧「设置 -&gt; 服务模式 -&gt;
+              安装」，在弹出的系统管理员 UAC
+              窗口点击“是”。安装成功后图标将变为绿色，以后开机即可静默启动 TUN 模式，不再弹窗。
             </p>
           </div>
 
-          <div class="border border-border p-4 bg-background">
-            <p class="font-bold text-foreground text-sm mb-1.5">Q2：Shadowrocket（小火箭）在国区 App Store 为什么搜不到？</p>
+          <div class="border-border bg-background border p-4">
+            <p class="text-foreground mb-1.5 text-sm font-bold">
+              Q2：Shadowrocket（小火箭）在国区 App Store 为什么搜不到？
+            </p>
             <p class="text-muted-foreground leading-relaxed">
-              答：由于苹果公司的监管合规要求，所有网络扩展类代理工具已在国区 App Store 全面下架。用户必须准备一个美区、日区或港区的外区 Apple ID，在 App Store 登录后搜索购买安装（售价通常为 $2.99）。切勿在手机系统 iCloud 设置中登录他人账号。
+              答：由于苹果公司的监管合规要求，所有网络扩展类代理工具已在国区 App Store
+              全面下架。用户必须准备一个美区、日区或港区的外区 Apple ID，在 App Store
+              登录后搜索购买安装（售价通常为 $2.99）。切勿在手机系统 iCloud 设置中登录他人账号。
             </p>
           </div>
 
-          <div class="border border-border p-4 bg-background">
-            <p class="font-bold text-foreground text-sm mb-1.5">Q3：开启代理后，命令行终端（Git clone / curl / npm）为什么还是走直连超时？</p>
+          <div class="border-border bg-background border p-4">
+            <p class="text-foreground mb-1.5 text-sm font-bold">
+              Q3：开启代理后，命令行终端（Git clone / curl / npm）为什么还是走直连超时？
+            </p>
             <p class="text-muted-foreground leading-relaxed">
-              答：Windows 与 macOS 的终端命令行默认不会读取桌面系统的 HTTP 代理注册表。解决方案有两个：1. 在 Clash Verge Rev 中开启 <strong>TUN 模式</strong>，通过虚拟网卡直接强行捕获终端所有出站 IP 包；2. 在命令行中手动执行临时代理命令：<code>set http_proxy=http://127.0.0.1:7890</code> 与 <code>set https_proxy=http://127.0.0.1:7890</code>。
+              答：Windows 与 macOS 的终端命令行默认不会读取桌面系统的 HTTP
+              代理注册表。解决方案有两个：1. 在 Clash Verge Rev 中开启 <strong>TUN 模式</strong
+              >，通过虚拟网卡直接强行捕获终端所有出站 IP 包；2. 在命令行中手动执行临时代理命令：<code
+                >set http_proxy=http://127.0.0.1:7890</code
+              > 与 <code>set https_proxy=http://127.0.0.1:7890</code>。
             </p>
           </div>
 
-          <div class="border border-border p-4 bg-background">
-            <p class="font-bold text-foreground text-sm mb-1.5">Q4：什么是 fake-ip 模式？它和 redir-host 有什么区别？</p>
+          <div class="border-border bg-background border p-4">
+            <p class="text-foreground mb-1.5 text-sm font-bold">
+              Q4：什么是 fake-ip 模式？它和 redir-host 有什么区别？
+            </p>
             <p class="text-muted-foreground leading-relaxed">
-              答：<code>fake-ip</code> 模式在客户端收到浏览器 DNS 查询时，并不立即向远端发起真实解析，而是从一个保留私有网段（198.18.0.0/16）中瞬间分配一个虚拟 IP 返回给浏览器。浏览器带着这个假 IP 发送 TCP 请求，客户端内核在远端专线出口再执行真实 DNS 查询。这不仅彻底解决了运营商 DNS 污染，还将网页首帧打开延迟降低了数十毫秒。
+              答：<code>fake-ip</code> 模式在客户端收到浏览器 DNS 查询时，并不立即向远端发起真实解析，而是从一个保留私有网段（198.18.0.0/16）中瞬间分配一个虚拟
+              IP 返回给浏览器。浏览器带着这个假 IP 发送 TCP 请求，客户端内核在远端专线出口再执行真实 DNS
+              查询。这不仅彻底解决了运营商 DNS 污染，还将网页首帧打开延迟降低了数十毫秒。
             </p>
           </div>
 
-          <div class="border border-border p-4 bg-background">
-            <p class="font-bold text-foreground text-sm mb-1.5">Q5：同一个订阅链接可以在电脑和手机上同时使用吗？</p>
+          <div class="border-border bg-background border p-4">
+            <p class="text-foreground mb-1.5 text-sm font-bold">
+              Q5：同一个订阅链接可以在电脑和手机上同时使用吗？
+            </p>
             <p class="text-muted-foreground leading-relaxed">
-              答：完全可以。机场订阅链接本身是一个承载加密节点信息的配置文件。只要你购买的机场套餐支持多设备并发在线（例如 <a href="/airports/guangshuyun/" class="text-primary hover:underline">光速云</a> 标准套餐支持 3~5 台设备同时在线），你就可以把同一条订阅分别导入电脑上的 Clash Verge 和手机上的小火箭。
+              答：完全可以。机场订阅链接本身是一个承载加密节点信息的配置文件。只要你购买的机场套餐支持多设备并发在线（例如
+              <a href="/airports/guangshuyun/" class="text-primary hover:underline">光速云</a> 标准套餐支持
+              3~5 台设备同时在线），你就可以把同一条订阅分别导入电脑上的 Clash Verge 和手机上的小火箭。
             </p>
           </div>
 
-          <div class="border border-border p-4 bg-background">
-            <p class="font-bold text-foreground text-sm mb-1.5">Q6：为什么有时候点击“测速”，全部节点延迟显示为 Timeout 或 -1ms？</p>
+          <div class="border-border bg-background border p-4">
+            <p class="text-foreground mb-1.5 text-sm font-bold">
+              Q6：为什么有时候点击“测速”，全部节点延迟显示为 Timeout 或 -1ms？
+            </p>
             <p class="text-muted-foreground leading-relaxed">
-              答：头号原因是<strong>本地电脑系统时间误差超过了 60 秒</strong>。现代 TLS 协议要求握手双方的时间误差在可信容差以内。打开系统设置，关闭再开启“自动设置时间”同步标准授时，通常即可秒级修复。其他原因包括套餐到期或订阅链接被本地网络劫持。
+              答：头号原因是<strong>本地电脑系统时间误差超过了 60 秒</strong>。现代 TLS
+              协议要求握手双方的时间误差在可信容差以内。打开系统设置，关闭再开启“自动设置时间”同步标准授时，通常即可秒级修复。其他原因包括套餐到期或订阅链接被本地网络劫持。
             </p>
           </div>
 
-          <div class="border border-border p-4 bg-background">
-            <p class="font-bold text-foreground text-sm mb-1.5">Q7：Sing-box 为什么比 Clash 运行更快？我应该切换吗？</p>
+          <div class="border-border bg-background border p-4">
+            <p class="text-foreground mb-1.5 text-sm font-bold">
+              Q7：Sing-box 为什么比 Clash 运行更快？我应该切换吗？
+            </p>
             <p class="text-muted-foreground leading-relaxed">
-              答：Sing-box 采用纯 Go 语言进行了轻量化架构重构，去除了多余的兼容层，内存控制与多路复用吞吐表现优异。但 Sing-box 的配置语法极其严苛，对普通用户门槛较高。如果你追求开箱即用，内置 Mihomo 内核的 <strong>Clash Verge Rev</strong> 依然是目前综合体验最平衡的王者。
+              答：Sing-box 采用纯 Go
+              语言进行了轻量化架构重构，去除了多余的兼容层，内存控制与多路复用吞吐表现优异。但
+              Sing-box 的配置语法极其严苛，对普通用户门槛较高。如果你追求开箱即用，内置 Mihomo
+              内核的 <strong>Clash Verge Rev</strong> 依然是目前综合体验最平衡的王者。
             </p>
           </div>
 
-          <div class="border border-border p-4 bg-background">
-            <p class="font-bold text-foreground text-sm mb-1.5">Q8：开启 TUN 模式玩网络游戏，会被游戏官方当作作弊封号吗？</p>
+          <div class="border-border bg-background border p-4">
+            <p class="text-foreground mb-1.5 text-sm font-bold">
+              Q8：开启 TUN 模式玩网络游戏，会被游戏官方当作作弊封号吗？
+            </p>
             <p class="text-muted-foreground leading-relaxed">
-              答：不会。TUN 虚拟网卡只在操作系统三层进行合法的网络数据包路由，绝不会注入、篡改或读取游戏的内存进程，这与雷神、UU 等商业游戏加速器的底层驱动原理完全一致。
+              答：不会。TUN
+              虚拟网卡只在操作系统三层进行合法的网络数据包路由，绝不会注入、篡改或读取游戏的内存进程，这与雷神、UU
+              等商业游戏加速器的底层驱动原理完全一致。
             </p>
           </div>
 
-          <div class="border border-border p-4 bg-background">
-            <p class="font-bold text-foreground text-sm mb-1.5">Q9：为什么使用公共 Wi-Fi 或公司内网时，所有梯子都无法连上？</p>
+          <div class="border-border bg-background border p-4">
+            <p class="text-foreground mb-1.5 text-sm font-bold">
+              Q9：为什么使用公共 Wi-Fi 或公司内网时，所有梯子都无法连上？
+            </p>
             <p class="text-muted-foreground leading-relaxed">
-              答：很多企业防火墙对非 80/443 端口进行了严格拦截，甚至阻断了所有的 UDP 出境流量。在这种极端受限环境下，基于 UDP 的 Hysteria 2/WireGuard 都会失效，必须选择伪装成标准 HTTPS 流量的 <strong>Trojan</strong> 或 <strong>VLESS-Reality</strong> 443 端口专线节点。
+              答：很多企业防火墙对非 80/443 端口进行了严格拦截，甚至阻断了所有的 UDP
+              出境流量。在这种极端受限环境下，基于 UDP 的 Hysteria 2/WireGuard
+              都会失效，必须选择伪装成标准 HTTPS 流量的 <strong>Trojan</strong> 或 <strong
+                >VLESS-Reality</strong
+              > 443 端口专线节点。
             </p>
           </div>
 
-          <div class="border border-border p-4 bg-background">
-            <p class="font-bold text-foreground text-sm mb-1.5">Q10：如何彻底卸载旧版客户端与残留的虚拟网卡驱动？</p>
+          <div class="border-border bg-background border p-4">
+            <p class="text-foreground mb-1.5 text-sm font-bold">
+              Q10：如何彻底卸载旧版客户端与残留的虚拟网卡驱动？
+            </p>
             <p class="text-muted-foreground leading-relaxed">
-              答：很多用户在换用新客户端后遇到断网，是因为旧客户端未正常关闭导致代理配置残留在系统注册表中。解决方案：在 Windows「设置 -&gt; 网络和 Internet -&gt; 代理」中，手动将“使用代理服务器”开关关闭；并在设备管理器中卸载名为“Wintun Userspace Tunnel”的虚拟网卡即可。
+              答：很多用户在换用新客户端后遇到断网，是因为旧客户端未正常关闭导致代理配置残留在系统注册表中。解决方案：在
+              Windows「设置 -&gt; 网络和 Internet -&gt;
+              代理」中，手动将“使用代理服务器”开关关闭；并在设备管理器中卸载名为“Wintun Userspace
+              Tunnel”的虚拟网卡即可。
             </p>
           </div>
         </div>
@@ -670,64 +981,68 @@ const pageDescription = "全网权威专著级科学上网客户端与专业网�
     {/* 11. 📚 长尾精选实操与深度指南列表 */}
     {/* ========================================================= */}
     <section id="cluster-articles" class="flex flex-col gap-6">
-      <div class="flex items-center justify-between border-b-2 border-border pb-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-border flex items-center justify-between border-b-2 pb-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           🛠 梯子工具与诊断排查深度长尾指南 ({toolsArticles.length} 篇实操)
         </h2>
-        <span class="text-xs font-mono text-muted-foreground">CLUSTER ARTICLES</span>
+        <span class="text-muted-foreground font-mono text-xs">CLUSTER ARTICLES</span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {toolsArticles.map((art) => (
-          <PixelPanel class="p-6 bg-card border-2 border-border hover:border-info transition-all flex flex-col justify-between gap-4">
-            <div class="flex flex-col gap-2.5">
-              <div class="flex items-center justify-between text-xs font-mono">
-                <span class="text-info font-bold">{art.badge}</span>
-                <span class="text-muted-foreground">{art.date} · 平台: {art.platform}</span>
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+        {
+          toolsArticles.map((art) => (
+            <PixelPanel class="bg-card border-border hover:border-info flex flex-col justify-between gap-4 border-2 p-6 transition-all">
+              <div class="flex flex-col gap-2.5">
+                <div class="flex items-center justify-between font-mono text-xs">
+                  <span class="text-info font-bold">{art.badge}</span>
+                  <span class="text-muted-foreground">
+                    {art.date} · 平台: {art.platform}
+                  </span>
+                </div>
+                <h3 class="font-display text-foreground text-base leading-snug">
+                  <a href={`/tools/${art.slug}/`} class="hover:text-info transition-colors">
+                    {art.title}
+                  </a>
+                </h3>
+                <p class="text-muted-foreground font-mono text-xs leading-relaxed">{art.excerpt}</p>
               </div>
-              <h3 class="font-display text-base text-foreground leading-snug">
-                <a href={`/tools/${art.slug}/`} class="hover:text-info transition-colors">
-                  {art.title}
-                </a>
-              </h3>
-              <p class="text-xs text-muted-foreground font-mono leading-relaxed">
-                {art.excerpt}
-              </p>
-            </div>
 
-            <div class="pt-3 border-t border-border flex items-center justify-between">
-              <span class="text-[11px] font-mono text-success">
-                分类：{art.categoryName}
-              </span>
-              <a href={`/tools/${art.slug}/`} class="pixel-btn text-xs px-3 py-1.5 font-bold">
-                阅读教程配置 →
-              </a>
-            </div>
-          </PixelPanel>
-        ))}
+              <div class="border-border flex items-center justify-between border-t pt-3">
+                <span class="text-success font-mono text-[11px]">分类：{art.categoryName}</span>
+                <a href={`/tools/${art.slug}/`} class="pixel-btn px-3 py-1.5 text-xs font-bold">
+                  阅读教程配置 →
+                </a>
+              </div>
+            </PixelPanel>
+          ))
+        }
       </div>
     </section>
 
     {/* 底部转化与站内导航 */}
-    <PixelPanel class="p-6 md:p-8 bg-accent/30 border-4 border-info flex flex-col gap-4 text-center items-center shadow-pixel">
-      <h3 class="font-display text-xl md:text-2xl text-foreground uppercase">
+    <PixelPanel
+      class="bg-accent/30 border-info shadow-pixel flex flex-col items-center gap-4 border-4 p-6 text-center md:p-8"
+    >
+      <h3 class="font-display text-foreground text-xl uppercase md:text-2xl">
         好马配好鞍：顶级客户端需要企业级物理专线支撑
       </h3>
-      <p class="text-xs md:text-sm text-muted-foreground max-w-3xl font-mono leading-relaxed">
-        无论客户端调优到多么极致，若底层节点堵在运营商晚高峰的公网出口，依然会遭遇严重丢包。推荐选择本站评测稳居第一的 <a href="/airports/guangshuyun/" class="text-primary font-bold hover:underline">光速云 (GuangSuCloud)</a>，全节点标配企业级 IEPL 物理内网专线，深度适配 Clash Verge Rev 与小火箭一键订阅，晚高峰延迟低至 22ms，专属 8 折优惠码 <code class="text-primary font-bold">AMM</code>。
+      <p class="text-muted-foreground max-w-3xl font-mono text-xs leading-relaxed md:text-sm">
+        无论客户端调优到多么极致，若底层节点堵在运营商晚高峰的公网出口，依然会遭遇严重丢包。推荐选择本站评测稳居第一的
+        <a href="/airports/guangshuyun/" class="text-primary font-bold hover:underline"
+          >光速云 (GuangSuCloud)</a
+        >，全节点标配企业级 IEPL 物理内网专线，深度适配 Clash Verge Rev
+        与小火箭一键订阅，晚高峰延迟低至 22ms，专属 8 折优惠码 <code class="text-primary font-bold"
+          >AMM</code
+        >。
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
-        <a href="/clients/" class="pixel-btn text-xs px-5 py-3">
-          前往全平台客户端下载中心 →
-        </a>
-        <a href="/airports/" class="pixel-btn text-xs px-5 py-3">
-          查阅 42 家机场品牌库 →
-        </a>
+        <a href="/clients/" class="pixel-btn px-5 py-3 text-xs"> 前往全平台客户端下载中心 → </a>
+        <a href="/airports/" class="pixel-btn px-5 py-3 text-xs"> 查阅 42 家机场品牌库 → </a>
         <a
           href="https://sahude.gsyvipaff.com/#/?code=keqgvT5Y"
           target="_blank"
           rel="nofollow sponsored noopener"
-          class="pixel-btn pixel-btn--blue text-sm px-7 py-3.5 font-bold shadow-pixel"
+          class="pixel-btn pixel-btn--blue shadow-pixel px-7 py-3.5 text-sm font-bold"
         >
           🚀 直达光速云官网开通加速 ↗
         </a>

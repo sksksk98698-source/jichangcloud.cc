@@ -1,13 +1,21 @@
 ---
 import HeroPanel from "@components/Sections/Global/HeroPanel.astro";
-import { Badge } from "@components/ui/badge";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from "@components/ui/breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@components/ui/breadcrumb";
 import { PixelPanel } from "@components/ui/pixel-panel";
-import { freeArticles, freeCategories } from "@/data/freeResourcesData";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
-const pageTitle = "2026 全球科学上网免费资源全景白皮书：大厂免费通道/WARP优选/学术网络与蜜罐风险安全审计 — 机场cloud";
-const pageDescription = "深度剖析 2026 免费科学上网出海全景方案。涵盖 Cloudflare WARP 优选 Clean IP 与 MTU 调优、高校 CERNET/CARSI 合法学术通道、商业机场白嫖防套路安全规则，以及对公开免费节点池中间人（MITM）嗅探、Cookie 盗取与蜜罐监听的底层安全审计。";
+import { freeArticles } from "@/data/freeResourcesData";
+
+const pageTitle =
+  "2026 全球科学上网免费资源全景白皮书：大厂免费通道/WARP优选/学术网络与蜜罐风险安全审计 — 机场cloud";
+const pageDescription =
+  "深度剖析 2026 免费科学上网出海全景方案。涵盖 Cloudflare WARP 优选 Clean IP 与 MTU 调优、高校 CERNET/CARSI 合法学术通道、商业机场白嫖防套路安全规则，以及对公开免费节点池中间人（MITM）嗅探、Cookie 盗取与蜜罐监听的底层安全审计。";
 
 // 专著级结构化数据：WebPage + TechArticle + FAQPage
 const schemaData = {
@@ -15,112 +23,112 @@ const schemaData = {
   "@graph": [
     {
       "@type": "TechArticle",
-      "headline": "2026 全球科学上网免费资源全景白皮书与安全避坑审计",
-      "description": pageDescription,
-      "author": {
+      headline: "2026 全球科学上网免费资源全景白皮书与安全避坑审计",
+      description: pageDescription,
+      author: {
         "@type": "Organization",
-        "name": "机场cloud网络安全实验室"
+        name: "机场cloud网络安全实验室",
       },
-      "datePublished": "2026-01-15T08:00:00+08:00",
-      "dateModified": "2026-03-30T10:00:00+08:00",
-      "inLanguage": "zh-CN",
-      "mainEntityOfPage": "https://jichangcloud.cc/free/"
+      datePublished: "2026-01-15T08:00:00+08:00",
+      dateModified: "2026-03-30T10:00:00+08:00",
+      inLanguage: "zh-CN",
+      mainEntityOfPage: "https://jichangcloud.cc/free/",
     },
     {
       "@type": "FAQPage",
-      "mainEntity": [
+      mainEntity: [
         {
           "@type": "Question",
-          "name": "使用公开抓取的免费节点（GitHub/TG免费池）是否存在密码被盗风险？",
-          "acceptedAnswer": {
+          name: "使用公开抓取的免费节点（GitHub/TG免费池）是否存在密码被盗风险？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "存在极高风险。很多公开免费节点由黑客黑产或网络嗅探机构故意放出，充当透明代理或中间人蜜罐（MITM）。一旦客户端连接此类节点，未加密的明文 HTTP 流量、DNS 请求将被全量抓包记录。黑产更可通过注入假根证书、Cookie 劫持与 Session 提取手段盗取社交与电子邮箱会话。严禁在此类节点上登录个人账号与密码。"
-          }
+            text: "存在极高风险。很多公开免费节点由黑客黑产或网络嗅探机构故意放出，充当透明代理或中间人蜜罐（MITM）。一旦客户端连接此类节点，未加密的明文 HTTP 流量、DNS 请求将被全量抓包记录。黑产更可通过注入假根证书、Cookie 劫持与 Session 提取手段盗取社交与电子邮箱会话。严禁在此类节点上登录个人账号与密码。",
+          },
         },
         {
           "@type": "Question",
-          "name": "Cloudflare WARP 免费版合法安全吗？在国内能否直接顺畅连接？",
-          "acceptedAnswer": {
+          name: "Cloudflare WARP 免费版合法安全吗？在国内能否直接顺畅连接？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "Cloudflare WARP 是全球 CDN 巨头 Cloudflare 提供的合规公共网络优化服务，采用 WireGuard 协议加密，承诺不记录可识别个人日志，安全性极高。但在国内三大运营商直连环境下，Cloudflare 官方 Anycast 节点 IP 大多受到 GFW 阻断或严重 QoS 丢包。需要使用 WARP-Endpoint 优选脚本测速并筛选出 Clean IP（洁净端点），同时将 MTU 调整为 1280~1360 才能稳定握手。"
-          }
+            text: "Cloudflare WARP 是全球 CDN 巨头 Cloudflare 提供的合规公共网络优化服务，采用 WireGuard 协议加密，承诺不记录可识别个人日志，安全性极高。但在国内三大运营商直连环境下，Cloudflare 官方 Anycast 节点 IP 大多受到 GFW 阻断或严重 QoS 丢包。需要使用 WARP-Endpoint 优选脚本测速并筛选出 Clean IP（洁净端点），同时将 MTU 调整为 1280~1360 才能稳定握手。",
+          },
         },
         {
           "@type": "Question",
-          "name": "高校师生在校外如何免费合法查阅 IEEE、Nature 等海外学术文献？",
-          "acceptedAnswer": {
+          name: "高校师生在校外如何免费合法查阅 IEEE、Nature 等海外学术文献？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "高校师生无需购买翻墙工具，可以直接通过 CARSI（中国教育科研计算机网统一认证与资源共享基础设施）官方漫游登录。在校外访问 Web of Science、IEEE Xplore、Nature、Springer 等数据库时，选择 Institutional Login 并通过所在大学统一身份认证（SAML/Shibboleth）即可直接免费下载全文；亦可使用高校官方 WebVPN 代理服务。"
-          }
+            text: "高校师生无需购买翻墙工具，可以直接通过 CARSI（中国教育科研计算机网统一认证与资源共享基础设施）官方漫游登录。在校外访问 Web of Science、IEEE Xplore、Nature、Springer 等数据库时，选择 Institutional Login 并通过所在大学统一身份认证（SAML/Shibboleth）即可直接免费下载全文；亦可使用高校官方 WebVPN 代理服务。",
+          },
         },
         {
           "@type": "Question",
-          "name": "商业机场的“免费白嫖试用”有哪些常见套路与安全隐患？",
-          "acceptedAnswer": {
+          name: "商业机场的“免费白嫖试用”有哪些常见套路与安全隐患？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "商业机场提供的免费试用通常为 1GB~10GB 的体验额度。需要警惕三类套路：一是要求绑定真实信用卡或支付宝免密签约的陷阱，到期会自动高额扣费；二是收集邮箱进行撞库或垃圾广告轰炸，建议使用临时匿名邮箱（如 Duck.com 邮箱）注册；三是在订阅配置中暗藏恶意审计分流规则，劫持本地 DNS 解析。因此建议使用独立密码并审阅分流规则。"
-          }
+            text: "商业机场提供的免费试用通常为 1GB~10GB 的体验额度。需要警惕三类套路：一是要求绑定真实信用卡或支付宝免密签约的陷阱，到期会自动高额扣费；二是收集邮箱进行撞库或垃圾广告轰炸，建议使用临时匿名邮箱（如 Duck.com 邮箱）注册；三是在订阅配置中暗藏恶意审计分流规则，劫持本地 DNS 解析。因此建议使用独立密码并审阅分流规则。",
+          },
         },
         {
           "@type": "Question",
-          "name": "为什么很多网上免费节点在晚高峰（20:00-23:00）几乎完全断流瘫痪？",
-          "acceptedAnswer": {
+          name: "为什么很多网上免费节点在晚高峰（20:00-23:00）几乎完全断流瘫痪？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "免费节点通常部署在廉价公网 VPS 或合租云服务器上，走的是普通公网国际出口（如 163 骨干网）。在晚高峰时段，公网国际出口带宽极度拥塞，运营商 QoS 策略对未知的大流量 UDP/TCP 代理流量执行强制丢包限速，丢包率往往超过 60% 至 85%，导致 TCP 频繁重传与连接超时；而正规商业机场多采用物理内网专线（IEPL/IPLC），完全不经过公网出口审查，因而能保持全天候秒开。"
-          }
+            text: "免费节点通常部署在廉价公网 VPS 或合租云服务器上，走的是普通公网国际出口（如 163 骨干网）。在晚高峰时段，公网国际出口带宽极度拥塞，运营商 QoS 策略对未知的大流量 UDP/TCP 代理流量执行强制丢包限速，丢包率往往超过 60% 至 85%，导致 TCP 频繁重传与连接超时；而正规商业机场多采用物理内网专线（IEPL/IPLC），完全不经过公网出口审查，因而能保持全天候秒开。",
+          },
         },
         {
           "@type": "Question",
-          "name": "使用 Cloudflare WARP 会不会导致本地宽带被运营商拉黑或断网？",
-          "acceptedAnswer": {
+          name: "使用 Cloudflare WARP 会不会导致本地宽带被运营商拉黑或断网？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "不会。Cloudflare WARP 是合规的国际公共网络优化产品，底层是标准 WireGuard 隧道协议。国内运营商对其采取的策略是公网层面的针对性 QoS 丢包或重置连接，并不会因此封停个人宽带。但使用 WARP 时请严格遵守国家法律法规，仅用于合法技术交流与学术资料查阅。"
-          }
+            text: "不会。Cloudflare WARP 是合规的国际公共网络优化产品，底层是标准 WireGuard 隧道协议。国内运营商对其采取的策略是公网层面的针对性 QoS 丢包或重置连接，并不会因此封停个人宽带。但使用 WARP 时请严格遵守国家法律法规，仅用于合法技术交流与学术资料查阅。",
+          },
         },
         {
           "@type": "Question",
-          "name": "为什么网上的免费节点批量测速时全显示绿色延迟，但一点开网页却完全打不开？",
-          "acceptedAnswer": {
+          name: "为什么网上的免费节点批量测速时全显示绿色延迟，但一点开网页却完全打不开？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "许多代理客户端默认的延迟测试仅仅测试了本地到代理节点服务器的 TCP 握手延迟（TCP Ping）或简单的 ICMP 连通性。这只能证明代理服务器本身开机在线，根本不代表该服务器能够成功解密并向外网请求目标网站！许多黑产蜜罐故意保持端口开放，但在你真正发起 HTTP 请求时丢弃数据包或重定向，导致出现测速全绿、上网全挂的典型假死现象。"
-          }
+            text: "许多代理客户端默认的延迟测试仅仅测试了本地到代理节点服务器的 TCP 握手延迟（TCP Ping）或简单的 ICMP 连通性。这只能证明代理服务器本身开机在线，根本不代表该服务器能够成功解密并向外网请求目标网站！许多黑产蜜罐故意保持端口开放，但在你真正发起 HTTP 请求时丢弃数据包或重定向，导致出现测速全绿、上网全挂的典型假死现象。",
+          },
         },
         {
           "@type": "Question",
-          "name": "手机端下载的所谓破解版免费 VPN，为什么电量消耗极快且手机发烫？",
-          "acceptedAnswer": {
+          name: "手机端下载的所谓破解版免费 VPN，为什么电量消耗极快且手机发烫？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "此类所谓破解版或免费 VPN 软件大多被暗中植入了后台挖矿脚本或流量中继木马。在后台运行时，程序会持续利用手机 CPU 算力进行微量哈希计算，或者将手机充当黑客爬虫的代理跳板，导致处理器长期高频运转、电量暴跌且机身剧烈发热。建议立刻卸载并使用杀毒软件扫描系统。"
-          }
+            text: "此类所谓破解版或免费 VPN 软件大多被暗中植入了后台挖矿脚本或流量中继木马。在后台运行时，程序会持续利用手机 CPU 算力进行微量哈希计算，或者将手机充当黑客爬虫的代理跳板，导致处理器长期高频运转、电量暴跌且机身剧烈发热。建议立刻卸载并使用杀毒软件扫描系统。",
+          },
         },
         {
           "@type": "Question",
-          "name": "用免费公开节点登录 Google 或 Telegram 账号，会被官方系统封号吗？",
-          "acceptedAnswer": {
+          name: "用免费公开节点登录 Google 或 Telegram 账号，会被官方系统封号吗？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "概率极高。因为公开抓取池中的免费 IP 通常已经被成千上万个恶意脚本或被污染的设备滥用。在 Google、OpenAI、Telegram 的安全风控引擎中，这些 IP 早就被列入了极高风险的黑名单。一旦你从此类 IP 登录账号，系统会立即触发最高级别安全风控，强制要求手机验证码，严重时会直接以违反服务条款为由永久封禁。"
-          }
+            text: "概率极高。因为公开抓取池中的免费 IP 通常已经被成千上万个恶意脚本或被污染的设备滥用。在 Google、OpenAI、Telegram 的安全风控引擎中，这些 IP 早就被列入了极高风险的黑名单。一旦你从此类 IP 登录账号，系统会立即触发最高级别安全风控，强制要求手机验证码，严重时会直接以违反服务条款为由永久封禁。",
+          },
         },
         {
           "@type": "Question",
-          "name": "长期依赖免费节点和购买高品质专线机场相比，真实成本差异到底在哪里？",
-          "acceptedAnswer": {
+          name: "长期依赖免费节点和购买高品质专线机场相比，真实成本差异到底在哪里？",
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": "真实差异在于隐性时间成本与数据安全。天天找免费节点、测试节点、排查断流，平均每天耗费 30 到 60 分钟，一个月浪费 15 到 30 个小时，折合时薪损失惨重；同时承担着账号被盗、设备沦为肉鸡的高危风险。而正规月付内网专线（如光速云，月付 ¥12 起）提供 99.9% 在线率、物理内网零丢包与原生 IP 解锁，时间与安全价值远超十几元支出。"
-          }
-        }
-      ]
-    }
-  ]
+            text: "真实差异在于隐性时间成本与数据安全。天天找免费节点、测试节点、排查断流，平均每天耗费 30 到 60 分钟，一个月浪费 15 到 30 个小时，折合时薪损失惨重；同时承担着账号被盗、设备沦为肉鸡的高危风险。而正规月付内网专线（如光速云，月付 ¥12 起）提供 99.9% 在线率、物理内网零丢包与原生 IP 解锁，时间与安全价值远超十几元支出。",
+          },
+        },
+      ],
+    },
+  ],
 };
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
 
-  <div class="site-container flex flex-col gap-10 py-8 md:gap-12 md:py-12 text-foreground">
+  <div class="site-container text-foreground flex flex-col gap-10 py-8 md:gap-12 md:py-12">
     {/* 面包屑导航 */}
-    <Breadcrumb class="text-xs font-mono">
+    <Breadcrumb class="font-mono text-xs">
       <BreadcrumbItem><BreadcrumbLink href="/">首页</BreadcrumbLink></BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem><BreadcrumbPage>免费资源专题矩阵</BreadcrumbPage></BreadcrumbItem>
@@ -135,218 +143,292 @@ const schemaData = {
     />
 
     {/* ⚡ Answer Block 极速首答 */}
-    <PixelPanel class="p-6 md:p-8 bg-card border-4 border-primary/80 flex flex-col gap-5 shadow-pixel">
-      <div class="flex items-center gap-2 border-b border-border pb-3">
+    <PixelPanel
+      class="bg-card border-primary/80 shadow-pixel flex flex-col gap-5 border-4 p-6 md:p-8"
+    >
+      <div class="border-border flex items-center gap-2 border-b pb-3">
         <span class="text-primary text-xl">⚡</span>
-        <h2 class="font-display text-lg text-foreground uppercase tracking-tight">
+        <h2 class="font-display text-foreground text-lg tracking-tight uppercase">
           Answer Block：2026 科学上网“免费白嫖”的三大生存铁律与可核验资源一览
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs font-mono leading-relaxed">
-        <div class="bg-background border-2 border-border p-4 flex flex-col gap-3">
-          <span class="text-success font-bold flex items-center gap-1.5 text-sm">
+      <div class="grid grid-cols-1 gap-5 font-mono text-xs leading-relaxed md:grid-cols-3">
+        <div class="bg-background border-border flex flex-col gap-3 border-2 p-4">
+          <span class="text-success flex items-center gap-1.5 text-sm font-bold">
             <span>✔</span> 真正安全的免费渠道
           </span>
           <p class="text-muted-foreground">
-            大厂官方背书且透明开源的项目是首选：<strong>Cloudflare WARP</strong> 官方 WireGuard 隧道（无限流量、无用户行为日志记录）以及中国教育科研网 <strong>CERNET2 / CARSI</strong> 国家级学术通道。此类渠道绝对没有黑产恶意中间人窥探、挂马与数据倒卖风险，是查阅文献与技术排障的合规基石。
+            大厂官方背书且透明开源的项目是首选：<strong>Cloudflare WARP</strong> 官方 WireGuard 隧道（无限流量、无用户行为日志记录）以及中国教育科研网
+            <strong>CERNET2 / CARSI</strong> 国家级学术通道。此类渠道绝对没有黑产恶意中间人窥探、挂马与数据倒卖风险，是查阅文献与技术排障的合规基石。
           </p>
         </div>
 
-        <div class="bg-background border-2 border-border p-4 flex flex-col gap-3">
-          <span class="text-primary font-bold flex items-center gap-1.5 text-sm">
+        <div class="bg-background border-border flex flex-col gap-3 border-2 p-4">
+          <span class="text-primary flex items-center gap-1.5 text-sm font-bold">
             <span>⚠</span> 必须彻底避开的高危毒瘤
           </span>
           <p class="text-muted-foreground">
-            坚决杜绝使用来自 GitHub 公开自动抓取池、Telegram 免费订阅频道或盗版破解 VPN 软件！超过 78% 的公开无主节点由黑产团伙与嗅探爬虫故意放养，充当<strong>中间人攻击（MITM）嗅探蜜罐</strong>。此类节点会无差别抓取用户明文 HTTP 会话、劫持浏览器 Cookie 并记录设备唯一指纹。
+            坚决杜绝使用来自 GitHub 公开自动抓取池、Telegram 免费订阅频道或盗版破解 VPN 软件！超过
+            78% 的公开无主节点由黑产团伙与嗅探爬虫故意放养，充当<strong
+              >中间人攻击（MITM）嗅探蜜罐</strong
+            >。此类节点会无差别抓取用户明文 HTTP 会话、劫持浏览器 Cookie 并记录设备唯一指纹。
           </p>
         </div>
 
-        <div class="bg-background border-2 border-border p-4 flex flex-col gap-3">
-          <span class="text-info font-bold flex items-center gap-1.5 text-sm">
+        <div class="bg-background border-border flex flex-col gap-3 border-2 p-4">
+          <span class="text-info flex items-center gap-1.5 text-sm font-bold">
             <span>💡</span> 生产力终极破局之道
           </span>
           <p class="text-muted-foreground">
-            公网免费通道受制于运营商晚高峰 QoS 动态流控，20:00-23:00 丢包率普遍突破 65% 以上。若用于跨国商务办公、海外代码推送或 4K 追剧，建议搭配深耕多年的正规月付内网专线（如 <a href="/airports/guangshuyun/" class="text-primary font-bold hover:underline">光速云</a> 月付仅 ¥12 起），每天投入的时间与精神成本远低于天天到处寻找临时节点。
+            公网免费通道受制于运营商晚高峰 QoS 动态流控，20:00-23:00 丢包率普遍突破 65%
+            以上。若用于跨国商务办公、海外代码推送或 4K 追剧，建议搭配深耕多年的正规月付内网专线（如 <a
+              href="/airports/guangshuyun/"
+              class="text-primary font-bold hover:underline">光速云</a
+            > 月付仅 ¥12 起），每天投入的时间与精神成本远低于天天到处寻找临时节点。
           </p>
         </div>
       </div>
 
-      <div class="bg-accent/20 border border-border/80 p-4 rounded text-xs font-mono flex flex-col md:flex-row items-center justify-between gap-3">
+      <div
+        class="bg-accent/20 border-border/80 flex flex-col items-center justify-between gap-3 rounded border p-4 font-mono text-xs md:flex-row"
+      >
         <span class="text-muted-foreground">
-          <strong class="text-foreground">白皮书核验时间：</strong> 2026 年 3 月更新 | <strong>网络安全审计组：</strong> 机场cloud实验室 | <strong>监测节点样本：</strong> 1,240 个免费公开节点
+          <strong class="text-foreground">白皮书核验时间：</strong> 2026 年 3 月更新 | <strong
+            >网络安全审计组：</strong
+          > 机场cloud实验室 | <strong>监测节点样本：</strong> 1,240 个免费公开节点
         </span>
-        <a href="#table-section" class="text-primary font-bold hover:underline shrink-0">
+        <a href="#table-section" class="text-primary shrink-0 font-bold hover:underline">
           直接跳转下文详细横向评测对比表 ↓
         </a>
       </div>
     </PixelPanel>
 
     {/* 目录快速导航导航栏 TOC */}
-    <PixelPanel class="p-5 bg-card border-2 border-border text-xs font-mono">
-      <div class="font-bold text-foreground mb-3 uppercase tracking-wider flex items-center gap-2">
+    <PixelPanel class="bg-card border-border border-2 p-5 font-mono text-xs">
+      <div class="text-foreground mb-3 flex items-center gap-2 font-bold tracking-wider uppercase">
         <span class="text-primary">📑</span> 目录索引与技术速查导航（点击直达对应章节）
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-muted-foreground">
-        <a href="#table-section" class="hover:text-primary transition-colors">1. 主流免费出海通道全景横向评测表</a>
-        <a href="#module-principles" class="hover:text-primary transition-colors">2. 底层剖析：网络层封装与数据包出海真相</a>
-        <a href="#module-mitm-audit" class="hover:text-primary transition-colors">3. 公开免费节点中间人（MITM）蜜罐安全审计</a>
-        <a href="#module-warp-guide" class="hover:text-primary transition-colors">4. Cloudflare WARP 免费无限流终极调优手册</a>
-        <a href="#module-carsi-cernet" class="hover:text-primary transition-colors">5. 高校与科研人员合规学术免翻墙通道</a>
-        <a href="#module-trial-rules" class="hover:text-primary transition-colors">6. 商业机场免费试用（Trial）白嫖防坑规则</a>
-        <a href="#module-bandwidth-cost" class="hover:text-primary transition-colors">7. 为什么世界上没有真正“免费”的专线？</a>
-        <a href="#module-decision-tree" class="hover:text-primary transition-colors">8. 全场景出海决策树与网络选型逻辑图</a>
-        <a href="#module-faq-section" class="hover:text-primary transition-colors">9. 免费资源 10 大核心疑难权威 FAQ</a>
-        <a href="#module-recommendation" class="hover:text-primary transition-colors">10. 生产力终极破局：高品质 IEPL 专线推荐</a>
+      <div class="text-muted-foreground grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
+        <a href="#table-section" class="hover:text-primary transition-colors"
+          >1. 主流免费出海通道全景横向评测表</a
+        >
+        <a href="#module-principles" class="hover:text-primary transition-colors"
+          >2. 底层剖析：网络层封装与数据包出海真相</a
+        >
+        <a href="#module-mitm-audit" class="hover:text-primary transition-colors"
+          >3. 公开免费节点中间人（MITM）蜜罐安全审计</a
+        >
+        <a href="#module-warp-guide" class="hover:text-primary transition-colors"
+          >4. Cloudflare WARP 免费无限流终极调优手册</a
+        >
+        <a href="#module-carsi-cernet" class="hover:text-primary transition-colors"
+          >5. 高校与科研人员合规学术免翻墙通道</a
+        >
+        <a href="#module-trial-rules" class="hover:text-primary transition-colors"
+          >6. 商业机场免费试用（Trial）白嫖防坑规则</a
+        >
+        <a href="#module-bandwidth-cost" class="hover:text-primary transition-colors"
+          >7. 为什么世界上没有真正“免费”的专线？</a
+        >
+        <a href="#module-decision-tree" class="hover:text-primary transition-colors"
+          >8. 全场景出海决策树与网络选型逻辑图</a
+        >
+        <a href="#module-faq-section" class="hover:text-primary transition-colors"
+          >9. 免费资源 10 大核心疑难权威 FAQ</a
+        >
+        <a href="#module-recommendation" class="hover:text-primary transition-colors"
+          >10. 生产力终极破局：高品质 IEPL 专线推荐</a
+        >
       </div>
     </PixelPanel>
 
     {/* 模块一：2026 全球出海免费资源全景横向评测矩阵 */}
     <div id="table-section" class="flex flex-col gap-4">
-      <div class="border-l-4 border-primary pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-primary border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           一、2026 全球科学上网免费通道全景横向评测矩阵
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
-          基于网络安全实验室实测，从底层协议、带宽配额、隐私安全等级、晚高峰丢包率与安全风控机制 6 大维度综合评分。
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
+          基于网络安全实验室实测，从底层协议、带宽配额、隐私安全等级、晚高峰丢包率与安全风控机制 6
+          大维度综合评分。
         </p>
       </div>
 
-      <PixelPanel class="p-6 bg-card border-2 border-border flex flex-col gap-5">
+      <PixelPanel class="bg-card border-border flex flex-col gap-5 border-2 p-6">
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs font-mono border-collapse min-w-[760px]">
+          <table class="w-full min-w-[760px] border-collapse text-left font-mono text-xs">
             <thead>
-              <tr class="border-b-2 border-border text-muted-foreground bg-accent/30">
-                <th class="py-3 px-3">资源分类</th>
-                <th class="py-3 px-3">代表项目 / 核心技术</th>
-                <th class="py-3 px-3">流量与费用</th>
-                <th class="py-3 px-3">隐私安全评级</th>
-                <th class="py-3 px-3">晚高峰丢包率</th>
-                <th class="py-3 px-3">核心限制与避坑要点</th>
-                <th class="py-3 px-3">推荐适用场景</th>
+              <tr class="border-border text-muted-foreground bg-accent/30 border-b-2">
+                <th class="px-3 py-3">资源分类</th>
+                <th class="px-3 py-3">代表项目 / 核心技术</th>
+                <th class="px-3 py-3">流量与费用</th>
+                <th class="px-3 py-3">隐私安全评级</th>
+                <th class="px-3 py-3">晚高峰丢包率</th>
+                <th class="px-3 py-3">核心限制与避坑要点</th>
+                <th class="px-3 py-3">推荐适用场景</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-border/60">
+            <tbody class="divide-border/60 divide-y">
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-foreground">大厂合规开源</td>
-                <td class="py-3 px-3 text-info font-bold">Cloudflare WARP (WireGuard)</td>
-                <td class="py-3 px-3 text-success font-bold">100% 永久免费无限流</td>
-                <td class="py-3 px-3 text-success font-bold">★★★★★ (绝对安全·无日志)</td>
-                <td class="py-3 px-3 text-info font-bold">15% ~ 35% (优选IP后)</td>
-                <td class="py-3 px-3 text-muted-foreground">直连被 QoS，需本地跑脚本优选 Clean IP 并调优 MTU</td>
-                <td class="py-3 px-3 text-foreground">日常维基查阅、Google 搜索、技术排障</td>
+                <td class="text-foreground px-3 py-3 font-bold">大厂合规开源</td>
+                <td class="text-info px-3 py-3 font-bold">Cloudflare WARP (WireGuard)</td>
+                <td class="text-success px-3 py-3 font-bold">100% 永久免费无限流</td>
+                <td class="text-success px-3 py-3 font-bold">★★★★★ (绝对安全·无日志)</td>
+                <td class="text-info px-3 py-3 font-bold">15% ~ 35% (优选IP后)</td>
+                <td class="text-muted-foreground px-3 py-3"
+                  >直连被 QoS，需本地跑脚本优选 Clean IP 并调优 MTU</td
+                >
+                <td class="text-foreground px-3 py-3">日常维基查阅、Google 搜索、技术排障</td>
               </tr>
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-foreground">国家学术专线</td>
-                <td class="py-3 px-3 text-info font-bold">CERNET2 / CARSI 身份漫游</td>
-                <td class="py-3 px-3 text-success font-bold">高校师生免费 (国家拨款)</td>
-                <td class="py-3 px-3 text-success font-bold">★★★★★ (国家级合法合规)</td>
-                <td class="py-3 px-3 text-success font-bold">&lt; 2% (独享教育网出口)</td>
-                <td class="py-3 px-3 text-muted-foreground">需校园网统一身份认证，仅限学术数据库白名单访问</td>
-                <td class="py-3 px-3 text-foreground">IEEE、Nature、arXiv、Elsevier 文献下载</td>
+                <td class="text-foreground px-3 py-3 font-bold">国家学术专线</td>
+                <td class="text-info px-3 py-3 font-bold">CERNET2 / CARSI 身份漫游</td>
+                <td class="text-success px-3 py-3 font-bold">高校师生免费 (国家拨款)</td>
+                <td class="text-success px-3 py-3 font-bold">★★★★★ (国家级合法合规)</td>
+                <td class="text-success px-3 py-3 font-bold">&lt; 2% (独享教育网出口)</td>
+                <td class="text-muted-foreground px-3 py-3"
+                  >需校园网统一身份认证，仅限学术数据库白名单访问</td
+                >
+                <td class="text-foreground px-3 py-3">IEEE、Nature、arXiv、Elsevier 文献下载</td>
               </tr>
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-foreground">商业拉新试用</td>
-                <td class="py-3 px-3 text-info font-bold">正规机场免费试用 (5GB-10GB)</td>
-                <td class="py-3 px-3 text-primary font-bold">体验额度，用完即止</td>
-                <td class="py-3 px-3 text-info font-bold">★★★★☆ (商业级标准加密)</td>
-                <td class="py-3 px-3 text-success font-bold">&lt; 5% (走正规物理中继)</td>
-                <td class="py-3 px-3 text-muted-foreground">部分小平台存在收集邮箱撞库套路，必须用临时邮箱注册</td>
-                <td class="py-3 px-3 text-foreground">突发断网紧急抢修、Git 代码拉取、应急排障</td>
+                <td class="text-foreground px-3 py-3 font-bold">商业拉新试用</td>
+                <td class="text-info px-3 py-3 font-bold">正规机场免费试用 (5GB-10GB)</td>
+                <td class="text-primary px-3 py-3 font-bold">体验额度，用完即止</td>
+                <td class="text-info px-3 py-3 font-bold">★★★★☆ (商业级标准加密)</td>
+                <td class="text-success px-3 py-3 font-bold">&lt; 5% (走正规物理中继)</td>
+                <td class="text-muted-foreground px-3 py-3"
+                  >部分小平台存在收集邮箱撞库套路，必须用临时邮箱注册</td
+                >
+                <td class="text-foreground px-3 py-3">突发断网紧急抢修、Git 代码拉取、应急排障</td>
               </tr>
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-foreground">公有云免费层</td>
-                <td class="py-3 px-3 text-info font-bold">AWS Free Tier / Oracle Cloud Free</td>
-                <td class="py-3 px-3 text-muted-foreground">首年每月 100GB 免费流</td>
-                <td class="py-3 px-3 text-success font-bold">★★★★☆ (自建独享·隐私自主)</td>
-                <td class="py-3 px-3 text-warning font-bold">40% ~ 70% (公网直连路由)</td>
-                <td class="py-3 px-3 text-muted-foreground">需外币信用卡绑定，IP 极易被墙，超出流量计费极贵</td>
-                <td class="py-3 px-3 text-foreground">有 Linux 基础的极客折腾测试、个人专属代理</td>
+                <td class="text-foreground px-3 py-3 font-bold">公有云免费层</td>
+                <td class="text-info px-3 py-3 font-bold">AWS Free Tier / Oracle Cloud Free</td>
+                <td class="text-muted-foreground px-3 py-3">首年每月 100GB 免费流</td>
+                <td class="text-success px-3 py-3 font-bold">★★★★☆ (自建独享·隐私自主)</td>
+                <td class="text-warning px-3 py-3 font-bold">40% ~ 70% (公网直连路由)</td>
+                <td class="text-muted-foreground px-3 py-3"
+                  >需外币信用卡绑定，IP 极易被墙，超出流量计费极贵</td
+                >
+                <td class="text-foreground px-3 py-3">有 Linux 基础的极客折腾测试、个人专属代理</td>
               </tr>
               <tr class="hover:bg-accent/20">
-                <td class="py-3 px-3 font-bold text-foreground">开源社区中继</td>
-                <td class="py-3 px-3 text-info font-bold">Tor 洋葱网络 (Snowflake/Bridge)</td>
-                <td class="py-3 px-3 text-success font-bold">完全免费 (非营利组织运作)</td>
-                <td class="py-3 px-3 text-success font-bold">★★★★★ (三重跳板全加密)</td>
-                <td class="py-3 px-3 text-primary font-bold">极高 (延迟通常 800ms+)</td>
-                <td class="py-3 px-3 text-muted-foreground">多层中继导致带宽极低（通常仅 500Kbps），不可看视频</td>
-                <td class="py-3 px-3 text-foreground">对匿名度有极端要求的轻量文本通讯与高隔离环境</td>
+                <td class="text-foreground px-3 py-3 font-bold">开源社区中继</td>
+                <td class="text-info px-3 py-3 font-bold">Tor 洋葱网络 (Snowflake/Bridge)</td>
+                <td class="text-success px-3 py-3 font-bold">完全免费 (非营利组织运作)</td>
+                <td class="text-success px-3 py-3 font-bold">★★★★★ (三重跳板全加密)</td>
+                <td class="text-primary px-3 py-3 font-bold">极高 (延迟通常 800ms+)</td>
+                <td class="text-muted-foreground px-3 py-3"
+                  >多层中继导致带宽极低（通常仅 500Kbps），不可看视频</td
+                >
+                <td class="text-foreground px-3 py-3"
+                  >对匿名度有极端要求的轻量文本通讯与高隔离环境</td
+                >
               </tr>
               <tr class="hover:bg-accent/20 bg-destructive/10">
-                <td class="py-3 px-3 font-bold text-destructive">公开聚合抓取池</td>
-                <td class="py-3 px-3 text-destructive font-bold">GitHub / TG 批量免费订阅池</td>
-                <td class="py-3 px-3 text-muted-foreground">表面免费 (背后流量变现)</td>
-                <td class="py-3 px-3 text-destructive font-bold">★☆☆☆☆ (高危黑产蜜罐)</td>
-                <td class="py-3 px-3 text-destructive font-bold">&gt; 75% (严重拥塞断流)</td>
-                <td class="py-3 px-3 text-destructive font-bold">中间人嗅探、Cookie 盗取、假根证书注入、僵尸网络感染</td>
-                <td class="py-3 px-3 text-destructive font-bold">严禁在任何主力手机与办公电脑上长期挂载</td>
+                <td class="text-destructive px-3 py-3 font-bold">公开聚合抓取池</td>
+                <td class="text-destructive px-3 py-3 font-bold">GitHub / TG 批量免费订阅池</td>
+                <td class="text-muted-foreground px-3 py-3">表面免费 (背后流量变现)</td>
+                <td class="text-destructive px-3 py-3 font-bold">★☆☆☆☆ (高危黑产蜜罐)</td>
+                <td class="text-destructive px-3 py-3 font-bold">&gt; 75% (严重拥塞断流)</td>
+                <td class="text-destructive px-3 py-3 font-bold"
+                  >中间人嗅探、Cookie 盗取、假根证书注入、僵尸网络感染</td
+                >
+                <td class="text-destructive px-3 py-3 font-bold"
+                  >严禁在任何主力手机与办公电脑上长期挂载</td
+                >
               </tr>
             </tbody>
           </table>
         </div>
-        <div class="text-xs font-mono text-muted-foreground leading-relaxed bg-background p-3 border border-border">
-          <strong class="text-primary">核心评测结论：</strong> 世界上没有不需要运营成本的网络通道。大厂合规项目（如 Cloudflare WARP）依靠其庞大的全球边缘计算网络分摊成本，高校学术通道依赖国家财政与教育科研专项拨款，而网络上所谓“无限量、免翻墙、不花钱”的第三方野鸡软件或公开抓取池，其本质是<strong>“如果你不为产品付费，你本身就是被出售的产品”</strong>。
+        <div
+          class="text-muted-foreground bg-background border-border border p-3 font-mono text-xs leading-relaxed"
+        >
+          <strong class="text-primary">核心评测结论：</strong> 世界上没有不需要运营成本的网络通道。大厂合规项目（如
+          Cloudflare WARP）依靠其庞大的全球边缘计算网络分摊成本，高校学术通道依赖国家财政与教育科研专项拨款，而网络上所谓“无限量、免翻墙、不花钱”的第三方野鸡软件或公开抓取池，其本质是<strong
+            >“如果你不为产品付费，你本身就是被出售的产品”</strong
+          >。
         </div>
       </PixelPanel>
     </div>
 
     {/* 模块二：底层原理深度剖析 */}
     <div id="module-principles" class="flex flex-col gap-4">
-      <div class="border-l-4 border-info pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-info border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           二、底层原理深度剖析：网络层封装与代理转发的数据包流动真相
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
           弄清楚数据包在经过代理客户端、本地虚拟网卡与国际网络网关时的三次握手与协议封装，是从根本上识别安全漏洞的前提。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
         <div class="flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+          <h3 class="font-display text-foreground text-base uppercase">
             1. OSI 七层模型下的三种主流代理协议与捕获机制对比
           </h3>
           <p class="text-muted-foreground">
             很多网络初学者常将“VPN”与“代理（Proxy）”混为一谈。在现代网络工程实践中，两者在网络协议栈中所处的工作层级有着本质差异：
           </p>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-2">
-            <div class="bg-background border border-border p-4 flex flex-col gap-2">
+          <div class="my-2 grid grid-cols-1 gap-4 md:grid-cols-3">
+            <div class="bg-background border-border flex flex-col gap-2 border p-4">
               <span class="text-primary font-bold">Layer 3 网络层：TUN 虚拟网卡技术</span>
               <p class="text-muted-foreground">
-                典型代表为 <strong>WireGuard (WARP)</strong> 和 Clash Verge 的 TUN 模式。它在操作系统内核中虚拟出一个虚拟网络适配器，接管整机所有网络协议（包括 TCP、UDP、ICMP Ping 包），对上层应用完全透明。无需应用程序支持代理设置，连命令行的 Git、Docker 甚至系统后台更新都会被强制封装进入加密隧道。
+                典型代表为 <strong>WireGuard (WARP)</strong> 和 Clash Verge 的 TUN 模式。它在操作系统内核中虚拟出一个虚拟网络适配器，接管整机所有网络协议（包括
+                TCP、UDP、ICMP Ping 包），对上层应用完全透明。无需应用程序支持代理设置，连命令行的 Git、Docker
+                甚至系统后台更新都会被强制封装进入加密隧道。
               </p>
             </div>
-            <div class="bg-background border border-border p-4 flex flex-col gap-2">
+            <div class="bg-background border-border flex flex-col gap-2 border p-4">
               <span class="text-info font-bold">Layer 4 传输层：SOCKS5 代理机制</span>
               <p class="text-muted-foreground">
-                SOCKS5 协议工作在传输层，它不关心应用层协议内容，只负责建立 TCP 连接转发或 UDP 数据报转发。它支持用户密码认证，但不具备强制加密特性。如果在 SOCKS5 连接外部未包裹 TLS 加密层，中间网络节点可以完全看清原始传输字节。
+                SOCKS5 协议工作在传输层，它不关心应用层协议内容，只负责建立 TCP 连接转发或 UDP
+                数据报转发。它支持用户密码认证，但不具备强制加密特性。如果在 SOCKS5 连接外部未包裹
+                TLS 加密层，中间网络节点可以完全看清原始传输字节。
               </p>
             </div>
-            <div class="bg-background border border-border p-4 flex flex-col gap-2">
+            <div class="bg-background border-border flex flex-col gap-2 border p-4">
               <span class="text-success font-bold">Layer 7 应用层：HTTP CONNECT 隧道</span>
               <p class="text-muted-foreground">
-                典型代表为传统的免费网页代理与老旧的浏览器插件。客户端向代理服务器发起带有 <code>CONNECT host:port</code> 的明文请求头，代理服务器与目标服务器建立 TCP 连接后在双向间盲转发。如果代理服务器篡改证书，将直接获得 HTTPS 明文解密权限。
+                典型代表为传统的免费网页代理与老旧的浏览器插件。客户端向代理服务器发起带有 <code
+                  >CONNECT host:port</code
+                > 的明文请求头，代理服务器与目标服务器建立 TCP 连接后在双向间盲转发。如果代理服务器篡改证书，将直接获得
+                HTTPS 明文解密权限。
               </p>
             </div>
           </div>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             2. GFW 深度包检测（DPI）与公网免费通道的阻断逻辑
           </h3>
           <p class="text-muted-foreground">
-            为什么网上的免费节点极易失效？甚至刚导入客户端能跑两分钟，随后立刻断流？这是因为国际出口骨干网部署了极其精密的<strong>分布式深度包检测系统（DPI）</strong>。
+            为什么网上的免费节点极易失效？甚至刚导入客户端能跑两分钟，随后立刻断流？这是因为国际出口骨干网部署了极其精密的<strong
+              >分布式深度包检测系统（DPI）</strong
+            >。
           </p>
-          <ul class="list-disc list-inside space-y-2 text-muted-foreground pl-2">
+          <ul class="text-muted-foreground list-inside list-disc space-y-2 pl-2">
             <li>
-              <strong>SNI 明文探测与阻断：</strong> 早期 TLS 握手中，客户端发送的 <code>Client Hello</code> 报文中包含有明文的 <code>Server Name Indication (SNI)</code> 域名。若该域名命中敏感黑名单，防火墙直接向双端注入伪造的 <code>TCP RST（复位）</code> 报文，强行掐断连接。
+              <strong>SNI 明文探测与阻断：</strong> 早期 TLS 握手中，客户端发送的 <code
+                >Client Hello</code
+              > 报文中包含有明文的 <code>Server Name Indication (SNI)</code> 域名。若该域名命中敏感黑名单，防火墙直接向双端注入伪造的
+              <code>TCP RST（复位）</code> 报文，强行掐断连接。
             </li>
             <li>
-              <strong>主动探测（Active Probing）机制：</strong> 当防火墙检测到疑似代理协议（如老旧 Shadowsocks 或裸 VMess）的未知加密 TCP 流时，系统会记录目标海外 IP 与端口，并在数秒内自动派遣全国数百个探测探针向该 IP 发送特征数据包。若目标海外服务器对非法探测做出了响应，该 IP 端口将在数分钟内被全网黑洞封锁。
+              <strong>主动探测（Active Probing）机制：</strong> 当防火墙检测到疑似代理协议（如老旧 Shadowsocks
+              或裸 VMess）的未知加密 TCP 流时，系统会记录目标海外 IP 与端口，并在数秒内自动派遣全国数百个探测探针向该
+              IP 发送特征数据包。若目标海外服务器对非法探测做出了响应，该 IP 端口将在数分钟内被全网黑洞封锁。
             </li>
             <li>
-              <strong>公网 QoS 策略性丢包：</strong> 在每天 20:00 至 23:00 的晚高峰，由于中国电信 163 骨干网、中国联通 169 网络的国际出口物理总带宽超饱和，运营商会开启动态 QoS 队列。优先保证企业级专线与政企白名单业务，对于普通家庭宽带发往海外的非标准端口未知加密数据包，强制丢弃 50% 至 85% 的数据报文，造成严重的 TCP 拥塞重传风暴。
+              <strong>公网 QoS 策略性丢包：</strong> 在每天 20:00 至 23:00 的晚高峰，由于中国电信 163
+              骨干网、中国联通 169 网络的国际出口物理总带宽超饱和，运营商会开启动态 QoS 队列。优先保证企业级专线与政企白名单业务，对于普通家庭宽带发往海外的非标准端口未知加密数据包，强制丢弃
+              50% 至 85% 的数据报文，造成严重的 TCP 拥塞重传风暴。
             </li>
           </ul>
         </div>
@@ -355,74 +437,111 @@ const schemaData = {
 
     {/* 模块三：公开免费订阅节点黑产暗网生态与 MITM 蜜罐安全审计 */}
     <div id="module-mitm-audit" class="flex flex-col gap-4">
-      <div class="border-l-4 border-destructive pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-destructive border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           三、公开免费节点与“白嫖订阅池”的黑产蜜罐与中间人（MITM）攻击安全审计
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
           机场cloud安全实验室针对全网抓取的 1,240 个免费公开节点进行的为期 90 天渗透监控报告揭批。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
         <div class="flex flex-col gap-3">
-          <div class="bg-destructive/15 border-2 border-destructive p-4 flex items-center gap-3">
+          <div class="bg-destructive/15 border-destructive flex items-center gap-3 border-2 p-4">
             <span class="text-destructive text-2xl">☠</span>
             <div class="flex flex-col">
-              <span class="font-bold text-destructive text-sm uppercase">高危预警：天下没有免费的午餐，免费往往意味着你就是商品</span>
-              <span class="text-muted-foreground">实测数据表明：公开网络爬虫批量收录的免费节点中，有高达 34.2% 存在主动网络窃密行为，21.7% 被黑产用作重放攻击跳板。</span>
+              <span class="text-destructive text-sm font-bold uppercase"
+                >高危预警：天下没有免费的午餐，免费往往意味着你就是商品</span
+              >
+              <span class="text-muted-foreground"
+                >实测数据表明：公开网络爬虫批量收录的免费节点中，有高达 34.2%
+                存在主动网络窃密行为，21.7% 被黑产用作重放攻击跳板。</span
+              >
             </div>
           </div>
           <p class="text-muted-foreground">
-            许多刚接触科学上网的用户，习惯在 GitHub 搜索“免费节点每日更新”、“V2Ray 免费订阅”，或在 Telegram 频道下载所谓“白嫖节点池”。看似拥有数以千计的节点，实际上潜藏着致命的安全深渊。以下是黑产集团利用免费节点实施攻击的四大核心手法：
+            许多刚接触科学上网的用户，习惯在 GitHub 搜索“免费节点每日更新”、“V2Ray 免费订阅”，或在
+            Telegram
+            频道下载所谓“白嫖节点池”。看似拥有数以千计的节点，实际上潜藏着致命的安全深渊。以下是黑产集团利用免费节点实施攻击的四大核心手法：
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div class="bg-background border border-border p-5 flex flex-col gap-2.5">
-            <span class="text-primary font-bold flex items-center gap-2 text-sm">
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+          <div class="bg-background border-border flex flex-col gap-2.5 border p-5">
+            <span class="text-primary flex items-center gap-2 text-sm font-bold">
               <span>1.</span> 伪造根证书与 HTTPS 中间人解密（SSL Bump）
             </span>
             <p class="text-muted-foreground">
-              某些所谓“免费一键翻墙客户端”或被破解的代理软件，在安装时会诱导用户“信任并安装安全防护证书”。一旦你点击了确认，攻击者便将他们控制的自签名<strong>根证书（Root CA）</strong>植入了你的操作系统受信任存储区。此后，你访问的哪怕是银行、推特、谷歌等全站 HTTPS 网站，攻击者都能在节点服务器端实现 100% 明文解密、查看并记录你的所有账号密码，而浏览器地址栏却依然显示安全的小绿锁！
+              某些所谓“免费一键翻墙客户端”或被破解的代理软件，在安装时会诱导用户“信任并安装安全防护证书”。一旦你点击了确认，攻击者便将他们控制的自签名<strong
+                >根证书（Root CA）</strong
+              >植入了你的操作系统受信任存储区。此后，你访问的哪怕是银行、推特、谷歌等全站 HTTPS
+              网站，攻击者都能在节点服务器端实现 100%
+              明文解密、查看并记录你的所有账号密码，而浏览器地址栏却依然显示安全的小绿锁！
             </p>
           </div>
 
-          <div class="bg-background border border-border p-5 flex flex-col gap-2.5">
-            <span class="text-primary font-bold flex items-center gap-2 text-sm">
+          <div class="bg-background border-border flex flex-col gap-2.5 border p-5">
+            <span class="text-primary flex items-center gap-2 text-sm font-bold">
               <span>2.</span> Session Cookie 截获与免密会话克隆（Cookie Hijacking）
             </span>
             <p class="text-muted-foreground">
-              即便你没有安装恶意证书，部分老旧应用或非全站 HSTS 站点的 HTTP 明文握手依然会经过免费节点。黑产服务器通过挂载 <code>mitmproxy</code> 或 <code>Wireshark</code> 抓包脚本，自动对流经的流量进行模式匹配，提取用户的 <code>Authorization: Bearer</code> 令牌、第三方 OAuth 回调 Token 以及浏览器 <code>Cookie</code>。攻击者可以在无需你密码的情况下，直接把 Cookie 注入他们自己的浏览器，接管你的社交账号与后台管理权限。
+              即便你没有安装恶意证书，部分老旧应用或非全站 HSTS 站点的 HTTP
+              明文握手依然会经过免费节点。黑产服务器通过挂载 <code>mitmproxy</code> 或 <code
+                >Wireshark</code
+              > 抓包脚本，自动对流经的流量进行模式匹配，提取用户的 <code>Authorization: Bearer</code
+              > 令牌、第三方 OAuth 回调 Token 以及浏览器 <code>Cookie</code
+              >。攻击者可以在无需你密码的情况下，直接把 Cookie
+              注入他们自己的浏览器，接管你的社交账号与后台管理权限。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-5 flex flex-col gap-2.5">
-            <span class="text-primary font-bold flex items-center gap-2 text-sm">
+          <div class="bg-background border-border flex flex-col gap-2.5 border p-5">
+            <span class="text-primary flex items-center gap-2 text-sm font-bold">
               <span>3.</span> DNS 污染投毒与钓鱼网站定向重定向
             </span>
             <p class="text-muted-foreground">
-              免费节点运营者完全掌控了该节点上游的 DNS 解析器。当你在连接状态下访问加密货币交易所（如 Binance、OKX）、数字钱包或在线支付接口时，恶意 DNS 服务器会返回虚假的仿冒钓鱼 IP。钓鱼网页与真实官网 UI 像素级一致，一旦你输入助记词或手机验证码，资产将在秒级内被自动化脚本全额划走。
+              免费节点运营者完全掌控了该节点上游的 DNS
+              解析器。当你在连接状态下访问加密货币交易所（如
+              Binance、OKX）、数字钱包或在线支付接口时，恶意 DNS 服务器会返回虚假的仿冒钓鱼
+              IP。钓鱼网页与真实官网 UI
+              像素级一致，一旦你输入助记词或手机验证码，资产将在秒级内被自动化脚本全额划走。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-5 flex flex-col gap-2.5">
-            <span class="text-primary font-bold flex items-center gap-2 text-sm">
+          <div class="bg-background border-border flex flex-col gap-2.5 border p-5">
+            <span class="text-primary flex items-center gap-2 text-sm font-bold">
               <span>4.</span> 分布式拒绝服务（DDoS）僵尸网络肉鸡
             </span>
             <p class="text-muted-foreground">
-              很多打着“完全免费无限制”招牌的客户端程序，在后台静默运行了蠕虫扫描或 P2P 中继组件。你的设备和宽带连接被黑产租借为“住宅代理池（Residential Proxy）”或成为发起对外洪峰攻击（SYN Flood / UDP Amplification）的肉鸡。不仅拖慢家庭网络，甚至可能因涉嫌网络攻击行为收到电信运营商的违规整改封停通知。
+              很多打着“完全免费无限制”招牌的客户端程序，在后台静默运行了蠕虫扫描或 P2P
+              中继组件。你的设备和宽带连接被黑产租借为“住宅代理池（Residential
+              Proxy）”或成为发起对外洪峰攻击（SYN Flood / UDP
+              Amplification）的肉鸡。不仅拖慢家庭网络，甚至可能因涉嫌网络攻击行为收到电信运营商的违规整改封停通知。
             </p>
           </div>
         </div>
 
-        <div class="bg-accent/20 border border-border p-4 rounded flex flex-col gap-2">
-          <strong class="text-foreground">🛡 网络安全防御原则：如果必须使用临时免费节点，请务必执行以下隔离措施：</strong>
-          <ol class="list-decimal list-inside space-y-1 text-muted-foreground">
-            <li>在独立的虚拟机（如 VMware / VirtualBox / Windows Sandbox 沙箱）中运行代理客户端，坚决不放在宿主机主力系统。</li>
-            <li>浏览器全程开启“无痕/隐身模式”，不登录任何重要个人邮箱、社交账号、银行或电商网站。</li>
+        <div class="bg-accent/20 border-border flex flex-col gap-2 rounded border p-4">
+          <strong class="text-foreground"
+            >🛡 网络安全防御原则：如果必须使用临时免费节点，请务必执行以下隔离措施：</strong
+          >
+          <ol class="text-muted-foreground list-inside list-decimal space-y-1">
+            <li>
+              在独立的虚拟机（如 VMware / VirtualBox / Windows Sandbox
+              沙箱）中运行代理客户端，坚决不放在宿主机主力系统。
+            </li>
+            <li>
+              浏览器全程开启“无痕/隐身模式”，不登录任何重要个人邮箱、社交账号、银行或电商网站。
+            </li>
             <li>严格检查操作系统“受信任的根证书颁发机构”，凡是未知机构签发的证书一律手动删除。</li>
-            <li>配置 Clash / Sing-box 分流规则，将局域网内网 IP（<code>192.168.0.0/16</code>、<code>10.0.0.0/8</code>）强制设为 <code>DIRECT（直连）</code>，防止本地局域网打印机与 NAS 资源被穿透泄露。</li>
+            <li>
+              配置 Clash / Sing-box 分流规则，将局域网内网 IP（<code>192.168.0.0/16</code>、<code
+                >10.0.0.0/8</code
+              >）强制设为 <code>DIRECT（直连）</code>，防止本地局域网打印机与 NAS 资源被穿透泄露。
+            </li>
           </ol>
         </div>
       </PixelPanel>
@@ -430,97 +549,140 @@ const schemaData = {
 
     {/* 模块四：Cloudflare WARP 免费无限流终极调优手册 */}
     <div id="module-warp-guide" class="flex flex-col gap-4">
-      <div class="border-l-4 border-success pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-success border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           四、Cloudflare WARP 免费无限流 WireGuard 终极优化与 Clean IP 优选实战
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
           利用全球顶级 CDN 基础设施构建真正零成本、高隐私、无日志出海方案的硬核落地步骤。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
         <div class="flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+          <h3 class="font-display text-foreground text-base uppercase">
             1. Cloudflare WARP 底层网络拓扑与 Anycast 机制解密
           </h3>
           <p class="text-muted-foreground">
-            Cloudflare WARP 是全球最大的互联网基础设施服务商之一 Cloudflare 旗下的安全隧道服务。其核心技术基于 <strong>WireGuard</strong> 协议（由 Cloudflare 开发的高性能 Rust 实现 <code>BoringTun</code> 驱动）。与第三方小作坊不同，Cloudflare 承诺严格遵守隐私政策，绝不记录用户网络浏览历史，也不会将用户行为数据变现出售。
+            Cloudflare WARP 是全球最大的互联网基础设施服务商之一 Cloudflare
+            旗下的安全隧道服务。其核心技术基于 <strong>WireGuard</strong> 协议（由 Cloudflare 开发的高性能
+            Rust 实现 <code>BoringTun</code> 驱动）。与第三方小作坊不同，Cloudflare 承诺严格遵守隐私政策，绝不记录用户网络浏览历史，也不会将用户行为数据变现出售。
           </p>
           <p class="text-muted-foreground">
-            WARP 的天然优势在于其 <strong>BGP Anycast（任播）</strong> 架构：全球数百个数据中心共享相同的 IP 地址段（如 <code>162.159.192.0/24</code>、<code>162.159.193.0/24</code>）。当客户端发起连接时，BGP 路由协议在理论上会自动将数据包导向地理距离最近的边缘节点（如香港、东京、新加坡或圣何塞）。
+            WARP 的天然优势在于其 <strong>BGP Anycast（任播）</strong> 架构：全球数百个数据中心共享相同的
+            IP 地址段（如 <code>162.159.192.0/24</code>、<code>162.159.193.0/24</code
+            >）。当客户端发起连接时，BGP
+            路由协议在理论上会自动将数据包导向地理距离最近的边缘节点（如香港、东京、新加坡或圣何塞）。
           </p>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             2. 国内直接使用 WARP 无法握手的症结与“优选 Clean IP”解决方案
           </h3>
           <p class="text-muted-foreground">
-            很多国内用户下载了 Cloudflare 官方客户端（俗称“1.1.1.1”应用）后，点击开关一直转圈，显示“正在连接”，最后报错连接超时。导致这一现象的原因有两点：
+            很多国内用户下载了 Cloudflare
+            官方客户端（俗称“1.1.1.1”应用）后，点击开关一直转圈，显示“正在连接”，最后报错连接超时。导致这一现象的原因有两点：
           </p>
-          <ul class="list-disc list-inside space-y-1 text-muted-foreground pl-2">
-            <li><strong>官方默认 Endpoint 阻断：</strong> 官方客户端内置的默认接入点（如 <code>162.159.192.1:2408</code>）在中国大陆境内运营商骨干网已被深度识别并直接丢弃 UDP 握手包。</li>
-            <li><strong>Anycast 路由劣化：</strong> 国内部分运营商（尤其是中国移动）会将发往 Cloudflare 的流量绕行至美国西海岸西雅图或洛杉矶节点，往返延迟高达 300ms 以上，且晚高峰 UDP 丢包率超过 70%。</li>
+          <ul class="text-muted-foreground list-inside list-disc space-y-1 pl-2">
+            <li>
+              <strong>官方默认 Endpoint 阻断：</strong> 官方客户端内置的默认接入点（如 <code
+                >162.159.192.1:2408</code
+              >）在中国大陆境内运营商骨干网已被深度识别并直接丢弃 UDP 握手包。
+            </li>
+            <li>
+              <strong>Anycast 路由劣化：</strong> 国内部分运营商（尤其是中国移动）会将发往 Cloudflare
+              的流量绕行至美国西海岸西雅图或洛杉矶节点，往返延迟高达 300ms 以上，且晚高峰 UDP 丢包率超过
+              70%。
+            </li>
           </ul>
           <p class="text-muted-foreground">
-            <strong>解决之道：</strong> 必须脱离官方黑盒客户端，使用开源工具（如 <code>WARP-Endpoint-IP</code> 或 <code>warp-yxip</code>）对 Cloudflare 官方庞大的 IP 库进行本地 Ping 测速与 TCP/UDP 握手抖动探测，筛选出延迟在 40ms~90ms 之间、且丢包率为 0% 的<strong>“Clean IP（洁净优选端点）”</strong>。
+            <strong>解决之道：</strong> 必须脱离官方黑盒客户端，使用开源工具（如 <code
+              >WARP-Endpoint-IP</code
+            > 或 <code>warp-yxip</code>）对 Cloudflare 官方庞大的 IP 库进行本地 Ping 测速与 TCP/UDP
+            握手抖动探测，筛选出延迟在 40ms~90ms 之间、且丢包率为 0% 的<strong
+              >“Clean IP（洁净优选端点）”</strong
+            >。
           </p>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             3. 实战操作步骤：生成 WireGuard 配置文件与 MTU 调优
           </h3>
           <div class="space-y-3">
-            <div class="bg-background border border-border p-4 flex flex-col gap-2">
-              <span class="text-primary font-bold">第一步：注册并提取标准 WireGuard 凭据（使用 wgcf 开源工具）</span>
+            <div class="bg-background border-border flex flex-col gap-2 border p-4">
+              <span class="text-primary font-bold"
+                >第一步：注册并提取标准 WireGuard 凭据（使用 wgcf 开源工具）</span
+              >
               <p class="text-muted-foreground">
                 在 GitHub 下载 <code>wgcf</code> 命令行工具，执行以下两条命令：
               </p>
-              <pre class="bg-accent/30 p-2.5 rounded border border-border/80 overflow-x-auto text-[11px] text-foreground font-mono">
+              <pre
+                class="bg-accent/30 border-border/80 text-foreground overflow-x-auto rounded border p-2.5 font-mono text-[11px]">
 wgcf register
 wgcf generate</pre>
               <p class="text-muted-foreground">
-                命令执行后，本地将生成 <code>wgcf-profile.conf</code> 标准 WireGuard 配置文件，其中包含专属于你的 <code>PrivateKey</code>、<code>PublicKey</code> 以及分配的虚拟 IPv4 和 IPv6 地址。
+                命令执行后，本地将生成 <code>wgcf-profile.conf</code> 标准 WireGuard 配置文件，其中包含专属于你的
+                <code>PrivateKey</code>、<code>PublicKey</code> 以及分配的虚拟 IPv4 和 IPv6 地址。
               </p>
             </div>
 
-            <div class="bg-background border border-border p-4 flex flex-col gap-2">
+            <div class="bg-background border-border flex flex-col gap-2 border p-4">
               <span class="text-info font-bold">第二步：运行优选脚本锁定低延迟 Endpoint</span>
               <p class="text-muted-foreground">
                 运行开源 <code>warp-yxip</code> 批处理脚本，脚本会自动向数千个 Cloudflare 边缘 IP 发送测速探测包。通常电信推荐优选上海-圣何塞直连端点或香港端点；联通优先锁定日本东京或德国法兰克福端点；移动用户优先测试香港与新加坡端点。
               </p>
               <p class="text-muted-foreground">
-                筛选出结果后，将 <code>wgcf-profile.conf</code> 文件中的 <code>Endpoint = 162.159.192.1:2408</code> 替换为你实测表现最优的 IP 与端口（例如 <code>162.159.193.10:1074</code>）。
+                筛选出结果后，将 <code>wgcf-profile.conf</code> 文件中的 <code
+                  >Endpoint = 162.159.192.1:2408</code
+                > 替换为你实测表现最优的 IP 与端口（例如 <code>162.159.193.10:1074</code>）。
               </p>
             </div>
 
-            <div class="bg-background border border-border p-4 flex flex-col gap-2">
-              <span class="text-success font-bold">第三步：MTU 关键调优（规避 UDP 报文分片阻断）</span>
+            <div class="bg-background border-border flex flex-col gap-2 border p-4">
+              <span class="text-success font-bold"
+                >第三步：MTU 关键调优（规避 UDP 报文分片阻断）</span
+              >
               <p class="text-muted-foreground">
-                这是 90% 用户在使用 WARP 时卡顿甚至网页打不开的核心病根！标准以太网的 MTU 值为 1500。WireGuard 隧道会在数据包外部加上 32 字节的 UDP/IP 报头，且国内运营商部分 PPPoE 宽带接入的 MTU 本身就只有 1492。若 WireGuard 配置中的 MTU 设置过高（如默认的 1420），超过路径 MTU（Path MTU）的数据包会被强制分片，而国内许多路由器和安全网关会直接丢弃 UDP 分片包！
+                这是 90% 用户在使用 WARP 时卡顿甚至网页打不开的核心病根！标准以太网的 MTU 值为
+                1500。WireGuard 隧道会在数据包外部加上 32 字节的 UDP/IP 报头，且国内运营商部分 PPPoE
+                宽带接入的 MTU 本身就只有 1492。若 WireGuard 配置中的 MTU 设置过高（如默认的
+                1420），超过路径 MTU（Path
+                MTU）的数据包会被强制分片，而国内许多路由器和安全网关会直接丢弃 UDP 分片包！
               </p>
               <p class="text-foreground font-bold">
-                🛠 黄金配置参数：在 <code>wgcf-profile.conf</code> 的 <code>[Interface]</code> 小节中，明确写入：<code class="text-primary">MTU = 1280</code> 或 <code class="text-primary">MTU = 1330</code>。1280 是 IPv6 协议规定的最小 MTU 限制，能 100% 杜绝任何路径分片导致的丢包。
+                🛠 黄金配置参数：在 <code>wgcf-profile.conf</code> 的 <code>[Interface]</code> 小节中，明确写入：<code
+                  class="text-primary">MTU = 1280</code
+                > 或 <code class="text-primary">MTU = 1330</code>。1280 是 IPv6 协议规定的最小 MTU
+                限制，能 100% 杜绝任何路径分片导致的丢包。
               </p>
             </div>
           </div>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             4. 解决 WARP 频繁触发 Google 人机验证（CAPTCHA）的避坑秘笈
           </h3>
           <p class="text-muted-foreground">
-            由于 Cloudflare WARP 是公共 IP 池，全球有数百万用户共享相同的出站 IP，许多爬虫也在滥用 WARP 节点，导致 Google 搜索引擎将 WARP IP 标记为高风险爬虫源，频繁弹出让人抓狂的拼图人机验证。
+            由于 Cloudflare WARP 是公共 IP 池，全球有数百万用户共享相同的出站 IP，许多爬虫也在滥用
+            WARP 节点，导致 Google 搜索引擎将 WARP IP
+            标记为高风险爬虫源，频繁弹出让人抓狂的拼图人机验证。
           </p>
           <p class="text-muted-foreground">
             <strong>破局思路：</strong> 建议在 Clash Verge Rev 或 Sing-box 客户端中将 WARP 配置为策略子节点，配合自定义分流规则：
           </p>
-          <ul class="list-disc list-inside space-y-1 text-muted-foreground pl-2">
-            <li>将 <code>DOMAIN-SUFFIX,google.com</code>、<code>DOMAIN-SUFFIX,bing.com</code> 等日常搜索引擎流量通过直连或低风控节点分流；</li>
-            <li>将 GitHub、维基百科、境外开源软件镜像站等真正需要大流量加速的域名指向 WARP WireGuard 策略组，发挥其无限免费流量的最大优势。</li>
+          <ul class="text-muted-foreground list-inside list-disc space-y-1 pl-2">
+            <li>
+              将 <code>DOMAIN-SUFFIX,google.com</code>、<code>DOMAIN-SUFFIX,bing.com</code> 等日常搜索引擎流量通过直连或低风控节点分流；
+            </li>
+            <li>
+              将 GitHub、维基百科、境外开源软件镜像站等真正需要大流量加速的域名指向 WARP WireGuard
+              策略组，发挥其无限免费流量的最大优势。
+            </li>
           </ul>
         </div>
       </PixelPanel>
@@ -528,72 +690,94 @@ wgcf generate</pre>
 
     {/* 模块五：高校与科研人员合规学术免翻墙通道 */}
     <div id="module-carsi-cernet" class="flex flex-col gap-4">
-      <div class="border-l-4 border-info pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-info border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           五、高校师生与科研工作者合规学术专属出海通道全解
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
           绝大多数高校研究生和科研人员根本不需要购买翻墙工具！国家和高校已投资数亿元铺设了合法且高速的学术专属通道。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
         <div class="flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+          <h3 class="font-display text-foreground text-base uppercase">
             1. CERNET2 骨干网与国家学术科研国际专线背景
           </h3>
           <p class="text-muted-foreground">
-            中国教育和科研计算机网（CERNET）由教育部领导、清华大学等高校联合承建，拥有覆盖全国的独立骨干光纤网络。其中 <strong>CERNET2</strong> 是我国最大的下一代纯 IPv6 互联网试验网。国家为支持高水平科技自立自强，为 CERNET 批复了专用的高带宽国际学术出口通道，直连欧美及亚太国家级教育科研网（如美国的 Internet2、欧洲的 GÉANT 以及亚太的 APAN）。
+            中国教育和科研计算机网（CERNET）由教育部领导、清华大学等高校联合承建，拥有覆盖全国的独立骨干光纤网络。其中
+            <strong>CERNET2</strong> 是我国最大的下一代纯 IPv6 互联网试验网。国家为支持高水平科技自立自强，为
+            CERNET 批复了专用的高带宽国际学术出口通道，直连欧美及亚太国家级教育科研网（如美国的 Internet2、欧洲的
+            GÉANT 以及亚太的 APAN）。
           </p>
           <p class="text-muted-foreground">
-            该通道对纯学术类文献站点（如 IEEE Xplore、Nature、Science、SpringerLink、Elsevier ScienceDirect、arXiv 等）拥有合规的物理直通出口，晚高峰不挤占民用公网宽带，下载速度常年保持在百兆以上。
+            该通道对纯学术类文献站点（如 IEEE Xplore、Nature、Science、SpringerLink、Elsevier
+            ScienceDirect、arXiv
+            等）拥有合规的物理直通出口，晚高峰不挤占民用公网宽带，下载速度常年保持在百兆以上。
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 border-t border-border pt-4">
-          <div class="bg-background border border-border p-5 flex flex-col gap-3">
-            <span class="text-info font-bold text-sm flex items-center gap-2">
+        <div class="border-border grid grid-cols-1 gap-5 border-t pt-4 md:grid-cols-2">
+          <div class="bg-background border-border flex flex-col gap-3 border p-5">
+            <span class="text-info flex items-center gap-2 text-sm font-bold">
               <span>🎓</span> CARSI 身份认证联盟校外免翻墙漫游机制
             </span>
             <p class="text-muted-foreground">
-              <strong>CARSI（中国教育科研计算机网统一认证与资源共享基础设施）</strong> 是基于 <code>Shibboleth / SAML 2.0</code> 跨域单点登录标准构建的身份认证体系。目前全国已有超 600 所高校加入该联盟。
+              <strong>CARSI（中国教育科研计算机网统一认证与资源共享基础设施）</strong> 是基于 <code
+                >Shibboleth / SAML 2.0</code
+              > 跨域单点登录标准构建的身份认证体系。目前全国已有超 600 所高校加入该联盟。
             </p>
             <p class="text-muted-foreground">
               <strong>使用方法：</strong> 当你在校外使用家庭宽带访问 Springer、Nature 或 IEEE 官网时：
             </p>
-            <ol class="list-decimal list-inside space-y-1 text-muted-foreground pl-1">
-              <li>点击网页右上角的 <strong>Institutional Login（机构登录）</strong> 或 <strong>Sign in via CARSI</strong>；</li>
+            <ol class="text-muted-foreground list-inside list-decimal space-y-1 pl-1">
+              <li>
+                点击网页右上角的 <strong>Institutional Login（机构登录）</strong> 或 <strong
+                  >Sign in via CARSI</strong
+                >；
+              </li>
               <li>在机构列表搜索你的大学中文名称（如“清华大学”或“浙江大学”）；</li>
               <li>页面将自动跳转回你所在学校的统一身份认证平台（输入你的学号与教务密码）；</li>
               <li>认证成功后自动跳回数据库，即可直接免费下载学校已购买的昂贵外文期刊全文！</li>
             </ol>
           </div>
 
-          <div class="bg-background border border-border p-5 flex flex-col gap-3">
-            <span class="text-success font-bold text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-3 border p-5">
+            <span class="text-success flex items-center gap-2 text-sm font-bold">
               <span>🏛</span> 高校官方 WebVPN 代理的正确打开方式
             </span>
             <p class="text-muted-foreground">
-              传统客户端式 VPN（如 EasyConnect）常因驱动冲突、劫持全局路由而导致电脑卡顿和蓝屏。如今 90% 的高校已升级为基于反向代理 URL 重写技术的 <strong>WebVPN 系统</strong>。
+              传统客户端式 VPN（如 EasyConnect）常因驱动冲突、劫持全局路由而导致电脑卡顿和蓝屏。如今
+              90% 的高校已升级为基于反向代理 URL 重写技术的 <strong>WebVPN 系统</strong>。
             </p>
             <p class="text-muted-foreground">
-              <strong>底层原理：</strong> WebVPN 运行在高校数据中心边缘反向代理服务器上。你只需在浏览器打开 <code>vpn.your-university.edu.cn</code>，登录学号后，页面内的所有外文文献超链接会被服务器实时重写加密。数据包从高校机房直达海外学术机房，本地电脑无需安装任何驱动，手机、iPad 也能原生顺畅下载文献。
+              <strong>底层原理：</strong> WebVPN 运行在高校数据中心边缘反向代理服务器上。你只需在浏览器打开
+              <code>vpn.your-university.edu.cn</code
+              >，登录学号后，页面内的所有外文文献超链接会被服务器实时重写加密。数据包从高校机房直达海外学术机房，本地电脑无需安装任何驱动，手机、iPad
+              也能原生顺畅下载文献。
             </p>
             <p class="text-foreground font-bold">
-              💡 避坑提示：校外查资料优先使用 CARSI，速度最快且完全不走本地 VPN 隧道；仅当目标特定数据库未接入 CARSI 联盟时，才退回使用校园 WebVPN。
+              💡 避坑提示：校外查资料优先使用 CARSI，速度最快且完全不走本地 VPN
+              隧道；仅当目标特定数据库未接入 CARSI 联盟时，才退回使用校园 WebVPN。
             </p>
           </div>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             3. 国家科技图书文献中心（NSTL）免费文献求助体系
           </h3>
           <p class="text-muted-foreground">
-            如果你的学校没有订购某篇冷门外文专利或冷门学会论文，切勿去境外非法代下黑产网站付费！我国设有由科技部联合财政部组建的<strong>国家科技图书文献中心（NSTL，网址：nstl.gov.cn）</strong>。
+            如果你的学校没有订购某篇冷门外文专利或冷门学会论文，切勿去境外非法代下黑产网站付费！我国设有由科技部联合财政部组建的<strong
+              >国家科技图书文献中心（NSTL，网址：nstl.gov.cn）</strong
+            >。
           </p>
           <p class="text-muted-foreground">
-            任何中国科研人员注册后，均可发起“文献原文传递申请”。国家图书情报专业馆员会在 24 至 48 小时内从合作的全球图书馆为您调取正版电子副本，绝大多数文献提供完全免费或象征性极低费用的公益传递，100% 权威合法合规。
+            任何中国科研人员注册后，均可发起“文献原文传递申请”。国家图书情报专业馆员会在 24 至 48
+            小时内从合作的全球图书馆为您调取正版电子副本，绝大多数文献提供完全免费或象征性极低费用的公益传递，100%
+            权威合法合规。
           </p>
         </div>
       </PixelPanel>
@@ -601,77 +785,96 @@ wgcf generate</pre>
 
     {/* 模块六：商业机场免费试用（Trial）白嫖防坑规则 */}
     <div id="module-trial-rules" class="flex flex-col gap-4">
-      <div class="border-l-4 border-warning pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-warning border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           六、商业机场免费试用（White-Label Trial）白嫖生存法则与防坑指南
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
           如何在突发断网或应急下载海外驱动时，安全白嫖商业机场拉新体验额度而绝不泄露个人隐私与财务信息。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
         <div class="flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+          <h3 class="font-display text-foreground text-base uppercase">
             1. 商业机场“注册送流量”的运营逻辑与黑产羊毛博弈
           </h3>
           <p class="text-muted-foreground">
-            为了吸引新付费用户，很多中大型商业机场会在注册页面赠送 1GB 至 10GB 的 24 小时体验流量，或者提供 0.1 元的极低门槛首月试用包。这类节点的优势是走的是正规机场的高速中继链路，速度通常远超网络公开发放的垃圾节点。
+            为了吸引新付费用户，很多中大型商业机场会在注册页面赠送 1GB 至 10GB 的 24
+            小时体验流量，或者提供 0.1
+            元的极低门槛首月试用包。这类节点的优势是走的是正规机场的高速中继链路，速度通常远超网络公开发放的垃圾节点。
           </p>
           <p class="text-muted-foreground">
             然而，随着黑产羊毛党使用自动化脚本批量注册机刷取试用流量，许多机场上线了严苛的“防御机制”。如果不了解其中的门道，普通用户极易踩坑。
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-border pt-4">
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
+        <div class="border-border grid grid-cols-1 gap-4 border-t pt-4 md:grid-cols-3">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
             <span class="text-primary font-bold">法则一：严禁使用主力个人邮箱</span>
             <p class="text-muted-foreground">
               商业机场属于高风险边缘行业，其用户数据库缺乏严谨的安全合规审计。很多不良站长在机场经营不善时，会将数据库中的用户邮箱和密码直接倒卖给电信诈骗或垃圾营销团伙。
             </p>
             <p class="text-foreground font-bold">
-              ✔ 解决方案：注册试用必须使用独立的临时匿名别名邮箱（如 Duck.com 隐私邮箱、ProtonMail 别名或临时 10-Minute-Mail），保护个人真实主邮箱绝不外泄。
+              ✔ 解决方案：注册试用必须使用独立的临时匿名别名邮箱（如 Duck.com 隐私邮箱、ProtonMail
+              别名或临时 10-Minute-Mail），保护个人真实主邮箱绝不外泄。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
             <span class="text-info font-bold">法则二：密码绝对独立，拒绝撞库</span>
             <p class="text-muted-foreground">
-              很多初学者图省事，在试用机场注册时随意填写真实微信、QQ 或常用个人密码。黑客获得泄露数据库后，会使用脚本全网批量撞库，尝试登录你的网易邮箱、Steam、Apple ID 等核心平台。
+              很多初学者图省事，在试用机场注册时随意填写真实微信、QQ
+              或常用个人密码。黑客获得泄露数据库后，会使用脚本全网批量撞库，尝试登录你的网易邮箱、Steam、Apple
+              ID 等核心平台。
             </p>
             <p class="text-foreground font-bold">
-              ✔ 解决方案：使用密码管理器（如 1Password、Bitwarden 或浏览器自带随机密码生成器）生成 16 位以上无规律强密码，做到“一站一密”。
+              ✔ 解决方案：使用密码管理器（如 1Password、Bitwarden 或浏览器自带随机密码生成器）生成
+              16 位以上无规律强密码，做到“一站一密”。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
             <span class="text-warning font-bold">法则三：警惕免密签约与自动扣费</span>
             <p class="text-muted-foreground">
-              凡是在注册时弹出“签约自动续费即可免费试用 7 天”、“绑定海外信用卡扣除 $0 预授权”的不知名小平台，99% 是专门收割粗心用户的套路陷阱！
+              凡是在注册时弹出“签约自动续费即可免费试用 7 天”、“绑定海外信用卡扣除 $0
+              预授权”的不知名小平台，99% 是专门收割粗心用户的套路陷阱！
             </p>
             <p class="text-foreground font-bold">
-              ✔ 解决方案：坚决不绑定任何真实信用卡或借记卡。凡要求输入 CVV 码或开通自动扣款协议的所谓免费试用，立刻关闭网页并离开。
+              ✔ 解决方案：坚决不绑定任何真实信用卡或借记卡。凡要求输入 CVV
+              码或开通自动扣款协议的所谓免费试用，立刻关闭网页并离开。
             </p>
           </div>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             2. 客户端订阅分流隔离：防止试用机场下发恶意规则
           </h3>
           <p class="text-muted-foreground">
-            当你将试用机场的订阅链接导入 Clash Verge Rev 或小火箭（Shadowrocket）时，该配置文件可能包含站长编写的远程分流规则集。若不良站长在规则中恶意注入：
+            当你将试用机场的订阅链接导入 Clash Verge Rev
+            或小火箭（Shadowrocket）时，该配置文件可能包含站长编写的远程分流规则集。若不良站长在规则中恶意注入：
           </p>
-          <pre class="bg-accent/30 p-2.5 rounded border border-border/80 overflow-x-auto text-[11px] text-foreground font-mono">
+          <pre
+            class="bg-accent/30 border-border/80 text-foreground overflow-x-auto rounded border p-2.5 font-mono text-[11px]">
 # 恶意规则示例：故意将国内百度、微信流量强制走海外代理进行流量偷窥
 DOMAIN-SUFFIX,baidu.com,PROXY
 DOMAIN-SUFFIX,qq.com,PROXY</pre>
           <p class="text-muted-foreground">
             这会导致你的国内日常上网流量全部被劫持到其海外服务器上。因此，在导入任何未知小机场的订阅时：
           </p>
-          <ul class="list-disc list-inside space-y-1 text-muted-foreground pl-2">
-            <li>在客户端设置中关闭“使用订阅自带的远程规则配置”，改用本地标准 <code>ACL4SSR</code> 或 <code>Loyalsoldier</code> 官方权威分流规则集；</li>
-            <li>仅将该机场的服务器节点作为一个节点策略组导入，确保国内直连名单（China Direct）受本地严格保护。</li>
+          <ul class="text-muted-foreground list-inside list-disc space-y-1 pl-2">
+            <li>
+              在客户端设置中关闭“使用订阅自带的远程规则配置”，改用本地标准 <code>ACL4SSR</code> 或 <code
+                >Loyalsoldier</code
+              > 官方权威分流规则集；
+            </li>
+            <li>
+              仅将该机场的服务器节点作为一个节点策略组导入，确保国内直连名单（China
+              Direct）受本地严格保护。
+            </li>
           </ul>
         </div>
       </PixelPanel>
@@ -679,68 +882,97 @@ DOMAIN-SUFFIX,qq.com,PROXY</pre>
 
     {/* 模块七：国际出口带宽财务账本：为什么不存在真正免费的 IEPL 商业专线？ */}
     <div id="module-bandwidth-cost" class="flex flex-col gap-4">
-      <div class="border-l-4 border-primary pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-primary border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           七、国际带宽财务账本：为什么世界上不存在真正“免费”的商业专线？
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
-          揭开跨境物理海底光缆与机房 BGP 接入的真实成本底牌，算清楚“天天到处找免费节点”与“正规月付专线”的时间与经济总账。
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
+          揭开跨境物理海底光缆与机房 BGP
+          接入的真实成本底牌，算清楚“天天到处找免费节点”与“正规月付专线”的时间与经济总账。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
         <div class="flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+          <h3 class="font-display text-foreground text-base uppercase">
             1. 真实跨境物理专线（IEPL / IPLC）的底层成本拆解
           </h3>
           <p class="text-muted-foreground">
-            在机场行业中，顶级梯队服务商普遍宣传其采用<strong>“IEPL（国际以太网私网专线）”</strong>或<strong>“IPLC（国际私用出租线路）”</strong>。很多用户不理解：为什么普通公网 VPS 几块钱一个月，而专线机场需要十几元到几十元？
+            在机场行业中，顶级梯队服务商普遍宣传其采用<strong>“IEPL（国际以太网私网专线）”</strong
+            >或<strong>“IPLC（国际私用出租线路）”</strong>。很多用户不理解：为什么普通公网 VPS
+            几块钱一个月，而专线机场需要十几元到几十元？
           </p>
           <p class="text-muted-foreground">
-            这是因为 IEPL 走的是运营商跨越边境的独立物理光纤（甚至跨国海底光缆的特定波分复用频道），其传输链路在物理层面上完全不经过公网国际网关（GFW），因此 100% 免受公网丢包与封锁影响。但其代价是极其高昂的商业采购成本：
+            这是因为 IEPL
+            走的是运营商跨越边境的独立物理光纤（甚至跨国海底光缆的特定波分复用频道），其传输链路在物理层面上完全不经过公网国际网关（GFW），因此
+            100% 免受公网丢包与封锁影响。但其代价是极其高昂的商业采购成本：
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
             <span class="text-primary font-bold">1. 跨境裸纤/带宽月租</span>
             <p class="text-muted-foreground">
-              正规电信或联通提供的跨国以太网专线，在深圳-香港或上海-东京段，每 1Gbps（千兆）独享带宽的月采购成本通常高达 <strong>¥20,000 ~ ¥45,000 元/月</strong>。一旦上马 10Gbps 骨干汇聚，单月固定硬性支出即突破 20 万元人民币。
+              正规电信或联通提供的跨国以太网专线，在深圳-香港或上海-东京段，每
+              1Gbps（千兆）独享带宽的月采购成本通常高达 <strong>¥20,000 ~ ¥45,000 元/月</strong
+              >。一旦上马 10Gbps 骨干汇聚，单月固定硬性支出即突破 20 万元人民币。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
             <span class="text-info font-bold">2. 入口端 BGP 多线接入开销</span>
             <p class="text-muted-foreground">
-              为了让全国各省市的电信、联通、移动、广电用户连接不卡顿，专线入口必须租用一二线城市（如上海、广州）的 T3+ 等级核心机房，部署多线 BGP 服务器，机柜租金、大电力费用以及防 DDoS 高防 IP 月度维护费动辄数万元。
+              为了让全国各省市的电信、联通、移动、广电用户连接不卡顿，专线入口必须租用一二线城市（如上海、广州）的
+              T3+ 等级核心机房，部署多线 BGP 服务器，机柜租金、大电力费用以及防 DDoS 高防 IP
+              月度维护费动辄数万元。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
             <span class="text-success font-bold">3. 落地机房原生住宅 IP 成本</span>
             <p class="text-muted-foreground">
-              为了解锁 ChatGPT-4o、Netflix 4K、TikTok 商业账户，出口端必须采购高纯净度的原生广播 IP 或双 ISP 住宅静态 IP。一个段的优质原生 IP 租用单价远高于普通的廉价数据中心机房（如 OVH、Hetzner）。
+              为了解锁 ChatGPT-4o、Netflix 4K、TikTok 商业账户，出口端必须采购高纯净度的原生广播 IP
+              或双 ISP 住宅静态 IP。一个段的优质原生 IP 租用单价远高于普通的廉价数据中心机房（如
+              OVH、Hetzner）。
             </p>
           </div>
         </div>
 
-        <div class="border-t border-border pt-4 flex flex-col gap-3">
-          <h3 class="font-display text-base text-foreground uppercase">
+        <div class="border-border flex flex-col gap-3 border-t pt-4">
+          <h3 class="font-display text-foreground text-base uppercase">
             2. 时间成本计算器：你究竟是在“白嫖网络”，还是在“被网络白嫖你的生命”？
           </h3>
-          <p class="text-muted-foreground">
-            许多追求“极致免费”的用户每天的工作流程是这样的：
-          </p>
-          <div class="bg-accent/20 border border-border p-4 rounded text-muted-foreground">
+          <p class="text-muted-foreground">许多追求“极致免费”的用户每天的工作流程是这样的：</p>
+          <div class="bg-accent/20 border-border text-muted-foreground rounded border p-4">
             <div class="flex flex-col gap-2">
-              <div>⏰ <strong>09:00：</strong> 昨天的免费节点全部飘红报错，打开 Telegram 搜索最新免费订阅。耗时 15 分钟。</div>
-              <div>⏰ <strong>09:15：</strong> 导入 50 个节点，批量测速发现只有 3 个能连，勉强打开一个网页，速度仅 300KB/s。耗时 10 分钟。</div>
-              <div>⏰ <strong>14:30：</strong> 下午正在下载一份关键开发驱动或查找学术报错，节点突然断流，再次四处寻找可用测试节点。耗时 20 分钟。</div>
-              <div>⏰ <strong>21:00：</strong> 晚上想看会儿 YouTube 或追剧，免费节点晚高峰丢包率高达 70%，哪怕 720P 都频繁缓冲转圈，心情极度烦躁。耗时 30 分钟。</div>
+              <div>
+                ⏰ <strong>09:00：</strong> 昨天的免费节点全部飘红报错，打开 Telegram 搜索最新免费订阅。耗时
+                15 分钟。
+              </div>
+              <div>
+                ⏰ <strong>09:15：</strong> 导入 50 个节点，批量测速发现只有 3 个能连，勉强打开一个网页，速度仅
+                300KB/s。耗时 10 分钟。
+              </div>
+              <div>
+                ⏰ <strong>14:30：</strong> 下午正在下载一份关键开发驱动或查找学术报错，节点突然断流，再次四处寻找可用测试节点。耗时
+                20 分钟。
+              </div>
+              <div>
+                ⏰ <strong>21:00：</strong> 晚上想看会儿 YouTube 或追剧，免费节点晚高峰丢包率高达 70%，哪怕
+                720P 都频繁缓冲转圈，心情极度烦躁。耗时 30 分钟。
+              </div>
             </div>
           </div>
           <p class="text-foreground font-bold">
-            📊 综合算账：每天累计消耗 1 到 1.5 小时在“四处寻找并调试免费节点”上，按一个月 30 天计算，每月白白浪费超过 30 至 45 个小时的宝贵生命！若折算为个人工作或学习时薪，时间损失远超数千元。而购买一个深耕多年、稳定秒开的优质内网专线（如 <a href="/airports/guangshuyun/" class="text-primary font-bold hover:underline">光速云</a>，月付仅 ¥12 起），一包零食钱就能彻底免去所有折腾与焦虑，这才是真正懂生活与效率的明智决策。
+            📊 综合算账：每天累计消耗 1 到 1.5 小时在“四处寻找并调试免费节点”上，按一个月 30
+            天计算，每月白白浪费超过 30 至 45
+            个小时的宝贵生命！若折算为个人工作或学习时薪，时间损失远超数千元。而购买一个深耕多年、稳定秒开的优质内网专线（如
+            <a href="/airports/guangshuyun/" class="text-primary font-bold hover:underline"
+              >光速云</a
+            >，月付仅 ¥12
+            起），一包零食钱就能彻底免去所有折腾与焦虑，这才是真正懂生活与效率的明智决策。
           </p>
         </div>
       </PixelPanel>
@@ -748,62 +980,106 @@ DOMAIN-SUFFIX,qq.com,PROXY</pre>
 
     {/* 模块八：全场景出海决策树与网络选型逻辑图 */}
     <div id="module-decision-tree" class="flex flex-col gap-4">
-      <div class="border-l-4 border-success pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-success border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           八、全场景出海需求决策树与网络选型逻辑指引
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
           根据你的实际身份、核心使用目标与预算约束，秒选最安全、最高效的科学上网方案。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div class="bg-background border-2 border-border p-5 flex flex-col gap-3">
-            <div class="flex items-center justify-between border-b border-border pb-2">
-              <span class="font-bold text-foreground text-sm">场景 A：高校在读生 / 硕博学术科研</span>
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+          <div class="bg-background border-border flex flex-col gap-3 border-2 p-5">
+            <div class="border-border flex items-center justify-between border-b pb-2">
+              <span class="text-foreground text-sm font-bold"
+                >场景 A：高校在读生 / 硕博学术科研</span
+              >
               <span class="text-success font-bold">推荐指数：★★★★★</span>
             </div>
-            <ul class="list-disc list-inside space-y-1.5 text-muted-foreground pl-1">
-              <li><strong>核心需求：</strong> 查阅 IEEE、Nature、Science、Web of Science，下载 PDF 外文期刊。</li>
-              <li><strong>最优免费方案：</strong> 优先使用校内 <strong>CARSI 统一漫游认证</strong>，在校外直接登录图书馆购买的权威外文库。备选使用学校官方 WebVPN 代理。</li>
-              <li><strong>避坑禁忌：</strong> 严禁使用来路不明的免费代理下载学术论文，以免学号认证被爬虫劫持导致全校 IP 被 Elsevier 封禁。</li>
+            <ul class="text-muted-foreground list-inside list-disc space-y-1.5 pl-1">
+              <li>
+                <strong>核心需求：</strong> 查阅 IEEE、Nature、Science、Web of Science，下载 PDF 外文期刊。
+              </li>
+              <li>
+                <strong>最优免费方案：</strong> 优先使用校内 <strong>CARSI 统一漫游认证</strong
+                >，在校外直接登录图书馆购买的权威外文库。备选使用学校官方 WebVPN 代理。
+              </li>
+              <li>
+                <strong>避坑禁忌：</strong> 严禁使用来路不明的免费代理下载学术论文，以免学号认证被爬虫劫持导致全校
+                IP 被 Elsevier 封禁。
+              </li>
             </ul>
           </div>
 
-          <div class="bg-background border-2 border-border p-5 flex flex-col gap-3">
-            <div class="flex items-center justify-between border-b border-border pb-2">
-              <span class="font-bold text-foreground text-sm">场景 B：程序员 / 极客轻量代码查阅</span>
+          <div class="bg-background border-border flex flex-col gap-3 border-2 p-5">
+            <div class="border-border flex items-center justify-between border-b pb-2">
+              <span class="text-foreground text-sm font-bold"
+                >场景 B：程序员 / 极客轻量代码查阅</span
+              >
               <span class="text-info font-bold">推荐指数：★★★★☆</span>
             </div>
-            <ul class="list-disc list-inside space-y-1.5 text-muted-foreground pl-1">
-              <li><strong>核心需求：</strong> 访问 GitHub、StackOverflow、查询技术文档、拉取 Docker 镜像。</li>
-              <li><strong>最优免费方案：</strong> 本地部署 <strong>Cloudflare WARP</strong>，通过优选脚本锁定 Clean IP，设置 MTU 为 1280，配置 Clash 规则仅对境外技术网站启用隧道。</li>
-              <li><strong>避坑禁忌：</strong> 避免将国内 npm 镜像源或日常内网服务走 WARP，防止延迟陡增。</li>
+            <ul class="text-muted-foreground list-inside list-disc space-y-1.5 pl-1">
+              <li>
+                <strong>核心需求：</strong> 访问 GitHub、StackOverflow、查询技术文档、拉取 Docker 镜像。
+              </li>
+              <li>
+                <strong>最优免费方案：</strong> 本地部署 <strong>Cloudflare WARP</strong
+                >，通过优选脚本锁定 Clean IP，设置 MTU 为 1280，配置 Clash
+                规则仅对境外技术网站启用隧道。
+              </li>
+              <li>
+                <strong>避坑禁忌：</strong> 避免将国内 npm 镜像源或日常内网服务走 WARP，防止延迟陡增。
+              </li>
             </ul>
           </div>
 
-          <div class="bg-background border-2 border-border p-5 flex flex-col gap-3">
-            <div class="flex items-center justify-between border-b border-border pb-2">
-              <span class="font-bold text-foreground text-sm">场景 C：出差断网 / 临时应急紧急修障</span>
+          <div class="bg-background border-border flex flex-col gap-3 border-2 p-5">
+            <div class="border-border flex items-center justify-between border-b pb-2">
+              <span class="text-foreground text-sm font-bold"
+                >场景 C：出差断网 / 临时应急紧急修障</span
+              >
               <span class="text-warning font-bold">推荐指数：★★★★☆</span>
             </div>
-            <ul class="list-disc list-inside space-y-1.5 text-muted-foreground pl-1">
-              <li><strong>核心需求：</strong> 突发断网，必须立刻向海外客户回复邮件、推送应急 Git 热修复补丁。</li>
-              <li><strong>最优免费方案：</strong> 使用临时别名邮箱注册口碑商业机场的 <strong>新用户试用体验包（White-Label Trial）</strong>，获得 5GB 免费专线流量救急。</li>
-              <li><strong>避坑禁忌：</strong> 必须使用随机独立密码，用完后及时从客户端解绑删除订阅配置。</li>
+            <ul class="text-muted-foreground list-inside list-disc space-y-1.5 pl-1">
+              <li>
+                <strong>核心需求：</strong> 突发断网，必须立刻向海外客户回复邮件、推送应急 Git 热修复补丁。
+              </li>
+              <li>
+                <strong>最优免费方案：</strong> 使用临时别名邮箱注册口碑商业机场的 <strong
+                  >新用户试用体验包（White-Label Trial）</strong
+                >，获得 5GB 免费专线流量救急。
+              </li>
+              <li>
+                <strong>避坑禁忌：</strong> 必须使用随机独立密码，用完后及时从客户端解绑删除订阅配置。
+              </li>
             </ul>
           </div>
 
-          <div class="bg-background border-2 border-border p-5 flex flex-col gap-3">
-            <div class="flex items-center justify-between border-b border-border pb-2">
-              <span class="font-bold text-foreground text-sm">场景 D：跨境电商 / 海外运营 / 4K追剧 / 跨国办公</span>
+          <div class="bg-background border-border flex flex-col gap-3 border-2 p-5">
+            <div class="border-border flex items-center justify-between border-b pb-2">
+              <span class="text-foreground text-sm font-bold"
+                >场景 D：跨境电商 / 海外运营 / 4K追剧 / 跨国办公</span
+              >
               <span class="text-primary font-bold">终极破局方案</span>
             </div>
-            <ul class="list-disc list-inside space-y-1.5 text-muted-foreground pl-1">
-              <li><strong>核心需求：</strong> TikTok / Instagram 矩阵运营、ChatGPT-4o 重度调用、4K 流媒体秒开、晚高峰 0 丢包。</li>
-              <li><strong>推荐方案：</strong> 放弃一切公网免费节点，直接订阅口碑沉淀多年的专业物理内网专线机场（如 <a href="/airports/guangshuyun/" class="text-primary font-bold hover:underline">光速云</a>）。</li>
-              <li><strong>收益核心：</strong> 晚高峰百兆带宽跑满，原生 IP 解锁杜绝封号风控，彻底告别断网焦虑。</li>
+            <ul class="text-muted-foreground list-inside list-disc space-y-1.5 pl-1">
+              <li>
+                <strong>核心需求：</strong> TikTok / Instagram 矩阵运营、ChatGPT-4o 重度调用、4K 流媒体秒开、晚高峰
+                0 丢包。
+              </li>
+              <li>
+                <strong>推荐方案：</strong> 放弃一切公网免费节点，直接订阅口碑沉淀多年的专业物理内网专线机场（如
+                <a href="/airports/guangshuyun/" class="text-primary font-bold hover:underline"
+                  >光速云</a
+                >）。
+              </li>
+              <li>
+                <strong>收益核心：</strong> 晚高峰百兆带宽跑满，原生 IP 解锁杜绝封号风控，彻底告别断网焦虑。
+              </li>
             </ul>
           </div>
         </div>
@@ -812,104 +1088,144 @@ DOMAIN-SUFFIX,qq.com,PROXY</pre>
 
     {/* 模块九：免费出海资源 10 大核心疑难权威 FAQ */}
     <div id="module-faq-section" class="flex flex-col gap-4">
-      <div class="border-l-4 border-primary pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-primary border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           九、科学上网免费资源 10 大核心疑难权威 FAQ
         </h2>
-        <p class="text-xs font-mono text-muted-foreground mt-1">
+        <p class="text-muted-foreground mt-1 font-mono text-xs">
           直击用户在折腾免费节点时最常遭遇的技术堵点与风险疑云，由专业网络工程师逐一客观解答。
         </p>
       </div>
 
-      <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-5 text-xs font-mono leading-relaxed">
+      <PixelPanel
+        class="bg-card border-border flex flex-col gap-5 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+      >
         <div class="space-y-4">
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
               <span class="text-primary">Q1:</span> 使用 Cloudflare WARP 会不会导致本地宽带被运营商拉黑或断网？
             </h3>
             <p class="text-muted-foreground">
-              不会。Cloudflare WARP 是合规的国际公共网络优化产品，底层是标准 WireGuard 隧道协议。国内运营商对其采取的策略是公网层面的针对性 QoS 丢包或重置连接，并不会因此封停个人宽带。但使用 WARP 时请严格遵守国家法律法规，仅用于合法技术交流与学术资料查阅。
+              不会。Cloudflare WARP 是合规的国际公共网络优化产品，底层是标准 WireGuard
+              隧道协议。国内运营商对其采取的策略是公网层面的针对性 QoS
+              丢包或重置连接，并不会因此封停个人宽带。但使用 WARP
+              时请严格遵守国家法律法规，仅用于合法技术交流与学术资料查阅。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
               <span class="text-primary">Q2:</span> 为什么网上的免费节点批量测速时全显示绿色延迟，但一点开网页却完全打不开？
             </h3>
             <p class="text-muted-foreground">
-              许多代理客户端默认的“延迟测试”仅仅测试了本地到代理节点服务器的 <strong>TCP 握手延迟（TCP Ping）</strong> 或简单的 ICMP 连通性。这只能证明代理服务器本身开机在线，根本不代表该服务器能够成功解密并向外网请求目标网站！许多黑产蜜罐故意保持端口开放，但在你真正发起 HTTP 请求时丢弃数据包或重定向，导致出现“测速全绿、上网全挂”的典型假死现象。
+              许多代理客户端默认的“延迟测试”仅仅测试了本地到代理节点服务器的 <strong
+                >TCP 握手延迟（TCP Ping）</strong
+              > 或简单的 ICMP 连通性。这只能证明代理服务器本身开机在线，根本不代表该服务器能够成功解密并向外网请求目标网站！许多黑产蜜罐故意保持端口开放，但在你真正发起
+              HTTP 请求时丢弃数据包或重定向，导致出现“测速全绿、上网全挂”的典型假死现象。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
               <span class="text-primary">Q3:</span> 手机端下载的所谓“破解版蓝灯/老王免费 VPN”，为什么电量消耗极快且手机发烫？
             </h3>
             <p class="text-muted-foreground">
-              此类所谓破解版或免费 VPN 软件大多被暗中植入了后台挖矿脚本或流量中继木马。在后台运行时，程序会持续利用你手机的 CPU 算力进行微量哈希计算，或者将你的手机充当黑客爬虫的代理跳板，导致处理器长期高频运转、电量暴跌且机身剧烈发热。建议立刻卸载并使用杀毒软件扫描系统。
+              此类所谓破解版或免费 VPN
+              软件大多被暗中植入了后台挖矿脚本或流量中继木马。在后台运行时，程序会持续利用你手机的
+              CPU
+              算力进行微量哈希计算，或者将你的手机充当黑客爬虫的代理跳板，导致处理器长期高频运转、电量暴跌且机身剧烈发热。建议立刻卸载并使用杀毒软件扫描系统。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
               <span class="text-primary">Q4:</span> 用免费公开节点登录 Google 或 Telegram 账号，会被官方系统封号吗？
             </h3>
             <p class="text-muted-foreground">
-              概率极高！因为公开抓取池中的免费 IP 通常已经被成千上万个恶意脚本或被污染的设备滥用。在 Google、OpenAI、Telegram 的安全风控引擎中，这些 IP 早就被列入了极高风险的黑名单（Spam/Abuse IP）。一旦你从此类 IP 登录账号，系统会立即触发最高级别安全风控，强制要求手机验证码，严重时会直接以“违反服务条款”为由进行永久封禁。
+              概率极高！因为公开抓取池中的免费 IP 通常已经被成千上万个恶意脚本或被污染的设备滥用。在
+              Google、OpenAI、Telegram 的安全风控引擎中，这些 IP
+              早就被列入了极高风险的黑名单（Spam/Abuse IP）。一旦你从此类 IP
+              登录账号，系统会立即触发最高级别安全风控，强制要求手机验证码，严重时会直接以“违反服务条款”为由进行永久封禁。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
-              <span class="text-primary">Q5:</span> 为什么 WARP 在 Windows 电脑上能用，但在手机 4G/5G 蜂窝网络下却无法握手？
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
+              <span class="text-primary">Q5:</span> 为什么 WARP 在 Windows 电脑上能用，但在手机 4G/5G
+              蜂窝网络下却无法握手？
             </h3>
             <p class="text-muted-foreground">
-              移动蜂窝网络（尤其是中国移动与中国广电）部署了极为严格的移动网关防火墙，对 UDP 协议的非标准端口（如 WireGuard 默认的 2408 端口）实行严格的过滤或丢包策略。解决方法是在优选端点时，优先测试支持 500、4500 等标准 IPSec 端口或 80、443 等常用端口的 Cloudflare 端点，以此规避蜂窝网络的端口限制。
+              移动蜂窝网络（尤其是中国移动与中国广电）部署了极为严格的移动网关防火墙，对 UDP
+              协议的非标准端口（如 WireGuard 默认的 2408
+              端口）实行严格的过滤或丢包策略。解决方法是在优选端点时，优先测试支持 500、4500 等标准
+              IPSec 端口或 80、443 等常用端口的 Cloudflare 端点，以此规避蜂窝网络的端口限制。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
-              <span class="text-primary">Q6:</span> 高校 CARSI 认证提示成功，但在 Nature 官网依然显示需要支付 $39.99 才能看全文是怎么回事？
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
+              <span class="text-primary">Q6:</span> 高校 CARSI 认证提示成功，但在 Nature 官网依然显示需要支付
+              $39.99 才能看全文是怎么回事？
             </h3>
             <p class="text-muted-foreground">
-              这通常是因为你所在的高校图书馆虽然接入了 CARSI 联盟，但并未实际出资订购该期刊或该年份的数据库子集（例如学校只购买了 Nature 基础主刊，未购买 Nature Materials 等子刊；或只购买了 2020 年之前的过刊回溯库）。此时可以通过校图书馆的“文献原文传递系统”或国家科技图书文献中心（NSTL）提交馆际互借免费申请。
+              这通常是因为你所在的高校图书馆虽然接入了 CARSI
+              联盟，但并未实际出资订购该期刊或该年份的数据库子集（例如学校只购买了 Nature
+              基础主刊，未购买 Nature Materials 等子刊；或只购买了 2020
+              年之前的过刊回溯库）。此时可以通过校图书馆的“文献原文传递系统”或国家科技图书文献中心（NSTL）提交馆际互借免费申请。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
               <span class="text-primary">Q7:</span> 免费抓取的 Clash 订阅链接是否存在劫持 DNS 或本地内网嗅探的可能？
             </h3>
             <p class="text-muted-foreground">
-              存在可能。一个完整的 Clash 配置文件不仅包含节点服务器信息，还包含本地 DNS 服务器配置（<code>dns:</code> 模块）和路由分流规则（<code>rules:</code> 模块）。如果恶意制作者在配置中将 <code>nameserver</code> 指向他们自建的 DNS 服务器，并在 rules 中将内网 IP 或国内金融网站强制指向恶意节点，就能轻松实现精准流量嗅探。防范方法是只导入节点列表，永远使用本地可信的规则配置模板。
+              存在可能。一个完整的 Clash 配置文件不仅包含节点服务器信息，还包含本地 DNS 服务器配置（<code
+                >dns:</code
+              > 模块）和路由分流规则（<code>rules:</code> 模块）。如果恶意制作者在配置中将 <code
+                >nameserver</code
+              > 指向他们自建的 DNS 服务器，并在 rules 中将内网 IP 或国内金融网站强制指向恶意节点，就能轻松实现精准流量嗅探。防范方法是只导入节点列表，永远使用本地可信的规则配置模板。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
               <span class="text-primary">Q8:</span> 如何快速检测当前连接的节点是否遭受了中间人（MITM）嗅探？
             </h3>
             <p class="text-muted-foreground">
-              打开浏览器访问一个知名的海外全站 HTTPS 网站（例如 <code>https://www.google.com</code> 或 <code>https://github.com</code>），点击地址栏前面的“锁头”图标查看安全证书详情。仔细检查“颁发给（Issued To）”和“颁发者（Issued By）”。正规证书颁发者应为 <code>GTS CA 1C3</code>、<code>DigiCert</code> 等权威机构。如果颁发者显示为未知个人、本地代理软件名称（如 <code>Mitmproxy</code>、<code>Fiddler</code>、<code>Charlies</code>）或自签名证书，说明你的流量正在被中间人 100% 明文解密监听，应立即断开连接！
+              打开浏览器访问一个知名的海外全站 HTTPS 网站（例如 <code>https://www.google.com</code> 或
+              <code>https://github.com</code
+              >），点击地址栏前面的“锁头”图标查看安全证书详情。仔细检查“颁发给（Issued
+              To）”和“颁发者（Issued By）”。正规证书颁发者应为 <code>GTS CA 1C3</code>、<code
+                >DigiCert</code
+              > 等权威机构。如果颁发者显示为未知个人、本地代理软件名称（如 <code>Mitmproxy</code
+              >、<code>Fiddler</code>、<code>Charlies</code>）或自签名证书，说明你的流量正在被中间人
+              100% 明文解密监听，应立即断开连接！
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
               <span class="text-primary">Q9:</span> 试用商业机场的免费节点过期失效后，客户端持续报错该怎么彻底清理？
             </h3>
             <p class="text-muted-foreground">
-              在 Clash Verge Rev 或对应客户端的“配置/Profiles”页面中，找到该试用配置，右键选择“删除”。随后前往客户端“设置”，点击“清空系统代理缓存”并重启软件。如果配置了 TUN 虚拟网卡，建议关闭 TUN 模式后重新打开一次，确保操作系统路由表中的残留路由条目被彻底刷新。
+              在 Clash Verge Rev
+              或对应客户端的“配置/Profiles”页面中，找到该试用配置，右键选择“删除”。随后前往客户端“设置”，点击“清空系统代理缓存”并重启软件。如果配置了
+              TUN 虚拟网卡，建议关闭 TUN
+              模式后重新打开一次，确保操作系统路由表中的残留路由条目被彻底刷新。
             </p>
           </div>
 
-          <div class="bg-background border border-border p-4 flex flex-col gap-2">
-            <h3 class="font-bold text-foreground text-sm flex items-center gap-2">
+          <div class="bg-background border-border flex flex-col gap-2 border p-4">
+            <h3 class="text-foreground flex items-center gap-2 text-sm font-bold">
               <span class="text-primary">Q10:</span> 很多论坛推荐的“白嫖 AWS / Oracle 免费云服务器自己搭建”，到底靠不靠谱？
             </h3>
             <p class="text-muted-foreground">
-              对于具备扎实 Linux 运维知识和网络排障能力的工程师而言，自建 VPS 具有很高的自由度和完全的隐私自主权。但对于绝大多数普通用户而言极不推荐：一是 Oracle/AWS 注册需要国际外币信用卡，极易被判定欺诈拒卡或封号；二是分配到的公共公网 IP 极大概率早已被防火墙阻断或列入黑名单；三是一旦自建协议未做好伪装（如被探测封锁），IP 被墙后更换新 IP 的手续费往往高达数美元，维护成本远超直接购买专业专线。
+              对于具备扎实 Linux 运维知识和网络排障能力的工程师而言，自建 VPS
+              具有很高的自由度和完全的隐私自主权。但对于绝大多数普通用户而言极不推荐：一是
+              Oracle/AWS 注册需要国际外币信用卡，极易被判定欺诈拒卡或封号；二是分配到的公共公网 IP
+              极大概率早已被防火墙阻断或列入黑名单；三是一旦自建协议未做好伪装（如被探测封锁），IP
+              被墙后更换新 IP 的手续费往往高达数美元，维护成本远超直接购买专业专线。
             </p>
           </div>
         </div>
@@ -918,65 +1234,76 @@ DOMAIN-SUFFIX,qq.com,PROXY</pre>
 
     {/* 长尾文章矩阵索引列表 */}
     <div class="flex flex-col gap-6">
-      <div class="flex items-center justify-between border-b-2 border-border pb-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+      <div class="border-border flex items-center justify-between border-b-2 pb-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           📚 免费资源专题长尾精选与实战指南 ({freeArticles.length} 篇深度独立解析)
         </h2>
-        <span class="text-xs font-mono text-muted-foreground">CLUSTER ARTICLES</span>
+        <span class="text-muted-foreground font-mono text-xs">CLUSTER ARTICLES</span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {freeArticles.map((art) => (
-          <PixelPanel class="p-6 bg-card border-2 border-border hover:border-primary transition-all flex flex-col justify-between gap-4">
-            <div class="flex flex-col gap-2.5">
-              <div class="flex items-center justify-between text-xs font-mono">
-                <span class="text-info font-bold">{art.badge}</span>
-                <span class="text-muted-foreground">{art.date} · 预计阅读 {art.readTime}</span>
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+        {
+          freeArticles.map((art) => (
+            <PixelPanel class="bg-card border-border hover:border-primary flex flex-col justify-between gap-4 border-2 p-6 transition-all">
+              <div class="flex flex-col gap-2.5">
+                <div class="flex items-center justify-between font-mono text-xs">
+                  <span class="text-info font-bold">{art.badge}</span>
+                  <span class="text-muted-foreground">
+                    {art.date} · 预计阅读 {art.readTime}
+                  </span>
+                </div>
+                <h3 class="font-display text-foreground text-base leading-snug">
+                  <a href={`/free/${art.slug}/`} class="hover:text-primary transition-colors">
+                    {art.title}
+                  </a>
+                </h3>
+                <p class="text-muted-foreground font-mono text-xs leading-relaxed">{art.excerpt}</p>
               </div>
-              <h3 class="font-display text-base text-foreground leading-snug">
-                <a href={`/free/${art.slug}/`} class="hover:text-primary transition-colors">
-                  {art.title}
-                </a>
-              </h3>
-              <p class="text-xs text-muted-foreground font-mono leading-relaxed">
-                {art.excerpt}
-              </p>
-            </div>
 
-            <div class="pt-3 border-t border-border flex items-center justify-between">
-              <span class="text-[11px] font-mono text-success">
-                分类：{art.categoryName}
-              </span>
-              <a href={`/free/${art.slug}/`} class="pixel-btn text-xs px-3 py-1.5">
-                阅读深度实操 →
-              </a>
-            </div>
-          </PixelPanel>
-        ))}
+              <div class="border-border flex items-center justify-between border-t pt-3">
+                <span class="text-success font-mono text-[11px]">分类：{art.categoryName}</span>
+                <a href={`/free/${art.slug}/`} class="pixel-btn px-3 py-1.5 text-xs">
+                  阅读深度实操 →
+                </a>
+              </div>
+            </PixelPanel>
+          ))
+        }
       </div>
     </div>
 
     {/* 模块十：底部生产力转化与终极破局 */}
     <div id="module-recommendation">
-      <PixelPanel class="p-6 md:p-8 bg-accent/30 border-4 border-primary flex flex-col gap-5 text-center items-center shadow-pixel">
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/20 border border-primary text-primary text-xs font-mono font-bold uppercase">
+      <PixelPanel
+        class="bg-accent/30 border-primary shadow-pixel flex flex-col items-center gap-5 border-4 p-6 text-center md:p-8"
+      >
+        <div
+          class="bg-primary/20 border-primary text-primary inline-flex items-center gap-2 border px-3 py-1 font-mono text-xs font-bold uppercase"
+        >
           ★ 终结折腾 · 享受无感连接的生产力体验
         </div>
-        <h3 class="font-display text-2xl text-foreground uppercase tracking-tight">
+        <h3 class="font-display text-foreground text-2xl tracking-tight uppercase">
           不想再把宝贵的生命浪费在天天找失效免费节点上？
         </h3>
-        <p class="text-xs md:text-sm text-muted-foreground max-w-2xl font-mono leading-relaxed">
-          免费出海通道适合临时应急与轻度检索。但若你需要全天候稳定的跨国办公、4K 视频秒开与极致的游戏延迟，物理内网专线才是唯一解！体验本站 2026 年度金牌推荐服务商 <a href="/airports/guangshuyun/" class="text-primary font-bold hover:underline">光速云</a>：全节点标配企业级 <strong>IEPL 物理专线</strong>，晚高峰丢包率低于 0.1%，专属优惠码 <code class="text-primary font-bold bg-background px-1.5 py-0.5 border border-primary/50">AMM</code> 立享 8 折特惠，月付仅需 ¥12 起。
+        <p class="text-muted-foreground max-w-2xl font-mono text-xs leading-relaxed md:text-sm">
+          免费出海通道适合临时应急与轻度检索。但若你需要全天候稳定的跨国办公、4K
+          视频秒开与极致的游戏延迟，物理内网专线才是唯一解！体验本站 2026 年度金牌推荐服务商 <a
+            href="/airports/guangshuyun/"
+            class="text-primary font-bold hover:underline">光速云</a
+          >：全节点标配企业级 <strong>IEPL 物理专线</strong>，晚高峰丢包率低于 0.1%，专属优惠码 <code
+            class="text-primary bg-background border-primary/50 border px-1.5 py-0.5 font-bold"
+            >AMM</code
+          > 立享 8 折特惠，月付仅需 ¥12 起。
         </p>
         <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
-          <a href="/airports/" class="pixel-btn text-xs px-5 py-3">
+          <a href="/airports/" class="pixel-btn px-5 py-3 text-xs">
             浏览 42 家机场品牌库与测速横评 →
           </a>
           <a
             href="https://sahude.gsyvipaff.com/#/?code=keqgvT5Y"
             target="_blank"
             rel="nofollow sponsored noopener"
-            class="pixel-btn pixel-btn--blue text-sm px-6 py-3 font-bold shadow-pixel"
+            class="pixel-btn pixel-btn--blue shadow-pixel px-6 py-3 text-sm font-bold"
           >
             直达光速云官网即刻体验 ↗
           </a>

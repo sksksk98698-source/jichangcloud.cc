@@ -1,13 +1,18 @@
 ---
 import HeroPanel from "@components/Sections/Global/HeroPanel.astro";
-import { Badge } from "@components/ui/badge";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from "@components/ui/breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@components/ui/breadcrumb";
 import { PixelPanel } from "@components/ui/pixel-panel";
-import siteData from "@config/siteData.json";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 const pageTitle = "关于我们与网络评测方法论 — 机场cloud 可观测性实验室";
-const pageDescription = "了解 机场cloud (jichangcloud.cc) 的独立评测原则、全国 BGP 测速探针网络、晚高峰丢包率监控体系与防跑路风控模型。拒绝虚假公关，坚持 100% 数据实测驱动。";
+const pageDescription =
+  "了解 机场cloud (jichangcloud.cc) 的独立评测原则、全国 BGP 测速探针网络、晚高峰丢包率监控体系与防跑路风控模型。拒绝虚假公关，坚持 100% 数据实测驱动。";
 
 // 结构化数据：AboutPage + Organization
 const schemaData = {
@@ -15,34 +20,34 @@ const schemaData = {
   "@graph": [
     {
       "@type": "AboutPage",
-      "headline": pageTitle,
-      "description": pageDescription,
-      "inLanguage": "zh-CN",
-      "mainEntityOfPage": "https://jichangcloud.cc/about/"
+      headline: pageTitle,
+      description: pageDescription,
+      inLanguage: "zh-CN",
+      mainEntityOfPage: "https://jichangcloud.cc/about/",
     },
     {
       "@type": "Organization",
-      "name": "机场cloud 网络可观测性实验室",
-      "url": "https://jichangcloud.cc/",
-      "logo": "https://jichangcloud.cc/og.jpg",
-      "description": "专注全球科学上网协议、跨境物理专线质量与网络代理风控的客观评测机构。",
-      "foundingDate": "2024-03-01",
-      "contactPoint": {
+      name: "机场cloud 网络可观测性实验室",
+      url: "https://jichangcloud.cc/",
+      logo: "https://jichangcloud.cc/og.jpg",
+      description: "专注全球科学上网协议、跨境物理专线质量与网络代理风控的客观评测机构。",
+      foundingDate: "2024-03-01",
+      contactPoint: {
         "@type": "ContactPoint",
-        "email": "contact@jichangcloud.cc",
-        "contactType": "technical support"
-      }
-    }
-  ]
+        email: "contact@jichangcloud.cc",
+        contactType: "technical support",
+      },
+    },
+  ],
 };
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
 
-  <div class="site-container flex flex-col gap-10 py-8 md:gap-12 md:py-12 text-foreground">
+  <div class="site-container text-foreground flex flex-col gap-10 py-8 md:gap-12 md:py-12">
     {/* 面包屑导航 */}
-    <Breadcrumb class="text-xs font-mono">
+    <Breadcrumb class="font-mono text-xs">
       <BreadcrumbItem><BreadcrumbLink href="/">首页</BreadcrumbLink></BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem><BreadcrumbPage>关于实验室与评测方法论</BreadcrumbPage></BreadcrumbItem>
@@ -57,42 +62,50 @@ const schemaData = {
     />
 
     {/* 核心原则速览 Answer Block */}
-    <PixelPanel class="p-6 md:p-8 bg-card border-4 border-primary/80 flex flex-col gap-5 shadow-pixel">
-      <div class="flex items-center gap-2 border-b border-border pb-3">
+    <PixelPanel
+      class="bg-card border-primary/80 shadow-pixel flex flex-col gap-5 border-4 p-6 md:p-8"
+    >
+      <div class="border-border flex items-center gap-2 border-b pb-3">
         <span class="text-primary text-xl">🛡</span>
-        <h2 class="font-display text-lg text-foreground uppercase tracking-tight">
+        <h2 class="font-display text-foreground text-lg tracking-tight uppercase">
           实验室三大独立评测铁律 (Our Core Ethos)
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs font-mono leading-relaxed">
-        <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
-          <span class="text-success font-bold text-sm">1. 100% 自费实测，拒绝公关控评</span>
+      <div class="grid grid-cols-1 gap-5 font-mono text-xs leading-relaxed md:grid-cols-3">
+        <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
+          <span class="text-success text-sm font-bold">1. 100% 自费实测，拒绝公关控评</span>
           <p class="text-muted-foreground">
-            所有参与横评的 42 家机场品牌，全部由实验室运维成员自掏腰包购买月付或季付真实套餐。我们绝不接受任何服务商提供的“专属评测高优节点”或公关定制白名单，确保所有测试数据与普通终端用户获得的体验完全一致。
+            所有参与横评的 42
+            家机场品牌，全部由实验室运维成员自掏腰包购买月付或季付真实套餐。我们绝不接受任何服务商提供的“专属评测高优节点”或公关定制白名单，确保所有测试数据与普通终端用户获得的体验完全一致。
           </p>
         </div>
 
-        <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
-          <span class="text-info font-bold text-sm">2. 晚高峰地狱压力测试</span>
+        <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
+          <span class="text-info text-sm font-bold">2. 晚高峰地狱压力测试</span>
           <p class="text-muted-foreground">
-            白天闲时测速千兆没有参考意义！我们的自动化监控节点专门锁定每天 <strong>20:30 至 22:30 的骨干网极度拥塞期</strong>。只有在晚高峰依然保持 0 丢包、4K 首帧秒开的线路，才能获得实验室的“金牌推荐”评级。
+            白天闲时测速千兆没有参考意义！我们的自动化监控节点专门锁定每天 <strong
+              >20:30 至 22:30 的骨干网极度拥塞期</strong
+            >。只有在晚高峰依然保持 0 丢包、4K 首帧秒开的线路，才能获得实验室的“金牌推荐”评级。
           </p>
         </div>
 
-        <div class="bg-background border-2 border-border p-4 flex flex-col gap-2">
-          <span class="text-primary font-bold text-sm">3. 严苛防跑路风控预警</span>
+        <div class="bg-background border-border flex flex-col gap-2 border-2 p-4">
+          <span class="text-primary text-sm font-bold">3. 严苛防跑路风控预警</span>
           <p class="text-muted-foreground">
-            建立全网首个“机场防跑路风险预警雷达”。紧密监控各服务商的机柜电力结算、域名证书变迁、Telegram 社群发言状态与工单响应 SLA，在庞氏资金链断裂前第一时间向用户发布风控撤离预警。
+            建立全网首个“机场防跑路风险预警雷达”。紧密监控各服务商的机柜电力结算、域名证书变迁、Telegram
+            社群发言状态与工单响应 SLA，在庞氏资金链断裂前第一时间向用户发布风控撤离预警。
           </p>
         </div>
       </div>
     </PixelPanel>
 
     {/* 模块一：全国分布式测速探针环境与技术架构 */}
-    <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
-      <div class="border-l-4 border-primary pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+    <PixelPanel
+      class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+    >
+      <div class="border-primary border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           一、全国分布式探针测试环境与监控拓扑
         </h2>
         <p class="text-muted-foreground mt-1">
@@ -100,78 +113,92 @@ const schemaData = {
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-2">
-        <div class="bg-background border border-border p-4 flex flex-col gap-2">
+      <div class="my-2 grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div class="bg-background border-border flex flex-col gap-2 border p-4">
           <span class="text-foreground font-bold">华东节点（上海 BGP 核心机房）</span>
           <p class="text-muted-foreground">
-            电信 163 / CN2、联通 169 / 9929 双栈接入。重点监测发往香港、日本东京（NTT/KDDI）以及美西圣何塞方向的出口延迟与 TCP 重传率。
+            电信 163 / CN2、联通 169 / 9929
+            双栈接入。重点监测发往香港、日本东京（NTT/KDDI）以及美西圣何塞方向的出口延迟与 TCP
+            重传率。
           </p>
         </div>
-        <div class="bg-background border border-border p-4 flex flex-col gap-2">
+        <div class="bg-background border-border flex flex-col gap-2 border p-4">
           <span class="text-foreground font-bold">华南节点（广州/深圳机房）</span>
           <p class="text-muted-foreground">
-            移动 CMI 骨干直连、广深跨海裸纤接入。重点观测 IEPL 物理专线在深圳-香港段的物理跳数，验证是否穿透内网私有网段（10.x.x.x）。
+            移动 CMI 骨干直连、广深跨海裸纤接入。重点观测 IEPL
+            物理专线在深圳-香港段的物理跳数，验证是否穿透内网私有网段（10.x.x.x）。
           </p>
         </div>
-        <div class="bg-background border border-border p-4 flex flex-col gap-2">
+        <div class="bg-background border-border flex flex-col gap-2 border p-4">
           <span class="text-foreground font-bold">华北节点（北京教育科研网出口）</span>
           <p class="text-muted-foreground">
-            CERNET2 纯 IPv6 试验网与华北联通接入。用于学术专属通道（CARSI）与欧洲法兰克福方向长链路专线的稳定性压测。
+            CERNET2 纯 IPv6
+            试验网与华北联通接入。用于学术专属通道（CARSI）与欧洲法兰克福方向长链路专线的稳定性压测。
           </p>
         </div>
       </div>
     </PixelPanel>
 
     {/* 模块二：五大量化指标定义体系 */}
-    <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-6 text-xs font-mono leading-relaxed">
-      <div class="border-l-4 border-info pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+    <PixelPanel
+      class="bg-card border-border flex flex-col gap-6 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+    >
+      <div class="border-info border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           二、实验室核心量化评测指标体系说明
         </h2>
         <p class="text-muted-foreground mt-1">
-          杜绝“感觉挺快”、“偶尔卡顿”等主观玄学描述，我们采用严格的标准 RFC 网络工程指标进行量化评定：
+          杜绝“感觉挺快”、“偶尔卡顿”等主观玄学描述，我们采用严格的标准 RFC
+          网络工程指标进行量化评定：
         </p>
       </div>
 
       <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs font-mono border-collapse min-w-[700px]">
+        <table class="w-full min-w-[700px] border-collapse text-left font-mono text-xs">
           <thead>
-            <tr class="border-b-2 border-border text-muted-foreground bg-accent/30">
-              <th class="py-2.5 px-3">指标名称</th>
-              <th class="py-2.5 px-3">测量方法与工具</th>
-              <th class="py-2.5 px-3">金牌卓越阈值</th>
-              <th class="py-2.5 px-3">高危/不可用阈值</th>
-              <th class="py-2.5 px-3">实际影响体验</th>
+            <tr class="border-border text-muted-foreground bg-accent/30 border-b-2">
+              <th class="px-3 py-2.5">指标名称</th>
+              <th class="px-3 py-2.5">测量方法与工具</th>
+              <th class="px-3 py-2.5">金牌卓越阈值</th>
+              <th class="px-3 py-2.5">高危/不可用阈值</th>
+              <th class="px-3 py-2.5">实际影响体验</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-border/60">
+          <tbody class="divide-border/60 divide-y">
             <tr class="hover:bg-accent/20">
-              <td class="py-2.5 px-3 font-bold text-foreground">晚高峰丢包率 (Packet Loss)</td>
-              <td class="py-2.5 px-3 text-muted-foreground">MTR 连续发送 500 个 ICMP/UDP 探测包</td>
-              <td class="py-2.5 px-3 text-success font-bold">&lt; 0.1% (物理专线)</td>
-              <td class="py-2.5 px-3 text-destructive font-bold">&gt; 15% (严重拥塞)</td>
-              <td class="py-2.5 px-3 text-muted-foreground">网页多次刷新、游戏跳 Ping、SSH 终端断开</td>
+              <td class="text-foreground px-3 py-2.5 font-bold">晚高峰丢包率 (Packet Loss)</td>
+              <td class="text-muted-foreground px-3 py-2.5">MTR 连续发送 500 个 ICMP/UDP 探测包</td>
+              <td class="text-success px-3 py-2.5 font-bold">&lt; 0.1% (物理专线)</td>
+              <td class="text-destructive px-3 py-2.5 font-bold">&gt; 15% (严重拥塞)</td>
+              <td class="text-muted-foreground px-3 py-2.5"
+                >网页多次刷新、游戏跳 Ping、SSH 终端断开</td
+              >
             </tr>
             <tr class="hover:bg-accent/20">
-              <td class="py-2.5 px-3 font-bold text-foreground">4K 首帧加载延迟 (TTFB)</td>
-              <td class="py-2.5 px-3 text-muted-foreground">YouTube 4K60 AVC/VP9 首个视频分片加载</td>
-              <td class="py-2.5 px-3 text-success font-bold">&lt; 800ms (秒开无感)</td>
-              <td class="py-2.5 px-3 text-destructive font-bold">&gt; 3500ms (明显转圈)</td>
-              <td class="py-2.5 px-3 text-muted-foreground">拖动进度条是否需要等待缓冲</td>
+              <td class="text-foreground px-3 py-2.5 font-bold">4K 首帧加载延迟 (TTFB)</td>
+              <td class="text-muted-foreground px-3 py-2.5"
+                >YouTube 4K60 AVC/VP9 首个视频分片加载</td
+              >
+              <td class="text-success px-3 py-2.5 font-bold">&lt; 800ms (秒开无感)</td>
+              <td class="text-destructive px-3 py-2.5 font-bold">&gt; 3500ms (明显转圈)</td>
+              <td class="text-muted-foreground px-3 py-2.5">拖动进度条是否需要等待缓冲</td>
             </tr>
             <tr class="hover:bg-accent/20">
-              <td class="py-2.5 px-3 font-bold text-foreground">IP 欺诈纯净度评分 (Fraud Score)</td>
-              <td class="py-2.5 px-3 text-muted-foreground">Scamalytics + IPinfo ASN 双维度穿透</td>
-              <td class="py-2.5 px-3 text-success font-bold">&lt; 15 (原生双 ISP)</td>
-              <td class="py-2.5 px-3 text-destructive font-bold">&gt; 75 (高危机房 IP)</td>
-              <td class="py-2.5 px-3 text-muted-foreground">ChatGPT 1020 报错、Google 频繁弹出拼图验证</td>
+              <td class="text-foreground px-3 py-2.5 font-bold">IP 欺诈纯净度评分 (Fraud Score)</td>
+              <td class="text-muted-foreground px-3 py-2.5">Scamalytics + IPinfo ASN 双维度穿透</td>
+              <td class="text-success px-3 py-2.5 font-bold">&lt; 15 (原生双 ISP)</td>
+              <td class="text-destructive px-3 py-2.5 font-bold">&gt; 75 (高危机房 IP)</td>
+              <td class="text-muted-foreground px-3 py-2.5"
+                >ChatGPT 1020 报错、Google 频繁弹出拼图验证</td
+              >
             </tr>
             <tr class="hover:bg-accent/20">
-              <td class="py-2.5 px-3 font-bold text-foreground">流媒体版权解锁完整度</td>
-              <td class="py-2.5 px-3 text-muted-foreground">自动化爬虫测试 Netflix、Disney+、HBO</td>
-              <td class="py-2.5 px-3 text-success font-bold">100% 全解锁</td>
-              <td class="py-2.5 px-3 text-destructive font-bold">仅能看自制剧(软封锁)</td>
-              <td class="py-2.5 px-3 text-muted-foreground">能否正常收看当地第三方版权影视剧集</td>
+              <td class="text-foreground px-3 py-2.5 font-bold">流媒体版权解锁完整度</td>
+              <td class="text-muted-foreground px-3 py-2.5">自动化爬虫测试 Netflix、Disney+、HBO</td
+              >
+              <td class="text-success px-3 py-2.5 font-bold">100% 全解锁</td>
+              <td class="text-destructive px-3 py-2.5 font-bold">仅能看自制剧(软封锁)</td>
+              <td class="text-muted-foreground px-3 py-2.5">能否正常收看当地第三方版权影视剧集</td>
             </tr>
           </tbody>
         </table>
@@ -179,22 +206,24 @@ const schemaData = {
     </PixelPanel>
 
     {/* 模块三：联系与商务声明 */}
-    <PixelPanel class="p-6 md:p-8 bg-card border-2 border-border flex flex-col gap-4 text-xs font-mono leading-relaxed">
-      <div class="border-l-4 border-success pl-3">
-        <h2 class="font-display text-xl text-foreground uppercase tracking-tight">
+    <PixelPanel
+      class="bg-card border-border flex flex-col gap-4 border-2 p-6 font-mono text-xs leading-relaxed md:p-8"
+    >
+      <div class="border-success border-l-4 pl-3">
+        <h2 class="font-display text-foreground text-xl tracking-tight uppercase">
           三、免责声明与争议处理机制
         </h2>
       </div>
       <p class="text-muted-foreground">
-        本站所有评测数据均基于测试当时所采集到的网络客观表现，受制于公网骨干路由波动、机房临时割接与不可抗力因素。机场服务商如对相关测试数据存在异议，欢迎通过官方邮件提供完整的路由抓包证明与工单存证，我们将进行复测并在 48 小时内更新勘误报告。
+        本站所有评测数据均基于测试当时所采集到的网络客观表现，受制于公网骨干路由波动、机房临时割接与不可抗力因素。机场服务商如对相关测试数据存在异议，欢迎通过官方邮件提供完整的路由抓包证明与工单存证，我们将进行复测并在
+        48 小时内更新勘误报告。
       </p>
-      <div class="bg-accent/20 border border-border p-4 rounded flex items-center justify-between">
+      <div class="bg-accent/20 border-border flex items-center justify-between rounded border p-4">
         <span class="text-foreground font-bold">
-          官方技术与商务联络邮箱：<code class="text-primary font-bold">contact@jichangcloud.cc</code>
+          官方技术与商务联络邮箱：<code class="text-primary font-bold">contact@jichangcloud.cc</code
+          >
         </span>
-        <a href="/airports/" class="pixel-btn text-xs px-4 py-2">
-          查看 42 家机场评测总榜 →
-        </a>
+        <a href="/airports/" class="pixel-btn px-4 py-2 text-xs"> 查看 42 家机场评测总榜 → </a>
       </div>
     </PixelPanel>
   </div>

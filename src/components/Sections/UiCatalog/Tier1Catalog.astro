@@ -25,8 +25,8 @@ import Separator from "@components/ui/separator";
 import Skeleton from "@components/ui/skeleton";
 import Textarea from "@components/ui/textarea";
 import samplePostImg from "@images/demo/post-css-grid.jpg";
-import sampleAvatarImg from "@images/hero-avatar.jpg";
 import sampleProjectImg from "@images/demo/project-pixel-art.png";
+import sampleAvatarImg from "@images/hero-avatar.jpg";
 
 const sizes = ["sm", "md", "lg"] as const;
 const states = ["default", "error", "success"] as const;
@@ -248,11 +248,7 @@ const alertVariants = ["info", "success", "warning", "error"] as const;
 
   {/* Horizontal — just sm:flex-row on the root */}
   <Card class="max-w-lg sm:flex-row">
-    <CardImage
-      src={samplePostImg.src}
-      alt=""
-      class="sm:w-40 sm:shrink-0"
-    />
+    <CardImage src={samplePostImg.src} alt="" class="sm:w-40 sm:shrink-0" />
     <div class="flex flex-1 flex-col">
       <CardHeader>
         <CardTitle>Horizontal layout</CardTitle>

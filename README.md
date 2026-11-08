@@ -1,12 +1,12 @@
 <div align="center">
 
 ```text
-       _ _ _____ _                       _   _                 _ 
+       _ _ _____ _                       _   _                 _
       | (_) ____| |__   __ _ _ __   __ _| | | | ___  _   _  __| |
    _  | | | |   | '_ \ / _` | '_ \ / _` | | | |/ _ \| | | |/ _` |
   | |_| | | |___| | | | (_| | | | | (_| | |_| | (_) | |_| | (_| |
    \___/|_|\____|_| |_|\__,_|_| |_|\__, |\___/ \___/ \__,_|\__,_|
-                                   |___/                         
+                                   |___/
       ⚡ 2026 梯子机场推荐 · 晚高峰测速实验室 · 42家品牌评测矩阵 ⚡
 ```
 
@@ -38,17 +38,20 @@
 ## ✨ 核心特性矩阵 (Key Features)
 
 ### 1. 🏢 42 家机场品牌库深度评测矩阵 (`/airports/`)
+
 - **异构化评测报告**：破除千篇一律模板指纹，根据 IEPL/IPLC 物理专线、BGP 多线中继隧道、直连协议等线路类型动态生成万字级底层技术深度分析；
 - **全要素量化面板**：晚高峰可用率 SLA、骨干网 QoS 丢包率、YouTube 4K 首帧响应、三大运营商本地适配评级；
 - **真实测速实录**：涵盖光速云等核心节点千兆单线多并发实测图谱，支持大图放大抓包验证。
 
 ### 2. 🏛️ 四大万字专著支柱页与知识矩阵 (Pillar Pages)
+
 - 🛠️ **[客户端工具手册 (`/tools/`)](https://jichangcloud.cc/tools/)**：涵盖 Clash Verge Rev TUN 模式接管、Shadowrocket 小火箭配置、NextTrace 路由诊断与软路由网关部署；
 - 🎁 **[免费资源全景白皮书 (`/free/`)](https://jichangcloud.cc/free/)**：GitHub 公开节点中间人投毒安全审计、Cloudflare WARP 优选 IP、高校 CERNET 学术专线与避坑白皮书；
 - ❓ **[疑难 100 问权威百科 (`/faq/`)](https://jichangcloud.cc/faq/)**：时钟偏差导致 `-1ms` 超时、ChatGPT 1020 报错、微信/淘宝误走全局慢等高频故障 30 秒自检自愈手册；
 - 🚨 **[防跑路风险预警白皮书 (`/alerts/`)](https://jichangcloud.cc/alerts/)**：财务模型、TG 社群动态、工单响应时效 8 大风控信号雷达监测，深度揭露低价永久无限流量骗局。
 
 ### 3. 🤖 GEO (生成式引擎检索) 友好设计
+
 - 独家打造 **ANSWER BLOCK 决策金字塔**：在首屏最显眼区域针对用户搜索意图提供 30 秒结论提炼，助力 Google AI Overviews、ChatGPT Search 与 Perplexity 秒级收录。
 
 ---
@@ -114,33 +117,39 @@
 ## ⚡ 快速上手 (Quick Start)
 
 ### 环境要求
+
 - **Node.js**: `>= 22.13.0`
 - **包管理器**: `pnpm >= 10.0.0` (推荐 `pnpm@11.9.0`)
 
 ### 1. 克隆仓库
+
 ```bash
 git clone https://github.com/sksksk98698-source/jichangcloud.cc.git
 cd jichangcloud.cc
 ```
 
 ### 2. 安装依赖
+
 ```bash
 pnpm install
 ```
 
 ### 3. 本地开发
+
 ```bash
 pnpm dev
 # 本地服务将在 http://localhost:4325 启动
 ```
 
 ### 4. 自动化测试
+
 ```bash
 pnpm test
 # 执行 11 个模块的端到端自动化单元测试 (100% 通过)
 ```
 
 ### 5. 生产构建
+
 ```bash
 pnpm build
 # 静态构建产物将输出至 dist/ 目录 (约 5.2s 编译 77 个生产页面)
@@ -151,7 +160,9 @@ pnpm build
 ## 🚀 部署上线 (Deployment)
 
 ### Cloudflare Pages / Workers (推荐)
+
 本项目已预置 `@astrojs/cloudflare` 适配器：
+
 1. 在 Cloudflare 控制台连接本 GitHub 仓库；
 2. 构建设置：
    - **Framework preset**: `Astro`

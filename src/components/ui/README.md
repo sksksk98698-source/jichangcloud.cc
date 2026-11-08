@@ -1,6 +1,6 @@
-# UI primitives — the astro-boiler primitive contract
+# UI primitives — the JiChang Cloud primitive contract
 
-This folder is astro-boiler's **own** UI primitive library. It is informed by the proven
+This folder is JiChang Cloud's **own** UI primitive library. It is informed by the proven
 `tailwind-variants` shape (folder / `tv()` config / `index.ts` re-export) but it is **ours** — not a
 vendored kit, not the Starwind CLI, not the `preline` package. Preline is a markup/states reference
 only; never load `preline.js`.
@@ -82,7 +82,7 @@ shows up instantly as an un-themed element.
 Two button systems exist on purpose, and reaching for the wrong one is the easiest way to get
 something that looks nothing like the theme.
 
-**`.pixel-btn`** (a global class in `src/styles/global.css`) is what 8-BitQuest's own CTAs use — the
+**`.pixel-btn`** (a global class in `src/styles/global.css`) is what JiChang Cloud's own CTAs use — the
 notched pixel face with the inset depth shadow, in pink (default), `--blue`, or `--green`. Every
 visible call to action in the theme is one: the hero CTAs, the header MENU button, the theme toggle,
 the contact submit, the 404. Apply it to a plain `<a>` or `<button>` and size it with padding

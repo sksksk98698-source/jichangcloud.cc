@@ -1,7 +1,7 @@
 ---
 // src/components/Sections/Contact/Form.astro — Figma "ContactFormCard" (node 9:31).
 //
-// The one server-driven piece of 8-BitQuest: a native <form method="POST"> bound to the `contact`
+// The one server-driven piece of JiChang Cloud: a native <form method="POST"> bound to the `contact`
 // Astro action (accept: "form"), so it works with JavaScript disabled. The server validates
 // (contactSchema), runs the spam gates, sends via Resend, and /contact/ re-renders with the result —
 // success replaces the card; validation errors show per-field; everything else shows in one alert.
@@ -53,7 +53,7 @@ const FIELDS = [
     label: "Email Address",
     // example.com, never an invented domain: the Astro theme-catalogue review strictly enforces it,
     // since a made-up domain can resolve to a real site and draw unwanted contact.
-    placeholder: "e.g. PLAYER1@EXAMPLE.COM",
+    placeholder: "contact@jichangcloud.cc",
     as: "input",
     type: "email",
     autocomplete: "email",

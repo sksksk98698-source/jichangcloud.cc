@@ -1,8 +1,9 @@
 {
-  "name": "8-bitquest",
+  "name": "jichangcloud",
+  "description": "JiChang Cloud - 8-Bit Pixel Architecture & Cloud Engineering",
   "type": "module",
   "version": "0.1.0",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "packageManager": "pnpm@11.9.0",
   "engines": {
     "node": ">=22.13.0"

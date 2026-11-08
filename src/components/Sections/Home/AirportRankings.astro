@@ -1,0 +1,95 @@
+---
+import { Badge } from "@components/ui/badge";
+import { PixelPanel } from "@components/ui/pixel-panel";
+import { airportsData } from "@/data/airportsData";
+
+// Top 10 airports
+const top10 = airportsData.slice(0, 10);
+---
+
+<section id="airport-rankings" aria-labelledby="rankings-title" class="flex flex-col gap-6">
+  <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 border-b-4 border-border pb-3">
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="font-display text-xs text-info uppercase">TOP RANKINGS</span>
+        <Badge pixel variant="secondary">2026 最新榜单</Badge>
+      </div>
+      <h2 id="rankings-title" class="font-display text-2xl md:text-3xl text-foreground uppercase tracking-tight mt-1">
+        2026 精选梯子机场推荐 TOP 10
+      </h2>
+    </div>
+    <a href="/airports/" class="text-xs font-mono text-success hover:underline">
+      查看全部 42 家机场评测库 →
+    </a>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {top10.map((item) => (
+      <PixelPanel class="p-5 flex flex-col justify-between gap-4 bg-card border-2 border-border hover:border-primary transition-colors">
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class={`font-display text-sm size-7 flex items-center justify-center border-2 border-border ${item.rank === 1 ? 'bg-primary text-black font-bold' : item.rank <= 3 ? 'bg-info text-black font-bold' : 'bg-muted text-foreground'}`}>
+                {item.rank}
+              </span>
+              <h3 class="font-display text-lg text-foreground uppercase tracking-tight">
+                {item.name}
+              </h3>
+            </div>
+            <span class="font-mono text-sm text-success font-bold">{item.price}</span>
+          </div>
+
+          <p class="text-xs text-muted-foreground line-clamp-2">
+            {item.summary}
+          </p>
+
+          <div class="flex flex-wrap items-center gap-1.5 pt-1">
+            <span class="text-[10px] font-mono px-1.5 py-0.5 bg-accent/60 border border-border text-foreground">
+              {item.lineType}
+            </span>
+            {item.protocols.map((proto) => (
+              <span class="text-[10px] font-mono px-1.5 py-0.5 bg-background border border-border text-muted-foreground">
+                {proto}
+              </span>
+            ))}
+            {item.hasSpeedtest && (
+              <span class="text-[10px] font-mono px-1.5 py-0.5 bg-success/20 text-success border border-success/40">
+                附带实测图
+              </span>
+            )}
+            {item.coupon && (
+              <span class="text-[10px] font-mono px-1.5 py-0.5 bg-primary/20 text-primary border border-primary/40">
+                券: {item.coupon}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 pt-2 border-t border-border/60">
+          <a
+            href={`/airports/${item.slug}/`}
+            class="pixel-btn text-xs px-3 py-2 flex-1 text-center"
+          >
+            详情测评
+          </a>
+          <a
+            href={item.registerUrl}
+            target="_blank"
+            rel="nofollow sponsored noopener"
+            class="pixel-btn pixel-btn--blue text-xs px-3 py-2 flex-1 text-center"
+          >
+            直通官网 ↗
+          </a>
+        </div>
+      </PixelPanel>
+    ))}
+  </div>
+
+  <div class="bg-accent/30 border-2 border-border p-4 text-center">
+    <p class="text-xs text-muted-foreground">
+      需要更多轻量入门、按量付费或企业独享专线？访问
+      <a href="/airports/" class="text-info underline font-bold mx-1">全网 42 家机场品牌库</a>
+      支持多维度协议与线路筛选。
+    </p>
+  </div>
+</section>

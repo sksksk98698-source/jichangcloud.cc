@@ -1,0 +1,53 @@
+---
+import { Badge } from "@components/ui/badge";
+import { PixelPanel } from "@components/ui/pixel-panel";
+import { proxyClients } from "@/data/clientsData";
+
+const popularClients = proxyClients.filter((c) => c.isPopular).slice(0, 6);
+---
+
+<section id="clients-section" aria-labelledby="clients-title" class="flex flex-col gap-6">
+  <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 border-b-4 border-border pb-3">
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="font-display text-xs text-secondary uppercase">CLIENT ECOSYSTEM</span>
+        <Badge pixel variant="secondary">全平台覆盖</Badge>
+      </div>
+      <h2 id="clients-title" class="font-display text-2xl md:text-3xl text-foreground uppercase tracking-tight mt-1">
+        主流翻墙代理客户端大全与配置
+      </h2>
+    </div>
+    <a href="/clients/" class="text-xs font-mono text-success hover:underline">
+      查看全系统下载与教程 →
+    </a>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    {popularClients.map((client) => (
+      <PixelPanel class="p-5 flex flex-col justify-between gap-3 bg-card border-2 border-border">
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <h3 class="font-display text-base text-foreground uppercase">{client.name}</h3>
+            <span class="text-[10px] font-mono bg-accent px-2 py-0.5 border border-border">
+              {client.osLabel}
+            </span>
+          </div>
+          <span class="text-xs font-mono text-info">{client.kernel}</span>
+          <p class="text-xs text-muted-foreground line-clamp-2">{client.features}</p>
+        </div>
+
+        <div class="pt-2 border-t border-border/60 flex items-center justify-between">
+          <span class="text-[10px] text-muted-foreground">开源/官方正版</span>
+          <a
+            href={client.downloadUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xs font-mono text-success hover:underline font-bold"
+          >
+            获取下载 ↗
+          </a>
+        </div>
+      </PixelPanel>
+    ))}
+  </div>
+</section>

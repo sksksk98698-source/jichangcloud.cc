@@ -1,0 +1,111 @@
+---
+import HeroPanel from "@components/Sections/Global/HeroPanel.astro";
+import { Badge } from "@components/ui/badge";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from "@components/ui/breadcrumb";
+import { PixelPanel } from "@components/ui/pixel-panel";
+import { type AlertArticle, alertArticles } from "@/data/alertsData";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return alertArticles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+interface Props {
+  article: AlertArticle;
+}
+
+const { article } = Astro.props;
+
+const pageTitle = `${article.title} — 机场cloud 跑路预警专题`;
+const pageDescription = `${article.excerpt} 本文深入剖析 ${article.targetKeyword}，提供客观技术特征模型与应急平替自救方案。`;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="site-container flex flex-col gap-8 py-8 md:gap-10 md:py-12">
+    {/* 面包屑导航 */}
+    <Breadcrumb class="text-xs font-mono">
+      <BreadcrumbItem><BreadcrumbLink href="/">首页</BreadcrumbLink></BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem><BreadcrumbLink href="/alerts/">跑路预警白皮书</BreadcrumbLink></BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem><BreadcrumbPage>{article.title}</BreadcrumbPage></BreadcrumbItem>
+    </Breadcrumb>
+
+    {/* 文章顶部信息卡 */}
+    <PixelPanel class="p-6 md:p-8 bg-card border-4 border-destructive flex flex-col gap-4 shadow-pixel">
+      <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
+        <span class="text-destructive font-bold">{article.badge}</span>
+        <span class="text-muted-foreground">· 发布于 {article.date} · 预计阅读时间 {article.readTime}</span>
+        <span class="text-destructive border border-destructive/40 px-2 py-0.5 bg-destructive/10">{article.riskLevel}</span>
+      </div>
+
+      <h1 class="font-display text-2xl md:text-3xl text-foreground uppercase tracking-tight leading-snug">
+        {article.title}
+      </h1>
+
+      <p class="text-xs md:text-sm text-muted-foreground font-mono leading-relaxed border-t border-border pt-3">
+        {article.excerpt}
+      </p>
+    </PixelPanel>
+
+    {/* ⚡ Answer Block 极速首答 */}
+    <PixelPanel class="p-6 bg-card border-2 border-destructive flex flex-col gap-3">
+      <div class="flex items-center gap-2">
+        <span class="text-destructive text-xl">⚡</span>
+        <h2 class="font-display text-base text-foreground uppercase">
+          Answer Block：核心风险定性与止损避坑结论
+        </h2>
+      </div>
+      <p class="text-xs font-mono text-foreground leading-relaxed bg-background p-4 border border-border">
+        {article.answerBlock}
+      </p>
+    </PixelPanel>
+
+    {/* 正文深度段落 */}
+    <div class="flex flex-col gap-6">
+      {article.content.map((paragraph) => (
+        <PixelPanel class="p-6 bg-card border-2 border-border flex flex-col gap-3">
+          <p class="text-xs md:text-sm font-mono text-muted-foreground leading-relaxed whitespace-pre-line">
+            {paragraph}
+          </p>
+        </PixelPanel>
+      ))}
+    </div>
+
+    {/* 常见问题 FAQ */}
+    {article.faqs.length > 0 && (
+      <PixelPanel class="p-6 bg-card border-2 border-border flex flex-col gap-4">
+        <h2 class="font-display text-lg text-foreground uppercase flex items-center gap-2">
+          <span>❓</span> 风险防范答疑 FAQ
+        </h2>
+        <div class="flex flex-col gap-3 font-mono text-xs">
+          {article.faqs.map((faq) => (
+            <div class="bg-background border border-border p-4 flex flex-col gap-1.5">
+              <span class="font-bold text-foreground">Q：{faq.q}</span>
+              <span class="text-muted-foreground leading-relaxed">答：{faq.a}</span>
+            </div>
+          ))}
+        </div>
+      </PixelPanel>
+    )}
+
+    {/* 底部导航 */}
+    <PixelPanel class="p-6 bg-accent/30 border-2 border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex flex-col gap-1 text-xs font-mono">
+        <span class="text-foreground font-bold">需要 5 分钟内快速接入稳定专线备用？</span>
+        <span class="text-muted-foreground">查阅年度老牌专线首推服务商，月付仅需十余元。</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="/alerts/" class="pixel-btn text-xs px-4 py-2">
+          ← 返回预警白皮书
+        </a>
+        <a href="/airports/guangshuyun/" class="pixel-btn pixel-btn--blue text-xs px-4 py-2 font-bold">
+          光速云专线测评 →
+        </a>
+      </div>
+    </PixelPanel>
+  </div>
+</BaseLayout>

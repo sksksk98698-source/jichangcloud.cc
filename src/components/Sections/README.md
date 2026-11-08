@@ -1,4 +1,4 @@
-# Sections — the astro-boiler section contract
+# Sections — the JiChang Cloud section contract
 
 A **section** is a layout-free block of page content (a hero, a feature grid, a legal article).
 Pages stay thin route shells: `src/pages/*` owns `BaseLayout` + SEO (title, description, noindex,

@@ -4,4 +4,4 @@ avatar: "../../assets/images/hero-avatar.jpg"
 authorLink: "/about/"
 ---
 
-Field operative behind 8-BitQuest — full-stack builds, vintage architectures, and pixel-perfect UI.
+Field operative behind JiChang Cloud — cloud infrastructure, high-performance edge networks, and pixel-crafted systems.

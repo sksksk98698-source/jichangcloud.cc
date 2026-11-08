@@ -1,5 +1,5 @@
 /**
- * * Astro Actions — the one server mutation in 8-BitQuest: the contact form.
+ * * Astro Actions — the one server mutation in JiChang Cloud: the contact form.
  *
  * `accept: "form"` binds the action to a native `<form method="POST">`, so it works with JavaScript
  * disabled: the browser posts real FormData, Astro runs `contactSchema` first (the handler starts

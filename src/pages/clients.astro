@@ -1,0 +1,82 @@
+---
+import HeroPanel from "@components/Sections/Global/HeroPanel.astro";
+import { Badge } from "@components/ui/badge";
+import { PixelPanel } from "@components/ui/pixel-panel";
+import { proxyClients } from "@/data/clientsData";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const title = "2026 翻墙代理客户端大全 (Windows / Android / iOS / Mac / 软路由) — 机场cloud";
+const description = "收录 2026 主流机场客户端：Clash Verge Rev、v2rayN、Shadowrocket (小火箭)、v2rayNG、FlClash、Hiddify、Stash、OpenClash 等官方下载与订阅导入指南。";
+
+const osCategories = [
+  { id: "windows", name: "Windows 电脑" },
+  { id: "android", name: "Android 安卓手机" },
+  { id: "ios", name: "iPhone / iPad (iOS)" },
+  { id: "macos", name: "macOS 苹果电脑" },
+  { id: "linux", name: "Linux / 软路由系统" },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="site-container flex flex-col gap-10 py-8 md:gap-12 md:py-12">
+    <HeroPanel
+      headingId="clients-heading"
+      tagline="CLIENTS ECOSYSTEM"
+      heading="2026 机场代理客户端大全与下载指南"
+      intro="全平台翻墙客户端完整资料库。涵盖 Windows、Android、iOS、macOS 及软路由开源官方下载渠道、核心特点与使用建议，告别带毒第三方修改版。"
+    />
+
+    {/* 客户端按平台分组 */}
+    {osCategories.map((cat) => {
+      const list = proxyClients.filter((c) => c.os === cat.id || (cat.id === "linux" && (c.os === "linux" || c.os === "openwrt")));
+      return (
+        <section class="flex flex-col gap-4">
+          <div class="flex items-center gap-2 border-b-2 border-border pb-2">
+            <span class="font-display text-lg text-foreground uppercase">{cat.name}</span>
+            <Badge pixel variant="secondary">{list.length} 款推荐</Badge>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {list.map((c) => (
+              <PixelPanel class="p-5 bg-card border-2 border-border flex flex-col justify-between gap-3">
+                <div class="flex flex-col gap-2">
+                  <div class="flex items-center justify-between">
+                    <h3 class="font-display text-base text-foreground uppercase">{c.name}</h3>
+                    {c.isPopular && <Badge pixel variant="success">热门首选</Badge>}
+                  </div>
+                  <span class="text-xs font-mono text-info">{c.kernel}</span>
+                  <p class="text-xs text-muted-foreground font-mono leading-relaxed">{c.features}</p>
+                </div>
+
+                <div class="pt-3 border-t border-border/60 flex items-center justify-between">
+                  <span class="text-[11px] text-muted-foreground font-mono">官方下载 / GitHub</span>
+                  <a
+                    href={c.downloadUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="pixel-btn text-xs px-3 py-1.5 font-bold"
+                  >
+                    前往下载 ↗
+                  </a>
+                </div>
+              </PixelPanel>
+            ))}
+          </div>
+        </section>
+      );
+    })}
+
+    {/* 订阅导入基础指南 */}
+    <PixelPanel class="p-6 bg-accent/30 border-2 border-border flex flex-col gap-3 font-mono text-xs">
+      <h3 class="font-display text-base text-foreground uppercase">
+        📖 常见客户端订阅导入通用流程：
+      </h3>
+      <ol class="list-decimal list-inside flex flex-col gap-1.5 text-muted-foreground">
+        <li>在已购买的机场后台（如 <a href="/airports/guangshuyun/" class="text-info underline font-bold">光速云</a>）复制通用订阅链接或 Clash 订阅地址。</li>
+        <li>打开客户端（如 Clash Verge Rev），点击「配置 (Profiles)」或「订阅」，粘贴链接并点击「导入 / 下载」。</li>
+        <li>在「代理 (Proxies)」选择「规则模式 (Rule)」，挑选测速优良的节点（如香港、新加坡、日本）。</li>
+        <li>开启系统代理（或 TUN 模式），即可实现无感极速外网加速。</li>
+      </ol>
+    </PixelPanel>
+  </div>
+</BaseLayout>

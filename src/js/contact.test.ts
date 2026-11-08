@@ -45,10 +45,10 @@ assert.equal(spamReason({ _ts: rendered }, rendered + MIN_FILL_MS), null);
 // email body escapes HTML so a field can't inject markup, and the reply-to is the sender's address
 const mail = buildEmail(
   { name: "<script>", email: "a@b.co", subject: "Hi & bye", message: "1 < 2" },
-  "8-BitQuest",
+  "JiChang Cloud",
 );
 assert.equal(mail.replyTo, "a@b.co");
-assert.ok(mail.subject.startsWith("[8-BitQuest] Hi & bye — <script>")); // subject is a header, not HTML
+assert.ok(mail.subject.startsWith("[JiChang Cloud] Hi & bye — <script>")); // subject is a header, not HTML
 assert.ok(mail.html.includes("&lt;script&gt;"));
 assert.ok(mail.html.includes("1 &lt; 2"));
 assert.ok(!mail.html.includes("<script>"));

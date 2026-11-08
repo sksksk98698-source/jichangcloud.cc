@@ -1,5 +1,5 @@
 ---
-// src/components/Sections/Global/Footer.astro — the global site footer (8-BitQuest, Figma node 5:93).
+// src/components/Sections/Global/Footer.astro — the global site footer (JiChang Cloud, Figma node 5:93).
 //
 // Cross-page chrome, rendered once in BaseLayout below <main>. Reproduces the dark Figma frame: a
 // full-bleed pixel bar (black top border, no shadow) with three groups — copyright (left), a
@@ -22,15 +22,15 @@ import siteData from "@config/siteData.json";
 import { socialLink } from "@config/socialData.json";
 
 const year = new Date().getFullYear();
-const copyright = `© ${year} — Game Over`;
+const copyright = `© ${year} ${siteData.name}. All rights reserved.`;
 
 // Social row (Figma 5:96, glyphs swapped to the pixel set). `name` is validated against the
 // pixel-icon registry. Which platforms appear is this section's call; how one resolves is not.
 type SocialLink = { name: PixelIconName; label: string; href: string; external?: boolean };
 const socialLinks: readonly SocialLink[] = [
-  { ...socialLink("linkedin"), external: true },
+  { ...socialLink("github"), external: true },
   { name: "rss", label: "RSS feed", href: "/rss.xml" },
-  { ...socialLink("youtube"), external: true },
+  { ...socialLink("twitter"), external: true },
   { name: "email", label: "Email", href: `mailto:${siteData.author.email}` },
 ];
 

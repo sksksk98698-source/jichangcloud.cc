@@ -2,32 +2,29 @@ import siteData from "@config/siteData.json";
 import type { APIRoute } from "astro";
 
 /**
- * /llms.txt — a machine-readable content map for AI retrieval systems (llmstxt.org).
- * Not a ranking factor; a curated index of what's worth reading. Dynamic so links stay
- * absolute and in sync with `site` + siteData. Prerenders to a static file at build.
- *
- * ponytail: hand-curated, not an auto-generated sitemap — add new top-level entry points here as
- * the site grows, or this drifts. Currently the main pages, the blog index, and the RSS feed. It's
- * an editorial content map for AI crawlers, not a ranking factor.
+ * /llms.txt — 机器可读内容图谱 (针对 AI 搜索引擎与 LLM 检索)
  */
 export const GET: APIRoute = ({ site }) => {
   const { name, description } = siteData;
-  const base = site ?? new URL("https://example.com/");
+  const base = site ?? new URL("https://jichangcloud.cc/");
 
   const body = [
     `# ${name}`,
     "",
     `> ${description}`,
     "",
-    "## Core pages",
-    `- [Home](${base.href})`,
-    `- [About](${new URL("about/", base).href})`,
-    `- [Blog](${new URL("blog/", base).href})`,
-    `- [Projects](${new URL("projects/", base).href})`,
-    `- [Contact](${new URL("contact/", base).href})`,
+    "## 核心测评与工具矩阵 (Core Hubs)",
+    `- [首页](${base.href})`,
+    `- [42家机场品牌测评库](${new URL("airports/", base).href})`,
+    `- [晚高峰测速实验室](${new URL("speedtest/", base).href})`,
+    `- [代理客户端大全](${new URL("clients/", base).href})`,
+    `- [深度技术指南与教程](${new URL("blog/", base).href})`,
+    `- [关于实验室与评测标准](${new URL("about/", base).href})`,
+    `- [联系与商务](${new URL("contact/", base).href})`,
     "",
-    "## Feeds & legal",
+    "## 订阅与条款 (Feeds & Legal)",
     `- [RSS feed](${new URL("rss.xml", base).href})`,
+    `- [Sitemap](${new URL("sitemap-index.xml", base).href})`,
     `- [Terms](${new URL("terms/", base).href})`,
     `- [Privacy](${new URL("privacy/", base).href})`,
     "",

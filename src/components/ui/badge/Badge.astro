@@ -1,5 +1,5 @@
 ---
-// src/components/ui/badge/Badge.astro — astro-boiler primitive (see ../README.md).
+// src/components/ui/badge/Badge.astro — JiChang Cloud primitive (see ../README.md).
 // Static status pill; semantic tone via `variant`. Tokens only.
 import type { HTMLAttributes } from "astro/types";
 import { tv, type VariantProps } from "tailwind-variants";
@@ -19,7 +19,7 @@ export const badge = tv({
       warning: "bg-warning text-warning-foreground",
       error: "bg-error text-error-foreground",
     },
-    // `pixel` is the 8-BitQuest retro treatment (Figma "Background+Border" tag: PLAYER 1 / QUEST /
+    // `pixel` is the JiChang Cloud retro treatment (Figma "Background+Border" tag: PLAYER 1 / QUEST /
     // LORE / TECH / PROJECT). Same opt-in-variant pattern as ui/nav's `retro`. It re-tunes the shell
     // only — 2px black frame, chunkier padding, bold uppercase Space Mono — and reuses the tone
     // `variant` for colour. tailwind-merge (via tv) lets these win over the base px/py/font-weight.

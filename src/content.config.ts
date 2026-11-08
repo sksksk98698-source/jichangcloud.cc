@@ -79,5 +79,5 @@ const authorsCollection = defineCollection({
 export const collections = {
   blog: blogCollection,
   authors: authorsCollection,
-  projects: projectsCollection,
+  // projects: projectsCollection,
 };

@@ -1,0 +1,54 @@
+---
+import { Badge } from "@components/ui/badge";
+import { PixelPanel } from "@components/ui/pixel-panel";
+
+const faqs = [
+  {
+    q: "什么是机场？机场与传统商业 VPN 有什么本质区别？",
+    a: "机场是指基于 Shadowsocks、VLESS、Trojan、Hysteria2 等协议建立的分布式多节点代理集群。相较于传统商业 VPN（如 ExpressVPN、NordVPN 极易被 GFW 精准识别特征封锁），优质机场采用 BGP 智能中转或跨境内网专线（IEPL/IPLC），不经过常规公网防火墙，流量抗封锁能力强、晚高峰延迟极低，并且支持规则分流（国内直连、国外加速）。"
+  },
+  {
+    q: "为什么 2026 年度首推【光速云】？",
+    a: "光速云自 2020 年起稳定运营，经本站长期测速监控，其采用企业级 IEPL 专线与 VLESS 协议，晚高峰香港延迟稳定在 22ms 左右。套餐跨度完善，既有低至 8 元/月的轻量年付，也有永久不过期的 147 永久套餐及企业独享原生 IP 方案，全方位兼顾价格与高稳定性。"
+  },
+  {
+    q: "IEPL 专线和 IPLC 专线到底好在哪里？为什么晚高峰不卡？",
+    a: "IEPL（国际以太网专线）和 IPLC（国际私有租用线路）是点对点的跨境物理专线，数据在两端机房内网直通，完全不经过公共互联网骨干网，因而天然规避了晚高峰国际出口拥堵（QoS 限速）和防火墙干扰，丢包率趋近于 0。"
+  },
+  {
+    q: "机场节点是否支持 ChatGPT、Claude 以及 Netflix 4K 流媒体？",
+    a: "优质机场通过配置高质量海外原生 IP 或 DNS 解锁服务，能够完美解锁 ChatGPT、Claude、TikTok、Netflix、Disney+ 及 YouTube 4K。本站 42 家机场品牌库中对每个品牌的解锁能力均有独立矩阵实测说明。"
+  },
+  {
+    q: "新手用户购买后如何配置客户端开始使用？",
+    a: "绝大多数机场提供一键订阅导入链接。Windows 推荐使用 Clash Verge Rev 或 v2rayN；iOS 推荐使用美区 App Store 下载 Shadowrocket（小火箭）或 Stash；Android 推荐使用 v2rayNG 或 FlClash。只需复制官网提供的通用订阅链接粘贴至客户端更新即可。"
+  }
+];
+---
+
+<section id="faq-section" aria-labelledby="faq-title" class="flex flex-col gap-6">
+  <div class="flex items-center justify-between border-b-4 border-border pb-3">
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="font-display text-xs text-info uppercase">KNOWLEDGE BASE</span>
+        <Badge pixel variant="info">GEO 深度指南</Badge>
+      </div>
+      <h2 id="faq-title" class="font-display text-2xl md:text-3xl text-foreground uppercase tracking-tight mt-1">
+        机场选购常见问题与避坑指南 (FAQ)
+      </h2>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-4">
+    {faqs.map((faq) => (
+      <PixelPanel class="p-6 bg-card border-2 border-border flex flex-col gap-2">
+        <h3 class="font-display text-base text-foreground uppercase">
+          Q: {faq.q}
+        </h3>
+        <p class="text-xs text-muted-foreground leading-relaxed font-mono">
+          {faq.a}
+        </p>
+      </PixelPanel>
+    ))}
+  </div>
+</section>

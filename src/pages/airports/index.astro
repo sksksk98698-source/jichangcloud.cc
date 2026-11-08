@@ -1,0 +1,99 @@
+---
+import HeroPanel from "@components/Sections/Global/HeroPanel.astro";
+import { Badge } from "@components/ui/badge";
+import { PixelPanel } from "@components/ui/pixel-panel";
+import { airportsData } from "@/data/airportsData";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const title = "42家机场品牌测评库 (2026 最新) — 机场cloud 测速实验室";
+const description = "收录全网 42 家主流机场加速服务商详细数据。基于晚高峰真实测速、IEPL/IPLC专线、协议类型及流媒体/AI解锁能力全景展示。";
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="site-container flex flex-col gap-10 py-8 md:gap-12 md:py-12">
+    <HeroPanel
+      headingId="airports-heading"
+      tagline="OBSERVATORY DATABASE"
+      heading="42 家机场品牌库与实测矩阵"
+      intro="全网 42 家主流梯子机场全量数据收录。包含晚高峰实测延迟、专线架构、流媒体与 ChatGPT 解锁能力，所有注册直达链接均经安全验证。"
+    />
+
+    {/* 42 品牌网格 */}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {airportsData.map((item) => (
+        <PixelPanel class="p-6 flex flex-col justify-between gap-4 bg-card border-2 border-border hover:border-primary transition-all">
+          <div class="flex flex-col gap-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class={`font-display text-sm size-8 flex items-center justify-center border-2 border-border ${item.rank === 1 ? 'bg-primary text-black font-bold' : item.rank <= 3 ? 'bg-info text-black font-bold' : 'bg-muted text-foreground'}`}>
+                  #{item.rank}
+                </span>
+                <div>
+                  <h2 class="font-display text-lg text-foreground uppercase tracking-tight">
+                    {item.name}
+                  </h2>
+                  <span class="text-[11px] font-mono text-info">{item.lineType}</span>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="font-mono text-sm text-success font-bold block">{item.price}</span>
+                {item.coupon && (
+                  <span class="text-[10px] font-mono text-primary bg-primary/10 px-1 border border-primary/30">
+                    码: {item.coupon}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <p class="text-xs text-muted-foreground leading-relaxed">
+              {item.summary}
+            </p>
+
+            <div class="flex flex-wrap items-center gap-1.5 pt-1">
+              {item.protocols.map((p) => (
+                <span class="text-[10px] font-mono px-1.5 py-0.5 bg-background border border-border text-muted-foreground">
+                  {p}
+                </span>
+              ))}
+              {item.hasSpeedtest && (
+                <span class="text-[10px] font-mono px-1.5 py-0.5 bg-success/20 text-success border border-success/40">
+                  附晚高峰实测图
+                </span>
+              )}
+              {item.rank === 1 && (
+                <span class="text-[10px] font-mono px-1.5 py-0.5 bg-primary/20 text-primary border border-primary/40 font-bold">
+                  ★ 年度首推
+                </span>
+              )}
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 pt-3 border-t border-border/60">
+            <a
+              href={`/airports/${item.slug}/`}
+              class="pixel-btn text-xs px-4 py-2.5 flex-1 text-center"
+            >
+              测评详情报告
+            </a>
+            <a
+              href={item.registerUrl}
+              target="_blank"
+              rel="nofollow sponsored noopener"
+              class="pixel-btn pixel-btn--blue text-xs px-4 py-2.5 flex-1 text-center"
+            >
+              官网注册 ↗
+            </a>
+          </div>
+        </PixelPanel>
+      ))}
+    </div>
+
+    {/* 免责与赞助透明声明 */}
+    <div class="bg-accent/40 border-2 border-border p-4 text-xs text-muted-foreground font-mono leading-relaxed">
+      <p class="font-bold text-foreground mb-1">📢 数据来源与免责声明：</p>
+      <p>1. 本站所有机场测评数据均基于品牌官方资料、第三方实际节点测试以及网络实验室晚高峰监测日志整理。</p>
+      <p>2. 链接包含官方推广参数（统一标注 rel="nofollow sponsored noopener"），通过链接注册可能为本站服务器维护提供赞助佣金，但绝不会影响您的支付价格与折扣优惠。</p>
+      <p>3. 节点可用性与延迟受地区网络运营商影响，建议购买前优先选购小额月付周期实测满意后再续期。</p>
+    </div>
+  </div>
+</BaseLayout>

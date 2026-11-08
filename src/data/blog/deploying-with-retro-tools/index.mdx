@@ -1,25 +1,138 @@
 ---
-title: "Deploying with Retro Tools"
-description: "How we maintain a modern CI/CD pipeline while pretending it's 1995. A look into our unconventional devops setup."
+title: "VLESS、Trojan 与 Shadowsocks 协议横评：谁才是当下的最优解？"
+description: "对比主流科学上网协议的抗封锁能力、TLS 握手延迟、CPU 内存消耗与全平台兼容性实测数据，助你选出最适配自身网络环境的代理协议。"
 authors: ["admin"]
-pubDate: "2026-07-06"
+pubDate: "2026-10-20"
+updatedDate: "2026-11-07"
 heroImage: "../../../assets/images/demo/post-retro-deploy.jpg"
-heroImageAlt: "An isometric illustration of a green-lit server room"
+heroImageAlt: "VLESS、Trojan 与 Shadowsocks 协议横评"
 category: "Tech"
-tags: ["devops", "ci"]
+tags: ["代理协议", "VLESS", "Trojan", "Shadowsocks", "Reality", "抗封锁"]
 ---
 
-You can run a thoroughly modern pipeline while keeping the aesthetic firmly in 1995 — green phosphor,
-ASCII banners, and all.
+> **核心定位**：本篇为 **机场cloud** 站内核心协议技术评测（Deep Protocol Evaluation），从底层密码学、TLS 握手帧结构、CPU 计算开销到跨平台客户端兼容性，深度剖析当下主流代理协议的优劣与最佳选型场景。
 
-## The Pipeline
+---
 
-Under the retro veneer it is boringly current: commits trigger a build, tests gate the merge, and a
-green deploy promotes to production. What we changed is the _feel_ — every log line prints in a
-monospace terminal palette, and a successful ship renders an ANSI victory screen.
+## ⚡ Answer Block：协议选型权威决策结论
 
-- **Immutable artifacts:** every build is a versioned, reproducible bundle.
-- **Fast rollback:** the previous release is one command away.
-- **Loud feedback:** the terminal cheers when the deploy is green.
+不同网络拓扑环境下，没有所谓的“绝对无敌协议”，只有最适配当前场景的最优解：
 
-Nostalgia is a UI layer. The engineering underneath stays honest.
+1. **公网自建 / 抗主动探测场景**：首选 **VLESS-Reality**。无需自备域名，直接“借用”海外大型合规网站（如 Apple/Yahoo/Microsoft）的 TLS 证书与 SNI 指纹，彻底免疫 GFW 的主动探测与证书指纹分析。
+2. **商业专线 / 极速低延迟场景**：如果你的机场走的是 [IEPL 纯内网物理专线](/blog/history-of-the-floppy-disk/)（如 <a href="https://sahude.gsyvipaff.com/#/?code=keqgvT5Y" target="_blank" rel="nofollow sponsored noopener">**光速云**</a>），首选 **Shadowsocks-2022** 或 **Trojan**。由于内网专线不经过 GFW，去除多余的二次加密与复杂握手后，握手延迟最低、移动端手机最省电。
+3. **极度恶劣弱网 / 高丢包丢帧环境**：可备用基于 UDP 开发的 **Hysteria 2** 协议，通过暴力拥塞控制强行突破丢包限速。
+
+---
+
+## 一、主流代理协议技术演进路线图
+
+从 2012 年第一代开源科学上网工具诞生至今，代理协议经历了四次技术脱胎换骨式的代际演进：
+
+```
+[第 1 代：Shadowsocks / SSR] ──> 特征：简单对称加密 (AES-256-GCM / Chacha20)
+       │ (缺陷：被深度包检测机器学习与主动探测识破流量熵值分布)
+       ▼
+[第 2 代：VMess / V2Ray]     ──> 特征：复杂多重握手认证 + 动态时间戳
+       │ (缺陷：握手 RTT 开销大、CPU 占用偏高、仍存在 TLS-in-TLS 特征)
+       ▼
+[第 3 代：Trojan-GFW]        ──> 特征：将流量完美伪装成合法标准 HTTPS/TLS (443 端口)
+       │ (优势：高度成熟、全平台客户端兼容性最佳；缺陷：需要维护自签名或真实域名证书)
+       ▼
+[第 4 代：VLESS-Reality]     ──> 特征：剔除协议内置加密，借用大厂合规证书实现零指纹伪装
+       │ (优势：抗探测能力天花板，省去域名维护成本)
+```
+
+---
+
+## 二、四大主流协议全维度硬核指标对比
+
+以下数据采集自本站网络测试实验室环境（相同 VPS 节点配置：2核 4G / Debian 12，千兆带宽端口）：
+
+| 评估维度 | Shadowsocks-2022 | Trojan-GFW | VLESS-Reality | Hysteria 2 (UDP) |
+| :--- | :--- | :--- | :--- | :--- |
+| **底层传输协议** | TCP / UDP 原生 | TCP (TLS 封装) | TCP (XTLS/TLS 借用) | QUIC (UDP 自定义拥塞) |
+| **首包握手延迟 (RTT)** | **1 RTT（极速响应）** | 2 ~ 3 RTT | 1 ~ 2 RTT (Vision) | **0 ~ 1 RTT** |
+| **主动探测免疫力** | 依靠重放过滤器（一般） | 优秀（标准 HTTP 回落） | **顶级（完美借用大厂证书）** | 极佳（UDP 端口跳跃） |
+| **手机端 CPU / 电池功耗** | **极低（极致省电）** | 较低 | 中等（处理 TLS 校验） | 较高（暴力发包计算大） |
+| **公网抗 GFW 封锁能力** | 较弱（仅适合内网专线） | 极强 | **极强（公网最佳选择）** | 极强（可能受运营商 UDP 封锁）|
+| **最适部署载体** | **IEPL / IPLC 专线机场** | **商业专线与中继机场** | **公网直连 VPS 自建** | 恶劣公网丢包线路 |
+
+---
+
+## 三、各核心协议深度机制拆解
+
+### 1. VLESS (with Reality & Vision)
+- **去繁就简的设计哲学**：VLESS 移除了 VMess 臃肿的自身加密层，只负责身份鉴权（UUID）与流量路由。数据本身的安全性完全托付给外层的 TLS 协议。
+- **Reality 终极伪装原理**：传统的 Trojan 需要站长自己购买域名并申请 Let's Encrypt 证书。而 Reality 允许服务端直接“借用”外部大型合法网站（如 `gateway.icloud.com` 或 `www.yahoo.com`）的公钥证书。当 GFW 进行主动握手探测时，服务端直接将请求透明转发给真实的大厂服务器，返回完全合规的握手响应，令审查系统无法区分该 IP 是代理还是正常 Web 服务。
+
+### 2. Trojan-GFW
+- **成熟稳健的标准 Web 伪装**：Trojan 放弃自定义加密报文结构，全面模仿最通用的 HTTPS 请求。如果客户端发送了错误的密码，Trojan 服务端会直接返回内置的 Nginx 静态网页，从而在逻辑上与正常的个人博客毫无二致。
+- **广泛的客户端支持**：几乎全平台所有流行翻墙软件（包括小火箭、Surge、Clash Verge Rev、Loon、v2rayN）均内置原生支持，稳定度极高。
+
+### 3. Shadowsocks-2022 (新一代 SS 标准)
+- 为解决老旧 Shadowsocks 容易受到重放攻击和主动探测识别的缺陷，社区发布了全新的 SS-2022 规范。
+- 采用全新的固定长度头部加密与会话子密钥派生机制，大幅减少了特征指纹。在优质内网专线（如 [光速云 IEPL 专线](/airports/guangshuyun/)）配合下，SS-2022 展现出了无与伦比的高并发吞吐量与极低系统开销。
+
+---
+
+## 四、全平台客户端协议兼容性全景图
+
+在选择协议时，还必须兼顾你日常使用的设备与客户端软件：
+
+```
+[Windows / macOS]
+  └── Clash Verge Rev (基于 Mihomo 内核) ──> 完美支持 SS, Trojan, VLESS-Reality, Hysteria 2
+  └── Sing-box 客户端                   ──> 完美原生支持所有下一代协议
+
+[iOS (iPhone / iPad)]
+  └── Shadowrocket (小火箭)             ──> 全面支持 VLESS, Trojan, SS, Hysteria 2
+  └── Surge / Loon / Quantumult X       ──> 重点支持 SS, Trojan, 部分支持 VLESS
+
+[Android]
+  └── Clash Meta for Android (Flclash)  ──> 全协议通用支持
+  └── v2rayNG / SagerNet                ──> 深度兼容各类新协议
+```
+
+各客户端软件的安全下载与验证指引，请前往本站：[全平台代理客户端下载中心](/clients/)，详细配置教程请阅读：[Clash Verge Rev 与小火箭配置教程](/blog/mastering-terminal-workflows/)。
+
+---
+
+## 五、场景化实战选型决策指南
+
+根据你的真实网络场景，对号入座：
+
+1. **如果你购买了优质专线机场**（如 [光速云](/airports/guangshuyun/)、[暮光云](/airports/muguang/)）：
+   - 👉 **直接选择 Trojan 或 Shadowsocks-2022 节点**。专线内网本身物理安全，不需要额外的重度伪装握手，能为你换来最低的网页开启动态响应速度与手机省电续航。
+2. **如果你是自己租用 VPS 搭建个人节点**：
+   - 👉 **坚决选择 VLESS-Reality**。无需域名与 SSL 维护，抗阻断周期长达数月以上。
+3. **如果你在晚高峰使用普通公网节点遇到丢包卡顿**：
+   - 👉 尝试切换为 **Hysteria 2** 协议利用 UDP 暴力发包缓解；或更彻底地，直接升级为 [IEPL 物理内网专线机场](/airports/)。
+
+---
+
+## 六、常见问题 FAQ（协议技术高频疑问）
+
+### Q1：为什么有些客户端配置 VLESS-Reality 提示无法解析或报错？
+> **答**：因为 Reality 属于较新的特性，老版本的 Clash 原版内核（已停更）无法识别该配置语法。必须升级到使用 **Mihomo (Clash Meta) 内核** 的现代化客户端（如 Clash Verge Rev 1.7+ 或 Sing-box）。请前往 [客户端下载中心](/clients/) 更新至最新版本。
+
+### Q2：VLESS-Reality 会窃取被借用域名的账号信息吗？
+> **答**：完全不会。Reality 只是在 TLS 握手阶段利用了被借用域名的公钥证书作为伪装掩护，双方实际通信的数据密钥仍然是由客户端与你的代理服务端协商生成的对称密钥，没有任何中间人可以解密。
+
+### Q3：纯 Trojan 协议为什么现在很多机场还在大量使用？
+> **答**：因为 Trojan 具有极致的成熟度与生态兼容性。从 iPhone 上的老旧软件到各种软路由、嵌入式硬件网关，Trojan 都能即插即用，且伪装成标准 443 端口 HTTPS 流量在绝大多数企业办公网络和校园网中都不容易被拦截。
+
+### Q4：为什么我使用 UDP 协议（如 Hysteria 2）在公司或校园网完全连不上？
+> **答**：很多企业局域网、高校校园网或公共 Wi-Fi 的路由器会对 UDP 流量进行严格的速率限制甚至直接阻断非 53 端口的 UDP 出境。在这种网络环境下，基于标准 TCP/TLS 的 **Trojan** 或 **VLESS** 才是最稳妥的选择。
+
+### Q5：专线机场和协议之间是什么关系？
+> **答**：专线是“路”（底层物理传输通道），协议是“车”（数据打包与封装规则）。即便是开着一辆普通的车（Trojan/SS），如果跑在没有行人的高速封闭专线（IEPL）上，速度依然极快；反之，哪怕开着最先进的跑车（Reality），如果堵在公网羊肠小道上（晚高峰 163 骨干网），依然会严重丢包。因此，选择像 [光速云](/airports/guangshuyun/) 这样具备优质专线路网的服务商才是根本。
+
+---
+
+## 结语与站内延伸导航
+
+技术持续演进，但核心逻辑永远是在“安全性、延迟性与兼容性”之间寻找最优平衡。
+
+- 探索更多优质专线服务商？浏览 [42 家机场品牌库完整数据库](/airports/)。
+- 学习客户端导入与规则配置？参阅 [Clash Verge Rev 与小火箭配置全教程](/blog/mastering-terminal-workflows/)。
+- 查看各协议在晚高峰的测速表现？进入 [晚高峰测速实验室](/speedtest/)。

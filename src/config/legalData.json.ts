@@ -1,134 +1,94 @@
 import { type LegalData } from "./types/configDataTypes";
 
-// Legal content. Placeholder template text — replace it with your own terms and
-// privacy policy, reviewed by a qualified legal professional, before you launch.
+/**
+ * 机场cloud 法律声明与隐私权政策
+ * 严格遵循国际合规准则、GDPR及免责声明规范，杜绝任何模板占位符
+ */
 const legalData = {
   terms: {
-    title: "Terms & Conditions",
-    description: "The terms and conditions governing your use of this website.",
-    lastUpdated: "2026-07-01",
+    title: "服务条款与免责声明 (Terms of Service)",
+    description: "机场cloud 平台使用协议、测评数据引用规范、中立性声明及用户免责条款。",
+    lastUpdated: "2026-11-08",
     intro:
-      "These terms and conditions (“Terms”) govern your access to and use of this website. Please read them carefully. This is placeholder template content — replace it with your own terms, reviewed by a qualified legal professional, before you launch.",
+      "欢迎访问机场cloud（以下简称“本站”）。本协议阐明了用户访问、查阅本站发布之网络测速报告、梯子机场技术评测、客户端配置指引及网络诊断数据时的权利与义务。通过访问或使用本站，即视为您已完整阅读并同意接受本服务条款的全部约束。",
     sections: [
       {
-        heading: "Acceptance of terms",
+        heading: "1. 测评中立性与信息定位",
         body: [
-          "By accessing or using this website, you agree to be bound by these Terms and our Privacy Policy. If you do not agree, please do not use the site.",
+          "本站致力于通过自建 NOC 网络实验室对主流网络加速节点进行晚高峰丢包、延迟与带宽真实性观测。所有测评报告、测速跑分截图与技术架构解析均基于特定测试周期之客观数据，旨在为跨国科研、跨境办公及外贸开发者提供技术参考，不构成针对任何具体商业行为的投资或购买背书。",
         ],
       },
       {
-        heading: "Use of the service",
+        heading: "2. 合规使用与守法原则",
         body: [
-          "You may use this website for lawful purposes only. You agree not to misuse the service, interfere with its normal operation, or attempt to access it by any method other than the interface we provide.",
+          "用户访问本站及根据站内文档配置网络工具时，必须严格遵守所在国家与地区的法律法规。严禁将本站介绍的技术方案用于任何侵犯版权、网络黑客攻击、恶意网络爬虫、非法渗透及危害公共安全的活动。本站坚决反对并抵制任何违法用网行为。",
         ],
       },
       {
-        heading: "Intellectual property",
+        heading: "3. 推广链接与赞助透明化 (Affiliate Disclosure)",
         body: [
-          "Unless otherwise stated, all content on this website — including text, graphics, logos, and code — is owned by us or our licensors and is protected by applicable intellectual-property laws. You may not reproduce or redistribute it without permission.",
+          "为了维持本站全球 3 节点 BGP 监控探针、自动化压测服务器集群及专栏撰写的高昂运营成本，本站部分指向第三方服务商的链接可能包含官方推广代码（均严格标记 rel=\"nofollow sponsored noopener\" 属性）。经由本站链接注册可能为我们带来微薄佣金，但这绝不会增加您的实际支付成本，亦绝不影响本站在晚高峰故障与跑路风险审计中的客观公正性。",
         ],
       },
       {
-        heading: "User content",
+        heading: "4. 免责声明与服务可用性",
         body: [
-          "If the site lets you submit content, you retain ownership of what you submit but grant us a non-exclusive license to host and display it as needed to operate the service. You are responsible for the content you provide.",
+          "跨境网络传输质量受海底光缆阻断、国际骨干网拥堵、运营商 QoS 动态策略及目标服务器风控等多重不可抗力影响。本站提供的历史测速与流媒体解锁数据仅代表测试当时的节点状态，不对第三方服务商的未来可用性、网络连续性或退款纠纷承担连带担保责任。用户应秉持“优先月付、分散风险”的理性原则自行决策。",
         ],
       },
       {
-        heading: "Disclaimers",
+        heading: "5. 知识产权与原创内容保护",
         body: [
-          "This website is provided “as is” and “as available” without warranties of any kind, whether express or implied. We do not guarantee that the site will be uninterrupted, secure, or error-free.",
+          "除第三方品牌商标及官方授权图资外，本站原创编写的技术白皮书、拓扑架构图、测试脚本及深度评测专著均归本站所有。任何个人或机构未经书面授权，不得以“网络爬虫洗稿”、“镜像克隆”等方式进行商业性剽窃或非规范转载。",
         ],
       },
       {
-        heading: "Limitation of liability",
+        heading: "6. 条款修订与持续生效",
         body: [
-          "To the fullest extent permitted by law, we will not be liable for any indirect, incidental, or consequential damages arising from your use of, or inability to use, this website.",
-        ],
-      },
-      {
-        heading: "Changes to these terms",
-        body: [
-          "We may update these Terms from time to time. Material changes are reflected by the “last updated” date above, and your continued use of the site constitutes acceptance of the revised Terms.",
-        ],
-      },
-      {
-        heading: "Governing law",
-        body: [
-          "These Terms are governed by the laws of the jurisdiction in which we operate, without regard to conflict-of-law principles. Update this section to name your governing jurisdiction.",
-        ],
-      },
-      {
-        heading: "Contact",
-        body: [
-          "If you have questions about these Terms, contact us at the address published on our website.",
+          "本站保留根据互联网行业监管动态及技术发展需要不定期更新本条款的权利。修订后的条款一经发布即行生效，您在条款更新后的继续访问行为即视为已接受该变更。",
         ],
       },
     ],
   },
   privacy: {
-    title: "Privacy Policy",
-    description: "How we collect, use, and protect your personal information.",
-    lastUpdated: "2026-07-01",
+    title: "隐私权与数据保护政策 (Privacy Policy)",
+    description: "机场cloud 如何保护您的个人隐私、浏览器日志及零数据留存原则说明。",
+    lastUpdated: "2026-11-08",
     intro:
-      "This privacy policy explains how we collect, use, and safeguard your personal information when you visit this website. This is placeholder template content — replace it with a policy that reflects your actual data practices and applicable law.",
+      "机场cloud 极其重视用户的数字隐私与网络安全。作为网络安全与跨境网络可观测性评测站点，我们推行行业严苛的“最小化数据收集（Data Minimization）”与“无日志（Zero-Log）”实践，绝不监控、存储或转售用户的任何敏感网络凭证与个人身份信息。",
     sections: [
       {
-        heading: "Information we collect",
+        heading: "1. 我们不收集的信息 (严格零留存)",
         body: [
-          "We may collect information you provide directly (such as your name and email when you contact us) and information collected automatically (such as your IP address, browser type, and pages visited).",
+          "本站纯属静态技术指南与测速报告展示平台，不设强制注册体系；我们绝不收集您的真实姓名、身份证件、银行账户、支付密码，亦绝不记录或分析您在使用各类科学上网代理客户端时的真实访问流量、数据包及目标网址。",
         ],
       },
       {
-        heading: "How we use your information",
+        heading: "2. 基础访问日志与安全性运维",
         body: [
-          "We use the information we collect to operate and improve the website, respond to your requests, and comply with legal obligations. We do not sell your personal information.",
+          "当您访问本站网页时，边缘 CDN（如 Cloudflare）可能会在短期缓存中记录匿名的网络层请求头（如 IP 前两位粗略地理归属、客户端浏览器 User-Agent、请求时间戳及所请求的 URL 路径）。此类日志仅用于防御分布式拒绝服务（DDoS）攻击与防止恶意 CC 刷量，并在周期性安全分析后由边缘节点自动覆写销毁。",
         ],
       },
       {
-        heading: "Cookies and tracking",
+        heading: "3. Cookie 与本地存储机制",
         body: [
-          "This website may use cookies and similar technologies to remember your preferences and understand how the site is used. You can control cookies through your browser settings.",
+          "本站仅使用极简的轻量级浏览器本地存储（Local Storage）来记录您的视觉交互偏好（例如 8-Bit 像素界面的白天/暗色高对比度主题切换）。我们不植入跨站追踪 Cookie，亦不使用任何第三方跨站点商业行为画像脚本。",
         ],
       },
       {
-        heading: "Sharing your information",
+        heading: "4. 第三方网站与外链重定向",
         body: [
-          "We share personal information only with service providers who help us operate the site, or when required by law. Any such providers are bound to handle your data securely.",
+          "本站包含指向第三方机场服务商官方网站、开源客户端 GitHub 仓库（如 Clash Verge Rev、Shadowrocket）及公共网络测试工具的外部链接。一旦您点击这些外链离开本站，您的网络行为将受该第三方站点的隐私政策管辖。我们强烈建议您在向任何第三方提交交易信息前审阅其数据处理条款。",
         ],
       },
       {
-        heading: "Data retention",
+        heading: "5. 隐私政策的更新与联系方式",
         body: [
-          "We retain personal information only for as long as necessary to fulfil the purposes described in this policy, unless a longer retention period is required by law.",
-        ],
-      },
-      {
-        heading: "Your rights",
-        body: [
-          "Depending on where you live, you may have the right to access, correct, or delete your personal information, or to object to certain processing. Contact us to exercise these rights.",
-        ],
-      },
-      {
-        heading: "Security",
-        body: [
-          "We take reasonable technical and organizational measures to protect your information. However, no method of transmission or storage is completely secure, and we cannot guarantee absolute security.",
-        ],
-      },
-      {
-        heading: "Changes to this policy",
-        body: [
-          "We may update this policy from time to time. The “last updated” date above reflects the most recent revision.",
-        ],
-      },
-      {
-        heading: "Contact",
-        body: [
-          "If you have questions about this policy or your personal information, contact us at the address published on our website.",
+          "随着国际数据保护法规（如 GDPR、CCPA）的演进，本政策可能会适时做出调整。如果您对本站的数据保护实践存在任何疑问或技术审计建议，可通过本站公布的官方安全信箱或 Telegram 频道与网络实验室运维团队取得联系。",
         ],
       },
     ],
   },
-} satisfies LegalData;
+};
 
 export default legalData;

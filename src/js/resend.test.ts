@@ -9,7 +9,7 @@ import type { ContactEmail } from "./contact.ts";
 import { sendContactEmail } from "./resend.ts";
 
 const email: ContactEmail = {
-  subject: "[8-BitQuest] Hi — A",
+  subject: "[JiChang Cloud] Hi — A",
   html: "<p>hi</p>",
   replyTo: "a@b.com",
 };

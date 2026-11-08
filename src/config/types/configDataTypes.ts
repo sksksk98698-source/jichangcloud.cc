@@ -22,6 +22,13 @@ export interface SiteDataProps {
   };
   // social/profile URLs for the site's Organization JSON-LD (`sameAs`). Empty is fine.
   sameAs?: readonly string[];
+  // 搜索引擎站长平台所有权验证配置预留 (Google, Bing, 神马, 百度)
+  verification?: {
+    google?: string;
+    bing?: string;
+    shenma?: string;
+    baidu?: string;
+  };
 }
 
 // --------------------------------------------------------

@@ -1,5 +1,5 @@
 ---
-// src/components/Sections/Global/Header.astro — the global site header (8-BitQuest top nav).
+// src/components/Sections/Global/Header.astro — the global site header (JiChang Cloud top nav).
 //
 // Cross-page chrome, rendered once in BaseLayout. Reproduces Figma node 5:110 (the dark frame):
 // a full-bleed pixel bar (black bottom border + `shadow-pixel`), the brand on the left, the primary
@@ -32,7 +32,7 @@ const pathname = Astro.url.pathname;
          narrow phone the brand (min-w-0) shrinks and the wordmark truncates before the row overflows. -->
     <a
       href="/"
-      class="primary-focus flex min-w-0 items-center gap-3 sm:gap-4"
+      class="primary-focus flex shrink-0 items-center gap-2 sm:gap-3"
       aria-label={`${siteData.name} — home`}
     >
       <span
@@ -54,7 +54,7 @@ const pathname = Astro.url.pathname;
         />
       </span>
       <span
-        class="font-display text-info xs:text-lg truncate text-base tracking-[-0.06em] uppercase sm:text-2xl"
+        class="font-display text-info text-sm sm:text-base md:text-lg font-bold tracking-tight uppercase whitespace-nowrap"
       >
         {siteData.name}
       </span>
@@ -66,7 +66,7 @@ const pathname = Astro.url.pathname;
       <!-- `lg:contents` dissolves the wrapper on desktop so <Nav> flexes with its siblings; below lg
            the whole nav landmark is display:none (not just visually hidden). -->
       <div class="hidden lg:contents">
-        <Nav aria-label="Primary" class="gap-6 xl:gap-8">
+        <Nav aria-label="Primary" class="gap-1 xl:gap-2">
           <HeaderNavLinks pathname={pathname} />
         </Nav>
       </div>

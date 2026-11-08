@@ -24,6 +24,9 @@ import Label from "@components/ui/label";
 import Separator from "@components/ui/separator";
 import Skeleton from "@components/ui/skeleton";
 import Textarea from "@components/ui/textarea";
+import samplePostImg from "@images/demo/post-css-grid.jpg";
+import sampleAvatarImg from "@images/hero-avatar.jpg";
+import sampleProjectImg from "@images/demo/project-pixel-art.png";
 
 const sizes = ["sm", "md", "lg"] as const;
 const states = ["default", "error", "success"] as const;
@@ -214,7 +217,7 @@ const alertVariants = ["info", "success", "warning", "error"] as const;
   <div class="grid items-start gap-4 lg:grid-cols-2">
     {/* Media card — CardImage clips to the card radius */}
     <Card class="max-w-sm">
-      <CardImage src="https://picsum.photos/seed/astro-boiler/640/360" alt="" />
+      <CardImage src={samplePostImg.src} alt="" />
       <CardHeader>
         <CardTitle>Media card</CardTitle>
         <CardDescription>overflow-hidden on the root rounds the image corners.</CardDescription>
@@ -226,7 +229,7 @@ const alertVariants = ["info", "success", "warning", "error"] as const;
 
     {/* Blog card + author, hoverable */}
     <Card variant="interactive" class="max-w-sm">
-      <CardImage src="https://picsum.photos/seed/blog/640/360" alt="" />
+      <CardImage src={sampleProjectImg.src} alt="" />
       <CardHeader>
         <CardTitle>Shipping a token-driven UI</CardTitle>
         <CardDescription>
@@ -234,7 +237,7 @@ const alertVariants = ["info", "success", "warning", "error"] as const;
         </CardDescription>
       </CardHeader>
       <CardFooter class="gap-3">
-        <Avatar size="sm" src="https://i.pravatar.cc/64" alt="Post author" />
+        <Avatar size="sm" src={sampleAvatarImg.src} alt="Post author" />
         <div class="text-sm">
           <p class="font-medium">Jane Doe</p>
           <p class="text-muted-foreground">Jul 1, 2026 · 4 min read</p>
@@ -246,7 +249,7 @@ const alertVariants = ["info", "success", "warning", "error"] as const;
   {/* Horizontal — just sm:flex-row on the root */}
   <Card class="max-w-lg sm:flex-row">
     <CardImage
-      src="https://picsum.photos/seed/horizontal/480/480"
+      src={samplePostImg.src}
       alt=""
       class="sm:w-40 sm:shrink-0"
     />
@@ -322,7 +325,7 @@ const alertVariants = ["info", "success", "warning", "error"] as const;
 <section class="flex flex-col gap-4">
   <h2 class="h3">Avatar</h2>
   <div class="flex items-center gap-4">
-    {sizes.map((size) => <Avatar size={size} src="https://i.pravatar.cc/96" alt="Sample user" />)}
+    {sizes.map((size) => <Avatar size={size} src={sampleAvatarImg.src} alt="Sample user" />)}
     {sizes.map((size) => <Avatar size={size}>AB</Avatar>)}
   </div>
 </section>

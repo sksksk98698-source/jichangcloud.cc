@@ -1,0 +1,85 @@
+---
+import HeroPanel from "@components/Sections/Global/HeroPanel.astro";
+import { Badge } from "@components/ui/badge";
+import { PixelPanel } from "@components/ui/pixel-panel";
+import { airportsData } from "@/data/airportsData";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const title = "晚高峰测速实验室 (2026 实测榜单) — 机场cloud 节点可观测性中心";
+const description = "基于千兆骨干网络环境，在晚高峰 20:30~22:30 针对主流机场节点进行的真实下行速率、网络抖动与流媒体解锁实测报告。";
+
+const speedtestList = airportsData.filter((a) => a.hasSpeedtest);
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="site-container flex flex-col gap-10 py-8 md:gap-12 md:py-12">
+    <HeroPanel
+      headingId="speedtest-heading"
+      tagline="NETWORK OBSERVATORY"
+      heading="晚高峰测速实验室 (Speedtest 实测)"
+      intro="拒绝纸面宣传。本站网络实验室通过千兆本地宽带环境，在晚高峰（20:30~22:30）多地区节点并发压测，真实抓取 17+ 家主力机场的瞬时吞吐与延迟表现。"
+    />
+
+    {/* 测试规范标准看板 */}
+    <PixelPanel class="p-6 bg-card border-2 border-primary/60 flex flex-col gap-3 font-mono text-xs">
+      <div class="flex items-center gap-2">
+        <span class="inline-block size-2.5 bg-success"></span>
+        <span class="font-bold text-foreground">实验室测速标准规范：</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-muted-foreground pt-1">
+        <div>• 测试时间：每日 20:30 ~ 22:30 晚高峰</div>
+        <div>• 测试环境：电信/联通/移动 三网千兆光纤</div>
+        <div>• 核心指标：延迟 (Ping)、下载速率 (Mbps)、丢包率</div>
+      </div>
+    </PixelPanel>
+
+    {/* 实测图全景画廊 */}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {speedtestList.map((item) => (
+        <PixelPanel class="p-6 bg-card border-2 border-border flex flex-col gap-4">
+          <div class="flex items-center justify-between border-b border-border/60 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="font-display text-sm size-7 bg-primary text-black flex items-center justify-center font-bold">
+                #{item.rank}
+              </span>
+              <h2 class="font-display text-lg text-foreground uppercase">
+                {item.name}
+              </h2>
+            </div>
+            <Badge pixel variant="success">{item.lineType}</Badge>
+          </div>
+
+          <p class="text-xs text-muted-foreground font-mono">
+            覆盖地区：{item.nodesCovered} · 起步参考价：<span class="text-success font-bold">{item.price}</span>
+          </p>
+
+          {/* 测速图片 */}
+          <div class="border border-border bg-black/60 p-1 overflow-hidden">
+            <a href={item.speedtestImg} target="_blank" rel="noopener noreferrer">
+              <img
+                src={item.speedtestImg}
+                alt={`${item.name} 测速实测图`}
+                class="w-full h-64 object-cover object-top hover:scale-[1.02] transition-transform duration-200"
+                loading="lazy"
+              />
+            </a>
+          </div>
+
+          <div class="flex items-center justify-between pt-2">
+            <a href={`/airports/${item.slug}/`} class="text-xs font-mono text-info hover:underline">
+              查看评测详情 →
+            </a>
+            <a
+              href={item.registerUrl}
+              target="_blank"
+              rel="nofollow sponsored noopener"
+              class="pixel-btn pixel-btn--blue text-xs px-4 py-2"
+            >
+              官网直通 ↗
+            </a>
+          </div>
+        </PixelPanel>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

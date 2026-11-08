@@ -1,0 +1,2370 @@
+// 机场cloud 42家机场品牌测评核心数据库
+export interface AirportPlan {
+  name: string;
+  billing: string;
+  price: string;
+  traffic: string;
+  period: string;
+}
+
+export interface AirportBrand {
+  rank: number;
+  name: string;
+  slug: string;
+  tagline: string;
+  registerUrl: string;
+  coupon: string;
+  price: string;
+  lineType: string;
+  protocols: string[];
+  hasSpeedtest: boolean;
+  speedtestImg: string;
+  nodesCovered: string;
+  streamingUnlock: string[];
+  plans: AirportPlan[];
+  pros: string[];
+  cons: string[];
+  summary: string;
+}
+
+export const airportsData: AirportBrand[] = [
+  {
+    "rank": 1,
+    "name": "光速云",
+    "slug": "guangshuyun",
+    "tagline": "2026 年度编辑精选首推 · IEPL企业级双专线",
+    "registerUrl": "https://jichangcloud.cc/go/guangshuyun",
+    "coupon": "AMM",
+    "price": "¥8/月 (年付折算)",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/光速云-photo_2026-08-19_12-13-01.jpg",
+    "nodesCovered": "香港×20、台湾×5、日本×10、新加坡×10、美国×10、欧洲等",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "致敬斯诺克147永久套餐",
+        "billing": "一次性",
+        "price": "¥147",
+        "traffic": "247GB不过期",
+        "period": "长期有效"
+      },
+      {
+        "name": "轻量版 (入门首选)",
+        "billing": "年付",
+        "price": "¥99",
+        "traffic": "69GB/月",
+        "period": "折合¥8.25/月"
+      },
+      {
+        "name": "极速版 (全IPLC)",
+        "billing": "月付",
+        "price": "¥25",
+        "traffic": "168GB/月",
+        "period": "支持单月订阅"
+      },
+      {
+        "name": "流光版",
+        "billing": "月付",
+        "price": "¥34",
+        "traffic": "268GB/月",
+        "period": "大流量首选"
+      },
+      {
+        "name": "定制版 (独享IP)",
+        "billing": "月付",
+        "price": "¥680",
+        "traffic": "500GB/月",
+        "period": "全专线按需部署"
+      }
+    ],
+    "pros": [
+      "IEPL企业级内网专线 + 原生IP支持，晚高峰极速秒开",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "光速云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 2,
+    "name": "暮光加速",
+    "slug": "muguang",
+    "tagline": "全网TOP2优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/muguang",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "暮光加速 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 3,
+    "name": "飞猫云",
+    "slug": "feimaoyun",
+    "tagline": "全网TOP3优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/feimaoyun",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/飞猫云-节点测速实测.png",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "飞猫云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 4,
+    "name": "微风网络",
+    "slug": "weifeng",
+    "tagline": "全网TOP4优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/weifeng",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/微风-节点测速实测.png",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "微风网络 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 5,
+    "name": "大佬云",
+    "slug": "dalaoyun",
+    "tagline": "全网TOP5优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/dalaoyun",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "大佬云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 6,
+    "name": "星岛梦",
+    "slug": "xingdaomeng",
+    "tagline": "全网TOP6优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/xingdaomeng",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/星岛梦-节点测速实测.png",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "星岛梦 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 7,
+    "name": "二猫云",
+    "slug": "ermaoyun",
+    "tagline": "全网TOP7优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/ermaoyun",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/二猫云-节点测速实测.png",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "二猫云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 8,
+    "name": "无忧链接",
+    "slug": "wuyou",
+    "tagline": "全网TOP8优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/wuyou",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/无忧链接.jpg",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "无忧链接 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 9,
+    "name": "唯兔云",
+    "slug": "weitu",
+    "tagline": "全网TOP9优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/weitu",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/唯兔云-节点测速实测.png",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "唯兔云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 10,
+    "name": "Firefly",
+    "slug": "firefly",
+    "tagline": "全网TOP10优质加速节点",
+    "registerUrl": "https://sahude.gsyvipaff.com/#/?code=keqgvT5Y",
+    "coupon": "AMM",
+    "price": "8元",
+    "lineType": "IPLC 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan",
+      "Shadowsocks"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "光速云·轻量版",
+        "billing": "年付",
+        "price": "¥99",
+        "traffic": "69GB",
+        "period": "每月"
+      },
+      {
+        "name": "光速云·极速版",
+        "billing": "月付",
+        "price": "¥25",
+        "traffic": "168GB",
+        "period": "每月"
+      },
+      {
+        "name": "光速云·流光版",
+        "billing": "月付",
+        "price": "¥34",
+        "traffic": "268GB",
+        "period": "每月"
+      },
+      {
+        "name": "光速云·量子版",
+        "billing": "月付",
+        "price": "¥68",
+        "traffic": "568GB",
+        "period": "每月"
+      },
+      {
+        "name": "光速云·无界版",
+        "billing": "月付",
+        "price": "¥138",
+        "traffic": "900GB",
+        "period": "每月"
+      },
+      {
+        "name": "光速云·定制套餐",
+        "billing": "月付",
+        "price": "¥680",
+        "traffic": "500GB",
+        "period": "每月"
+      },
+      {
+        "name": "【暮光·基础版】",
+        "billing": "月付",
+        "price": "¥20",
+        "traffic": "120GB",
+        "period": "每月"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "Firefly 是本站 2026 实测推荐的加速服务商之一。采用 IPLC 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 11,
+    "name": "宇宙云",
+    "slug": "yuzhouyun",
+    "tagline": "全网TOP11优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/yuzhouyun",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/宇宙云-节点测速实测.png",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "宇宙云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 12,
+    "name": "U1S1",
+    "slug": "u1s1",
+    "tagline": "全网TOP12优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/u1s1",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/U1S1-节点测速实测.png",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "U1S1 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 13,
+    "name": "灵猫网络",
+    "slug": "lingmao",
+    "tagline": "全网TOP13优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/lingmao",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/灵猫网络-节点测速实测.png",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "灵猫网络 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 14,
+    "name": "极连云",
+    "slug": "jilianyun",
+    "tagline": "全网TOP14优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/jilianyun",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/极连云-节点测速实测.png",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "极连云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 15,
+    "name": "光年梯",
+    "slug": "guangnianti",
+    "tagline": "全网TOP15优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/guangnianti",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/光年梯-节点测速实测.png",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "光年梯 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 16,
+    "name": "一翻云",
+    "slug": "yifanyun",
+    "tagline": "全网TOP16优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/yifanyun",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/一翻云-节点测速实测.png",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "一翻云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 17,
+    "name": "SOGO云",
+    "slug": "sogoyun",
+    "tagline": "全网TOP17优质加速节点",
+    "registerUrl": "https://guangs.sogoyunaff.cc/#/?code=327Vs0w7",
+    "coupon": "",
+    "price": "24元",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/SOGO云-节点测速实测.png",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "24元",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "SOGO云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 18,
+    "name": "可信云",
+    "slug": "kexinyun",
+    "tagline": "全网TOP18优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/kexinyun",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/可信云-节点测速实测.png",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "可信云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 19,
+    "name": "速界",
+    "slug": "sujie",
+    "tagline": "全网TOP19优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/sujie",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/速界-节点测速实测.png",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "速界 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 20,
+    "name": "闪跃",
+    "slug": "shanyue",
+    "tagline": "全网TOP20优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/shanyue",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "闪跃 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 21,
+    "name": "全球云",
+    "slug": "quanqiuyun",
+    "tagline": "全网TOP21优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/quanqiuyun",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": true,
+    "speedtestImg": "/airports/全球云-节点测速实测.png",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "全球云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 22,
+    "name": "闪电鼠",
+    "slug": "shandianshu",
+    "tagline": "全网TOP22优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/shandianshu",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "闪电鼠 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 23,
+    "name": "云界线",
+    "slug": "yunjiexian",
+    "tagline": "全网TOP23优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/yunjiexian",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "云界线 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 24,
+    "name": "榴莲云",
+    "slug": "liulianyun",
+    "tagline": "全网TOP24优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/liulianyun",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "榴莲云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 25,
+    "name": "神行加速",
+    "slug": "shenxing",
+    "tagline": "全网TOP25优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/shenxing",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "神行加速 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 26,
+    "name": "环球梯",
+    "slug": "huanqiuti",
+    "tagline": "全网TOP26优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/huanqiuti",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "环球梯 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 27,
+    "name": "隐形人",
+    "slug": "yinxingren",
+    "tagline": "全网TOP27优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/yinxingren",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "隐形人 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 28,
+    "name": "梯子云",
+    "slug": "tiziyun",
+    "tagline": "全网TOP28优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/tiziyun",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "梯子云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 29,
+    "name": "WgetCloud",
+    "slug": "wgetcloud",
+    "tagline": "全网TOP29优质加速节点",
+    "registerUrl": "https://invite.",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "WgetCloud 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 30,
+    "name": "白月光",
+    "slug": "baiyueguang",
+    "tagline": "全网TOP30优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/baiyueguang",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "白月光 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 31,
+    "name": "FlyingBird",
+    "slug": "flyingbird",
+    "tagline": "全网TOP31优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/flyingbird",
+    "coupon": "",
+    "price": "¥15",
+    "lineType": "IPLC 专线",
+    "protocols": [
+      "Shadowsocks"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "青铜套餐",
+        "billing": "月付",
+        "price": "¥15",
+        "traffic": "100G",
+        "period": "每月"
+      },
+      {
+        "name": "青铜套餐",
+        "billing": "季付",
+        "price": "¥41",
+        "traffic": "100G",
+        "period": "每月"
+      },
+      {
+        "name": "青铜套餐",
+        "billing": "半年付",
+        "price": "¥77",
+        "traffic": "100G",
+        "period": "每月"
+      },
+      {
+        "name": "青铜套餐",
+        "billing": "年付",
+        "price": "¥144",
+        "traffic": "100G",
+        "period": "每月"
+      },
+      {
+        "name": "白银套餐",
+        "billing": "月付",
+        "price": "¥30",
+        "traffic": "200G",
+        "period": "每月"
+      },
+      {
+        "name": "白银套餐",
+        "billing": "季付",
+        "price": "¥81",
+        "traffic": "200G",
+        "period": "每月"
+      },
+      {
+        "name": "白银套餐",
+        "billing": "半年付",
+        "price": "¥153",
+        "traffic": "200G",
+        "period": "每月"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "FlyingBird 是本站 2026 实测推荐的加速服务商之一。采用 IPLC 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 32,
+    "name": "CyberGuard",
+    "slug": "cyberguard",
+    "tagline": "全网TOP32优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/cyberguard",
+    "coupon": "",
+    "price": "¥32/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥32/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "CyberGuard 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 33,
+    "name": "龙猫云",
+    "slug": "longmaoyun",
+    "tagline": "全网TOP33优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/longmaoyun",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "龙猫云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 34,
+    "name": "FATCAT",
+    "slug": "fatcat",
+    "tagline": "全网TOP34优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/fatcat",
+    "coupon": "",
+    "price": "¥96",
+    "lineType": "IPLC 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "年付加强版",
+        "billing": "年付",
+        "price": "¥96",
+        "traffic": "60G",
+        "period": "每月"
+      },
+      {
+        "name": "基础套餐",
+        "billing": "月付",
+        "price": "¥20",
+        "traffic": "120G",
+        "period": "每月"
+      },
+      {
+        "name": "基础套餐",
+        "billing": "季付",
+        "price": "¥54",
+        "traffic": "120G",
+        "period": "每月"
+      },
+      {
+        "name": "基础套餐",
+        "billing": "半年付",
+        "price": "¥102",
+        "traffic": "120G",
+        "period": "每月"
+      },
+      {
+        "name": "基础套餐",
+        "billing": "年付",
+        "price": "¥192",
+        "traffic": "120G",
+        "period": "每月"
+      },
+      {
+        "name": "标准套餐",
+        "billing": "月付",
+        "price": "¥40",
+        "traffic": "300G",
+        "period": "每月"
+      },
+      {
+        "name": "标准套餐",
+        "billing": "季付",
+        "price": "¥108",
+        "traffic": "300G",
+        "period": "每月"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "FATCAT 是本站 2026 实测推荐的加速服务商之一。采用 IPLC 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 35,
+    "name": "TNTCloud",
+    "slug": "tntcloud",
+    "tagline": "全网TOP35优质加速节点",
+    "registerUrl": "https://sldm1.ssyylf.com/#/register?code=YD5iQ888",
+    "coupon": "",
+    "price": "¥30",
+    "lineType": "IPLC 专线",
+    "protocols": [
+      "VLESS",
+      "Shadowsocks"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "轻量包",
+        "billing": "季付",
+        "price": "¥30",
+        "traffic": "60G",
+        "period": "每月"
+      },
+      {
+        "name": "轻量包",
+        "billing": "半年付",
+        "price": "¥56",
+        "traffic": "60G",
+        "period": "每月"
+      },
+      {
+        "name": "轻量包",
+        "billing": "年付",
+        "price": "¥98",
+        "traffic": "60G",
+        "period": "每月"
+      },
+      {
+        "name": "VIP1",
+        "billing": "月付",
+        "price": "¥20",
+        "traffic": "110G",
+        "period": "每月"
+      },
+      {
+        "name": "VIP1",
+        "billing": "季付",
+        "price": "¥54",
+        "traffic": "110G",
+        "period": "每月"
+      },
+      {
+        "name": "VIP1",
+        "billing": "半年付",
+        "price": "¥102",
+        "traffic": "110G",
+        "period": "每月"
+      },
+      {
+        "name": "VIP1",
+        "billing": "年付",
+        "price": "¥192",
+        "traffic": "110G",
+        "period": "每月"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "TNTCloud 是本站 2026 实测推荐的加速服务商之一。采用 IPLC 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 36,
+    "name": "青云梯",
+    "slug": "qingyunti",
+    "tagline": "全网TOP36优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/qingyunti",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "青云梯 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 37,
+    "name": "山水云",
+    "slug": "shanshuiyun",
+    "tagline": "全网TOP37优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/shanshuiyun",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "山水云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 38,
+    "name": "灵动云",
+    "slug": "lingdongyun",
+    "tagline": "全网TOP38优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/lingdongyun",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "灵动云 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 39,
+    "name": "浪网",
+    "slug": "langwang",
+    "tagline": "全网TOP39优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/langwang",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "浪网 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 40,
+    "name": "EdgeNova",
+    "slug": "edgenova",
+    "tagline": "全网TOP40优质加速节点",
+    "registerUrl": "https://work.",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "EdgeNova 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 41,
+    "name": "萤火虫",
+    "slug": "yinghuochong",
+    "tagline": "全网TOP41优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/yinghuochong",
+    "coupon": "",
+    "price": "¥20/月",
+    "lineType": "IEPL 专线",
+    "protocols": [
+      "VLESS",
+      "Trojan"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "入门基础版",
+        "billing": "月付",
+        "price": "¥20/月",
+        "traffic": "120GB/月",
+        "period": "每月重置"
+      },
+      {
+        "name": "进阶标准版",
+        "billing": "季付/年付",
+        "price": "优惠折扣",
+        "traffic": "300GB/月",
+        "period": "高速专线"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "萤火虫 是本站 2026 实测推荐的加速服务商之一。采用 IEPL 专线 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  },
+  {
+    "rank": 42,
+    "name": "sslar",
+    "slug": "sslar",
+    "tagline": "全网TOP42优质加速节点",
+    "registerUrl": "https://jichangcloud.cc/go/sslar",
+    "coupon": "",
+    "price": "¥17",
+    "lineType": "BGP 智能隧道",
+    "protocols": [
+      "VLESS",
+      "Shadowsocks"
+    ],
+    "hasSpeedtest": false,
+    "speedtestImg": "",
+    "nodesCovered": "覆盖香港、日本、新加坡、美国等主流地区",
+    "streamingUnlock": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "TikTok",
+      "ChatGPT",
+      "Claude"
+    ],
+    "plans": [
+      {
+        "name": "Basic",
+        "billing": "月付",
+        "price": "¥17",
+        "traffic": "100G",
+        "period": "每月"
+      },
+      {
+        "name": "Basic",
+        "billing": "季付",
+        "price": "¥46",
+        "traffic": "100G",
+        "period": "每月"
+      },
+      {
+        "name": "Basic",
+        "billing": "半年付",
+        "price": "¥87",
+        "traffic": "100G",
+        "period": "每月"
+      },
+      {
+        "name": "Basic",
+        "billing": "年付",
+        "price": "¥163",
+        "traffic": "100G",
+        "period": "每月"
+      },
+      {
+        "name": "Standard",
+        "billing": "月付",
+        "price": "¥28",
+        "traffic": "200G",
+        "period": "每月"
+      },
+      {
+        "name": "Standard",
+        "billing": "季付",
+        "price": "¥76",
+        "traffic": "200G",
+        "period": "每月"
+      },
+      {
+        "name": "Standard",
+        "billing": "半年付",
+        "price": "¥143",
+        "traffic": "200G",
+        "period": "每月"
+      }
+    ],
+    "pros": [
+      "高速BGP调度网络，有效绕过公网QoS拥堵",
+      "全平台兼容，支持 Clash Verge / Shadowrocket / v2rayN 等主流客户端",
+      "流媒体与主流 AI 生产力工具 (ChatGPT/Claude) 深度解锁支持"
+    ],
+    "cons": [
+      "特殊促销套餐不支持退款，建议按需先从小额周期试用",
+      "部分冷门节点可能在极端敏感时期产生调度延迟"
+    ],
+    "summary": "sslar 是本站 2026 实测推荐的加速服务商之一。采用 BGP 智能隧道 架构，重点保障跨境办公、流媒体 4K 播放与高要求 AI 业务的稳定性。"
+  }
+];
+
+export const featuredAirport = airportsData[0]; // 光速云

@@ -1,6 +1,6 @@
 # Third-party notices
 
-The 8-BitQuest template is licensed under [`LICENSE`](./LICENSE). The material listed here is **not**
+The project is licensed under [`LICENSE`](./LICENSE). The material listed here is **not**
 covered by that licence — it belongs to other people and carries their terms. Section 6 of `LICENSE`
 makes complying with those terms the licensee's responsibility.
 

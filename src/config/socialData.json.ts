@@ -23,7 +23,7 @@ export const socialPlatforms = {
     label: "GitHub",
     icon: "github",
     match: "github.com",
-    fallback: "https://github.com/",
+    fallback: "https://github.com/jichangcloud",
   },
   linkedin: {
     label: "LinkedIn",
@@ -36,7 +36,7 @@ export const socialPlatforms = {
     label: "Twitter/X",
     icon: "twitter",
     match: ["x.com", "twitter.com"],
-    fallback: "https://x.com/",
+    fallback: "https://x.com/JiChangCloud",
   },
   youtube: {
     label: "YouTube",

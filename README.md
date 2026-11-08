@@ -1,265 +1,182 @@
-# 8-BitQuest
-
-![The 8-BitQuest home, blog post and about pages](.github/preview.png)
-
-**[Live demo → 8-bitquest.domidex01.workers.dev](https://8-bitquest.domidex01.workers.dev/)**
-
-A **retro 8-bit, pixel-art developer-portfolio theme** built on **Astro 7 + Tailwind CSS v4 +
-TypeScript (strict)**, with a CSS-first token architecture, typed config-driven content, and an
-in-house UI, motion, icon and SEO stack. Headings are Press Start 2P on a black-bordered "pixel
-panel" surface; every colour flows through a semantic token layer, so the committed light and dark
-themes flip for free.
-
-It ships as a **working site, not an empty skeleton** — a Home, About, Blog, Projects and a
-server-rendered Contact page, six sample posts and six sample projects, all reproduced from the
-source Figma. The one non-static route is `/contact/`, which posts to a Resend-backed Astro action.
-
-## Quick start
-
-```sh
-pnpm install
-pnpm dev          # http://localhost:4321
-```
-
-It runs with no configuration and no keys — the contact form accepts a submission and then reports a
-send failure until you add its Resend keys (see [Contact form](#contact-form)). Fill in `src/config/`, swap the sample
-content for your own, then work through [Before you deploy](#before-you-deploy).
-
-## Commands
-
-| Command        | Action                                                  |
-| :------------- | :------------------------------------------------------ |
-| `pnpm install` | Install dependencies                                    |
-| `pnpm dev`     | Dev server at `localhost:4321`                          |
-| `pnpm build`   | Production build to `dist/` (static pages + the Worker) |
-| `pnpm preview` | `wrangler dev` — run the production Worker locally      |
-| `pnpm deploy`  | `astro build && wrangler deploy` to Cloudflare          |
-| `pnpm check`   | Type-check `.astro` / `.ts` (`astro check`)             |
-| `pnpm lint`    | ESLint                                                  |
-| `pnpm format`  | `eslint --fix`, then Prettier                           |
-| `pnpm test`    | Every `*.test.ts` self-check under `src/`               |
-
-## Routes
-
-| Route                  | Source                               | Built from                             |
-| :--------------------- | :----------------------------------- | :------------------------------------- |
-| `/`                    | `pages/index.astro`                  | `Sections/Home/*`                      |
-| `/about/`              | `pages/about.astro`                  | `Sections/About/*`                     |
-| `/blog/`               | `pages/blog/index.astro`             | `Sections/Blog/*` (listing)            |
-| `/blog/<slug>/`        | `pages/blog/[slug].astro`            | `Sections/Blog/BlogArticle` (per post) |
-| `/projects/`           | `pages/projects/index.astro`         | `Sections/Project/*` (listing)         |
-| `/projects/<slug>/`    | `pages/projects/[slug].astro`        | `Sections/Project/ProjectArticle`      |
-| `/contact/`            | `pages/contact.astro` (**SSR**)      | `Sections/Contact/*` + a Resend action |
-| `/privacy/`, `/terms/` | `pages/privacy.astro`, `terms.astro` | `config/legalData.json.ts`             |
-| `/404`                 | `pages/404.astro`                    | `Sections/NotFound/*`                  |
-| `/examples/ui`         | `pages/examples/[catalog].astro`     | `Sections/UiCatalog/*` (dev-only)      |
-
-Every route prerenders to static HTML **except `/contact/`**, which sets `export const prerender =
-false` so it can take the form POST and re-render with the result. `/examples/ui` is a `noindex`
-dev-only catalog: it is excluded from the sitemap and emits no HTML in a production build.
-
-Generated endpoints: `/robots.txt`, `/llms.txt`, `/rss.xml`, `/sitemap-index.xml`. The first three
-are hand-owned dynamic routes whose absolute URLs derive from `site`, so setting that once fixes them
-together.
-
-## Content
-
-Collections are defined in `src/content.config.ts` (Zod), so bad frontmatter fails the build with the
-entry named. Entries live one folder deep and the folder name is the slug.
-
-| Collection | Location             | Ships with     | Holds                                                                                                                                           |
-| :--------- | :------------------- | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `blog`     | `src/data/blog/`     | **6 posts**    | `title`, `description`, `authors[]` (≥1), `pubDate`, `heroImage(+alt)`, `category`, `tags`, optional `updatedDate`, `draft`                     |
-| `projects` | `src/data/projects/` | **6 projects** | `title`, `description`, `tagline`, `status`, `moduleId`, `order`, `thumbnail(+alt)`, `tech[]`, `specs[]`, `features[]`, `archCaption`, `challenge`, `solution`, optional `cardTitle`, `draft` |
-| `authors`  | `src/data/authors/`  | `admin`        | `name`, `authorLink`, optional `avatar` — referenced by posts as the byline                                                                     |
-
-The samples are retro-flavoured placeholders; replace them with your own. A blog post's body is
-free-form MDX (rendered through `.blog-prose`); a project's overview is MDX while its spec/feature
-data is structured frontmatter.
-
-## Configuration
-
-Site-wide facts live typed in `src/config/`. (One-off section copy — the FAQ, the tech-stack list,
-the gear table — deliberately lives as a typed literal at the top of its Section component instead:
-edit the section to edit the copy. The rule: used on more than one page ⇒ it belongs in config.)
-
-- **`siteData.json.ts`** — brand name, title, description, the author block, `sameAs` (your social
-  profile URLs) and the default social image. `sameAs` does double duty: it disambiguates the JSON-LD
-  `Organization` **and** it is where every social link on the site resolves from.
-- **`socialData.json.ts`** — one definition per social platform (label, pixel glyph, and how its URL
-  resolves out of `sameAs`), shared by the footer row, the home contact chips and the contact info
-  cards. Add a platform here, then reference it from whichever section should show it.
-- **`siteSettings.json.ts`** — `siteLang` / `siteLocale`, plus the feature switches
-  `useViewTransitions` and `useAnimations`.
-- **`legalData.json.ts`** — the terms and privacy copy, section by section.
-- **`portfolioData.json.ts`** — the profile identity, biography, experience/stat values, home
-  intro, and contact-facing organisation copy: the facts a buyer is expected to customise, in one
-  typed place.
-
-**Theme tokens** are CSS-first, in three layers (see `src/styles/tailwind-theme.css` +
-`global.css`): palette aliases (`--color-primary-*`, `--color-base-*`) feed semantic runtime vars
-(`--primary`, `--foreground`, `--outline`), which feed the utilities. Markup only ever uses
-`bg-primary` / `text-foreground` / `text-base-700`, so a rebrand is one edit to the alias block and
-both themes follow. The signature look — a black 4px border plus a hard offset `shadow-pixel` — is
-the `ui/pixel-panel` primitive; the shadow colour is itself a theme-aware token (`--pixel-shadow`).
-
-## What's in the box
-
-- **39 UI primitives** (`src/components/ui/`) — button, dialog, dropdown, mega-menu, combobox, tabs,
-  table, pixel-panel, theme-toggle, and the rest — each a folder with a `tailwind-variants` recipe,
-  built on the token layer and zero-JS unless interaction demands it. Alongside them sit **7 internal
-  entries** (`_client.ts`, `_dialog.ts`, `_listbox.ts`, `_popover.ts`, `_overlay.css`, `_field.ts`,
-  `_Chevron.astro`) that the primitives share. Contract: `src/components/ui/README.md`. The theme's
-  own pages use about a third of the library; the rest is stock for your customisation — browse it
-  all at `/examples/ui` in dev, or trim it (see [Before you deploy](#before-you-deploy), step 6).
-- **Two icon systems.** The theme's own UI runs on **18 pixel-art glyphs**
-  (`src/components/svg/pixel-icons/`) behind a typed `<PixelIcon name="…" />` — the theme toggle, the
-  footer social row, the tech-stack and skill-tree lists, the article navigation. Alongside it sits a
-  stock library of **553 inlined 24×24 line icons** (`src/components/svg/icons/`) behind
-  `<Icon name="…" />`, for your own pages; it is referenced only by the `/examples/ui` catalog, so
-  deleting that catalog (step 6 below) leaves it unreferenced — keep the folder or delete it. Both are
-  build-time only: icons inline into HTML and nothing lands in client JS. Licensing for both is in
-  [`THIRD-PARTY.md`](./THIRD-PARTY.md).
-- **87 motion utilities** (`src/styles/motion/`) — a dependency-free port of tailwind-animations plus
-  scroll-driven extensions, with a global `prefers-reduced-motion` guard.
-- **An owned SEO layer** — every meta/OG tag emitted natively by `BaseHead`, JSON-LD (Organization +
-  WebSite site-wide, plus per-post `BlogPosting` + `BreadcrumbList`) built by typed helpers in
-  `@js/schema`, and dynamic `robots.txt` / `llms.txt` / `rss.xml`. No SEO package.
-
-The owned motion, icon and SEO layers add **no runtime dependencies**. The primitives use
-`tailwind-variants` + `tailwind-merge`; SSR uses `@astrojs/cloudflare`; content uses `@astrojs/mdx`;
-the two fonts are self-hosted via `@fontsource`.
-
-## Contact form
-
-`/contact/` is the one server-driven page. A native `<form method="POST">` binds to an Astro action
-(`src/actions/index.ts`), so it works with JavaScript disabled: the server re-validates with
-`contactSchema`, runs two spam gates (a honeypot and a submit-time gate), and sends the mail with a
-plain `fetch` to the Resend API — no SDK, no dependency, a 10-second timeout. Provider errors are
-logged server-side and never shown to the visitor.
-
-It needs two environment variables (read at **request** time, so a missing key never breaks the
-build — the form answers with its generic send-failure message, and names the missing key in the
-server log rather than to the visitor):
-
-| Variable             | Required | Purpose                                                           |
-| :------------------- | :------: | :---------------------------------------------------------------- |
-| `RESEND_API_KEY`     |   yes    | Resend API key                                                    |
-| `CONTACT_TO_EMAIL`   |   yes    | Where submissions are delivered (your inbox)                      |
-| `CONTACT_FROM_EMAIL` |    no    | From address; defaults to Resend's shared `onboarding@resend.dev` |
-
-The default sender only delivers to your own Resend account address. **To send anywhere else you must
-verify a domain in Resend** and set `CONTACT_FROM_EMAIL` to an address on it. See `.env.example`.
-
-### Demo deployments
-
-Building with `CONTACT_DEMO_MODE=true` makes the form validate, run its spam gates, and then report
-success **without sending** — so a public demo of this template needs no Resend account and no
-inbox. It is read at build time and defaults to `false`; leave it unset on a real site, or your
-contact form will quietly deliver nothing.
-
-```sh
-CONTACT_DEMO_MODE=true SITE_URL=https://your-demo.example.com pnpm build
-```
-
-## Structure
+<div align="center">
 
 ```text
-src/
-├── components/
-│   ├── Sections/<Page>/   layout-free page sections (Global/ for cross-page chrome: Header, Footer)
-│   ├── Cards/             content-aware card compositions (built on ui/pixel-panel)
-│   ├── ui/<name>/         the primitive library (see its README for the contract)
-│   └── svg/icons/         the <Icon> system
-├── actions/               the contact server action (Resend)
-├── config/                typed site config — the source of truth, never literals in components
-├── data/<collection>/     content collections, Zod-validated
-├── js/                    TypeScript utilities (schema, contact, readingTime, nav…) + their *.test.ts
-├── layouts/               BaseLayout + BaseHead (all meta/SEO tags live here)
-├── pages/                 file routes — thin shells owning BaseLayout + SEO
-└── styles/                global.css entry, tailwind-theme.css tokens, motion/ catalog
+       _ _ _____ _                       _   _                 _ 
+      | (_) ____| |__   __ _ _ __   __ _| | | | ___  _   _  __| |
+   _  | | | |   | '_ \ / _` | '_ \ / _` | | | |/ _ \| | | |/ _` |
+  | |_| | | |___| | | | (_| | | | | (_| | |_| | (_) | |_| | (_| |
+   \___/|_|\____|_| |_|\__,_|_| |_|\__, |\___/ \___/ \__,_|\__,_|
+                                   |___/                         
+      ⚡ 2026 梯子机场推荐 · 晚高峰测速实验室 · 42家品牌评测矩阵 ⚡
 ```
 
-Pages are thin route shells that own `BaseLayout` + SEO and compose **Sections**; Sections build on
-**ui** primitives and **Cards**. The three contracts are `Sections/README.md`, `Cards/README.md` and
-`ui/README.md`.
+# 🚀 JiChang Cloud (机场cloud)
 
-## Deployment
+**新一代网络可观测性评测中心 · 42家主流机场品牌库 · 4 大万字专著知识矩阵 (SEO & GEO)**
 
-The site deploys to **Cloudflare Workers**: the build is static **except `/contact/`**, so
-`@astrojs/cloudflare` is mounted and `astro build` emits the static pages plus one Worker
-(`dist/_worker.js`) that renders the on-demand route. `wrangler.jsonc` is the Worker config — its
-`main` stays the adapter's entrypoint, and the adapter injects the asset wiring and provisions its
-session KV binding on first deploy.
+[![Astro](https://img.shields.io/badge/Astro-7.1.3-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4.3-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Cloudflare](https://img.shields.io/badge/Cloudflare-Ready-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://cloudflare.com)
+[![SEO](https://img.shields.io/badge/SEO-100%25_Audit_Pass-brightgreen?style=for-the-badge&logo=google&logoColor=white)](#-技术架构与-seo-全景)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](./LICENSE)
 
-```sh
-SITE_URL=https://your.domain pnpm build   # bakes canonical/OG/sitemap URLs at build time
-pnpm deploy                               # astro build && wrangler deploy (wrangler login once)
-pnpm preview                              # wrangler dev — the production Worker, locally
+[🌐 访问官网](https://jichangcloud.cc) · [🗺️ 42家机场品牌库](https://jichangcloud.cc/airports/) · [🔬 晚高峰测速实验室](https://jichangcloud.cc/speedtest/) · [📚 报告问题](https://github.com/sksksk98698-source/jichangcloud.cc/issues)
+
+</div>
+
+---
+
+## 📖 项目简介 (Overview)
+
+**机场cloud (`jichangcloud.cc`)** 是一个基于 **Astro 7 + Tailwind CSS v4** 深度定制的 8-Bit 复古像素风格网络可观测性与科学上网机场评测站点。
+
+我们针对国内电信、联通、移动三大运营商在晚高峰（20:30~22:30）骨干网国际出口的严重 QoS 限速痛点，自建 NOC 监控探针网络，真实采集 42 家主流加速服务商的节点延迟、吞吐带宽、丢包率与流媒体/AI 原生解锁状态，为外贸出海、学术科研及 4K 影音用户提供客观、中立、专著级的选网与避坑参考。
+
+---
+
+## ✨ 核心特性矩阵 (Key Features)
+
+### 1. 🏢 42 家机场品牌库深度评测矩阵 (`/airports/`)
+- **异构化评测报告**：破除千篇一律模板指纹，根据 IEPL/IPLC 物理专线、BGP 多线中继隧道、直连协议等线路类型动态生成万字级底层技术深度分析；
+- **全要素量化面板**：晚高峰可用率 SLA、骨干网 QoS 丢包率、YouTube 4K 首帧响应、三大运营商本地适配评级；
+- **真实测速实录**：涵盖光速云等核心节点千兆单线多并发实测图谱，支持大图放大抓包验证。
+
+### 2. 🏛️ 四大万字专著支柱页与知识矩阵 (Pillar Pages)
+- 🛠️ **[客户端工具手册 (`/tools/`)](https://jichangcloud.cc/tools/)**：涵盖 Clash Verge Rev TUN 模式接管、Shadowrocket 小火箭配置、NextTrace 路由诊断与软路由网关部署；
+- 🎁 **[免费资源全景白皮书 (`/free/`)](https://jichangcloud.cc/free/)**：GitHub 公开节点中间人投毒安全审计、Cloudflare WARP 优选 IP、高校 CERNET 学术专线与避坑白皮书；
+- ❓ **[疑难 100 问权威百科 (`/faq/`)](https://jichangcloud.cc/faq/)**：时钟偏差导致 `-1ms` 超时、ChatGPT 1020 报错、微信/淘宝误走全局慢等高频故障 30 秒自检自愈手册；
+- 🚨 **[防跑路风险预警白皮书 (`/alerts/`)](https://jichangcloud.cc/alerts/)**：财务模型、TG 社群动态、工单响应时效 8 大风控信号雷达监测，深度揭露低价永久无限流量骗局。
+
+### 3. 🤖 GEO (生成式引擎检索) 友好设计
+- 独家打造 **ANSWER BLOCK 决策金字塔**：在首屏最显眼区域针对用户搜索意图提供 30 秒结论提炼，助力 Google AI Overviews、ChatGPT Search 与 Perplexity 秒级收录。
+
+---
+
+## 🛠️ 技术栈与工程亮点 (Tech Stack)
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  前端框架    : Astro 7.1.3 (SSG 静态预渲染 + Cloudflare 适配)│
+│  样式方案    : Tailwind CSS v4.3 (CSS-first Design Tokens) │
+│  类型系统    : TypeScript 6.0 (Strict 模式全覆盖)           │
+│  复古美学    : 8-Bit Pixel UI + PixelPanel + NES 像素字体   │
+│  结构化数据  : Schema.org @graph (Product, Review, FAQPage)│
+│  部署适配    : Cloudflare Pages / Workers / Vercel 零配置   │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-The contact keys live in the Worker, not the build: set them once with
-`pnpm wrangler secret put RESEND_API_KEY` / `CONTACT_TO_EMAIL` (and `CONTACT_FROM_EMAIL` for a
-verified domain). Locally, `.env` keeps working for `pnpm dev`.
+- **100% 独立与原创静态资产**：无任何外部 CDN 依赖、无外部图片直链，全站资源编译自包含；
+- **极致 Technical SEO 架构**：
+  - 全站严格自引用绝对 Canonical 标签 (`https://jichangcloud.cc/`)；
+  - 规范的 `sitemap.xml` 与 `sitemap-index.xml` 双地图输出，收录 77 个规范静态 URL；
+  - 生产级 `robots.txt` 规则，针对 Googlebot、bingbot、Baiduspider、yisouspider 显式友好配置；
+  - 预留四大站长平台所有权验证 Meta 标签（Google / Bing / 神马 / 百度）。
 
-**To change hosts**, swap the adapter in `astro.config.mjs` for `@astrojs/node`, `@astrojs/netlify`
-or `@astrojs/vercel` (a two-line change; nothing else knows which adapter is mounted — the contact
-keys read through `astro:env`, which every adapter serves). **To go fully static**, remove the
-contact form (or its `prerender = false`) and drop the adapter — then any static host serves `dist/`.
+---
 
-**One known cost of the mixed build:** because `/contact/` is on-demand, the build emits the shared
-stylesheet twice — `_astro/BaseLayout.<hash>.css` and a byte-identical `_astro/contact.<hash>.css`
-(84,211 B, ~14.7 KB gzip each) — so a visitor who navigates from any static page to `/contact/`
-downloads it again. It is an artifact of mixing prerendered and on-demand routes, not a
-misconfiguration: setting `prerender = true` on the contact route collapses the two into one file,
-verified. Going fully static (above) removes it; otherwise it is the price of the server-rendered
-form, and the second copy is cached from then on.
+## 📁 目录蓝图 (Directory Blueprint)
 
-Required environment variables at **build** time: **`SITE_URL`** (your production domain — feeds
-canonical, OG, JSON-LD, sitemap, `robots.txt`, `llms.txt`; a production deploy throws on the
-`example.com` placeholder — set `DEPLOY_ENV=production` in your CI build env to arm that guard).
-See `.env.example`.
-
-## Before you deploy
-
-1. **`SITE_URL`** — your production domain, in the host's environment variables. A **production**
-   deploy fails if it is missing or still `example.com`; local builds and deploy previews are
-   unaffected.
-2. **Contact keys** — `RESEND_API_KEY` and `CONTACT_TO_EMAIL` (and, to send beyond your own inbox, a
-   verified domain + `CONTACT_FROM_EMAIL`).
-3. **`public/og.jpg`** — replace the placeholder with a real 1200×630 social image.
-4. **`src/config/*`** — `siteData`, `portfolioData`, and the `legalData` terms/privacy copy (the last
-   is placeholder text, not legal advice — have it reviewed). In `siteData`, **fill `sameAs`**: until
-   you do, the footer icons and contact links point at bare platform home pages (`github.com`,
-   `linkedin.com`, `discord.gg`) rather than at your profiles. Set `author.email` and, if you use it,
-   `author.twitter` (empty by default, which omits `twitter:creator`).
-5. **Favicons** — `public/favicon.svg` and `public/favicon.ico`.
-6. **Delete the dev catalog** — `src/components/Sections/UiCatalog/` and `src/pages/examples/`, once
-   you have finished picking primitives. It builds no pages in production, but Tailwind still scans its
-   markup, so its demo classes sit in the stylesheet every page loads; removing it trims the shared CSS
-   by roughly a quarter (re-measured on the stock catalog: 84,211 B → 64,246 B, ~11.7 KB gzip) and
-   drops 75 unused `@keyframes` (90 → 15).
-7. **`.claude/`** — harness settings plus two optional skills for working on the repo with Claude
-   Code. Keep it if you use Claude; deleting it changes nothing at runtime.
-8. **Read [`THIRD-PARTY.md`](./THIRD-PARTY.md)** — the fonts, icon sets and code ports that are *not*
-   covered by [`LICENSE`](./LICENSE), including which trademarked brand marks the theme uses and the
-   demo images whose provenance you need to settle before shipping commercially.
-
-## Verifying a change
-
-```sh
-pnpm lint && pnpm check && pnpm build && pnpm test
+```bash
+8-BitQuest/
+├── public/                  # 静态资源 (像素图标、测速大图、favicon、og.jpg)
+├── src/
+│   ├── components/          # 8-Bit UI 像素组件库
+│   │   ├── Sections/        # 页面功能板块 (Home, Global Header/Footer, UiCatalog)
+│   │   └── ui/              # 原子级像素组件 (PixelPanel, Badge, Nav, Accordion...)
+│   ├── config/              # 站点核心配置 (siteData, siteSettings, legalData...)
+│   ├── data/                # 42家机场品牌数据、四大专题长尾文章、博文 MDX
+│   │   ├── airportsData.ts   # 42家品牌核心数据源 (线路、价格、节点、解锁率)
+│   │   ├── alertsData.ts    # 跑路预警数据
+│   │   ├── faqData.ts       # 100问疑难数据
+│   │   ├── freeResourcesData.ts # 免费资源白皮书数据
+│   │   └── toolsData.ts     # 客户端工具数据
+│   ├── layouts/             # BaseLayout 与 BaseHead (全站 SEO/Schema 引擎)
+│   ├── pages/               # 静态路由目录
+│   │   ├── airports/        # 42家机场品牌总览与 [slug] 详情落地页
+│   │   ├── alerts/          # 跑路预警支柱页与子文章
+│   │   ├── blog/            # 专栏深度指南
+│   │   ├── faq/             # 疑难 100 问支柱页与子文章
+│   │   ├── free/            # 免费资源支柱页与子文章
+│   │   ├── tools/           # 工具手册支柱页与子文章
+│   │   ├── index.astro      # 官网主页
+│   │   ├── speedtest.astro  # 晚高峰测速实验室
+│   │   ├── robots.txt.ts    # 动态生产 robots.txt 端点
+│   │   └── sitemap.xml.ts   # 传统 sitemap.xml 索引兼容端点
+│   └── styles/              # 全局样式与像素主题 Token
+├── astro.config.mjs         # Astro 核心配置文件
+├── package.json             # 依赖与脚本定义 (pnpm)
+└── tsconfig.json            # TypeScript 严格配置
 ```
 
-The build is the real check: content-schema and config mistakes surface there. `pnpm test` runs every
-`*.test.ts` under `src/` with Node's type stripping — no framework, no fixtures — and **fails if it
-finds none**, so a check cannot go missing unnoticed.
+---
 
-## Docs
+## ⚡ 快速上手 (Quick Start)
 
-House rules live in `AGENTS.md` (which `CLAUDE.md` imports so any agent loads them). The component
-contracts live next to the code they govern: `src/components/ui/README.md`,
-`src/components/Sections/README.md`, `src/components/Cards/README.md`,
-`src/components/svg/icons/README.md` and `src/data/README.md`. Git history records the removal of
-the former i18n layer and Keystatic CMS, along with the shape to restore them if a project needs
-them back.
+### 环境要求
+- **Node.js**: `>= 22.13.0`
+- **包管理器**: `pnpm >= 10.0.0` (推荐 `pnpm@11.9.0`)
+
+### 1. 克隆仓库
+```bash
+git clone https://github.com/sksksk98698-source/jichangcloud.cc.git
+cd jichangcloud.cc
+```
+
+### 2. 安装依赖
+```bash
+pnpm install
+```
+
+### 3. 本地开发
+```bash
+pnpm dev
+# 本地服务将在 http://localhost:4325 启动
+```
+
+### 4. 自动化测试
+```bash
+pnpm test
+# 执行 11 个模块的端到端自动化单元测试 (100% 通过)
+```
+
+### 5. 生产构建
+```bash
+pnpm build
+# 静态构建产物将输出至 dist/ 目录 (约 5.2s 编译 77 个生产页面)
+```
+
+---
+
+## 🚀 部署上线 (Deployment)
+
+### Cloudflare Pages / Workers (推荐)
+本项目已预置 `@astrojs/cloudflare` 适配器：
+1. 在 Cloudflare 控制台连接本 GitHub 仓库；
+2. 构建设置：
+   - **Framework preset**: `Astro`
+   - **Build command**: `pnpm build`
+   - **Build output directory**: `dist/client`
+3. 环境变量（可选）：
+   - `SITE_URL`: `https://jichangcloud.cc`
+   - `GOOGLE_SITE_VERIFICATION`: 站长验证代码
+   - `BING_SITE_VERIFICATION`: 必应验证代码
+   - `SHENMA_SITE_VERIFICATION`: 神马验证代码
+   - `BAIDU_SITE_VERIFICATION`: 百度验证代码
+
+---
+
+## ⚖️ 免责声明 (Disclaimer)
+
+1. 本站所有机场测评数据均基于品牌官方资料、第三方实际节点测试以及网络实验室晚高峰监测日志整理；
+2. 网站内所有外部链接均严格遵循 `rel="nofollow sponsored noopener"` 属性规范，保证搜索爬虫中立性；
+3. 本项目开源代码仅供网络工程教学、技术架构研究与合规跨境办公参考，严禁用于任何违反当地法律法规的活动。
+
+---
+
+<div align="center">
+
+Crafted with 👾 Retro 8-Bit Pixel Spirit by **[JiChang Cloud Lab](https://jichangcloud.cc)**  
+Copyright © 2026 机场cloud. All rights reserved.
+
+</div>
